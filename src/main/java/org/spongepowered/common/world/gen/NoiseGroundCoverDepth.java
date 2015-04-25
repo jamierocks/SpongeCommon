@@ -22,17 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import java.util.Random;
 
-public interface IMixinWorld {
+import org.spongepowered.api.util.SeededVariableAmount;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+public class NoiseGroundCoverDepth extends SeededVariableAmount<Double> {
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+    @Override
+    public double getAmount(Random rand, Double seed) {
+        return (int) (seed / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+    }
 
 }

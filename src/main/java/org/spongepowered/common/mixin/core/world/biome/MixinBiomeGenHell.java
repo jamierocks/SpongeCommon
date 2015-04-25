@@ -1,7 +1,7 @@
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,17 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.mixin.core.world.biome;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import net.minecraft.world.biome.BiomeGenHell;
+import org.spongepowered.asm.mixin.Mixin;
 
-public interface IMixinWorld {
+@Mixin(BiomeGenHell.class)
+public abstract class MixinBiomeGenHell extends MixinBiomeGenBase {
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
-
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
-
+    @Override
+    protected void buildPopulators() {
+    }
 }

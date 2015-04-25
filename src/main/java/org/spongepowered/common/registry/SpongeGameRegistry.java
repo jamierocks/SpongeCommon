@@ -288,6 +288,7 @@ import org.spongepowered.api.world.DimensionTypes;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.GeneratorTypes;
 import org.spongepowered.api.world.WorldBuilder;
+import org.spongepowered.api.world.biome.BiomeGenerationSettingsBuilder;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.BiomeTypes;
 import org.spongepowered.api.world.difficulty.Difficulties;
@@ -476,6 +477,7 @@ import org.spongepowered.common.world.SpongeExplosionBuilder;
 import org.spongepowered.common.world.SpongeWorldBuilder;
 import org.spongepowered.common.world.extent.SpongeExtentBufferFactory;
 import org.spongepowered.common.world.gen.WorldGeneratorRegistry;
+import org.spongepowered.common.world.gen.builders.SpongePopulatorFactory;
 import org.spongepowered.common.world.type.SpongeWorldTypeEnd;
 import org.spongepowered.common.world.type.SpongeWorldTypeNether;
 import org.spongepowered.common.world.type.SpongeWorldTypeOverworld;
@@ -606,7 +608,6 @@ public abstract class SpongeGameRegistry implements GameRegistry {
     public final Map<String, SpongeDisplaySlot> displaySlotMappings = Maps.newLinkedHashMap();
     public final Map<String, Criterion> criteriaMap = Maps.newHashMap();
     private final Map<String, SelectorType> selectorMappings = Maps.newHashMap();
-
     private final Map<String, NotePitch> notePitchMappings = Maps.newHashMap();
     public final Map<String, SkullType> skullTypeMappings = Maps.newLinkedHashMap();
     private final Map<String, TreeType> treeTypeMappings = Maps.newHashMap();
@@ -738,6 +739,8 @@ public abstract class SpongeGameRegistry implements GameRegistry {
                 .put(GeneratorType.class, this.generatorTypeMappings)
                 .build();
     private final Map<Class<?>, Class<?>> builderMap = ImmutableMap.of(); // TODO
+    
+    private final SpongePopulatorFactory populatorFactory = new SpongePopulatorFactory();
 
     public com.google.common.base.Optional<PotionEffectType> getPotion(String id) {
         return com.google.common.base.Optional.fromNullable((PotionEffectType) Potion.getPotionFromResourceLocation(id));
@@ -2250,7 +2253,7 @@ public abstract class SpongeGameRegistry implements GameRegistry {
 
     @Override
     public PopulatorFactory getPopulatorFactory() {
-        throw new UnsupportedOperationException(); // TODO
+        return this.populatorFactory;
     }
 
     @Override
@@ -2331,6 +2334,10 @@ public abstract class SpongeGameRegistry implements GameRegistry {
     @Override
     public WeatherSpawnCauseBuilder createWeatherSpawnCauseBuilder() {
         throw new UnsupportedOperationException();
+    }
+
+    public BiomeGenerationSettingsBuilder getBiomeGenerationSettingsBuilder() {
+        return null;
     }
 
     public void preInit() {

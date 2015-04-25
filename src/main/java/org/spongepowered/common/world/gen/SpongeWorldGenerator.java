@@ -27,14 +27,20 @@ package org.spongepowered.common.world.gen;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import org.spongepowered.api.world.biome.BiomeGenerationSettings;
+import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.gen.BiomeGenerator;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.WorldGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Implementation of {@link WorldGenerator}.
@@ -52,6 +58,7 @@ public final class SpongeWorldGenerator implements WorldGenerator {
      * {@link #getGeneratorPopulators()}.
      */
     private List<GeneratorPopulator> generatorPopulators;
+    private Map<BiomeType, BiomeGenerationSettings> biomeOverrides;
     private BiomeGenerator biomeGenerator;
     private GeneratorPopulator baseGenerator;
 
@@ -59,7 +66,7 @@ public final class SpongeWorldGenerator implements WorldGenerator {
     private boolean baseGeneratorChanged;
 
     public SpongeWorldGenerator(BiomeGenerator biomeGenerator, GeneratorPopulator baseGenerator,
-            List<GeneratorPopulator> generatorPopulators, List<Populator> populators) {
+            List<GeneratorPopulator> generatorPopulators, List<Populator> populators, Map<BiomeType, BiomeGenerationSettings> biomeOverrides) {
         this.biomeGenerator = checkNotNull(biomeGenerator, "biomeGenerator");
         this.baseGenerator = checkNotNull(baseGenerator, "baseGenerator");
 
@@ -67,6 +74,7 @@ public final class SpongeWorldGenerator implements WorldGenerator {
         // is already immutable
         this.populators = ImmutableList.copyOf(populators);
         this.generatorPopulators = ImmutableList.copyOf(generatorPopulators);
+        this.biomeOverrides = ImmutableMap.copyOf(biomeOverrides);
     }
 
     @Override
@@ -115,4 +123,29 @@ public final class SpongeWorldGenerator implements WorldGenerator {
         this.baseGeneratorChanged = true;
     }
 
+    @Override
+    public Optional<BiomeGenerationSettings> getBiomeOverride(BiomeType type) {
+        return Optional.fromNullable(this.biomeOverrides.get(type));
+    }
+
+    @Override
+    public boolean isBiomeOverriden(BiomeType type) {
+        return this.biomeOverrides.containsKey(type);
+    }
+
+    @Override
+    public void setBiomeOverride(BiomeType type, BiomeGenerationSettings settings) {
+        if(!(this.biomeOverrides instanceof HashMap)) {
+            this.biomeOverrides = new HashMap<BiomeType, BiomeGenerationSettings>(this.biomeOverrides);
+        }
+        if (settings == null) {
+            this.biomeOverrides.remove(type);
+        } else {
+            this.biomeOverrides.put(type, settings);
+        }
+    }
+
+    public Map<BiomeType, BiomeGenerationSettings> getBiomeOverrides() {
+        return ImmutableMap.copyOf(this.biomeOverrides);
+    }
 }

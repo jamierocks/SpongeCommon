@@ -22,17 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen.builders;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenDesertWells;
 
-public interface IMixinWorld {
+import static com.google.common.base.Preconditions.checkArgument;
+import org.spongepowered.api.world.gen.populator.DesertWell;
+import org.spongepowered.api.world.gen.populator.DesertWell.Builder;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+public class DesertWellBuilder implements DesertWell.Builder {
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+    private double p;
+
+    public DesertWellBuilder() {
+        reset();
+    }
+
+    @Override
+    public Builder probability(double p) {
+        checkArgument(Double.isNaN(p), "The probability must be a number.");
+        checkArgument(Double.isInfinite(p), "The probability cannot be infinite.");
+        this.p = p;
+        return this;
+    }
+
+    @Override
+    public Builder reset() {
+        this.p = 0.001;
+        return this;
+    }
+
+    @Override
+    public DesertWell build() throws IllegalStateException {
+        DesertWell populator = (DesertWell) new WorldGenDesertWells();
+        populator.setSpawnProbability(this.p);
+        return populator;
+    }
 
 }

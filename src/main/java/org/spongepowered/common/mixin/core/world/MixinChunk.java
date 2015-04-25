@@ -27,6 +27,7 @@ package org.spongepowered.common.mixin.core.world;
 import com.flowpowered.math.vector.Vector2i;
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockPos;
@@ -35,6 +36,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.DiscreteTransform3;
@@ -44,16 +48,25 @@ import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.Extent;
+import org.spongepowered.api.world.extent.ImmutableBiomeArea;
+import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.common.interfaces.IMixinWorld;
+import org.spongepowered.common.interfaces.IMixinWorld;
+import org.spongepowered.common.util.SpongeHooks;
 import org.spongepowered.common.util.SpongeHooks;
 import org.spongepowered.common.util.VecHelper;
+import org.spongepowered.common.util.VecHelper;
+import org.spongepowered.common.util.gen.ObjectArrayImmutableBiomeBuffer;
 import org.spongepowered.common.world.extent.ExtentViewDownsize;
 import org.spongepowered.common.world.extent.ExtentViewTransform;
 import org.spongepowered.common.world.storage.SpongeChunkLayout;
+
+import java.util.List;
 
 @NonnullByDefault
 @Mixin(net.minecraft.world.chunk.Chunk.class)

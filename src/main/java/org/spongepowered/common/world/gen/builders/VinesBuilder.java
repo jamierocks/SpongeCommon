@@ -22,17 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen.builders;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenVines;
+import org.spongepowered.api.world.gen.populator.Vines;
+import org.spongepowered.api.world.gen.populator.Vines.Builder;
 
-public interface IMixinWorld {
+public class VinesBuilder implements Vines.Builder {
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+    public VinesBuilder() {
+    }
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+    @Override
+    public Builder reset() {
+        return this;
+    }
+
+    @Override
+    public Vines build() throws IllegalStateException {
+        return (Vines) new WorldGenVines();
+    }
 
 }

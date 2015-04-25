@@ -22,17 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen.builders;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public interface IMixinWorld {
+import net.minecraft.world.gen.feature.WorldGenIcePath;
+import org.spongepowered.api.util.VariableAmount;
+import org.spongepowered.api.world.gen.populator.IcePath;
+import org.spongepowered.api.world.gen.populator.IcePath.Builder;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
 
-    void updateWorldGenerator();
+public class IcePathBuilder implements IcePath.Builder {
     
-    SpongeChunkProvider getSpongeChunkProvider();
+    private VariableAmount radius;
+    private VariableAmount count;
+    
+    public IcePathBuilder() {
+        reset();
+    }
+
+    @Override
+    public Builder radius(VariableAmount radius) {
+        this.radius = checkNotNull(radius);
+        return this;
+    }
+
+    @Override
+    public Builder perChunk(VariableAmount sections) {
+        this.count = checkNotNull(sections);
+        return this;
+    }
+
+    @Override
+    public Builder reset() {
+        this.radius = VariableAmount.baseWithRandomAddition(2, 2);
+        this.count = VariableAmount.fixed(2);
+        return this;
+    }
+
+    @Override
+    public IcePath build() throws IllegalStateException {
+        IcePath pop = (IcePath) new WorldGenIcePath(4);
+        pop.setRadius(this.radius);
+        pop.setSectionsPerChunk(this.count);
+        return pop;
+    }
 
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,17 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.mixin.core.world.gen;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.structure.MapGenStructure;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.gen.Populator;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
-public interface IMixinWorld {
+import java.util.Random;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+/**
+ * This mixin is making MapGenStructure be a populator as well as a
+ * generatorpopulator as the structures are called both from the generation
+ * phase and the population phase of chunk creation.
+ */
+@Mixin(MapGenStructure.class)
+public abstract class MixinMapGenStructure implements Populator {
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+    @Shadow
+    public abstract boolean func_175794_a(World worldIn, Random p_175794_2_, ChunkCoordIntPair p_175794_3_);
+
+    @Override
+    public void populate(Chunk chunk, Random random) {
+        World world = (World) chunk.getWorld();
+        func_175794_a(world, random, new ChunkCoordIntPair(chunk.getPosition().getX(), chunk.getPosition().getZ()));
+    }
 
 }

@@ -26,6 +26,7 @@ package org.spongepowered.common.mixin.core.world;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
@@ -45,6 +46,8 @@ import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.api.world.GeneratorType;
 import org.spongepowered.api.world.World;
+import org.spongepowered.api.world.biome.BiomeGenerationSettings;
+import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.gen.GeneratorPopulator;
 import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.api.world.gen.WorldGenerator;
@@ -130,7 +133,8 @@ public abstract class MixinWorldType implements GeneratorType, IMixinWorldType {
                 SpongeBiomeGenerator.of(chunkManager),
                 SpongeGeneratorPopulator.of((WorldServer) world, chunkProvider),
                 ImmutableList.<GeneratorPopulator> of(),
-                ImmutableList.<Populator> of());
+                ImmutableList.<Populator> of(),
+                Maps.<BiomeType, BiomeGenerationSettings>newHashMap());
     }
 
     public WorldChunkManager getChunkManager(net.minecraft.world.World world) {

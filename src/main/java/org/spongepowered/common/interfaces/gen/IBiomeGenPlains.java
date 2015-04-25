@@ -22,17 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.interfaces.gen;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
 
-public interface IMixinWorld {
-
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
-
-    void updateWorldGenerator();
+public interface IBiomeGenPlains {
     
-    SpongeChunkProvider getSpongeChunkProvider();
+    boolean hasSunflowers();
 
 }

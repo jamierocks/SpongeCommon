@@ -22,17 +22,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen.builders;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public interface IMixinWorld {
+import net.minecraft.world.gen.feature.WorldGenMelon;
+import org.spongepowered.api.util.VariableAmount;
+import org.spongepowered.api.world.gen.populator.Melons;
+import org.spongepowered.api.world.gen.populator.Melons.Builder;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+public class MelonBuilder implements Melons.Builder {
+
+    private VariableAmount count;
+
+    public MelonBuilder() {
+        reset();
+    }
+
+    @Override
+    public Builder perChunk(VariableAmount count) {
+        this.count = checkNotNull(count, "count");
+        return this;
+    }
+
+    @Override
+    public Builder reset() {
+        this.count = VariableAmount.fixed(64);
+        return this;
+    }
+
+    @Override
+    public Melons build() throws IllegalStateException {
+        Melons pop = (Melons) new WorldGenMelon();
+        pop.setMelonsPerChunk(this.count);
+        return pop;
+    }
 
 }

@@ -22,17 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen.builders;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-public interface IMixinWorld {
+import net.minecraft.world.gen.feature.WorldGenWaterlily;
+import org.spongepowered.api.util.VariableAmount;
+import org.spongepowered.api.world.gen.populator.WaterLily;
+import org.spongepowered.api.world.gen.populator.WaterLily.Builder;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+public class WaterLilyBuilder implements WaterLily.Builder {
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+    private VariableAmount count;
 
+    public WaterLilyBuilder() {
+        reset();
+    }
+
+    @Override
+    public Builder perChunk(VariableAmount count) {
+        this.count = checkNotNull(count, "count");
+        return this;
+    }
+
+    @Override
+    public Builder reset() {
+        this.count = VariableAmount.fixed(10);
+        return this;
+    }
+
+    @Override
+    public WaterLily build() throws IllegalStateException {
+        WaterLily pop = (WaterLily) new WorldGenWaterlily();
+        pop.setWaterLilyPerChunk(this.count);
+        return pop;
+    }
 }

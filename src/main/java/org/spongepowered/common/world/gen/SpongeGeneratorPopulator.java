@@ -25,6 +25,7 @@
 package org.spongepowered.common.world.gen;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import com.flowpowered.math.GenericMath;
 
 import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3i;
@@ -55,8 +56,8 @@ public final class SpongeGeneratorPopulator implements GeneratorPopulator {
      * @return The generator populator.
      */
     public static GeneratorPopulator of(World world, IChunkProvider chunkGenerator) {
-        if (chunkGenerator instanceof CustomChunkProviderGenerate) {
-            return ((CustomChunkProviderGenerate) chunkGenerator).getBaseGenerator();
+        if (chunkGenerator instanceof SpongeChunkProvider) {
+            return ((SpongeChunkProvider) chunkGenerator).getBaseGeneratorPopulator();
         }
         return new SpongeGeneratorPopulator(world, chunkGenerator);
     }
@@ -129,9 +130,9 @@ public final class SpongeGeneratorPopulator implements GeneratorPopulator {
      * @param targetWorld The target world.
      * @return The chunk provider.
      * @throws IllegalArgumentException If the target world is not the world
-     *         this chunk provider is bound to.
+     *         this chunk provider is bound to.`
      */
-    IChunkProvider getHandle(World targetWorld) {
+    public IChunkProvider getHandle(World targetWorld) {
         if (!this.world.equals(targetWorld)) {
             throw new IllegalArgumentException("Cannot reassign internal generator from world "
                 + getWorldName(this.world) + " to world " + getWorldName(targetWorld));

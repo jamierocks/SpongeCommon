@@ -22,17 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.world.gen.populators;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import net.minecraft.util.BlockPos;
 
-public interface IMixinWorld {
+import net.minecraft.world.World;
+import net.minecraft.entity.boss.EntityDragon;
+import org.spongepowered.api.world.Chunk;
+import org.spongepowered.api.world.gen.Populator;
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+import java.util.Random;
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
+public class EnderDragonPopulator implements Populator {
+
+    @Override
+    public void populate(Chunk chunk, Random random) {
+        World world = (World) chunk.getWorld();
+        BlockPos pos = new BlockPos(chunk.getBlockMin().getX(), chunk.getBlockMin().getY(), chunk.getBlockMin().getZ());
+        if (pos.getX() == 0 && pos.getZ() == 0) {
+            EntityDragon entitydragon = new EntityDragon(world);
+            entitydragon.setLocationAndAngles(0.0D, 128.0D, 0.0D, random.nextFloat() * 360.0F, 0.0F);
+            world.spawnEntityInWorld(entitydragon);
+        }
+
+    }
 
 }

@@ -1,7 +1,7 @@
 /*
  * This file is part of Sponge, licensed under the MIT License (MIT).
  *
- * Copyright (c) SpongePowered <https://www.spongepowered.org>
+ * Copyright (c) SpongePowered.org <http://www.spongepowered.org>
  * Copyright (c) contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,17 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.interfaces;
+package org.spongepowered.common.mixin.core.world.biome;
 
-import org.spongepowered.common.configuration.SpongeConfig;
-import org.spongepowered.common.world.gen.SpongeChunkProvider;
+import net.minecraft.world.biome.BiomeGenForest;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
-public interface IMixinWorld {
+@Mixin(BiomeGenForest.class)
+public abstract class MixinBiomeGenForest extends MixinBiomeGenBase {
 
-    SpongeConfig<SpongeConfig.WorldConfig> getWorldConfig();
+    @Shadow private int field_150632_aF;
 
-    void updateWorldGenerator();
-    
-    SpongeChunkProvider getSpongeChunkProvider();
-
+    @Override
+    protected void buildPopulators() {
+        if (this.field_150632_aF == 3) {
+            //this.populators.add(new RoofedForestPopulator());
+        }
+        int base = -3;
+        if (this.field_150632_aF == 1) {
+            base = -1;
+        }
+        //this.populators.add(new DoublePlantPopulator(base, 5, 5, BlockDoublePlant.EnumPlantType.SYRINGA, BlockDoublePlant.EnumPlantType.ROSE,
+        //        BlockDoublePlant.EnumPlantType.PAEONIA));
+        super.buildPopulators();
+    }
 }
