@@ -54,6 +54,7 @@ import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.OptionalValue;
 import org.spongepowered.api.data.value.mutable.Value;
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.gamemode.GameMode;
 import org.spongepowered.api.item.FireworkEffect;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -148,6 +149,8 @@ public class KeyRegistry {
         keyMap.put("is_sitting", makeSingleKey(Boolean.class, Value.class, of("IsSitting")));
         keyMap.put("is_sheared", makeSingleKey(Boolean.class, Value.class, of("IsSheared")));
         keyMap.put("pig_saddle", makeSingleKey(Boolean.class, Value.class, of("IsPigSaddled")));
+        keyMap.put("vehicle", makeSingleKey(Entity.class, Value.class, of("Vehicle")));
+        keyMap.put("base_vehicle", makeSingleKey(Entity.class, Value.class, of("BaseVehicle")));
 
     }
 
