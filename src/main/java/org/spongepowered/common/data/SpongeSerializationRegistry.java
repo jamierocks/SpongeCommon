@@ -48,6 +48,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableDisplayNameData;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedItemData;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableSkullData;
+import org.spongepowered.api.data.manipulator.immutable.ImmutableWetData;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableTreeData;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBreathingData;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableCareerData;
@@ -79,6 +80,7 @@ import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableSign
 import org.spongepowered.api.data.manipulator.mutable.DisplayNameData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedItemData;
 import org.spongepowered.api.data.manipulator.mutable.SkullData;
+import org.spongepowered.api.data.manipulator.mutable.WetData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BreathingData;
 import org.spongepowered.api.data.manipulator.mutable.entity.CareerData;
 import org.spongepowered.api.data.manipulator.mutable.entity.ExperienceHolderData;
@@ -140,6 +142,7 @@ import org.spongepowered.common.data.builder.manipulator.immutable.item.Immutabl
 import org.spongepowered.common.data.builder.manipulator.mutable.DisplayNameDataBuilder;
 import org.spongepowered.common.data.builder.manipulator.mutable.RepresentedItemDataBuilder;
 import org.spongepowered.common.data.builder.manipulator.mutable.SkullDataBuilder;
+import org.spongepowered.common.data.builder.manipulator.mutable.WetDataBuilder;
 import org.spongepowered.common.data.builder.manipulator.mutable.entity.BreathingDataBuilder;
 import org.spongepowered.common.data.builder.manipulator.mutable.entity.CareerDataBuilder;
 import org.spongepowered.common.data.builder.manipulator.mutable.entity.ExperienceHolderDataBuilder;
@@ -171,6 +174,7 @@ import org.spongepowered.common.data.key.KeyRegistry;
 import org.spongepowered.common.data.manipulator.immutable.ImmutableSpongeDisplayNameData;
 import org.spongepowered.common.data.manipulator.immutable.ImmutableSpongeRepresentedItemData;
 import org.spongepowered.common.data.manipulator.immutable.ImmutableSpongeSkullData;
+import org.spongepowered.common.data.manipulator.immutable.ImmutableSpongeWetData;
 import org.spongepowered.common.data.manipulator.immutable.block.ImmutableSpongeTreeData;
 import org.spongepowered.common.data.manipulator.immutable.entity.ImmutableSpongeBreathingData;
 import org.spongepowered.common.data.manipulator.immutable.entity.ImmutableSpongeCareerData;
@@ -202,6 +206,7 @@ import org.spongepowered.common.data.manipulator.immutable.tileentity.ImmutableS
 import org.spongepowered.common.data.manipulator.mutable.SpongeDisplayNameData;
 import org.spongepowered.common.data.manipulator.mutable.SpongeRepresentedItemData;
 import org.spongepowered.common.data.manipulator.mutable.SpongeSkullData;
+import org.spongepowered.common.data.manipulator.mutable.SpongeWetData;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeBreathingData;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeCareerData;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeExperienceHolderData;
@@ -232,6 +237,7 @@ import org.spongepowered.common.data.manipulator.mutable.tileentity.SpongeSignDa
 import org.spongepowered.common.data.processor.data.DisplayNameDataProcessor;
 import org.spongepowered.common.data.processor.data.RepresentedItemDataProcessor;
 import org.spongepowered.common.data.processor.data.SkullDataProcessor;
+import org.spongepowered.common.data.processor.data.WetDataProcessor;
 import org.spongepowered.common.data.processor.data.entity.BreathingDataProcessor;
 import org.spongepowered.common.data.processor.data.entity.CareerDataProcessor;
 import org.spongepowered.common.data.processor.data.entity.ExperienceHolderDataProcessor;
@@ -251,12 +257,14 @@ import org.spongepowered.common.data.processor.data.entity.SlimeDataProcessor;
 import org.spongepowered.common.data.processor.data.entity.SneakingDataProcessor;
 import org.spongepowered.common.data.processor.data.entity.VelocityDataProcessor;
 import org.spongepowered.common.data.processor.data.entity.VillagerZombieProcessor;
+import org.spongepowered.common.data.processor.data.entity.WolfWetDataProcessor;
 import org.spongepowered.common.data.processor.data.item.BreakableDataProcessor;
 import org.spongepowered.common.data.processor.data.item.GoldenAppleDataProcessor;
 import org.spongepowered.common.data.processor.data.item.ItemAuthorDataProcessor;
 import org.spongepowered.common.data.processor.data.item.ItemEnchantmentDataProcessor;
 import org.spongepowered.common.data.processor.data.item.ItemLoreDataProcessor;
 import org.spongepowered.common.data.processor.data.item.ItemPagedDataProcessor;
+import org.spongepowered.common.data.processor.data.item.ItemWetDataProcessor;
 import org.spongepowered.common.data.processor.data.item.PlaceableDataProcessor;
 import org.spongepowered.common.data.processor.data.tileentity.SignDataProcessor;
 import org.spongepowered.common.data.processor.value.DisplayNameVisibleValueProcessor;
@@ -264,6 +272,7 @@ import org.spongepowered.common.data.processor.value.ItemEnchantmentValueProcess
 import org.spongepowered.common.data.processor.value.RepresentedItemValueProcessor;
 import org.spongepowered.common.data.processor.value.entity.CareerValueProcessor;
 import org.spongepowered.common.data.processor.value.entity.EntityDisplayNameValueProcessor;
+import org.spongepowered.common.data.processor.value.entity.EntityWetValueProcessor;
 import org.spongepowered.common.data.processor.value.entity.ExperienceFromStartOfLevelValueProcessor;
 import org.spongepowered.common.data.processor.value.entity.ExperienceLevelValueProcessor;
 import org.spongepowered.common.data.processor.value.entity.ExperienceSinceLevelValueProcessor;
@@ -300,6 +309,7 @@ import org.spongepowered.common.data.processor.value.item.GoldenAppleValueProces
 import org.spongepowered.common.data.processor.value.item.ItemDisplayNameValueProcessor;
 import org.spongepowered.common.data.processor.value.item.ItemLoreValueProcessor;
 import org.spongepowered.common.data.processor.value.item.ItemSkullValueProcessor;
+import org.spongepowered.common.data.processor.value.item.ItemWetValueProcessor;
 import org.spongepowered.common.data.processor.value.item.PlaceableValueProcessor;
 import org.spongepowered.common.data.processor.value.tileentity.SignLinesValueProcessor;
 import org.spongepowered.common.data.processor.value.tileentity.TileEntityDisplayNameValueProcessor;
@@ -495,6 +505,15 @@ public class SpongeSerializationRegistry {
         dataRegistry.registerDataProcessorAndImplBuilder(MovementSpeedData.class, SpongeMovementSpeedData.class, ImmutableMovementSpeedData.class,
                 ImmutableSpongeMovementSpeedData.class, movementSpeedDataProcessor, movementSpeedDataBuilder);
 
+        final WolfWetDataProcessor wolfWetDataProcessor = new WolfWetDataProcessor();
+        final ItemWetDataProcessor itemWetDataProcessor = new ItemWetDataProcessor();
+        final WetDataBuilder wetDataBuilder = new WetDataBuilder();
+        service.registerBuilder(WetData.class, wetDataBuilder);
+        dataRegistry.register(WetData.class, ImmutableWetData.class, wetDataBuilder);
+        dataRegistry.register(SpongeWetData.class, ImmutableSpongeWetData.class, wetDataBuilder);
+        dataRegistry.registerDataProcessorAndImpl(WetData.class, SpongeWetData.class, ImmutableWetData.class, ImmutableSpongeWetData.class, wolfWetDataProcessor);
+        dataRegistry.registerDataProcessorAndImpl(WetData.class, SpongeWetData.class, ImmutableWetData.class, ImmutableSpongeWetData.class, itemWetDataProcessor);
+
         final SlimeDataProcessor slimeDataProcessor = new SlimeDataProcessor();
         final SlimeDataBuilder slimeDataBuilder = new SlimeDataBuilder();
         service.registerBuilder(SlimeData.class, slimeDataBuilder);
@@ -578,6 +597,8 @@ public class SpongeSerializationRegistry {
         dataRegistry.registerValueProcessor(Keys.IS_SITTING, new IsSittingValueProcessor());
         dataRegistry.registerValueProcessor(Keys.IS_SHEARED, new IsShearedValueProcessor());
         dataRegistry.registerValueProcessor(Keys.PIG_SADDLE, new PigSaddleValueProcessor());
+        dataRegistry.registerValueProcessor(Keys.IS_WET, new ItemWetValueProcessor());
+        dataRegistry.registerValueProcessor(Keys.IS_WET, new EntityWetValueProcessor());
     }
 
 }
