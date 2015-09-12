@@ -33,10 +33,13 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateBase;
+import net.minecraft.block.state.IBlockState;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.key.Key;
@@ -55,6 +58,7 @@ import org.spongepowered.common.data.BlockValueProcessor;
 import org.spongepowered.common.data.SpongeDataRegistry;
 import org.spongepowered.common.interfaces.block.IMixinBlock;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -63,10 +67,19 @@ import javax.annotation.Nullable;
 @Mixin(net.minecraft.block.state.BlockState.StateImplementation.class)
 public abstract class MixinBlockState extends BlockStateBase implements BlockState {
 
-    @Shadow
-    @SuppressWarnings("rawtypes")
+    @Shadow 
+    @SuppressWarnings("rawtypes") 
     private ImmutableMap properties;
     @Shadow private Block block;
+
+    @Shadow
+    public abstract Collection getPropertyNames();
+
+    @Shadow
+    public abstract Comparable getValue(IProperty property);
+
+    @Shadow
+    public abstract IBlockState withProperty(IProperty property, Comparable value);
 
     @Nullable private ImmutableSet<ImmutableValue<?>> values;
     @Nullable private ImmutableSet<Key<?>> keys;
@@ -319,4 +332,44 @@ public abstract class MixinBlockState extends BlockStateBase implements BlockSta
                 .set(of("BlockType"), this.getType().getId())
                 .set(of("Data"), this.getManipulators());
     }
+
+    @Override
+    public Optional<BlockTrait<?>> getTrait(String blockTrait) {
+        for (Object obj : this.properties.keySet()) {
+            BlockTrait<?> trait = (BlockTrait<?>) obj;
+            if (trait.getName().equalsIgnoreCase(blockTrait)) {
+                return Optional.<BlockTrait<?>>of(trait);
+            }
+        }
+
+        return Optional.absent();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T extends Comparable<T>> Optional<T> getTraitValue(BlockTrait<T> property) {
+        if (!this.properties.containsKey(property)) {
+            return Optional.absent();
+        } else {
+            return Optional.of((T) (Comparable<T>) property.getValueClass().cast(this.properties.get(property)));
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ImmutableMap<BlockTrait<?>, ?> getTraitMap() {
+        return getProperties();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Collection<BlockTrait<?>> getTraits() {
+        return getProperties().keySet();
+    }
+
+    @Override
+    public Collection<?> getTraitValues() {
+        return getProperties().values();
+    }
+
 }
