@@ -16,14 +16,18 @@ buildscript {
 }
 
 version = '0.1-SNAPSHOT' // TODO: ???
-ext.common = project
 apply plugin: 'net.minecraftforge.gradle.tweaker-server'
-ext.minecraftPlugin = plugins.getPlugin('net.minecraftforge.gradle.tweaker-server')
-ext.DIR_MCP_MAPPINGS = net.minecraftforge.gradle.common.Constants.DIR_MCP_MAPPINGS
+
+ext {
+    common = project
+    minecraftPlugin = plugins.getPlugin('net.minecraftforge.gradle.tweaker-server')
+    DIR_MCP_MAPPINGS = net.minecraftforge.gradle.common.Constants.DIR_MCP_MAPPINGS
+}
 
 minecraft {
     tweakClass = 'null'
 }
+
 apply from: 'gradle/minecraft.gradle'
 
 dependencies {
@@ -33,14 +37,14 @@ dependencies {
         exclude module: 'guava'
     }
 
-    compile 'com.zaxxer:HikariCP-java6:2.3.9'
+    compile 'com.zaxxer:HikariCP:2.4.1'
 
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.0-beta9'
+
     testCompile 'org.powermock:powermock-module-junit4:1.6.3'
-    testCompile 'org.powermock:powermock-api-easymock:1.6.3'
     testCompile 'org.powermock:powermock-api-mockito:1.6.3'
-    testCompile 'org.easymock:easymock:3.2'
-    runtime 'org.mariadb.jdbc:mariadb-java-client:1.1.9'
-    runtime 'com.h2database:h2:1.4.189'
-    runtime 'org.xerial:sqlite-jdbc:3.8.11.1'
+
+    runtime 'org.mariadb.jdbc:mariadb-java-client:1.2.3'
+    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
+    runtime 'com.h2database:h2:1.4.190'
 }
