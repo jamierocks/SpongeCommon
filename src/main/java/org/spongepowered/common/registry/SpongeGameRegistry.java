@@ -632,6 +632,15 @@ public abstract class SpongeGameRegistry implements GameRegistry {
         return Optional.ofNullable((EntityType) this.entityTypeMappings.get(id));
     }
 
+    public Optional<EntityType> getEntity(Class<? extends org.spongepowered.api.entity.Entity> entityClass) {
+        for (EntityType type : this.entityTypeMappings.values()) {
+            if (entityClass.isAssignableFrom(type.getEntityClass())) {
+                return Optional.of(type);
+            }
+        }
+        return Optional.empty();
+    }
+
     public Optional<BiomeType> getBiome(String id) {
         for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray()) {
             if (biome != null && biome.biomeName.equalsIgnoreCase(id)) {
@@ -650,6 +659,9 @@ public abstract class SpongeGameRegistry implements GameRegistry {
     public <T extends CatalogType> Optional<T> getType(Class<T> typeClass, String id) {
         Map<String, ? extends CatalogType> tempMap = this.catalogTypeMap.get(checkNotNull(typeClass, "null type class"));
         if (tempMap == null) {
+            if (typeClass == EntityType.class) {
+                return (Optional<T>) getEntity(id);
+            }
             return Optional.empty();
         } else {
             T type = (T) tempMap.get(id.toLowerCase());

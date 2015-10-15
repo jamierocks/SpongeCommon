@@ -24,6 +24,7 @@
  */
 package org.spongepowered.common.util;
 
+import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import gnu.trove.map.hash.TObjectLongHashMap;
 import net.minecraft.block.Block;
@@ -41,12 +42,17 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkProviderServer;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.commons.lang3.reflect.ConstructorUtils;
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTransaction;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.data.manipulator.mutable.entity.VelocityData;
 import org.spongepowered.api.entity.living.player.User;
+import org.spongepowered.api.entity.projectile.Projectile;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.common.Sponge;
@@ -64,6 +70,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
 import javax.management.MBeanServer;
 
 public class SpongeHooks {
@@ -452,5 +459,26 @@ public class SpongeHooks {
             }
         }
         return causedBy;
+    }
+
+    public static <T extends Projectile> T launchProjectile(World world, Vector3d position, ProjectileSource source, Class<T> projectileClass,
+            @Nullable Vector3d velocity) {
+        try {
+            @SuppressWarnings("unchecked")
+            T entity = (T) ConstructorUtils.invokeConstructor(Sponge.getSpongeRegistry().getEntity(projectileClass).get().getEntityClass(), world);
+            entity.setLocation(entity.getLocation().setPosition(position));
+            entity.setShooter(source);
+            if (velocity != null) {
+                VelocityData velocityData = entity.getOrCreate(VelocityData.class).get();
+                velocityData.velocity().set(velocity);
+                entity.offer(velocityData);
+            }
+            world.spawnEntityInWorld((net.minecraft.entity.Entity) entity);
+            return entity;
+        } catch (Exception e) {
+            Sponge.getLogger().error(ExceptionUtils.getStackTrace(e));
+        }
+
+        return null;
     }
 }

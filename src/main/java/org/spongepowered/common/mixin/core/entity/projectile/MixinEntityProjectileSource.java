@@ -22,107 +22,94 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.spongepowered.common.mixin.core.block.tiles;
-
-import static com.google.common.base.Preconditions.checkNotNull;
+package org.spongepowered.common.mixin.core.entity.projectile;
 
 import com.flowpowered.math.vector.Vector3d;
-import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockSourceImpl;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityDispenser;
-import net.minecraft.util.EnumFacing;
-import org.spongepowered.api.block.tileentity.carrier.Dispenser;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.item.EntityEnderPearl;
+import net.minecraft.entity.item.EntityExpBottle;
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityEgg;
+import net.minecraft.entity.projectile.EntitySnowball;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.projectile.Projectile;
-import org.spongepowered.api.util.annotation.NonnullByDefault;
+import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.common.entity.living.human.EntityHuman;
 import org.spongepowered.common.entity.projectile.ProjectileLauncher;
-import org.spongepowered.common.util.VecHelper;
 
 import java.util.Optional;
 
-@NonnullByDefault
-@Mixin(TileEntityDispenser.class)
-public abstract class MixinTileEntityDispenser extends MixinTileEntityLockable implements Dispenser, ProjectileLauncher.ProjectileCreator {
+@Mixin({EntityBlaze.class, EntityGhast.class, EntityHuman.class, EntityPlayerMP.class, EntitySkeleton.class, EntityWitch.class, EntityWither.class})
+public abstract class MixinEntityProjectileSource extends EntityLivingBase implements ProjectileSource, ProjectileLauncher.ProjectileCreator {
+
+    public MixinEntityProjectileSource() {
+        super(null);
+    }
 
     @Override
     public <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass) {
-        return launchProjectile(projectileClass, null);
+        return this.launchProjectile(projectileClass, null);
     }
 
     @Override
     public <T extends Projectile> Optional<T> launchProjectile(Class<T> projectileClass, Vector3d velocity) {
-        return ProjectileLauncher.launchProjectile(this, checkNotNull(projectileClass, "projectileClass"), VecHelper.toVector3d(this.getPos()),
-                (World) this.worldObj, velocity, this);
+        Vector3d position = new Vector3d(this.posX, this.getEntityBoundingBox().minY + (double) (this.height / 2.0F), this.posZ);
+        return ProjectileLauncher.launchProjectile(this, projectileClass, position, (World) this.worldObj, velocity, this);
     }
+
+    private boolean wasCreated = false;
 
     @Override
     public Optional<Projectile> createProjectile(EntityType projectileType, Vector3d position) {
+        this.wasCreated = true;
         if (projectileType == EntityTypes.ARROW) {
-            return Optional.ofNullable(launchItem(Items.arrow));
+            return Optional.of((Projectile) new EntityArrow(this.worldObj, this, 1));
         } else if (projectileType == EntityTypes.EGG) {
-            return Optional.ofNullable(launchItem(Items.egg));
+            return Optional.of((Projectile) new EntityEgg(this.worldObj, this));
         } else if (projectileType == EntityTypes.ENDER_PEARL) {
-            // TODO
+            return Optional.of((Projectile) new EntityEnderPearl(this.worldObj, this));
         } else if (projectileType == EntityTypes.FIREBALL) {
-            return Optional.ofNullable(launchItem(Items.fire_charge));
+            // TODO
         } else if (projectileType == EntityTypes.WITHER_SKULL) {
             // TODO
         } else if (projectileType == EntityTypes.EYE_OF_ENDER) {
             // TODO
         } else if (projectileType == EntityTypes.FIREWORK) {
-            return Optional.ofNullable(launchItem(Items.fireworks));
+            // TODO
         } else if (projectileType == EntityTypes.FISHING_HOOK) {
             // TODO
         } else if (projectileType == EntityTypes.SNOWBALL) {
-            return Optional.ofNullable(launchItem(Items.snowball));
+            return Optional.of((Projectile) new EntitySnowball(this.worldObj, this));
         } else if (projectileType == EntityTypes.THROWN_EXP_BOTTLE) {
-            return Optional.ofNullable(launchItem(Items.experience_bottle));
+            return Optional.of((Projectile) new EntityExpBottle(this.worldObj, this));
         } else if (projectileType == EntityTypes.SPLASH_POTION) {
             // TODO
         }
-        return null;
-    }
-
-    private boolean wasDispensed = false;
-
-    private Projectile launchItem(Item item) {
-        BehaviorDefaultDispenseItem behavior = (BehaviorDefaultDispenseItem) BlockDispenser.dispenseBehaviorRegistry.getObject(item);
-        int numEntities = this.worldObj.loadedEntityList.size();
-        behavior.dispense(new BlockSourceImpl(this.worldObj, this.getPos()), new ItemStack(item));
-        for (int i = this.worldObj.loadedEntityList.size() - 1; i >= numEntities; i--) {
-            if (this.worldObj.loadedEntityList.get(i) instanceof Projectile) {
-                this.wasDispensed = true;
-                return (Projectile) this.worldObj.loadedEntityList.get(i);
-            }
-        }
+        this.wasCreated = false;
         return null;
     }
 
     @Override
     public Vector3d getVelocity(Projectile projectile) {
-        if (this.wasDispensed) {
-            return null;
+        if (this.wasCreated) {
+            this.wasCreated = false;
+            return null; // Already calculated from createProjectile
         }
-        IBlockState state = this.worldObj.getBlockState(this.getPos());
-        EnumFacing enumfacing = BlockDispenser.getFacing(state.getBlock().getMetaFromState(state));
-        return new Vector3d(enumfacing.getFrontOffsetX(), enumfacing.getFrontOffsetY() + 0.1F, enumfacing.getFrontOffsetZ());
+        // TODO calculate velocity from rotation of entity
+        return null;
     }
 
     @Override
     public Boolean spawnProjectile(Projectile projectile) {
-        if (this.wasDispensed) {
-            this.wasDispensed = false;
-            return true;
-        }
         return null;
     }
-
 }
