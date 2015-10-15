@@ -38,7 +38,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.item.EntityItem;
@@ -112,6 +111,7 @@ import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.api.world.Chunk;
 import org.spongepowered.api.world.Dimension;
 import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.PlayerSimulator;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.WorldBorder;
 import org.spongepowered.api.world.WorldCreationSettings;
@@ -147,6 +147,7 @@ import org.spongepowered.common.scoreboard.SpongeScoreboard;
 import org.spongepowered.common.util.SpongeHooks;
 import org.spongepowered.common.util.VecHelper;
 import org.spongepowered.common.world.DimensionManager;
+import org.spongepowered.common.world.PlayerSimulatorFactory;
 import org.spongepowered.common.world.border.PlayerBorderListener;
 import org.spongepowered.common.world.extent.ExtentViewDownsize;
 import org.spongepowered.common.world.extent.ExtentViewTransform;
@@ -369,8 +370,8 @@ public abstract class MixinWorld implements World, IMixinWorld {
         if (entityClass.isAssignableFrom(EntityLightningBolt.class)) {
             entity = (Entity) new EntityLightningBolt(world, x, y, z);
         } else if (entityClass.isAssignableFrom(EntityEnderPearl.class)) {
-            EntityArmorStand tempEntity = new EntityArmorStand(world, x, y, z);
-            entity = (Entity) new EntityEnderPearl(world, tempEntity);
+            EntityPlayerMP thrower = PlayerSimulatorFactory.instance.getSimulator((WorldServer) world).at(x, y, z).getPlayer();
+            entity = (Entity) new EntityEnderPearl(world, thrower);
             ((EnderPearl) entity).setShooter(ProjectileSource.UNKNOWN);
         }
 
@@ -833,6 +834,11 @@ public abstract class MixinWorld implements World, IMixinWorld {
             }
         }
         return faces.build();
+    }
+
+    @Override
+    public PlayerSimulator getPlayerSimulator() {
+        return PlayerSimulatorFactory.instance.getSimulator((WorldServer) (Object) this);
     }
 
     public Collection<Direction> getIndirectlyPoweredBlockFaces(int x, int y, int z) {
