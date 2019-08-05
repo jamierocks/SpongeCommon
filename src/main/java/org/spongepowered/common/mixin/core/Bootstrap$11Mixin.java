@@ -36,13 +36,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @NonnullByDefault
 @Mixin(targets = "net/minecraft/init/Bootstrap$11")
-public class Bootstrap$11Mixin {
+public class Mixin {
 
     @Redirect(method = "dispenseStack(Lnet/minecraft/dispenser/IBlockSource;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"))
     private boolean impl$setShooterOnSmallFireball(final World world, final Entity smallFireball, final IBlockSource source, final ItemStack stack) {
-        ((SmallFireball) smallFireball).setShooter(source.getBlockTileEntity());
-        return world.spawnEntity(smallFireball);
+        ((SmallFireball) smallFireball).setShooter(source.func_150835_j());
+        return world.func_72838_d(smallFireball);
     }
 
 }

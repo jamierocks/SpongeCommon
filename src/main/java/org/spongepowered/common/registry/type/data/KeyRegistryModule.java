@@ -56,7 +56,7 @@ import org.spongepowered.common.data.datasync.entity.EntityLivingBaseArrowCountC
 import org.spongepowered.common.data.datasync.entity.EntityLivingBaseHealthConverter;
 import org.spongepowered.common.data.datasync.entity.EntityNoGravityConverter;
 import org.spongepowered.common.data.datasync.entity.EntitySilentConverter;
-
+import org.spongepowered.common.registry.type.data.KeyRegistryModule.Holder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

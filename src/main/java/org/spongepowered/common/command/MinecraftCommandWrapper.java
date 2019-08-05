@@ -123,7 +123,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
         if (usernameIndex > -1) {
             List<Entity> list = null;
             try {
-                list = EntitySelector.matchEntities(mcSender, splitArgs[usernameIndex], Entity.class);
+                list = EntitySelector.func_179656_b(mcSender, splitArgs[usernameIndex], Entity.class);
             } catch (net.minecraft.command.CommandException e) {
                 throw new RuntimeException(e);
             }
@@ -133,7 +133,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
             ((CommandHandlerBridge) handler).bridge$setExpandedSelector(true);
 
             for (Entity entity : list) {
-                splitArgs[usernameIndex] = entity.getCachedUniqueIdString();
+                splitArgs[usernameIndex] = entity.func_189512_bd();
 
                 if (tryExecute(handler, mcSender, splitArgs, arguments)) {
                     ++successCount;
@@ -172,11 +172,11 @@ public class MinecraftCommandWrapper implements CommandCallable {
     }
 
     public int getPermissionLevel() {
-        return this.command instanceof CommandBase ? ((CommandBase) this.command).getRequiredPermissionLevel() : -1;
+        return this.command instanceof CommandBase ? ((CommandBase) this.command).func_82362_a() : -1;
     }
 
     public String getCommandPermission() {
-        return this.owner.getId().toLowerCase() + ".command." + this.command.getName();
+        return this.owner.getId().toLowerCase() + ".command." + this.command.func_71517_b();
     }
 
     public PluginContainer getOwner() {
@@ -186,7 +186,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
     @Override
     public boolean testPermission(CommandSource source) {
         ICommandSender sender = WrapperICommandSender.of(source);
-        return this.command.checkPermission(sender.getServer(), sender);
+        return this.command.func_184882_a(sender.func_184102_h(), sender);
     }
 
     @Override
@@ -196,7 +196,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
 
     @Override
     public Optional<Text> getHelp(CommandSource source) {
-        String translation = this.command.getUsage(WrapperICommandSender.of(source));
+        String translation = this.command.func_71518_a(WrapperICommandSender.of(source));
         if (translation == null) {
             return Optional.empty();
         }
@@ -206,7 +206,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
     @Override
     public Text getUsage(CommandSource source) {
         final ICommandSender mcSender = WrapperICommandSender.of(source);
-        String usage = this.command.getUsage(mcSender);
+        String usage = this.command.func_71518_a(mcSender);
         if (usage == null) { // Silly modders
             return Text.of();
         }
@@ -219,7 +219,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
         }
 
         List<String> parts = new ArrayList<>(Arrays.asList(usage.split(" ")));
-        parts.removeAll(Collections.singleton("/" + this.command.getName()));
+        parts.removeAll(Collections.singleton("/" + this.command.func_71517_b()));
         StringBuilder out = new StringBuilder();
         for (String s : parts) {
             out.append(s);
@@ -233,7 +233,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
         if (!testPermission(source)) {
             return ImmutableList.of();
         }
-        List<String> suggestions = this.command.getTabCompletions(SpongeImpl.getServer(),
+        List<String> suggestions = this.command.func_184883_a(SpongeImpl.getServer(),
                 WrapperICommandSender.of(source), arguments.split(" ", -1), targetPosition == null ? null : VecHelper.toBlockPos(targetPosition));
         if (suggestions == null) {
             return ImmutableList.of();
@@ -242,7 +242,7 @@ public class MinecraftCommandWrapper implements CommandCallable {
     }
 
     public List<String> getNames() {
-        return ImmutableList.<String>builder().add(this.command.getName()).addAll(this.command.getAliases()).build();
+        return ImmutableList.<String>builder().add(this.command.func_71517_b()).addAll(this.command.func_71514_a()).build();
     }
 
     public static void setError(Throwable error) {

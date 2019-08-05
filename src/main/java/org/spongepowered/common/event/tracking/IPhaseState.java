@@ -723,9 +723,9 @@ public interface IPhaseState<C extends PhaseContext<C>> {
      * @param phaseContext the block tick context being entered
      */
     default void appendNotifierPreBlockTick(WorldServerBridge mixinWorld, BlockPos pos, C context, BlockTickContext phaseContext) {
-        final Chunk chunk = ((WorldServer) mixinWorld).getChunk(pos);
+        final Chunk chunk = ((WorldServer) mixinWorld).func_175726_f(pos);
         final ChunkBridge mixinChunk = (ChunkBridge) chunk;
-        if (chunk != null && !chunk.isEmpty()) {
+        if (chunk != null && !chunk.func_76621_g()) {
             mixinChunk.bridge$getBlockOwner(pos).ifPresent(phaseContext::owner);
             mixinChunk.bridge$getBlockNotifier(pos).ifPresent(phaseContext::notifier);
         }
@@ -855,8 +855,8 @@ public interface IPhaseState<C extends PhaseContext<C>> {
         if (this.hasSpecificBlockProcess(context)) {
             context.getCapturedBlockSupplier().cancelTransaction(original);
             ((SpongeBlockSnapshot) original).getWorldServer().ifPresent(worldServer -> {
-                final Chunk chunk = worldServer.getChunk(((SpongeBlockSnapshot) original).getBlockPos());
-                final PlayerChunkMapEntry entry = worldServer.getPlayerChunkMap().getEntry(chunk.x, chunk.z);
+                final Chunk chunk = worldServer.func_175726_f(((SpongeBlockSnapshot) original).getBlockPos());
+                final PlayerChunkMapEntry entry = worldServer.func_184164_w().func_187301_b(chunk.field_76635_g, chunk.field_76647_h);
                 if (entry != null) {
                     ((PlayerChunkMapEntryBridge) entry).bridge$markBiomesForUpdate();
                 }
@@ -886,7 +886,7 @@ public interface IPhaseState<C extends PhaseContext<C>> {
     default BlockChange associateBlockChangeWithSnapshot(C phaseContext, IBlockState newState, Block newBlock,
         IBlockState currentState, SpongeBlockSnapshot snapshot,
         Block originalBlock) {
-        if (newBlock == Blocks.AIR) {
+        if (newBlock == Blocks.field_150350_a) {
             return BlockChange.BREAK;
         } else if (newBlock != originalBlock && !TrackingUtil.forceModify(originalBlock, newBlock)) {
             return BlockChange.PLACE;

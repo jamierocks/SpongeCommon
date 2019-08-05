@@ -45,7 +45,7 @@ import java.util.Random;
 // with an empty MerchantRecipeList and diff the list with an empty one and
 // provide the resulting diff'ed MerchantRecipe (TradeOffer) as the result.
 @Mixin(EntityVillager.EmeraldForItems.class)
-public class EntityVillager$EmeraldForItemsMixin_API implements TradeOfferGenerator {
+public class EmeraldForItemsMixin_API implements TradeOfferGenerator {
 
     @Shadow public Item buyingItem;
     @Shadow public EntityVillager.PriceInfo price;
@@ -56,11 +56,11 @@ public class EntityVillager$EmeraldForItemsMixin_API implements TradeOfferGenera
         int buyingCount = 1;
 
         if (this.price != null) {
-            buyingCount = this.price.getPrice(random);
+            buyingCount = this.price.func_179412_a(random);
         }
 
         final ItemStack buyingItem = new ItemStack(this.buyingItem, buyingCount, 0);
-        return (TradeOffer) new MerchantRecipe(buyingItem, Items.EMERALD);
+        return (TradeOffer) new MerchantRecipe(buyingItem, Items.field_151166_bC);
     }
 
     @Override

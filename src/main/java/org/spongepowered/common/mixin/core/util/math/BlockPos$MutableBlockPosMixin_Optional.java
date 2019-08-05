@@ -40,7 +40,7 @@ public abstract class BlockPos$MutableBlockPosMixin_Optional extends BlockPos im
     @Shadow protected int z;
 
     // NOT USED
-    public BlockPos$MutableBlockPosMixin_Optional(final int xIn, final int yIn, final int zIn) {
+    public MutableBlockPosMixin_Optional(final int xIn, final int yIn, final int zIn) {
         super(xIn, yIn, zIn);
     }
 

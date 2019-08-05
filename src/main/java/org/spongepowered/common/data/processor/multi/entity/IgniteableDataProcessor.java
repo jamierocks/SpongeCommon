@@ -58,10 +58,10 @@ public class IgniteableDataProcessor extends AbstractEntityDataProcessor<Entity,
     @Override
     public DataTransactionResult remove(DataHolder dataHolder) {
         if (dataHolder instanceof Entity) {
-            if (((Entity) dataHolder).fire > 0) {
+            if (((Entity) dataHolder).field_190534_ay > 0) {
                 final DataTransactionResult.Builder builder = DataTransactionResult.builder();
                 builder.replace(from(dataHolder).get().getValues());
-                ((Entity) dataHolder).extinguish();
+                ((Entity) dataHolder).func_70066_B();
                 return builder.result(DataTransactionResult.Type.SUCCESS).build();
             }
         }
@@ -75,12 +75,12 @@ public class IgniteableDataProcessor extends AbstractEntityDataProcessor<Entity,
 
     @Override
     protected boolean doesDataExist(Entity entity) {
-        return entity.fire > 0;
+        return entity.field_190534_ay > 0;
     }
 
     @Override
     protected boolean set(Entity entity, Map<Key<?>, Object> keyValues) {
-        entity.fire = (Integer) keyValues.get(Keys.FIRE_TICKS);
+        entity.field_190534_ay = (Integer) keyValues.get(Keys.FIRE_TICKS);
         // TODO - this needs to be a property
         //entity.fireResistance = (Integer) keyValues.get(Keys.FIRE_DAMAGE_DELAY);
         return true;
@@ -88,7 +88,7 @@ public class IgniteableDataProcessor extends AbstractEntityDataProcessor<Entity,
 
     @Override
     protected Map<Key<?>, ?> getValues(Entity entity) {
-        final int fireTicks = entity.fire;
+        final int fireTicks = entity.field_190534_ay;
         final int fireDamageDelay = ((EntityAccessor) entity).accessor$getFireImmuneTicks();
         return ImmutableMap.<Key<?>, Object>of(Keys.FIRE_TICKS, fireTicks,
                                                Keys.FIRE_DAMAGE_DELAY, fireDamageDelay);

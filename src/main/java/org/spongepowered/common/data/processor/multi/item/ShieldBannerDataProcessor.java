@@ -52,7 +52,7 @@ import java.util.Optional;
 public class ShieldBannerDataProcessor extends AbstractItemDataProcessor<BannerData, ImmutableBannerData> {
 
     public ShieldBannerDataProcessor() {
-        super(input -> input.getItem() == Items.SHIELD);
+        super(input -> input.func_77973_b() == Items.field_185159_cQ);
     }
 
     @Override
@@ -62,8 +62,8 @@ public class ShieldBannerDataProcessor extends AbstractItemDataProcessor<BannerD
 
     @Override
     public boolean set(ItemStack itemStack, Map<Key<?>, Object> keyValues) {
-        if (itemStack.getTagCompound() == null) {
-            itemStack.setTagCompound(new NBTTagCompound());
+        if (itemStack.func_77978_p() == null) {
+            itemStack.func_77982_d(new NBTTagCompound());
         }
         final NBTTagCompound tagCompound = ItemStackUtil.getTagCompound(itemStack);
         final NBTTagCompound blockEntity = new NBTTagCompound();
@@ -74,24 +74,24 @@ public class ShieldBannerDataProcessor extends AbstractItemDataProcessor<BannerD
 
             for (PatternLayer layer : patternLayers) {
                 NBTTagCompound compound = new NBTTagCompound();
-                compound.setString(Constants.TileEntity.Banner.BANNER_PATTERN_ID, ((BannerPattern) (Object) layer.getShape()).getHashname());
-                compound.setInteger(Constants.TileEntity.Banner.BANNER_PATTERN_COLOR, ((EnumDyeColor) (Object) layer.getColor()).getDyeDamage());
-                patterns.appendTag(compound);
+                compound.func_74778_a(Constants.TileEntity.Banner.BANNER_PATTERN_ID, ((BannerPattern) (Object) layer.getShape()).func_190993_b());
+                compound.func_74768_a(Constants.TileEntity.Banner.BANNER_PATTERN_COLOR, ((EnumDyeColor) (Object) layer.getColor()).func_176767_b());
+                patterns.func_74742_a(compound);
             }
-            blockEntity.setTag(Constants.TileEntity.Banner.BANNER_PATTERNS, patterns);
+            blockEntity.func_74782_a(Constants.TileEntity.Banner.BANNER_PATTERNS, patterns);
         }
-        blockEntity.setInteger(Constants.TileEntity.Banner.BANNER_BASE, ((EnumDyeColor) (Object) baseColor).getDyeDamage());
-        tagCompound.setTag(Constants.Item.BLOCK_ENTITY_TAG, blockEntity);
+        blockEntity.func_74768_a(Constants.TileEntity.Banner.BANNER_BASE, ((EnumDyeColor) (Object) baseColor).func_176767_b());
+        tagCompound.func_74782_a(Constants.Item.BLOCK_ENTITY_TAG, blockEntity);
         return true;
     }
 
     @Override
     public Map<Key<?>, ?> getValues(ItemStack itemStack) {
-        if (itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(Constants.Item.ITEM_UNBREAKABLE)) {
-            return ImmutableMap.of(Keys.ITEM_DURABILITY, itemStack.getMaxDamage() - itemStack.getItemDamage(),
-                    Keys.UNBREAKABLE, itemStack.getTagCompound().getBoolean(Constants.Item.ITEM_UNBREAKABLE));
+        if (itemStack.func_77942_o() && itemStack.func_77978_p().func_74764_b(Constants.Item.ITEM_UNBREAKABLE)) {
+            return ImmutableMap.of(Keys.ITEM_DURABILITY, itemStack.func_77958_k() - itemStack.func_77952_i(),
+                    Keys.UNBREAKABLE, itemStack.func_77978_p().func_74767_n(Constants.Item.ITEM_UNBREAKABLE));
         }
-        return ImmutableMap.of(Keys.ITEM_DURABILITY, itemStack.getMaxDamage() - itemStack.getItemDamage(), Keys.UNBREAKABLE, false);
+        return ImmutableMap.of(Keys.ITEM_DURABILITY, itemStack.func_77958_k() - itemStack.func_77952_i(), Keys.UNBREAKABLE, false);
     }
 
     @Override

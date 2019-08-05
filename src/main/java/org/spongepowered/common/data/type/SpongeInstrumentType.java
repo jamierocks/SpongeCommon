@@ -37,7 +37,7 @@ public class SpongeInstrumentType extends SpongeCatalogType implements Instrumen
     public SpongeInstrumentType(String id, String name, int internalId) {
         super(id);
         this.name = name;
-        this.soundType = (SoundType) BlockNote.INSTRUMENTS.get(internalId);
+        this.soundType = (SoundType) BlockNote.field_176434_a.get(internalId);
     }
 
     @Override

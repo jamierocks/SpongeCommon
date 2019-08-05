@@ -51,13 +51,13 @@ public class RotationalDataProcessor
 
     @Override
     protected boolean set(EntityItemFrame entity, Rotation value) {
-        entity.setItemRotation(RotationalUtils.getItemRotation(value));
+        entity.func_82336_g(RotationalUtils.getItemRotation(value));
         return true;
     }
 
     @Override
     protected Optional<Rotation> getVal(EntityItemFrame entity) {
-        return Optional.of(RotationalUtils.getRotation(entity.getRotation()));
+        return Optional.of(RotationalUtils.getRotation(entity.func_82333_j()));
     }
 
     @Override

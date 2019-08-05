@@ -80,7 +80,7 @@ public class WorldStorageUtil {
         }
         File worldDir = ((AnvilChunkLoaderBridge) chunkLoader).bridge$getWorldDir().toFile();
         return SpongeImpl.getScheduler().submitAsyncTask(() -> {
-            DataInputStream stream = RegionFileCache.getChunkInputStream(worldDir, x, z);
+            DataInputStream stream = RegionFileCache.func_76549_c(worldDir, x, z);
             return Optional.ofNullable(readDataFromRegion(stream));
         });
     }
@@ -89,15 +89,15 @@ public class WorldStorageUtil {
         if (stream == null) {
             return null;
         }
-        NBTTagCompound data = CompressedStreamTools.read(stream);
+        NBTTagCompound data = CompressedStreamTools.func_74794_a(stream);
 
         // Checks are based on AnvilChunkLoader#checkedReadChunkFromNBT
 
-        if (!data.hasKey(Constants.Chunk.CHUNK_DATA_LEVEL, Constants.NBT.TAG_COMPOUND)) {
+        if (!data.func_150297_b(Constants.Chunk.CHUNK_DATA_LEVEL, Constants.NBT.TAG_COMPOUND)) {
             return null;
         }
-        NBTTagCompound level = data.getCompoundTag(Constants.Chunk.CHUNK_DATA_LEVEL);
-        if (!level.hasKey(Constants.Chunk.CHUNK_DATA_SECTIONS, Constants.NBT.TAG_LIST)) {
+        NBTTagCompound level = data.func_74775_l(Constants.Chunk.CHUNK_DATA_LEVEL);
+        if (!level.func_150297_b(Constants.Chunk.CHUNK_DATA_SECTIONS, Constants.NBT.TAG_LIST)) {
             return null;
         }
         return NbtTranslator.getInstance().translateFrom(level);
@@ -115,15 +115,15 @@ public class WorldStorageUtil {
     // file name instead of x,z
     public static RegionFile getRegionFile(Path regionFilePath) {
         File file = regionFilePath.toFile();
-        RegionFile regionFile = RegionFileCache.REGIONS_BY_FILE.get(file);
+        RegionFile regionFile = RegionFileCache.field_76553_a.get(file);
         if (regionFile != null) {
             return regionFile;
         }
-        if (RegionFileCache.REGIONS_BY_FILE.size() >= 256) {
-            RegionFileCache.clearRegionFileReferences();
+        if (RegionFileCache.field_76553_a.size() >= 256) {
+            RegionFileCache.func_76551_a();
         }
         regionFile = new RegionFile(file);
-        RegionFileCache.REGIONS_BY_FILE.put(file, regionFile);
+        RegionFileCache.field_76553_a.put(file, regionFile);
         return regionFile;
     }
 

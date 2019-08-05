@@ -36,6 +36,6 @@ public abstract class EntityMinecartCommandBlock$1Mixin implements CommandSender
 
     @Override
     public CommandSource bridge$asCommandSource() {
-        return (CommandSource) getCommandSenderEntity();
+        return (CommandSource) func_174793_f();
     }
 }

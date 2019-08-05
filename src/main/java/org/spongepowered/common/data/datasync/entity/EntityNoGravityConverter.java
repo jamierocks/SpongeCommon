@@ -37,7 +37,7 @@ import java.util.Optional;
 public class EntityNoGravityConverter extends DataParameterConverter<Boolean> {
 
     public EntityNoGravityConverter() {
-        super(Entity.NO_GRAVITY);
+        super(Entity.field_189655_aD);
     }
 
     @Override

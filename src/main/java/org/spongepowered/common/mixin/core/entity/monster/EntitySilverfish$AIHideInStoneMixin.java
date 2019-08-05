@@ -35,15 +35,15 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.common.bridge.entity.GrieferBridge;
 
 @Mixin(EntitySilverfish.AIHideInStone.class)
-public abstract class EntitySilverfish$AIHideInStoneMixin extends EntityAIWander {
+public abstract class AIHideInStoneMixin extends EntityAIWander {
 
-    public EntitySilverfish$AIHideInStoneMixin(EntityCreature creatureIn, double speedIn) { // Ignored
+    public AIHideInStoneMixin(EntityCreature creatureIn, double speedIn) { // Ignored
         super(creatureIn, speedIn);
     }
 
     @Redirect(method = "shouldExecute",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/block/BlockSilverfish;canContainSilverfish(Lnet/minecraft/block/state/IBlockState;)Z"))
     private boolean onCanGrief(final IBlockState blockState) {
-        return BlockSilverfish.canContainSilverfish(blockState) && ((GrieferBridge) this.entity).bridge$CanGrief();
+        return BlockSilverfish.func_176377_d(blockState) && ((GrieferBridge) this.field_75457_a).bridge$CanGrief();
     }
 }

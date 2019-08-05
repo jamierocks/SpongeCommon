@@ -38,7 +38,7 @@ import java.util.Optional;
 public class EntityLivingAIFlagsConverter extends DataParameterConverter<Byte> {
 
     public EntityLivingAIFlagsConverter() {
-        super(EntityLiving.AI_FLAGS);
+        super(EntityLiving.field_184654_a);
     }
 
     @Override

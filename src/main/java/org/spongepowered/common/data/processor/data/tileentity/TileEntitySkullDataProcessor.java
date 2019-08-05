@@ -60,7 +60,7 @@ public class TileEntitySkullDataProcessor
 
     @Override
     protected Optional<SkullType> getVal(TileEntitySkull skull) {
-        return Optional.of(SkullUtils.getSkullType(skull.getSkullType()));
+        return Optional.of(SkullUtils.getSkullType(skull.func_145904_a()));
     }
 
     @Override

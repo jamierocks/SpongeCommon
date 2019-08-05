@@ -48,10 +48,10 @@ public abstract class MinecraftFabric implements Fabric {
             return (Fabric) target;
         } else if (target instanceof Slot) {
             Slot slot = (Slot)target;
-            if (slot.inventory == null) {
+            if (slot.field_75224_c == null) {
                 return new SlotFabric(slot);
             }
-            return new IInventoryFabric(slot.inventory);
+            return new IInventoryFabric(slot.field_75224_c);
         } else if (target instanceof Container) {
             return new ContainerFabric((Container) target);
         } else if (target instanceof InventoryLargeChestAccessor) {

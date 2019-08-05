@@ -29,13 +29,13 @@ import net.minecraft.potion.PotionEffect;
 public final class PotionUtil {
 
     public static PotionEffect copyToNative(org.spongepowered.api.effect.potion.PotionEffect effect) {
-        return new PotionEffect(((PotionEffect) effect).getPotion(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(),
+        return new PotionEffect(((PotionEffect) effect).func_188419_a(), effect.getDuration(), effect.getAmplifier(), effect.isAmbient(),
                 effect.getShowParticles());
     }
 
     public static org.spongepowered.api.effect.potion.PotionEffect copyToApi(PotionEffect effect) {
-        return (org.spongepowered.api.effect.potion.PotionEffect) new PotionEffect(effect.getPotion(), effect.getDuration(), effect.getAmplifier(),
-                effect.getIsAmbient(), effect.doesShowParticles());
+        return (org.spongepowered.api.effect.potion.PotionEffect) new PotionEffect(effect.func_188419_a(), effect.func_76459_b(), effect.func_76458_c(),
+                effect.func_82720_e(), effect.func_188418_e());
     }
 
     private PotionUtil() {

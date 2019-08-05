@@ -46,7 +46,7 @@ public final class GenerationDataProcessor
         extends AbstractItemSingleDataProcessor<Integer, MutableBoundedValue<Integer>, GenerationData, ImmutableGenerationData> {
 
     public GenerationDataProcessor() {
-        super(stack -> stack.getItem().equals(Items.WRITTEN_BOOK), Keys.GENERATION);
+        super(stack -> stack.func_77973_b().equals(Items.field_151164_bB), Keys.GENERATION);
     }
 
     @Override
@@ -66,13 +66,13 @@ public final class GenerationDataProcessor
 
     @Override
     protected boolean set(ItemStack stack, Integer value) {
-        NbtDataUtil.getOrCreateCompound(stack).setInteger(Constants.Item.Book.ITEM_BOOK_GENERATION, value);
+        NbtDataUtil.getOrCreateCompound(stack).func_74768_a(Constants.Item.Book.ITEM_BOOK_GENERATION, value);
         return true;
     }
 
     @Override
     protected Optional<Integer> getVal(ItemStack stack) {
-        return Optional.of(NbtDataUtil.getItemCompound(stack).map(tag -> tag.getInteger(Constants.Item.Book.ITEM_BOOK_GENERATION)).orElse(0));
+        return Optional.of(NbtDataUtil.getItemCompound(stack).map(tag -> tag.func_74762_e(Constants.Item.Book.ITEM_BOOK_GENERATION)).orElse(0));
     }
 
     @Override

@@ -58,7 +58,7 @@ public class TippedArrowPotionDataProcessor extends AbstractSingleDataSingleTarg
         ((EntityTippedArrowAccessor) dataHolder).accessor$getCustomPotionEffects().clear();
         for (final PotionEffect effect : value) {
             final net.minecraft.potion.PotionEffect mcEffect = PotionUtil.copyToNative(effect);
-            dataHolder.addEffect(mcEffect);
+            dataHolder.func_184558_a(mcEffect);
         }
         return false;
     }

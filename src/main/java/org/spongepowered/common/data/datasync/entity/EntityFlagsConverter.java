@@ -37,7 +37,7 @@ import java.util.Optional;
 public class EntityFlagsConverter extends DataParameterConverter<Byte> {
 
     public EntityFlagsConverter() {
-        super(Entity.FLAGS);
+        super(Entity.field_184240_ax);
     }
 
     @Override

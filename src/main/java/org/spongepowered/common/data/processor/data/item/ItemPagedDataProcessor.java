@@ -53,7 +53,7 @@ import java.util.Optional;
 public class ItemPagedDataProcessor extends AbstractItemSingleDataProcessor<List<Text>, ListValue<Text>, PagedData, ImmutablePagedData> {
 
     public ItemPagedDataProcessor() {
-        super(input -> input.getItem() == Items.WRITABLE_BOOK || input.getItem() == Items.WRITTEN_BOOK, Keys.BOOK_PAGES);
+        super(input -> input.func_77973_b() == Items.field_151099_bA || input.func_77973_b() == Items.field_151164_bB, Keys.BOOK_PAGES);
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +90,7 @@ public class ItemPagedDataProcessor extends AbstractItemSingleDataProcessor<List
 
     @Override
     protected Optional<List<Text>> getVal(ItemStack itemStack) {
-        if (!itemStack.hasTagCompound() || !itemStack.getTagCompound().hasKey(Constants.Item.Book.ITEM_BOOK_PAGES)) {
+        if (!itemStack.func_77942_o() || !itemStack.func_77978_p().func_74764_b(Constants.Item.Book.ITEM_BOOK_PAGES)) {
             return Optional.empty();
         }
         return Optional.of(NbtDataUtil.getPagesFromNBT(getTagCompound(itemStack)));

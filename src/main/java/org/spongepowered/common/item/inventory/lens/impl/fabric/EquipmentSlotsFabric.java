@@ -44,7 +44,7 @@ public class EquipmentSlotsFabric implements Fabric {
         EntityEquipmentSlot[] values = EntityEquipmentSlot.values();
         SLOTS = new EntityEquipmentSlot[values.length];
         for (EntityEquipmentSlot slot : values) {
-            SLOTS[slot.getSlotIndex()] = slot;
+            SLOTS[slot.func_188452_c()] = slot;
         }
     }
 
@@ -66,12 +66,12 @@ public class EquipmentSlotsFabric implements Fabric {
 
     @Override
     public ItemStack getStack(int index) {
-        return ((EntityLivingBase) this.living).getItemStackFromSlot(SLOTS[index]);
+        return ((EntityLivingBase) this.living).func_184582_a(SLOTS[index]);
     }
 
     @Override
     public void setStack(int index, ItemStack stack) {
-        ((EntityLivingBase) this.living).setItemStackToSlot(SLOTS[index], stack);
+        ((EntityLivingBase) this.living).func_184201_a(SLOTS[index], stack);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class EquipmentSlotsFabric implements Fabric {
     public void clear() {
         EntityLivingBase entity = (EntityLivingBase) this.living;
         for (EntityEquipmentSlot slot : SLOTS) {
-            entity.setItemStackToSlot(slot, ItemStack.EMPTY);
+            entity.func_184201_a(slot, ItemStack.field_190927_a);
         }
     }
 

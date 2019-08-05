@@ -147,7 +147,7 @@ public class SpongeSelectorFactory implements SelectorFactory {
                 rawMap = ImmutableMap.of();
             } else {
                 rawMap =
-                        EntitySelector.getArgumentMap(selector.substring(
+                        EntitySelector.func_82381_h(selector.substring(
                                 argListIndex + 1, selector.length() - 1));
             }
             Map<ArgumentType<?>, Argument<?>> arguments =

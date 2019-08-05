@@ -76,8 +76,8 @@ public final class NbtDataUtil {
      * @return The main compound, if available
      */
     public static Optional<NBTTagCompound> getItemCompound(ItemStack itemStack) {
-        if (itemStack.hasTagCompound()) {
-            return Optional.of(itemStack.getTagCompound());
+        if (itemStack.func_77942_o()) {
+            return Optional.of(itemStack.func_77978_p());
         }
         return Optional.empty();
     }
@@ -92,10 +92,10 @@ public final class NbtDataUtil {
      * @return The pre-existing or already generated compound
      */
     public static NBTTagCompound getOrCreateCompound(ItemStack itemStack) {
-        if (!itemStack.hasTagCompound()) {
-            itemStack.setTagCompound(new NBTTagCompound());
+        if (!itemStack.func_77942_o()) {
+            itemStack.func_77982_d(new NBTTagCompound());
         }
-        return itemStack.getTagCompound();
+        return itemStack.func_77978_p();
     }
 
     /**
@@ -110,76 +110,76 @@ public final class NbtDataUtil {
      * @return The sub compound keyed by the provided string key
      */
     public static NBTTagCompound getOrCreateSubCompound(NBTTagCompound mainCompound, final String key) {
-        if (!mainCompound.hasKey(key, Constants.NBT.TAG_COMPOUND)) {
-            mainCompound.setTag(key, new NBTTagCompound());
+        if (!mainCompound.func_150297_b(key, Constants.NBT.TAG_COMPOUND)) {
+            mainCompound.func_74782_a(key, new NBTTagCompound());
         }
-        return mainCompound.getCompoundTag(key);
+        return mainCompound.func_74775_l(key);
     }
 
     public static NBTTagCompound filterSpongeCustomData(NBTTagCompound rootCompound) {
-        if (rootCompound.hasKey(Constants.Forge.FORGE_DATA, Constants.NBT.TAG_COMPOUND)) {
-            final NBTTagCompound forgeCompound = rootCompound.getCompoundTag(Constants.Forge.FORGE_DATA);
-            if (forgeCompound.hasKey(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
+        if (rootCompound.func_150297_b(Constants.Forge.FORGE_DATA, Constants.NBT.TAG_COMPOUND)) {
+            final NBTTagCompound forgeCompound = rootCompound.func_74775_l(Constants.Forge.FORGE_DATA);
+            if (forgeCompound.func_150297_b(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
                 cleanseInnerCompound(forgeCompound, Constants.Sponge.SPONGE_DATA);
             }
-        } else if (rootCompound.hasKey(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
+        } else if (rootCompound.func_150297_b(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
             cleanseInnerCompound(rootCompound, Constants.Sponge.SPONGE_DATA);
         }
         return rootCompound;
     }
 
     private static void cleanseInnerCompound(NBTTagCompound compound, String innerCompound) {
-        final NBTTagCompound inner = compound.getCompoundTag(innerCompound);
-        if (inner.isEmpty()) {
-            compound.removeTag(innerCompound);
+        final NBTTagCompound inner = compound.func_74775_l(innerCompound);
+        if (inner.func_82582_d()) {
+            compound.func_82580_o(innerCompound);
         }
     }
 
     public static List<Text> getLoreFromNBT(NBTTagCompound subCompound) {
-        final NBTTagList list = subCompound.getTagList(Constants.Item.ITEM_LORE, Constants.NBT.TAG_STRING);
+        final NBTTagList list = subCompound.func_150295_c(Constants.Item.ITEM_LORE, Constants.NBT.TAG_STRING);
         return SpongeTexts.fromNbtLegacy(list);
     }
 
     public static void removeLoreFromNBT(ItemStack stack) {
-        if(stack.getSubCompound(Constants.Item.ITEM_DISPLAY) == null) {
+        if(stack.func_179543_a(Constants.Item.ITEM_DISPLAY) == null) {
             return;
         }
-        stack.getSubCompound(Constants.Item.ITEM_DISPLAY).removeTag(Constants.Item.ITEM_LORE);
+        stack.func_179543_a(Constants.Item.ITEM_DISPLAY).func_82580_o(Constants.Item.ITEM_LORE);
     }
 
     public static void setLoreToNBT(ItemStack stack, List<Text> lore) {
         final NBTTagList list =  SpongeTexts.asLegacy(lore);
-        stack.getOrCreateSubCompound(Constants.Item.ITEM_DISPLAY).setTag(Constants.Item.ITEM_LORE, list); // setSubCompound
+        stack.func_190925_c(Constants.Item.ITEM_DISPLAY).func_74782_a(Constants.Item.ITEM_LORE, list); // setSubCompound
     }
 
     public static boolean hasColorFromNBT(ItemStack stack) {
-        return stack.hasTagCompound() &&
-               stack.getTagCompound().hasKey(Constants.Item.ITEM_DISPLAY) &&
-               stack.getTagCompound().getCompoundTag(Constants.Item.ITEM_DISPLAY).hasKey(Constants.Item.ITEM_COLOR);
+        return stack.func_77942_o() &&
+               stack.func_77978_p().func_74764_b(Constants.Item.ITEM_DISPLAY) &&
+               stack.func_77978_p().func_74775_l(Constants.Item.ITEM_DISPLAY).func_74764_b(Constants.Item.ITEM_COLOR);
     }
 
     public static Optional<Color> getColorFromNBT(NBTTagCompound subCompound) {
-        if (!subCompound.hasKey(Constants.Item.ITEM_COLOR)) {
+        if (!subCompound.func_74764_b(Constants.Item.ITEM_COLOR)) {
             return Optional.empty();
         }
-        return Optional.of(Color.ofRgb(subCompound.getInteger(Constants.Item.ITEM_COLOR)));
+        return Optional.of(Color.ofRgb(subCompound.func_74762_e(Constants.Item.ITEM_COLOR)));
     }
 
     public static void removeColorFromNBT(ItemStack stack) {
-        if(stack.getSubCompound(Constants.Item.ITEM_DISPLAY) == null) {
+        if(stack.func_179543_a(Constants.Item.ITEM_DISPLAY) == null) {
             return;
         }
-        stack.getSubCompound(Constants.Item.ITEM_DISPLAY).removeTag(Constants.Item.ITEM_COLOR);
+        stack.func_179543_a(Constants.Item.ITEM_DISPLAY).func_82580_o(Constants.Item.ITEM_COLOR);
     }
 
     public static void setColorToNbt(ItemStack stack, Color color) {
         final int mojangColor = ColorUtil.javaColorToMojangColor(color);
-        stack.getOrCreateSubCompound(Constants.Item.ITEM_DISPLAY).setInteger(Constants.Item.ITEM_COLOR, mojangColor);
+        stack.func_190925_c(Constants.Item.ITEM_DISPLAY).func_74768_a(Constants.Item.ITEM_COLOR, mojangColor);
     }
 
     public static List<Text> getPagesFromNBT(NBTTagCompound compound) {
-        final NBTTagList list = compound.getTagList(Constants.Item.Book.ITEM_BOOK_PAGES, Constants.NBT.TAG_STRING);
-        if (list.isEmpty()) {
+        final NBTTagList list = compound.func_150295_c(Constants.Item.Book.ITEM_BOOK_PAGES, Constants.NBT.TAG_STRING);
+        if (list.func_82582_d()) {
             return new ArrayList<>();
         }
         try {
@@ -192,11 +192,11 @@ public final class NbtDataUtil {
     }
 
     public static List<String> getPlainPagesFromNBT(NBTTagCompound compound) {
-        final NBTTagList list = compound.getTagList(Constants.Item.Book.ITEM_BOOK_PAGES, Constants.NBT.TAG_STRING);
+        final NBTTagList list = compound.func_150295_c(Constants.Item.Book.ITEM_BOOK_PAGES, Constants.NBT.TAG_STRING);
         List<String> stringList = new ArrayList<>();
-        if (!list.isEmpty()) {
-            for (int i = 0; i < list.tagCount(); i++) {
-                stringList.add(list.getStringTagAt(i));
+        if (!list.func_82582_d()) {
+            for (int i = 0; i < list.func_74745_c(); i++) {
+                stringList.add(list.func_150307_f(i));
             }
         }
         return stringList;
@@ -204,10 +204,10 @@ public final class NbtDataUtil {
 
     public static void removePagesFromNBT(ItemStack stack) {
         final NBTTagList list = new NBTTagList();
-        if (!stack.hasTagCompound()) {
+        if (!stack.func_77942_o()) {
             return;
         }
-        stack.getTagCompound().setTag(Constants.Item.Book.ITEM_BOOK_PAGES, list);
+        stack.func_77978_p().func_74782_a(Constants.Item.Book.ITEM_BOOK_PAGES, list);
     }
 
     public static void setPagesToNBT(ItemStack stack, List<Text> pages) {
@@ -217,35 +217,35 @@ public final class NbtDataUtil {
     public static void setPlainPagesToNBT(ItemStack stack, List<String> pages) {
         final NBTTagList list = new NBTTagList();
         for (String page : pages) {
-            list.appendTag(new NBTTagString(page));
+            list.func_74742_a(new NBTTagString(page));
         }
         setPagesToNBT(stack, list);
     }
 
     private static void setPagesToNBT(ItemStack stack, NBTTagList list) {
         final NBTTagCompound compound = getOrCreateCompound(stack);
-        compound.setTag(Constants.Item.Book.ITEM_BOOK_PAGES, list);
-        if (!compound.hasKey(Constants.Item.Book.ITEM_BOOK_TITLE)) {
-            compound.setString(Constants.Item.Book.ITEM_BOOK_TITLE, Constants.Item.Book.INVALID_TITLE);
+        compound.func_74782_a(Constants.Item.Book.ITEM_BOOK_PAGES, list);
+        if (!compound.func_74764_b(Constants.Item.Book.ITEM_BOOK_TITLE)) {
+            compound.func_74778_a(Constants.Item.Book.ITEM_BOOK_TITLE, Constants.Item.Book.INVALID_TITLE);
         }
-        if (!compound.hasKey(Constants.Item.Book.ITEM_BOOK_AUTHOR)) {
-            compound.setString(Constants.Item.Book.ITEM_BOOK_AUTHOR, Constants.Item.Book.INVALID_TITLE);
+        if (!compound.func_74764_b(Constants.Item.Book.ITEM_BOOK_AUTHOR)) {
+            compound.func_74778_a(Constants.Item.Book.ITEM_BOOK_AUTHOR, Constants.Item.Book.INVALID_TITLE);
         }
-        compound.setBoolean(Constants.Item.Book.ITEM_BOOK_RESOLVED, true);
+        compound.func_74757_a(Constants.Item.Book.ITEM_BOOK_RESOLVED, true);
     }
 
     public static List<Enchantment> getItemEnchantments(ItemStack itemStack) {
-        if (!itemStack.isItemEnchanted()) {
+        if (!itemStack.func_77948_v()) {
             return Collections.emptyList();
         }
         final List<Enchantment> enchantments = Lists.newArrayList();
-        final NBTTagList list = itemStack.getEnchantmentTagList();
-        for (int i = 0; i < list.tagCount(); i++) {
-            final NBTTagCompound compound = list.getCompoundTagAt(i);
-            final short enchantmentId = compound.getShort(Constants.Item.ITEM_ENCHANTMENT_ID);
-            final short level = compound.getShort(Constants.Item.ITEM_ENCHANTMENT_LEVEL);
+        final NBTTagList list = itemStack.func_77986_q();
+        for (int i = 0; i < list.func_74745_c(); i++) {
+            final NBTTagCompound compound = list.func_150305_b(i);
+            final short enchantmentId = compound.func_74765_d(Constants.Item.ITEM_ENCHANTMENT_ID);
+            final short level = compound.func_74765_d(Constants.Item.ITEM_ENCHANTMENT_LEVEL);
 
-            final EnchantmentType enchantmentType = (EnchantmentType) net.minecraft.enchantment.Enchantment.getEnchantmentByID(enchantmentId);
+            final EnchantmentType enchantmentType = (EnchantmentType) net.minecraft.enchantment.Enchantment.func_185262_c(enchantmentId);
             if (enchantmentType == null) {
                 continue;
             }
@@ -256,15 +256,15 @@ public final class NbtDataUtil {
 
     public static void setItemEnchantments(ItemStack itemStack, List<Enchantment> value) {
         final NBTTagCompound compound;
-        if (itemStack.getTagCompound() == null) {
+        if (itemStack.func_77978_p() == null) {
             compound = new NBTTagCompound();
-            itemStack.setTagCompound(compound);
+            itemStack.func_77982_d(compound);
         } else {
-            compound = itemStack.getTagCompound();
+            compound = itemStack.func_77978_p();
         }
 
         if (value.isEmpty()) { // if there's no enchantments, remove the tag that says there's enchantments
-            compound.removeTag(Constants.Item.ITEM_ENCHANTMENT_LIST);
+            compound.func_82580_o(Constants.Item.ITEM_ENCHANTMENT_LIST);
             return;
         }
 
@@ -276,12 +276,12 @@ public final class NbtDataUtil {
         final NBTTagList newList = new NBTTagList(); // construct the enchantment list
         for (Map.Entry<EnchantmentType, Integer> entry : valueMap.entrySet()) {
             final NBTTagCompound enchantmentCompound = new NBTTagCompound();
-            enchantmentCompound.setShort(Constants.Item.ITEM_ENCHANTMENT_ID, (short) net.minecraft.enchantment.Enchantment.getEnchantmentID((net.minecraft.enchantment.Enchantment) entry.getKey()));
-            enchantmentCompound.setShort(Constants.Item.ITEM_ENCHANTMENT_LEVEL, entry.getValue().shortValue());
-            newList.appendTag(enchantmentCompound);
+            enchantmentCompound.func_74777_a(Constants.Item.ITEM_ENCHANTMENT_ID, (short) net.minecraft.enchantment.Enchantment.func_185258_b((net.minecraft.enchantment.Enchantment) entry.getKey()));
+            enchantmentCompound.func_74777_a(Constants.Item.ITEM_ENCHANTMENT_LEVEL, entry.getValue().shortValue());
+            newList.func_74742_a(enchantmentCompound);
         }
 
-        compound.setTag(Constants.Item.ITEM_ENCHANTMENT_LIST, newList);
+        compound.func_74782_a(Constants.Item.ITEM_ENCHANTMENT_LIST, newList);
     }
 
     public static NBTTagList newDoubleNBTList(double... numbers) {
@@ -291,7 +291,7 @@ public final class NbtDataUtil {
 
         for (int j = 0; j < i; ++j) {
             double d1 = adouble[j];
-            nbttaglist.appendTag(new NBTTagDouble(d1));
+            nbttaglist.func_74742_a(new NBTTagDouble(d1));
         }
 
         return nbttaglist;
@@ -301,7 +301,7 @@ public final class NbtDataUtil {
         NBTTagList nbttaglist = new NBTTagList();
 
         for (float f : numbers) {
-            nbttaglist.appendTag(new NBTTagFloat(f));
+            nbttaglist.func_74742_a(new NBTTagFloat(f));
         }
 
         return nbttaglist;

@@ -33,11 +33,11 @@ import org.spongepowered.common.item.SpongeGoldenApple;
 public class GoldenAppleUtils {
 
     public static void setType(ItemStack itemStack, GoldenApple value) {
-        itemStack.setItemDamage(((SpongeGoldenApple) value).type);
+        itemStack.func_77964_b(((SpongeGoldenApple) value).type);
     }
 
     public static GoldenApple getType(ItemStack itemStack) {
-        return Iterables.get(SpongeImpl.getRegistry().getAllOf(GoldenApple.class), itemStack.getMetadata());
+        return Iterables.get(SpongeImpl.getRegistry().getAllOf(GoldenApple.class), itemStack.func_77960_j());
     }
 
 }

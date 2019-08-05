@@ -38,7 +38,7 @@ import java.util.Optional;
 public final class EntityBabyConverter extends DataParameterConverter<Boolean> {
 
     public EntityBabyConverter() {
-        super(EntityAgeable.BABY);
+        super(EntityAgeable.field_184751_bv);
     }
 
     @Override

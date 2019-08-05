@@ -36,12 +36,12 @@ public class EntityDataUtil {
 
     public static Optional<ItemStackSnapshot> getRepresentedItemFrom(Entity entity) {
         if (entity instanceof EntityItemFrame) {
-            final ItemStack itemStack = ((EntityItemFrame) entity).getDisplayedItem();
-            if (!itemStack.isEmpty()) {
+            final ItemStack itemStack = ((EntityItemFrame) entity).func_82335_i();
+            if (!itemStack.func_190926_b()) {
                 return Optional.of(((org.spongepowered.api.item.inventory.ItemStack) itemStack).createSnapshot());
             }
         } else if (entity instanceof EntityItem) {
-            return Optional.of(((org.spongepowered.api.item.inventory.ItemStack) ((EntityItem) entity).getItem()).createSnapshot());
+            return Optional.of(((org.spongepowered.api.item.inventory.ItemStack) ((EntityItem) entity).func_92059_d()).createSnapshot());
         }
         return Optional.empty();
     }

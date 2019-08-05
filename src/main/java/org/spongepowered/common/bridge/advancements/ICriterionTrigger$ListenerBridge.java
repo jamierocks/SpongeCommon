@@ -26,7 +26,7 @@ package org.spongepowered.common.bridge.advancements;
 
 import net.minecraft.advancements.Advancement;
 
-public interface ICriterionTrigger$ListenerBridge {
+public interface ListenerBridge {
 
     Advancement bridge$getAdvancement();
 

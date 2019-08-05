@@ -298,7 +298,7 @@ public class SchematicTranslator implements DataTranslator<Schematic> {
                                 final DataView upgraded;
                                 if (needsFixers) {
                                     NBTTagCompound tileNbt = NbtTranslator.getInstance().translate(tile);
-                                    tileNbt = VANILLA_FIXER.process(FixTypes.BLOCK_ENTITY, tileNbt, version);
+                                    tileNbt = VANILLA_FIXER.func_188251_a(FixTypes.BLOCK_ENTITY, tileNbt, version);
                                     upgraded = NbtTranslator.getInstance().translate(tileNbt);
                                 } else {
                                     upgraded = tile;
@@ -332,7 +332,7 @@ public class SchematicTranslator implements DataTranslator<Schematic> {
                         final DataView upgraded;
                         if (needsFixers) {
                             NBTTagCompound entityNbt = NbtTranslator.getInstance().translate(view);
-                            entityNbt = VANILLA_FIXER.process(FixTypes.ENTITY, entityNbt, version);
+                            entityNbt = VANILLA_FIXER.func_188251_a(FixTypes.ENTITY, entityNbt, version);
                             upgraded = NbtTranslator.getInstance().translate(entityNbt);
                         } else {
                             upgraded = view;

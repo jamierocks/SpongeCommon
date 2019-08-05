@@ -121,7 +121,7 @@ public final class TileEntityTypeRegistryModule
             return getById(name);
         }
         final ResourceLocation location = new ResourceLocation(id);
-        final Class<? extends TileEntity> object = TileEntity.REGISTRY.getObject(location);
+        final Class<? extends TileEntity> object = TileEntity.field_190562_f.func_82594_a(location);
         if (object != null) {
             final TileEntityType forClass = getForClass(object);
             if (forClass != null) {

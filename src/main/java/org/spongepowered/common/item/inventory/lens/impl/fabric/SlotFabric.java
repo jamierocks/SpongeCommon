@@ -50,8 +50,8 @@ public class SlotFabric extends MinecraftFabric {
 
     @Override
     public IInventory get(final int index) {
-        if (this.slot.inventory != null) {
-            return this.slot.inventory;
+        if (this.slot.field_75224_c != null) {
+            return this.slot.field_75224_c;
         }
 
         throw new UnsupportedOperationException("Unable to access slot at " + index + " for delegating fabric of " + this.slot.getClass());
@@ -59,17 +59,17 @@ public class SlotFabric extends MinecraftFabric {
 
     @Override
     public ItemStack getStack(final int index) {
-        return this.slot.getStack();
+        return this.slot.func_75211_c();
     }
 
     @Override
     public void setStack(final int index, final ItemStack stack) {
-        this.slot.putStack(stack);
+        this.slot.func_75215_d(stack);
     }
 
     @Override
     public int getMaxStackSize() {
-        return this.slot.getSlotStackLimit();
+        return this.slot.func_75219_a();
     }
 
     @Override
@@ -79,17 +79,17 @@ public class SlotFabric extends MinecraftFabric {
 
     @Override
     public int getSize() {
-        return this.slot.getStack().getCount();
+        return this.slot.func_75211_c().func_190916_E();
     }
 
     @Override
     public void clear() {
-        this.slot.putStack(ItemStack.EMPTY);
+        this.slot.func_75215_d(ItemStack.field_190927_a);
     }
 
     @Override
     public void markDirty() {
-        this.slot.onSlotChanged();
+        this.slot.func_75218_e();
     }
 
     public Slot getDelegate() {

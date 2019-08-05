@@ -54,17 +54,17 @@ public class EntityPotionDataProcessor extends AbstractSingleDataSingleTargetPro
 
     @Override
     protected boolean set(EntityLivingBase dataHolder, List<PotionEffect> value) {
-        dataHolder.clearActivePotions();
+        dataHolder.func_70674_bp();
         for (PotionEffect effect : value) {
             net.minecraft.potion.PotionEffect mcEffect = PotionUtil.copyToNative(effect);
-            dataHolder.addPotionEffect(mcEffect);
+            dataHolder.func_70690_d(mcEffect);
         }
         return true;
     }
 
     @Override
     protected Optional<List<PotionEffect>> getVal(EntityLivingBase dataHolder) {
-        Collection<net.minecraft.potion.PotionEffect> effects = dataHolder.getActivePotionEffects();
+        Collection<net.minecraft.potion.PotionEffect> effects = dataHolder.func_70651_bq();
         if (effects.isEmpty()) {
             return Optional.empty();
         }
@@ -97,7 +97,7 @@ public class EntityPotionDataProcessor extends AbstractSingleDataSingleTargetPro
         }
         Optional<List<PotionEffect>> effects = getVal((EntityLivingBase) container);
         if (effects.isPresent()) {
-            ((EntityLivingBase) container).clearActivePotions();
+            ((EntityLivingBase) container).func_70674_bp();
             return DataTransactionResult.successRemove(constructImmutableValue(effects.get()));
         }
         return DataTransactionResult.successNoData();

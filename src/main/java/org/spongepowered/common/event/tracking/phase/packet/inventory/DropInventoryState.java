@@ -73,7 +73,7 @@ public final class DropInventoryState extends BasicInventoryPacketState {
                     }
                 });
 
-            final TrackedInventoryBridge mixinContainer = (TrackedInventoryBridge) player.openContainer;
+            final TrackedInventoryBridge mixinContainer = (TrackedInventoryBridge) player.field_71070_bA;
             mixinContainer.bridge$setCaptureInventory(false);
             mixinContainer.bridge$getCapturedSlotTransactions().clear();
         }

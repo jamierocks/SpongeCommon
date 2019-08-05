@@ -33,7 +33,7 @@ import org.spongepowered.asm.lib.ClassVisitor;
 import org.spongepowered.asm.lib.ClassWriter;
 import org.spongepowered.asm.lib.MethodVisitor;
 import org.spongepowered.asm.lib.Opcodes;
-
+import org.spongepowered.common.mixin.handler.TerminateVM.MasqueradeClassLoader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 

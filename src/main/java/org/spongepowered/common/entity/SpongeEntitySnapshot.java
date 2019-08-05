@@ -112,14 +112,14 @@ public class SpongeEntitySnapshot implements EntitySnapshot {
             this.keys = keyBuilder.build();
             this.values = valueBuilder.build();
         }
-        this.compound = builder.compound == null ? null : builder.compound.copy();
+        this.compound = builder.compound == null ? null : builder.compound.func_74737_b();
         this.worldUuid = builder.worldId;
         this.position = builder.position;
         this.rotation = builder.rotation;
         this.scale = builder.scale;
         this.entityReference = builder.entityReference;
         if (this.compound != null) {
-            this.compound.setTag("Pos", NbtDataUtil.newDoubleNBTList(this.position.getX(), this.position.getY(), this.position.getZ()));
+            this.compound.func_74782_a("Pos", NbtDataUtil.newDoubleNBTList(this.position.getX(), this.position.getY(), this.position.getZ()));
             // TODO should ensure other elements are within the compound as well
         }
     }
@@ -383,8 +383,8 @@ public class SpongeEntitySnapshot implements EntitySnapshot {
         final SpongeEntitySnapshotBuilder builder = createBuilder();
         builder.position = location.getPosition();
         builder.worldId = location.getExtent().getUniqueId();
-        NBTTagCompound newCompound = this.compound.copy();
-        newCompound.setInteger("Dimension", ((WorldInfoBridge) location.getExtent().getProperties()).bridge$getDimensionId());
+        NBTTagCompound newCompound = this.compound.func_74737_b();
+        newCompound.func_74768_a("Dimension", ((WorldInfoBridge) location.getExtent().getProperties()).bridge$getDimensionId());
         builder.compound = newCompound;
         return builder.build();
     }
@@ -400,7 +400,7 @@ public class SpongeEntitySnapshot implements EntitySnapshot {
         if (this.compound == null) {
             return Optional.empty();
         }
-        return Optional.of(this.compound.copy());
+        return Optional.of(this.compound.func_74737_b());
     }
 
     @Override
@@ -427,7 +427,7 @@ public class SpongeEntitySnapshot implements EntitySnapshot {
             if (newEntity != null) {
                 net.minecraft.entity.Entity nmsEntity = (net.minecraft.entity.Entity) newEntity;
                 if (this.compound != null) {
-                    nmsEntity.readFromNBT(this.compound);
+                    nmsEntity.func_70020_e(this.compound);
                 }
     
                 boolean spawnResult = world.get().spawnEntity((Entity) nmsEntity);

@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(WeightedRandom.Item.class)
-public interface WeightedRandom$ItemAccessor {
+public interface ItemAccessor {
 
     @Accessor("itemWeight") int accessor$getItemWeight();
 

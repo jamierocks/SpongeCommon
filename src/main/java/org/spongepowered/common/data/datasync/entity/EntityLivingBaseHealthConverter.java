@@ -39,7 +39,7 @@ import java.util.Optional;
 public class EntityLivingBaseHealthConverter extends DataParameterConverter<Float> {
 
     public EntityLivingBaseHealthConverter() {
-        super(EntityLivingBase.HEALTH);
+        super(EntityLivingBase.field_184632_c);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class EntityLivingBaseHealthConverter extends DataParameterConverter<Floa
                                 ? (float) ((EntityPlayerMPBridge) entity).bridge$getHealthScale()
                                 // Players scale their health and send it through the
                                 // data provider, only the server knows their actual max health
-                                : ((EntityLivingBase) entity).getMaxHealth();
+                                : ((EntityLivingBase) entity).func_110138_aP();
         return Optional.of(DataTransactionResult.builder()
             .replace(SpongeValueFactory.boundedBuilder(Keys.HEALTH)
                 .defaultValue((double) maxHealth)

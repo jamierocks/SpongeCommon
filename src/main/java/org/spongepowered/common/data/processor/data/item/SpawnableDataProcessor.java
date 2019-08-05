@@ -54,17 +54,17 @@ import java.util.Optional;
 public class SpawnableDataProcessor extends AbstractItemSingleDataProcessor<EntityType, Value<EntityType>, SpawnableData, ImmutableSpawnableData> {
 
     public SpawnableDataProcessor() {
-        super(input -> input.getItem().equals(Items.SPAWN_EGG), Keys.SPAWNABLE_ENTITY_TYPE);
+        super(input -> input.func_77973_b().equals(Items.field_151063_bx), Keys.SPAWNABLE_ENTITY_TYPE);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean set(ItemStack itemStack, EntityType value) {
-        final ResourceLocation name = EntityList.getKey((Class<? extends Entity>) value.getEntityClass());
-        if (EntityList.ENTITY_EGGS.containsKey(name)) {
+        final ResourceLocation name = EntityList.func_191306_a((Class<? extends Entity>) value.getEntityClass());
+        if (EntityList.field_75627_a.containsKey(name)) {
             final NBTTagCompound mainCompound = NbtDataUtil.getOrCreateCompound(itemStack);
             final NBTTagCompound subCompound = NbtDataUtil.getOrCreateSubCompound(mainCompound, Constants.TileEntity.Spawner.SPAWNABLE_ENTITY_TAG);
-            subCompound.setString(Constants.Entity.ENTITY_TYPE_ID, name.toString());
+            subCompound.func_74778_a(Constants.Entity.ENTITY_TYPE_ID, name.toString());
             return true;
         }
         return false;
@@ -72,7 +72,7 @@ public class SpawnableDataProcessor extends AbstractItemSingleDataProcessor<Enti
 
     @Override
     public Optional<EntityType> getVal(ItemStack itemStack) {
-        final ResourceLocation name = ItemMonsterPlacer.getNamedIdFrom(itemStack);
+        final ResourceLocation name = ItemMonsterPlacer.func_190908_h(itemStack);
         if (name != null) {
             final Class<? extends Entity> entity = SpongeImplHooks.getEntityClass(name);
             return Optional.ofNullable(EntityTypeRegistryModule.getInstance().getForClass(entity));
@@ -106,7 +106,7 @@ public class SpawnableDataProcessor extends AbstractItemSingleDataProcessor<Enti
             return DataTransactionResult.successNoData();
         }
         try {
-            NbtDataUtil.getItemCompound(itemStack).get().removeTag(Constants.TileEntity.Spawner.SPAWNABLE_ENTITY_TAG);
+            NbtDataUtil.getItemCompound(itemStack).get().func_82580_o(Constants.TileEntity.Spawner.SPAWNABLE_ENTITY_TAG);
             return DataTransactionResult.successRemove(constructImmutableValue(old.get()));
         } catch (Exception e) {
             return DataTransactionResult.builder().result(DataTransactionResult.Type.ERROR).build();

@@ -41,8 +41,8 @@ public abstract class TileEntityLockableMixin extends TileEntityMixin implements
 
     @Override
     public ReusableLens<?> bridge$generateReusableLens(final Fabric fabric, final InventoryAdapter adapter) {
-        final SlotCollection slots = new SlotCollection.Builder().add(((TileEntityLockable) (Object) this).getSizeInventory()).build();
-        final OrderedInventoryLensImpl lens = new OrderedInventoryLensImpl(0, ((TileEntityLockable) (Object) this).getSizeInventory(), 1, slots);
+        final SlotCollection slots = new SlotCollection.Builder().add(((TileEntityLockable) (Object) this).func_70302_i_()).build();
+        final OrderedInventoryLensImpl lens = new OrderedInventoryLensImpl(0, ((TileEntityLockable) (Object) this).func_70302_i_(), 1, slots);
         return new ReusableLens<>(slots, lens);
     }
 
