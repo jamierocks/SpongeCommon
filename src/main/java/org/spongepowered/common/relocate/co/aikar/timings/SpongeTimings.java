@@ -29,8 +29,6 @@ import net.minecraft.block.Block;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.block.tileentity.TileEntityType;
-import org.spongepowered.api.entity.Entity;
-import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.common.entity.SpongeEntityType;
@@ -145,6 +143,6 @@ public final class SpongeTimings {
 
     public static Timing getBlockTiming(Block block) {
         BlockType type = (BlockType) block;
-        return SpongeTimingsFactory.ofSafe("## Scheduled Block: " + type != null ? type.getId() : block.getTranslationKey());
+        return SpongeTimingsFactory.ofSafe("## Scheduled Block: " + type != null ? type.getId() : block.func_149739_a());
     }
 }

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.property.store.common;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import net.minecraft.util.EnumFacing;
 import org.spongepowered.api.data.Property;

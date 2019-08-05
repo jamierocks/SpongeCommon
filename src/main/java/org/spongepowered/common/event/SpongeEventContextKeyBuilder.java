@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.event;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.event.cause.EventContextKey;
 import org.spongepowered.common.registry.type.event.EventContextKeysModule;

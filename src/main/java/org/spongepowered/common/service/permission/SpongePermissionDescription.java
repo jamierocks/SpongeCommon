@@ -45,8 +45,6 @@ import java.util.concurrent.CompletableFuture;
 
 import javax.annotation.Nullable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * Basic implementation of {@link PermissionDescription}. Can only be used in

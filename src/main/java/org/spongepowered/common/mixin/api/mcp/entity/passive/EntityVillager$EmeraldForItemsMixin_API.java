@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity.passive;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
@@ -39,6 +38,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 import java.util.Random;
+
+import org.spongepowered.common.mixin.api.mcp.entity.passive.EntityVillager.EmeraldForItemsMixin_API;
 
 // Note that these mixins will not have to exist once mixing into interfaces is
 // added as the only thing needing to be done is a simple default implementation
@@ -56,11 +57,11 @@ public class EntityVillager$EmeraldForItemsMixin_API implements TradeOfferGenera
         int buyingCount = 1;
 
         if (this.price != null) {
-            buyingCount = this.price.getPrice(random);
+            buyingCount = this.price.func_179412_a(random);
         }
 
         final ItemStack buyingItem = new ItemStack(this.buyingItem, buyingCount, 0);
-        return (TradeOffer) new MerchantRecipe(buyingItem, Items.EMERALD);
+        return (TradeOffer) new MerchantRecipe(buyingItem, Items.field_151166_bC);
     }
 
     @Override

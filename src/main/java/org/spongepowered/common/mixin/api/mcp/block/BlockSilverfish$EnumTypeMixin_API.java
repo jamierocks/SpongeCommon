@@ -32,6 +32,8 @@ import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockSilverfish.EnumTypeMixin_API;
+
 @Mixin(BlockSilverfish.EnumType.class)
 @Implements(@Interface(iface = DisguisedBlockType.class, prefix = "silver$"))
 public abstract class BlockSilverfish$EnumTypeMixin_API {

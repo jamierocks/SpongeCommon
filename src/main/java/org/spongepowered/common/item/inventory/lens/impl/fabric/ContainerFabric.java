@@ -54,12 +54,12 @@ public class ContainerFabric extends MinecraftFabric {
         this.displayName = displayName;
         this.container = container;
 
-        List<Slot> slots = this.container.inventorySlots;
+        List<Slot> slots = this.container.field_75151_b;
 
         Builder<IInventory> builder = ImmutableSet.<IInventory>builder();
         for (Slot slot : slots) {
-            if (slot.inventory != null) {
-                builder.add(slot.inventory);
+            if (slot.field_75224_c != null) {
+                builder.add(slot.field_75224_c);
             }
         }
         this.all = builder.build();
@@ -72,27 +72,27 @@ public class ContainerFabric extends MinecraftFabric {
 
     @Override
     public IInventory get(int index) {
-        if (this.container.inventorySlots.isEmpty()) {
+        if (this.container.field_75151_b.isEmpty()) {
             return null; // Somehow we got an empty container
         }
-        return this.container.getSlot(index).inventory;
+        return this.container.func_75139_a(index).field_75224_c;
     }
 
     @Override
     public ItemStack getStack(int index) {
-        return this.container.getSlot(index).getStack();
+        return this.container.func_75139_a(index).func_75211_c();
     }
 
     @Override
     public void setStack(int index, ItemStack stack) {
-        this.container.getSlot(index).putStack(stack);
+        this.container.func_75139_a(index).func_75215_d(stack);
     }
 
     @Override
     public int getMaxStackSize() {
         int max = 0;
         for (IInventory inv : this.all) {
-            max = Math.max(max, inv.getInventoryStackLimit());
+            max = Math.max(max, inv.func_70297_j_());
         }
         return max;
     }
@@ -104,35 +104,35 @@ public class ContainerFabric extends MinecraftFabric {
 
     @Override
     public int getSize() {
-        return this.container.inventorySlots.size();
+        return this.container.field_75151_b.size();
     }
 
     @Override
     public void clear() {
-        this.all.forEach(IInventory::clear);
+        this.all.forEach(IInventory::func_174888_l);
     }
 
     @Override
     public void markDirty() {
-        this.container.detectAndSendChanges();
+        this.container.func_75142_b();
     }
 
     static Translation getFirstDisplayName(Container container) {
-        if (container.inventorySlots.size() == 0) {
+        if (container.field_75151_b.size() == 0) {
             return new FixedTranslation("Container");
         }
 
         try
         {
-            Slot slot = container.getSlot(0);
-            return slot.inventory != null && slot.inventory.getDisplayName() != null ?
-                    new FixedTranslation(slot.inventory.getDisplayName().getUnformattedText()) :
+            Slot slot = container.func_75139_a(0);
+            return slot.field_75224_c != null && slot.field_75224_c.func_145748_c_() != null ?
+                    new FixedTranslation(slot.field_75224_c.func_145748_c_().func_150260_c()) :
                     new FixedTranslation("UNKNOWN: " + container.getClass().getName());
         }
         catch (AbstractMethodError e)
         {
             SpongeImpl.getLogger().warn("AbstractMethodError! Could not find displayName for " +
-                    container.getSlot(0).inventory.getClass().getName(), e);
+                    container.func_75139_a(0).field_75224_c.getClass().getName(), e);
             return new FixedTranslation("UNKNOWN: " + container.getClass().getName());
         }
     }

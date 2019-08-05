@@ -54,37 +54,37 @@ public class IInventoryFabric extends MinecraftFabric {
 
     @Override
     public ItemStack getStack(int index) {
-        return this.inventory.getStackInSlot(index);
+        return this.inventory.func_70301_a(index);
     }
 
     @Override
     public void setStack(int index, ItemStack stack) {
-        this.inventory.setInventorySlotContents(index, stack);
+        this.inventory.func_70299_a(index, stack);
     }
 
     @Override
     public int getMaxStackSize() {
-        return this.inventory.getInventoryStackLimit();
+        return this.inventory.func_70297_j_();
     }
 
     @Override
     public Translation getDisplayName() {
-        return new FixedTranslation(this.inventory.getDisplayName().getUnformattedText());
+        return new FixedTranslation(this.inventory.func_145748_c_().func_150260_c());
     }
 
     @Override
     public int getSize() {
-        return this.inventory.getSizeInventory();
+        return this.inventory.func_70302_i_();
     }
 
     @Override
     public void clear() {
-        this.inventory.clear();
+        this.inventory.func_174888_l();
     }
 
     @Override
     public void markDirty() {
-        this.inventory.markDirty();
+        this.inventory.func_70296_d();
     }
 
 }

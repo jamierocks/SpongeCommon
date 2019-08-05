@@ -54,13 +54,13 @@ public class TriggerTypeRegistryModule extends AbstractPrefixAlternateCatalogTyp
     public void registerAdditionalCatalog(final Trigger triggerType) {
         // Register on CriterionTriggers, that register method will
         // delegate to the register method within this module
-        CriteriaTriggers.register((ICriterionTrigger) triggerType);
+        CriteriaTriggers.func_192118_a((ICriterionTrigger) triggerType);
     }
 
     @Override
     public void registerDefaults() {
         // Force the vanilla trigger types to load
-        CriteriaTriggers.getAll();
+        CriteriaTriggers.func_192120_a();
     }
 
     private static final class Holder {

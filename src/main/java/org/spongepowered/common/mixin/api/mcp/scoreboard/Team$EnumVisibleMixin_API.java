@@ -34,6 +34,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import org.spongepowered.common.mixin.api.mcp.scoreboard.Team.EnumVisibleMixin_API;
+
 @Mixin(Team.EnumVisible.class)
 public abstract class Team$EnumVisibleMixin_API implements Visibility {
 

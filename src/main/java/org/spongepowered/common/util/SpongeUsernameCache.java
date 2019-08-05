@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.File;
 import java.io.IOException;

@@ -33,6 +33,8 @@ import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockRedstoneWire.EnumAttachPositionMixin_API;
+
 @Mixin(BlockRedstoneWire.EnumAttachPosition.class)
 @Implements(@Interface(iface = WireAttachmentType.class, prefix = "type$"))
 public abstract class BlockRedstoneWire$EnumAttachPositionMixin_API implements WireAttachmentType {

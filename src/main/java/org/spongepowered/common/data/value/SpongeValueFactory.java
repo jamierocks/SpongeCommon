@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.data.value;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.Lists;
 import org.spongepowered.api.data.key.Key;
@@ -51,6 +49,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.data.value.ValueFactory.BoundedValueBuilder;
 
 public class SpongeValueFactory implements ValueFactory {
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.scoreboard;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -77,7 +76,7 @@ public final class DisplaySlotRegistryModule implements AlternateCatalogRegistry
 
         for (Map.Entry<TextFormatting, SpongeTextColor> entry : TextColorRegistryModule.enumChatColor.entrySet()) {
             final String id = entry.getValue().getId().toLowerCase(Locale.ENGLISH);
-            final SpongeDisplaySlot value = new SpongeDisplaySlot(id, entry.getValue(), entry.getKey().getColorIndex() + 3);
+            final SpongeDisplaySlot value = new SpongeDisplaySlot(id, entry.getValue(), entry.getKey().func_175746_b() + 3);
             this.displaySlotMappings.put("minecraft:" + id, value);
         }
     }

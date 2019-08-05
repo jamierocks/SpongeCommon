@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.text.format;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.util.text.TextFormatting;
 import org.spongepowered.api.text.format.TextColor;
@@ -54,7 +53,7 @@ public class SpongeTextColor implements TextColor {
 
     @Override
     public String getName() {
-        return this.handle.getFriendlyName();
+        return this.handle.func_96297_d();
     }
 
     @Override

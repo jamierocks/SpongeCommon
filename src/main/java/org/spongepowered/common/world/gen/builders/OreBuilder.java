@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.gen.builders;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -90,7 +89,7 @@ public class OreBuilder implements Ore.Builder {
 
     @Override
     public Builder reset() {
-        this.block = (BlockState) Blocks.IRON_ORE.getDefaultState();
+        this.block = (BlockState) Blocks.field_150366_p.func_176223_P();
         this.size = VariableAmount.fixed(9);
         this.count = VariableAmount.fixed(20);
         this.height = VariableAmount.baseWithRandomAddition(0, 64);

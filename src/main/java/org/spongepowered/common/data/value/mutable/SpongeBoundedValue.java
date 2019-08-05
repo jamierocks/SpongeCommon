@@ -24,14 +24,11 @@
  */
 package org.spongepowered.common.data.value.mutable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.common.data.value.immutable.ImmutableSpongeBoundedValue;
 
 import java.util.Comparator;

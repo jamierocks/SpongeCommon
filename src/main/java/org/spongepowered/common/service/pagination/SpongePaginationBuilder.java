@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.service.pagination;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.service.pagination.PaginationList;

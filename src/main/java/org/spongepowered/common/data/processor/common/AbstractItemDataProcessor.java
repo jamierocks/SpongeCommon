@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.common;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.item.ItemStack;
 import org.spongepowered.api.data.DataHolder;

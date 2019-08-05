@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.event.tracking.phase.plugin;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import org.spongepowered.api.entity.living.player.Player;

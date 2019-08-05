@@ -25,12 +25,9 @@
 package org.spongepowered.common.config.type;
 
 import ninja.leaping.configurate.objectmapping.Setting;
-import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
 import org.spongepowered.common.config.category.BlockTrackerCategory;
 import org.spongepowered.common.config.category.EntityTrackerCategory;
 import org.spongepowered.common.config.category.TileEntityTrackerCategory;
-import org.spongepowered.common.event.tracking.IPhaseState;
-import org.spongepowered.common.event.tracking.PhaseContext;
 
 public class TrackerConfig extends ConfigBase {
 

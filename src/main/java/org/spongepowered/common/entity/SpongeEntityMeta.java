@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.entity;
 
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.data.DataContainer;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.util.gen;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.world.biome.Biome;
@@ -125,7 +124,7 @@ public final class ObjectArrayMutableBiomeBuffer extends AbstractBiomeBuffer imp
                 if (type instanceof VirtualBiomeType) {
                     type = ((VirtualBiomeType) type).getPersistedType();
                 }
-                biomes[x + z * this.size.getX()] = (byte) Biome.getIdForBiome((Biome) type);
+                biomes[x + z * this.size.getX()] = (byte) Biome.func_185362_a((Biome) type);
             }
         }
     }

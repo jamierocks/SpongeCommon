@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
@@ -43,13 +42,13 @@ public final class ColorUtil {
 
     public static Optional<Color> getItemStackColor(ItemStack stack) {
         // Special case for armor: it has a special method
-        final Item item = stack.getItem();
+        final Item item = stack.func_77973_b();
         if (item instanceof ItemArmor) {
-            final NBTTagCompound tagCompound = stack.getTagCompound();
-            if (tagCompound == null || !tagCompound.hasKey(Constants.Item.Armor.ARMOR_COLOR_DISPLAY_TAG)) {
+            final NBTTagCompound tagCompound = stack.func_77978_p();
+            if (tagCompound == null || !tagCompound.func_74764_b(Constants.Item.Armor.ARMOR_COLOR_DISPLAY_TAG)) {
                 return Optional.empty();
             }
-            final int color = ((ItemArmor) item).getColor(stack);
+            final int color = ((ItemArmor) item).func_82814_b(stack);
             return color == -1 ? Optional.empty() : Optional.of(Color.ofRgb(color));
         }
         return NbtDataUtil.getItemCompound(stack).flatMap(NbtDataUtil::getColorFromNBT);
@@ -62,7 +61,7 @@ public final class ColorUtil {
 
     public static int dyeColorToMojangColor(DyeColor dyeColor) {
         // For the dye
-        final float[] dyeRgbArray = EntitySheep.createSheepColor(EnumDyeColor.valueOf(dyeColor.getName().toUpperCase()));
+        final float[] dyeRgbArray = EntitySheep.func_192020_c(EnumDyeColor.valueOf(dyeColor.getName().toUpperCase()));
 
         // Convert!
         final int trueRed = (int) (dyeRgbArray[0] * 255.0F);
@@ -74,7 +73,7 @@ public final class ColorUtil {
     }
 
     public static Color fromDyeColor(DyeColor dyeColor) {
-        final float[] dyeRgbArray = EntitySheep.createSheepColor(EnumDyeColor.valueOf(dyeColor.getName().toUpperCase()));
+        final float[] dyeRgbArray = EntitySheep.func_192020_c(EnumDyeColor.valueOf(dyeColor.getName().toUpperCase()));
         final int trueRed = (int) (dyeRgbArray[0] * 255.0F);
         final int trueGreen = (int) (dyeRgbArray[1] * 255.0F);
         final int trueBlue = (int) (dyeRgbArray[2] * 255.0F);
@@ -105,9 +104,9 @@ public final class ColorUtil {
     }
 
     public static boolean hasColor(ItemStack stack) {
-        final Item item = stack.getItem();
+        final Item item = stack.func_77973_b();
         return item instanceof ItemArmor &&
-                ((ItemArmor) item).getArmorMaterial() == ArmorMaterial.LEATHER;
+                ((ItemArmor) item).func_82812_d() == ArmorMaterial.LEATHER;
     }
 
     private ColorUtil() {

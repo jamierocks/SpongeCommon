@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.Maps;
 import net.minecraft.entity.passive.EntityHorse;
@@ -56,7 +55,7 @@ public class HorseStyleRegistryModule extends AbstractPrefixAlternateCatalogType
     }
 
     public static HorseStyle getHorseStyle(EntityHorse horse) {
-        return HORSE_STYLE_IDMAP.get((horse.getHorseVariant() & 65280) >> 8);
+        return HORSE_STYLE_IDMAP.get((horse.func_110202_bQ() & 65280) >> 8);
     }
 
     public static HorseStyle getHorseStyle(DataView container) {

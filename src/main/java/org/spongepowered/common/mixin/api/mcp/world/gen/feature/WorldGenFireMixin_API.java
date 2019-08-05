@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.util.math.BlockPos;
@@ -61,7 +60,7 @@ public abstract class WorldGenFireMixin_API extends WorldGenerator implements Ne
             final int x = min.getX() + random.nextInt(size.getX());
             final int z = min.getZ() + random.nextInt(size.getZ());
             final int y = min.getY() + 4 + random.nextInt(120);
-            generate(world, random, new BlockPos(x, y, z));
+            func_180709_b(world, random, new BlockPos(x, y, z));
         }
     }
 

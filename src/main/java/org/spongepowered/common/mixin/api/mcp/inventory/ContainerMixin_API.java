@@ -27,7 +27,6 @@ package org.spongepowered.common.mixin.api.mcp.inventory;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -38,19 +37,8 @@ import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.bridge.inventory.ContainerBridge;
-import org.spongepowered.common.item.inventory.adapter.impl.SlotCollectionIterator;
-import org.spongepowered.common.item.inventory.adapter.impl.slots.SlotAdapter;
-import org.spongepowered.common.item.inventory.lens.Fabric;
-import org.spongepowered.common.item.inventory.lens.Lens;
-import org.spongepowered.common.item.inventory.lens.SlotProvider;
-import org.spongepowered.common.item.inventory.lens.impl.MinecraftFabric;
-import org.spongepowered.common.item.inventory.util.ContainerUtil;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -75,7 +63,7 @@ public abstract class ContainerMixin_API implements org.spongepowered.api.item.i
     @Override
     public boolean isViewedSlot(final org.spongepowered.api.item.inventory.Slot slot) {
         if (slot instanceof Slot) {
-            final Set<Slot> set = ((ContainerBridge) this).bridge$getInventories().get(((Slot) slot).inventory);
+            final Set<Slot> set = ((ContainerBridge) this).bridge$getInventories().get(((Slot) slot).field_75224_c);
             if (set != null) {
                 if (set.contains(slot)) {
                     if (((ContainerBridge) this).bridge$getInventories().size() == 1) {
@@ -83,7 +71,7 @@ public abstract class ContainerMixin_API implements org.spongepowered.api.item.i
                     }
                     // TODO better detection of viewer inventory - needs tracking of who views a container
                     // For now assume that a player inventory is always the viewers inventory
-                    if (((Slot) slot).inventory.getClass() != InventoryPlayer.class) {
+                    if (((Slot) slot).field_75224_c.getClass() != InventoryPlayer.class) {
                         return true;
                     }
                 }

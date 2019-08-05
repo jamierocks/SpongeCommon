@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonParseException;

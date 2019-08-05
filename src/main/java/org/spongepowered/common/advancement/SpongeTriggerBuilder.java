@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.advancement;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.item;
 
-import static org.spongepowered.common.data.util.DataUtil.checkDataExists;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.item.ItemStack;
@@ -67,7 +66,7 @@ public class ItemEnchantmentDataProcessor
 
     @Override
     protected Optional<List<Enchantment>> getVal(ItemStack itemStack) {
-        if (itemStack.isItemEnchanted()) {
+        if (itemStack.func_77948_v()) {
             return Optional.of(NbtDataUtil.getItemEnchantments(itemStack));
         }
         return Optional.empty();
@@ -101,7 +100,7 @@ public class ItemEnchantmentDataProcessor
             if (!old.isPresent()) {
                 return DataTransactionResult.successNoData();
             }
-            stack.getTagCompound().removeTag(Constants.Item.ITEM_ENCHANTMENT_LIST);
+            stack.func_77978_p().func_82580_o(Constants.Item.ITEM_ENCHANTMENT_LIST);
             return DataTransactionResult.successRemove(constructImmutableValue(old.get()));
         }
         return DataTransactionResult.failNoData();

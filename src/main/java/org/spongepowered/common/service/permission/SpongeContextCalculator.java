@@ -46,7 +46,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A context calculator handling world contexts.

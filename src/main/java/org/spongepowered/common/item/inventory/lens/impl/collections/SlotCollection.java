@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.inventory.lens.impl.collections;
 
-import static com.google.common.base.Preconditions.*;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.Slot;

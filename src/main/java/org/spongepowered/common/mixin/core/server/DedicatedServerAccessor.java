@@ -25,15 +25,10 @@
 package org.spongepowered.common.mixin.core.server;
 
 import net.minecraft.network.rcon.RConThreadMain;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.dedicated.DedicatedServer;
-import net.minecraft.util.datafix.DataFixer;
-import net.minecraft.world.storage.ISaveHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
-import org.spongepowered.asm.mixin.gen.Invoker;
 
-import java.io.File;
 
 import javax.annotation.Nullable;
 

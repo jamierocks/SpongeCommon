@@ -26,9 +26,6 @@ package org.spongepowered.common.mixin.api.mcp.world;
 
 import com.flowpowered.math.vector.Vector3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import org.spongepowered.api.entity.explosive.Explosive;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -38,10 +35,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.bridge.world.ExplosionBridge;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 

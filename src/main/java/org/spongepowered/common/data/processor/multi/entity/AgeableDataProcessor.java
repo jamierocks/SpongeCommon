@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.multi.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.EntityAgeable;
@@ -64,14 +63,14 @@ public class AgeableDataProcessor extends AbstractEntityDataProcessor<EntityAgea
         boolean adult = (Boolean) keyValues.get(Keys.IS_ADULT);
 
         if (age != null) {
-            entity.setGrowingAge(age);
+            entity.func_70873_a(age);
             return true;
         }
 
         if (adult) {
-            entity.setGrowingAge(Constants.Entity.Ageable.ADULT);
+            entity.func_70873_a(Constants.Entity.Ageable.ADULT);
         } else {
-            entity.setGrowingAge(Constants.Entity.Ageable.CHILD);
+            entity.func_70873_a(Constants.Entity.Ageable.CHILD);
         }
         return true;
 
@@ -79,7 +78,7 @@ public class AgeableDataProcessor extends AbstractEntityDataProcessor<EntityAgea
 
     @Override
     protected Map<Key<?>, ?> getValues(EntityAgeable entity) {
-        return ImmutableMap.<Key<?>, Object>of(Keys.AGE, entity.getIdleTime(), Keys.IS_ADULT, !entity.isChild());
+        return ImmutableMap.<Key<?>, Object>of(Keys.AGE, entity.func_70654_ax(), Keys.IS_ADULT, !entity.func_70631_g_());
     }
 
     @Override

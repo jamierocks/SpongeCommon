@@ -27,7 +27,9 @@ package org.spongepowered.common.mixin.core.util;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.common.bridge.util.CooldownTracker$CooldownBridge;
+import org.spongepowered.common.bridge.util.CooldownTracker.CooldownBridge;
+
+import org.spongepowered.common.mixin.core.util.CooldownTracker.CooldownMixin;
 
 @Mixin(targets = "net/minecraft/util/CooldownTracker$Cooldown")
 public class CooldownTracker$CooldownMixin implements CooldownTracker$CooldownBridge {

@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.data.util;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -96,9 +93,9 @@ public final class DataUtil {
     private static final Supplier<InvalidDataException> INVALID_DATA_EXCEPTION_SUPPLIER = InvalidDataException::new;
 
     static {
-        spongeDataFixer.registerFix(FixTypes.LEVEL, new SpongeLevelFixer());
-        spongeDataFixer.registerFix(FixTypes.ENTITY, new EntityTrackedUser());
-        spongeDataFixer.registerFix(FixTypes.PLAYER, new PlayerRespawnData());
+        spongeDataFixer.func_188256_a(FixTypes.LEVEL, new SpongeLevelFixer());
+        spongeDataFixer.func_188256_a(FixTypes.ENTITY, new EntityTrackedUser());
+        spongeDataFixer.func_188256_a(FixTypes.PLAYER, new PlayerRespawnData());
     }
 
     public static DataView checkDataExists(final DataView dataView, final DataQuery query) throws InvalidDataException {

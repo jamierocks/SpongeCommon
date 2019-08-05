@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.advancements;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.advancements.AdvancementProgress;
 import org.spongepowered.api.advancement.Advancement;

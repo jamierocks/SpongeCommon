@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.advancements;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.util.ResourceLocation;

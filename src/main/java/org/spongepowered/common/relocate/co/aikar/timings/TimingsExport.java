@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.relocate.co.aikar.timings;
 
-import static org.spongepowered.api.Platform.Component.IMPLEMENTATION;
 
 import org.spongepowered.common.relocate.co.aikar.util.JSONUtil;
 import org.spongepowered.common.relocate.co.aikar.util.JSONUtil.JsonObjectBuilder;
@@ -125,7 +124,7 @@ class TimingsExport extends Thread {
             builder.add("server", getServerName())
                     .add("motd", Sponge.getServer().getMotd().toPlain())
                     .add("online-mode", Sponge.getServer().getOnlineMode())
-                    .add("icon", SpongeImpl.getServer().getServerStatusResponse().getFavicon());
+                    .add("icon", SpongeImpl.getServer().func_147134_at().func_151316_d());
         }
 
         final Runtime runtime = Runtime.getRuntime();

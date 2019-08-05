@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.network.rcon;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.network.rcon.RConConsoleSource;
@@ -75,7 +74,7 @@ public abstract class RConConsoleSourceMixin implements ICommandSender, CommandS
 
     @Override
     public String bridge$getIdentifier() {
-        return getName();
+        return func_70005_c_();
     }
 
     @Override

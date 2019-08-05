@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.registry.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.Sets;
 import org.spongepowered.api.registry.AlternateCatalogRegistryModule;

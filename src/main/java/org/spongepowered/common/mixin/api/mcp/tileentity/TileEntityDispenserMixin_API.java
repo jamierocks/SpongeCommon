@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.tileentity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import net.minecraft.tileentity.TileEntityDispenser;

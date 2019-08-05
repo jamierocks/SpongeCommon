@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.extent;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import com.flowpowered.math.vector.Vector3i;
 import org.spongepowered.api.util.PositionOutOfBoundsException;

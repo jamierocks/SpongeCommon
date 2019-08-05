@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.gen.builders;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import org.spongepowered.api.world.gen.populator.ChorusFlower;
 import org.spongepowered.api.world.gen.populator.ChorusFlower.Builder;

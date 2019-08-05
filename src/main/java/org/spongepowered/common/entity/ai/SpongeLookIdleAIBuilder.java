@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.entity.ai;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAILookIdle;

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.item.inventory.lens.impl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
@@ -167,7 +165,7 @@ public abstract class AbstractLens implements Lens {
     public ItemStack getStack(final Fabric inv, final int ordinal) {
         final LensHandle lens = this.getLensForOrdinal(ordinal);
         if (lens == null) {
-            return ItemStack.EMPTY;
+            return ItemStack.field_190927_a;
         }
         return lens.lens.getStack(inv, ordinal - lens.ordinal);
     }

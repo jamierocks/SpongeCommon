@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.resourcepack;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;

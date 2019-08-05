@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.inventory.query;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.item.inventory.query.QueryOperation;
 import org.spongepowered.api.item.inventory.query.QueryOperationType;

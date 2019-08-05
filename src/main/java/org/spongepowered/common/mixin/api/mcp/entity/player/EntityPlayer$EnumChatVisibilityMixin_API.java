@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity.player;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.player.EntityPlayer;
 import org.spongepowered.api.text.chat.ChatType;
@@ -38,6 +37,8 @@ import org.spongepowered.common.bridge.entity.player.EnumChatVisibilityBridge;
 import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import java.util.Locale;
+
+import org.spongepowered.common.mixin.api.mcp.entity.player.EntityPlayer.EnumChatVisibilityMixin_API;
 
 @Mixin(EntityPlayer.EnumChatVisibility.class)
 public abstract class EntityPlayer$EnumChatVisibilityMixin_API implements ChatVisibility {

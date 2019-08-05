@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.block;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Sets;
 import org.spongepowered.api.data.DataContainer;

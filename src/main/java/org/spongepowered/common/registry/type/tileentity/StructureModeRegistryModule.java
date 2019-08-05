@@ -38,7 +38,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public final class StructureModeRegistryModule implements CatalogRegistryModule<StructureMode> {
 

@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.item.recipe.crafting;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapelessRecipes;
@@ -42,12 +39,15 @@ import org.spongepowered.common.util.SpongeCatalogBuilder;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe.Builder.EndStep;
+import org.spongepowered.api.item.recipe.crafting.ShapelessCraftingRecipe.Builder.ResultStep;
+
 @NonnullByDefault
 public class SpongeShapelessCraftingRecipeBuilder extends SpongeCatalogBuilder<ShapelessCraftingRecipe, ShapelessCraftingRecipe.Builder>
         implements ShapelessCraftingRecipe.Builder.EndStep, ShapelessCraftingRecipe.Builder.ResultStep {
 
     private ItemStackSnapshot exemplaryResult = ItemStackSnapshot.NONE;
-    private NonNullList<Ingredient> ingredients = NonNullList.create();
+    private NonNullList<Ingredient> ingredients = NonNullList.func_191196_a();
     private String groupName = "";
 
     @Override
@@ -85,7 +85,7 @@ public class SpongeShapelessCraftingRecipeBuilder extends SpongeCatalogBuilder<S
 
         this.groupName = "";
         if (value instanceof ShapelessRecipes) {
-            this.groupName = ((ShapelessRecipes) value).group;
+            this.groupName = ((ShapelessRecipes) value).field_194138_c;
         }
 
         super.reset();
@@ -97,7 +97,7 @@ public class SpongeShapelessCraftingRecipeBuilder extends SpongeCatalogBuilder<S
         checkState(this.exemplaryResult != null && this.exemplaryResult != ItemStackSnapshot.NONE, "The result is not set.");
         checkState(!this.ingredients.isEmpty(), "The ingredients are not set.");
         // Copy the ingredient list
-        final NonNullList<Ingredient> ingredients = NonNullList.create();
+        final NonNullList<Ingredient> ingredients = NonNullList.func_191196_a();
         ingredients.addAll(this.ingredients);
         return ((ShapelessCraftingRecipe) new SpongeShapelessRecipe(plugin.getId() + ':' + id, this.groupName,
                 ItemStackUtil.toNative(this.exemplaryResult.createStack()), ingredients));

@@ -32,6 +32,8 @@ import java.util.Locale;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.entity.projectile.EntityArrow.PickupStatusMixin_API;
+
 @Mixin(EntityArrow.PickupStatus.class)
 public class EntityArrow$PickupStatusMixin_API implements PickupRule {
 

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.world;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.NextTickListEntry;

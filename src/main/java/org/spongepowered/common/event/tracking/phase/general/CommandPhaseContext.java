@@ -25,7 +25,6 @@
 package org.spongepowered.common.event.tracking.phase.general;
 
 import org.spongepowered.asm.util.PrettyPrinter;
-import org.spongepowered.common.bridge.entity.player.InventoryPlayerBridge;
 import org.spongepowered.common.bridge.inventory.TrackedInventoryBridge;
 import org.spongepowered.common.event.tracking.IPhaseState;
 

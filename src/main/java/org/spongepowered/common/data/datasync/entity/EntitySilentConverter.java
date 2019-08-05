@@ -37,7 +37,7 @@ import java.util.Optional;
 public class EntitySilentConverter extends DataParameterConverter<Boolean> {
 
     public EntitySilentConverter() {
-        super(Entity.SILENT);
+        super(Entity.field_184234_aB);
     }
 
     @Override

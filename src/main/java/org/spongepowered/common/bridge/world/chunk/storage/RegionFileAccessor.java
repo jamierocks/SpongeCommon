@@ -28,9 +28,6 @@ import net.minecraft.world.chunk.storage.RegionFile;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-import java.io.File;
-import java.io.RandomAccessFile;
-import java.util.List;
 
 @Mixin(RegionFile.class)
 public interface RegionFileAccessor {

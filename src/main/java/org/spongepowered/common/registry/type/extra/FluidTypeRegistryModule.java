@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.extra;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import org.spongepowered.api.block.BlockTypes;

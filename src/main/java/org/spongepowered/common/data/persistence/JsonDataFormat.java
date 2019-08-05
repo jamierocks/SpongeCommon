@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.persistence;
 
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;

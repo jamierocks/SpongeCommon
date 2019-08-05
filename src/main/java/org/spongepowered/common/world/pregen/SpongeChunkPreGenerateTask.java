@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.world.pregen;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.GenericMath;
 import com.flowpowered.math.vector.Vector3d;

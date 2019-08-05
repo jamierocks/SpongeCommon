@@ -24,21 +24,12 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
-import net.minecraft.entity.ai.attributes.IAttribute;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.CombatTracker;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundEvent;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.mutable.entity.DamageableData;
 import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
@@ -58,7 +49,6 @@ import org.spongepowered.common.data.value.mutable.SpongeOptionalValue;
 import org.spongepowered.common.entity.projectile.ProjectileLauncher;
 
 import java.util.Optional;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 

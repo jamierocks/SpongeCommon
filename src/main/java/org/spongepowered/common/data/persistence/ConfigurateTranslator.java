@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.data.persistence;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.reflect.TypeToken;
 import ninja.leaping.configurate.ConfigurationNode;

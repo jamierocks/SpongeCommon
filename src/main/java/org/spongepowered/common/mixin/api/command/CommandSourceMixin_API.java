@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.command;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.item.EntityMinecartCommandBlock;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -35,9 +34,7 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
-import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.common.bridge.command.CommandSenderBridge;
 import org.spongepowered.common.bridge.command.CommandSourceBridge;
 import org.spongepowered.common.text.SpongeTexts;
 
@@ -52,7 +49,7 @@ public abstract class CommandSourceMixin_API implements CommandSource {
     @Override
     public void sendMessage(final Text message) {
         checkNotNull(message, "message");
-        ((CommandSourceBridge) this).bridge$asICommandSender().sendMessage(SpongeTexts.toComponent(message));
+        ((CommandSourceBridge) this).bridge$asICommandSender().func_145747_a(SpongeTexts.toComponent(message));
     }
 
     @Override

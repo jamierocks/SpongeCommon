@@ -56,7 +56,6 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Permission service representing the vanilla operator permission structure.
@@ -98,11 +97,11 @@ public class SpongePermissionService implements PermissionService {
     }
 
     static UserListOps getOps() {
-        return SpongeImpl.getServer().getPlayerList().getOppedPlayers();
+        return SpongeImpl.getServer().func_184103_al().func_152603_m();
     }
 
     static int getServerOpLevel() {
-        return SpongeImpl.getServer().getOpPermissionLevel();
+        return SpongeImpl.getServer().func_110455_j();
     }
 
     public Subject getGroupForOpLevel(int level) {

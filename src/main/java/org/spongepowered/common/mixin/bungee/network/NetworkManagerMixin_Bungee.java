@@ -29,7 +29,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import net.minecraft.network.NetworkManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.common.bridge.network.NetworkManagerBridge;
 import org.spongepowered.common.bridge.network.NetworkManagerBridge_Bungee;
 
 import java.net.SocketAddress;

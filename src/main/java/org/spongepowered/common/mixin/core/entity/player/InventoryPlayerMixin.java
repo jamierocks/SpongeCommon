@@ -41,7 +41,6 @@ import org.spongepowered.api.item.inventory.property.SlotIndex;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -52,11 +51,7 @@ import org.spongepowered.common.bridge.entity.player.InventoryPlayerBridge;
 import org.spongepowered.common.bridge.inventory.TrackedInventoryBridge;
 import org.spongepowered.common.bridge.item.inventory.InventoryAdapterBridge;
 import org.spongepowered.common.item.inventory.adapter.InventoryAdapter;
-import org.spongepowered.common.item.inventory.adapter.impl.comp.EquipmentInventoryAdapter;
-import org.spongepowered.common.item.inventory.adapter.impl.comp.HotbarAdapter;
-import org.spongepowered.common.item.inventory.adapter.impl.comp.MainPlayerInventoryAdapter;
 import org.spongepowered.common.item.inventory.adapter.impl.slots.EquipmentSlotAdapter;
-import org.spongepowered.common.item.inventory.adapter.impl.slots.SlotAdapter;
 import org.spongepowered.common.item.inventory.lens.Fabric;
 import org.spongepowered.common.item.inventory.lens.Lens;
 import org.spongepowered.common.item.inventory.lens.SlotProvider;
@@ -70,7 +65,6 @@ import org.spongepowered.common.item.inventory.util.ItemStackUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
 
 @Mixin(InventoryPlayer.class)
 public abstract class InventoryPlayerMixin implements InventoryPlayerBridge, InventoryAdapter, InventoryAdapterBridge, TrackedInventoryBridge {
@@ -166,7 +160,7 @@ public abstract class InventoryPlayerMixin implements InventoryPlayerBridge, Inv
         itemIndex = itemIndex % 9;
         if (notify && this.player instanceof EntityPlayerMP) {
             final SPacketHeldItemChange packet = new SPacketHeldItemChange(itemIndex);
-            ((EntityPlayerMP)this.player).connection.sendPacket(packet);
+            ((EntityPlayerMP)this.player).field_71135_a.func_147359_a(packet);
         }
         this.currentItem = itemIndex;
     }
@@ -221,7 +215,7 @@ public abstract class InventoryPlayerMixin implements InventoryPlayerBridge, Inv
     @Override
     public void bridge$cleanupDirty() {
         if (this.timesChanged != this.impl$lastTimesChanged) {
-            this.player.openContainer.detectAndSendChanges();
+            this.player.field_71070_bA.func_75142_b();
         }
     }
 

@@ -34,6 +34,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.common.bridge.network.NetHandlerLoginServerBridge;
 
+import org.spongepowered.common.mixin.core.server.network.NetHandlerLoginServer.2Mixin;
+
 @Mixin(targets = "net/minecraft/server/network/NetHandlerLoginServer$2")
 public class NetHandlerLoginServer$2Mixin extends Thread {
 

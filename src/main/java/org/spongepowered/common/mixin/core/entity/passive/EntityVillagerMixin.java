@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.entity.passive;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,8 +33,6 @@ import org.spongepowered.api.data.type.Career;
 import org.spongepowered.api.data.type.Profession;
 import org.spongepowered.api.entity.living.Villager;
 import org.spongepowered.api.item.merchant.TradeOffer;
-import org.spongepowered.api.item.merchant.TradeOfferGenerator;
-import org.spongepowered.api.item.merchant.VillagerRegistry;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

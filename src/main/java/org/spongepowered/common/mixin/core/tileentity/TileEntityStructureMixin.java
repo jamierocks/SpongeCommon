@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.tileentity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.tileentity.TileEntityStructure;
@@ -40,7 +39,7 @@ public abstract class TileEntityStructureMixin extends TileEntityMixin implement
 
     @Shadow private String author;
     @Shadow private BlockPos position;
-    @Shadow private BlockPos size = BlockPos.ORIGIN;
+    @Shadow private BlockPos size = BlockPos.field_177992_a;
     @Shadow private TileEntityStructure.Mode mode;
     @Shadow private boolean ignoreEntities;
     @Shadow private boolean showAir;

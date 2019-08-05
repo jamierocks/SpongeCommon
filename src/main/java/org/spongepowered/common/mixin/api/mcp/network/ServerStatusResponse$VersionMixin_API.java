@@ -32,6 +32,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.ProtocolMinecraftVersion;
 import org.spongepowered.common.SpongeMinecraftVersion;
 
+import org.spongepowered.common.mixin.api.mcp.network.ServerStatusResponse.VersionMixin_API;
+
 @Mixin(ServerStatusResponse.Version.class)
 public abstract class ServerStatusResponse$VersionMixin_API implements MinecraftVersion {
 

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.launch.transformer.tracker;
 
-import static java.util.Objects.requireNonNull;
-import static org.spongepowered.asm.lib.Opcodes.ASM5;
 
 import net.minecraft.launchwrapper.Launch;
 import org.spongepowered.asm.lib.AnnotationVisitor;

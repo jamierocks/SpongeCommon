@@ -53,15 +53,15 @@ public final class ItemLockableDataProcessor extends AbstractItemSingleDataProce
 
     public ItemLockableDataProcessor() {
         super(stack -> {
-            Item item = stack.getItem();
+            Item item = stack.func_77973_b();
             if (!(item instanceof ItemBlock)) {
                 return false;
             }
-            Block block = ((ItemBlock) item).getBlock();
+            Block block = ((ItemBlock) item).func_179223_d();
             if (!(block instanceof ITileEntityProvider)) {
                 return false;
             }
-            TileEntity tile = ((ITileEntityProvider) block).createNewTileEntity(null, item.getMetadata(stack.getItemDamage()));
+            TileEntity tile = ((ITileEntityProvider) block).func_149915_a(null, item.func_77647_b(stack.func_77952_i()));
             return tile instanceof TileEntityLockable;
         } , Keys.LOCK_TOKEN);
     }
@@ -80,25 +80,25 @@ public final class ItemLockableDataProcessor extends AbstractItemSingleDataProce
         NBTTagCompound mainCompound = NbtDataUtil.getOrCreateCompound(stack);
         NBTTagCompound tileCompound = NbtDataUtil.getOrCreateSubCompound(mainCompound, Constants.Item.BLOCK_ENTITY_TAG);
         LockCode code = new LockCode(value);
-        if (code.isEmpty()) {
-            tileCompound.removeTag("Lock");
+        if (code.func_180160_a()) {
+            tileCompound.func_82580_o("Lock");
         } else {
-            code.toNBT(tileCompound);
+            code.func_180157_a(tileCompound);
         }
         return true;
     }
 
     @Override
     protected Optional<String> getVal(ItemStack container) {
-        if (container.getTagCompound() == null) {
+        if (container.func_77978_p() == null) {
             return Optional.of("");
         }
-        NBTTagCompound tileCompound = container.getTagCompound().getCompoundTag(Constants.Item.BLOCK_ENTITY_TAG);
-        LockCode code = LockCode.fromNBT(tileCompound);
-        if (code.isEmpty()) {
+        NBTTagCompound tileCompound = container.func_77978_p().func_74775_l(Constants.Item.BLOCK_ENTITY_TAG);
+        LockCode code = LockCode.func_180158_b(tileCompound);
+        if (code.func_180160_a()) {
             return Optional.empty();
         }
-        return Optional.of(code.getLock());
+        return Optional.of(code.func_180159_b());
     }
 
     @Override

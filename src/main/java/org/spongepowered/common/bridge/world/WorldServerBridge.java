@@ -25,24 +25,18 @@
 package org.spongepowered.common.bridge.world;
 
 import com.flowpowered.math.vector.Vector3d;
-import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
-import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;
-import org.spongepowered.common.SpongeImplHooks;
 import org.spongepowered.common.block.SpongeBlockSnapshot;
 import org.spongepowered.common.event.tracking.PhaseContext;
-import org.spongepowered.common.event.tracking.context.MultiBlockCaptureSupplier;
 import org.spongepowered.common.event.tracking.context.SpongeProxyBlockAccess;
 import org.spongepowered.common.relocate.co.aikar.timings.WorldTimingsHandler;
 import org.spongepowered.common.world.gen.SpongeChunkGenerator;

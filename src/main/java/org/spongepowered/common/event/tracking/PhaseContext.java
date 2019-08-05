@@ -24,10 +24,7 @@
  */
 package org.spongepowered.common.event.tracking;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -36,14 +33,11 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.api.event.Event;
-import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.asm.util.PrettyPrinter;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.SpongeImplHooks;
 import org.spongepowered.common.block.SpongeBlockSnapshot;
-import org.spongepowered.common.bridge.entity.player.InventoryPlayerBridge;
 import org.spongepowered.common.bridge.inventory.TrackedInventoryBridge;
 import org.spongepowered.common.event.tracking.context.BlockItemDropsSupplier;
 import org.spongepowered.common.event.tracking.context.BlockItemEntityDropsSupplier;
@@ -61,7 +55,6 @@ import org.spongepowered.common.event.tracking.context.ICaptureSupplier;
 import org.spongepowered.common.event.tracking.context.ItemDropData;
 import org.spongepowered.common.event.tracking.context.MultiBlockCaptureSupplier;
 import org.spongepowered.common.event.tracking.phase.general.GeneralPhase;
-import org.spongepowered.common.world.BlockChange;
 
 import java.util.Collections;
 import java.util.Deque;
@@ -537,7 +530,7 @@ public class PhaseContext<P extends PhaseContext<P>> implements AutoCloseable {
             return true;
         }
         if (this.source != null && this.source instanceof EntityPlayer) {
-            if (((TrackedInventoryBridge) ((EntityPlayer) this.source).inventory).bridge$getCapturedSlotTransactions().size() > 0) {
+            if (((TrackedInventoryBridge) ((EntityPlayer) this.source).field_71071_by).bridge$getCapturedSlotTransactions().size() > 0) {
                 return true;
             }
         }

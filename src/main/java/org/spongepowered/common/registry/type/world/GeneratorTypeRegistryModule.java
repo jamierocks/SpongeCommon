@@ -60,14 +60,14 @@ public final class GeneratorTypeRegistryModule extends AbstractPrefixAlternateCa
     @SuppressWarnings("ConstantConditions")
     @Override
     public void registerDefaults() {
-        for (final WorldType worldType : WorldType.WORLD_TYPES) {
+        for (final WorldType worldType : WorldType.field_77139_a) {
             this.registerAdditionalCatalog((GeneratorType) worldType);
         }
         {
             final WorldType the_end = new WorldType(getNextID(), "the_end");
             ((WorldTypeBridge) the_end).bridge$setChunkGenerator((world, options)
-                -> new ChunkGeneratorEnd(world, true, world.getSeed(), new BlockPos(100, 50, 0)));
-            ((WorldTypeBridge) the_end).bridge$setBiomeProvider(world -> new BiomeProviderSingle(Biomes.SKY));
+                -> new ChunkGeneratorEnd(world, true, world.func_72905_C(), new BlockPos(100, 50, 0)));
+            ((WorldTypeBridge) the_end).bridge$setBiomeProvider(world -> new BiomeProviderSingle(Biomes.field_76779_k));
             ((WorldTypeAccessor) the_end).accessor$setHasInfoNotice(true);
 
             this.registerAdditionalCatalog((GeneratorType) the_end);
@@ -75,15 +75,15 @@ public final class GeneratorTypeRegistryModule extends AbstractPrefixAlternateCa
         {
             final WorldType nether = new WorldType(getNextID(), "nether");
             ((WorldTypeAccessor) nether).accessor$setHasInfoNotice(true);
-            ((WorldTypeBridge) nether).bridge$setBiomeProvider(world -> new BiomeProviderSingle(Biomes.HELL));
-            ((WorldTypeBridge) nether).bridge$setChunkGenerator((world, s) -> new ChunkGeneratorHell(world, world.getWorldInfo().isMapFeaturesEnabled(), world.getSeed()));
+            ((WorldTypeBridge) nether).bridge$setBiomeProvider(world -> new BiomeProviderSingle(Biomes.field_76778_j));
+            ((WorldTypeBridge) nether).bridge$setChunkGenerator((world, s) -> new ChunkGeneratorHell(world, world.func_72912_H().func_76089_r(), world.func_72905_C()));
             this.registerAdditionalCatalog((GeneratorType) nether);
         }
         {
             final WorldType overworld = new WorldType(getNextID(), "overworld");
             ((WorldTypeAccessor) overworld).accessor$setCanBeCreated(false);
-            ((WorldTypeBridge) overworld).bridge$setBiomeProvider(world -> new BiomeProvider(world.getWorldInfo()));
-            ((WorldTypeBridge) overworld).bridge$setChunkGenerator(((world, s) -> new ChunkGeneratorOverworld(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled(), s)));
+            ((WorldTypeBridge) overworld).bridge$setBiomeProvider(world -> new BiomeProvider(world.func_72912_H()));
+            ((WorldTypeBridge) overworld).bridge$setChunkGenerator(((world, s) -> new ChunkGeneratorOverworld(world, world.func_72905_C(), world.func_72912_H().func_76089_r(), s)));
             this.registerAdditionalCatalog((GeneratorType) overworld);
         }
 
@@ -91,9 +91,9 @@ public final class GeneratorTypeRegistryModule extends AbstractPrefixAlternateCa
 
     @AdditionalRegistration(RegistrationPhase.PRE_REGISTRY)
     public void registerAdditional() {
-        for (final WorldType worldType : WorldType.WORLD_TYPES) {
+        for (final WorldType worldType : WorldType.field_77139_a) {
             if (worldType != null && !this.catalogTypeMap.values().contains(worldType)) {
-                this.catalogTypeMap.put(worldType.getName().toLowerCase(Locale.ENGLISH), (GeneratorType) worldType);
+                this.catalogTypeMap.put(worldType.func_77127_a().toLowerCase(Locale.ENGLISH), (GeneratorType) worldType);
             }
         }
         // Re-map fields in case mods have changed vanilla world types
@@ -135,14 +135,14 @@ public final class GeneratorTypeRegistryModule extends AbstractPrefixAlternateCa
     }
 
     private static int getNextID() {
-        for (int x = 0; x < WorldType.WORLD_TYPES.length; x++) {
-            if (WorldType.WORLD_TYPES[x] == null) {
+        for (int x = 0; x < WorldType.field_77139_a.length; x++) {
+            if (WorldType.field_77139_a[x] == null) {
                 return x;
             }
         }
 
-        final int oldLen = WorldType.WORLD_TYPES.length;
-        WorldType.WORLD_TYPES = Arrays.copyOf(WorldType.WORLD_TYPES, oldLen + 16);
+        final int oldLen = WorldType.field_77139_a.length;
+        WorldType.field_77139_a = Arrays.copyOf(WorldType.field_77139_a, oldLen + 16);
         return oldLen;
     }
 }

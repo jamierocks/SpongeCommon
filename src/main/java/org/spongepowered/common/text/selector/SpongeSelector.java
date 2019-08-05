@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.text.selector;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -44,6 +43,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.spongepowered.api.text.selector.Selector.Builder;
 
 @NonnullByDefault
 public class SpongeSelector implements Selector {

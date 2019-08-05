@@ -51,17 +51,17 @@ public class SpongeUserListBans extends UserListBans {
     }
 
     @Override
-    protected boolean hasEntry(com.mojang.authlib.GameProfile entry) {
+    protected boolean func_152692_d(com.mojang.authlib.GameProfile entry) {
         return getService().isBanned((GameProfile) entry);
     }
 
     @Override
-    public UserListBansEntry getEntry(com.mojang.authlib.GameProfile obj) {
+    public UserListBansEntry func_152683_b(com.mojang.authlib.GameProfile obj) {
         return (UserListBansEntry) getService().getBanFor((GameProfile) obj).orElse(null);
     }
 
     @Override
-    public String[] getKeys() {
+    public String[] func_152685_a() {
         List<String> names = new ArrayList<>();
         for (Ban.Profile ban : getService().getProfileBans()) {
             ban.getProfile().getName().ifPresent(names::add);
@@ -70,23 +70,23 @@ public class SpongeUserListBans extends UserListBans {
     }
 
     @Override
-    public void addEntry(UserListBansEntry entry) {
+    public void func_152687_a(UserListBansEntry entry) {
         getService().addBan((Ban) entry);
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean func_152690_d() {
         return getService().getProfileBans().isEmpty();
     }
 
     @Override
-    public void removeEntry(com.mojang.authlib.GameProfile entry) {
+    public void func_152684_c(com.mojang.authlib.GameProfile entry) {
         getService().pardon((GameProfile) entry);
     }
 
     @Override
     @Nullable
-    public com.mojang.authlib.GameProfile getBannedProfile(String username) {
+    public com.mojang.authlib.GameProfile func_152703_a(String username) {
         for (Ban.Profile ban : getService().getProfileBans()) {
             if (ban.getProfile().getName().isPresent() && ban.getProfile().getName().get().equals(username)) {
                 return (com.mojang.authlib.GameProfile) ban.getProfile();

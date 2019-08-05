@@ -26,7 +26,6 @@ package org.spongepowered.common.mixin.core.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;

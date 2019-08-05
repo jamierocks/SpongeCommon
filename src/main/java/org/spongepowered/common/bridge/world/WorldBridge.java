@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.bridge.world;
 
-import net.minecraft.world.World;
 
 public interface WorldBridge {
 

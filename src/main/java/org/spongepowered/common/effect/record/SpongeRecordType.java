@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.effect.record;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.network.play.server.SPacketEffect;

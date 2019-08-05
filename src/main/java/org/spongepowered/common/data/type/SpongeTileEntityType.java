@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.type;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.block.tileentity.TileEntity;

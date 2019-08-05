@@ -26,7 +26,6 @@ package org.spongepowered.common.item.inventory.lens;
 
 import org.spongepowered.api.item.inventory.InventoryProperty;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

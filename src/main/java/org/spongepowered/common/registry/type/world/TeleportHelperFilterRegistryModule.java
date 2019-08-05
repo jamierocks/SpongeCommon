@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.registry.type.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;

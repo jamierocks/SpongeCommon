@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.relocate.co.aikar.timings;
 
-import org.spongepowered.common.relocate.co.aikar.timings.TimingHistory.RegionData.RegionId;
 import org.spongepowered.common.relocate.co.aikar.util.JSONUtil;
 import org.spongepowered.common.relocate.co.aikar.util.LoadingMap;
 import org.spongepowered.common.relocate.co.aikar.util.MRUMapCache;

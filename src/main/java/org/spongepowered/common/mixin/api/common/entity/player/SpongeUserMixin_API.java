@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.common.entity.player;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import net.minecraft.inventory.InventoryEnderChest;
@@ -77,7 +76,7 @@ public abstract class SpongeUserMixin_API implements User {
     @SuppressWarnings("ConstantConditions")
     @Override
     public Optional<Player> getPlayer() {
-        return Optional.ofNullable((Player) SpongeImpl.getServer().getPlayerList().getPlayerByUUID(this.profile.getId()));
+        return Optional.ofNullable((Player) SpongeImpl.getServer().func_184103_al().func_177451_a(this.profile.getId()));
     }
 
     @Override

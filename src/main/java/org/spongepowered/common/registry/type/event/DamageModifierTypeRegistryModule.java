@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.event;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.event.cause.entity.damage.DamageModifierType;

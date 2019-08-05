@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity.passive;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
@@ -38,6 +37,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 import java.util.Random;
+
+import org.spongepowered.common.mixin.api.mcp.entity.passive.EntityVillager.ItemAndEmeraldToItemMixin_API;
 
 // Note that these mixins will not have to exist once mixing into interfaces is
 // added as the only thing needing to be done is a simple default implementation
@@ -57,18 +58,18 @@ public class EntityVillager$ItemAndEmeraldToItemMixin_API implements TradeOfferG
         int buyingCount = 1;
 
         if (this.buyingPriceInfo != null) {
-            buyingCount = this.buyingPriceInfo.getPrice(random);
+            buyingCount = this.buyingPriceInfo.func_179412_a(random);
         }
 
         int sellingCount = 1;
 
         if (this.sellingPriceInfo != null) {
-            sellingCount = this.sellingPriceInfo.getPrice(random);
+            sellingCount = this.sellingPriceInfo.func_179412_a(random);
         }
 
-        final ItemStack itemStackBuying = new ItemStack(this.buyingItemStack.getItem(), buyingCount, this.buyingItemStack.getMetadata());
-        final ItemStack emeraldStack = new ItemStack(Items.EMERALD);
-        final ItemStack itemStackSelling = new ItemStack(this.sellingItemstack.getItem(), sellingCount, this.sellingItemstack.getMetadata());
+        final ItemStack itemStackBuying = new ItemStack(this.buyingItemStack.func_77973_b(), buyingCount, this.buyingItemStack.func_77960_j());
+        final ItemStack emeraldStack = new ItemStack(Items.field_151166_bC);
+        final ItemStack itemStackSelling = new ItemStack(this.sellingItemstack.func_77973_b(), sellingCount, this.sellingItemstack.func_77960_j());
         return (TradeOffer) new MerchantRecipe(itemStackBuying, emeraldStack, itemStackSelling);
     }
 

@@ -24,11 +24,8 @@
  */
 package org.spongepowered.common.util.gen;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3i;
-import net.minecraft.world.biome.Biome;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.biome.BiomeTypes;

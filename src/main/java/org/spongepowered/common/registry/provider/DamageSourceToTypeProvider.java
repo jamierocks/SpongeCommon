@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.provider;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.event.cause.entity.damage.DamageType;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;

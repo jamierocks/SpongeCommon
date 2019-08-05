@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import net.minecraft.entity.monster.EntityEndermite;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -55,7 +54,7 @@ public class EndermiteExpirableDataProcessor extends
 
     @Override
     protected boolean set(final EntityEndermite entity, final Integer value) {
-        if (entity.isNoDespawnRequired()) {
+        if (entity.func_104002_bU()) {
             return false;
         }
         checkArgument(value >= 0);
@@ -66,7 +65,7 @@ public class EndermiteExpirableDataProcessor extends
 
     @Override
     protected Optional<Integer> getVal(final EntityEndermite entity) {
-        return entity.isNoDespawnRequired() ? Optional.empty() : Optional.of(((EntityEndermiteAccessor) entity).accessor$getLifetime());
+        return entity.func_104002_bU() ? Optional.empty() : Optional.of(((EntityEndermiteAccessor) entity).accessor$getLifetime());
     }
 
     @Override

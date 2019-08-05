@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.common;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.collect.Sets;
 import org.spongepowered.api.data.key.Key;

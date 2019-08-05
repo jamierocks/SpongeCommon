@@ -32,6 +32,8 @@ import java.util.Locale;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.world.BossInfo.OverlayMixin_API;
+
 @Mixin(BossInfo.Overlay.class)
 public class BossInfo$OverlayMixin_API implements BossBarOverlay {
 

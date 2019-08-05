@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.util.math.BlockPos;
@@ -81,7 +80,7 @@ public abstract class WorldGenDungeonsMixin_API extends WorldGenerator implement
             x = random.nextInt(size.getX());
             y = random.nextInt(size.getY());
             z = random.nextInt(size.getZ());
-            generate(world, random, chunkPos.add(x, y, z));
+            func_180709_b(world, random, chunkPos.func_177982_a(x, y, z));
         }
     }
 

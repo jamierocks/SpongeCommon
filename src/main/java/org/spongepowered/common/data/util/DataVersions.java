@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.util;
 
-import org.spongepowered.api.data.DataSerializable;
 
 /**
  * A common utility class for various versions of various

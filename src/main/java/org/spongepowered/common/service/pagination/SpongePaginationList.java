@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.service.pagination;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.command.CommandMessageFormatting.error;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;

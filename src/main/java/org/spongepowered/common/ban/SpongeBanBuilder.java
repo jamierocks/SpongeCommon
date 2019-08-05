@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.ban;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.management.UserListBansEntry;
@@ -129,8 +127,8 @@ public class SpongeBanBuilder implements Ban.Builder {
         checkState(this.address != null, "Address cannot be null!");
 
         // This *should* be a static method, but apparently not...
-        UserListIPBans ipBans = SpongeImpl.getServer().getPlayerList().getBannedIPs();
-        return (Ban) new UserListIPBansEntry(ipBans.addressToString(new InetSocketAddress(this.address, 0)), Date.from(this.start), sourceName,
+        UserListIPBans ipBans = SpongeImpl.getServer().func_184103_al().func_72363_f();
+        return (Ban) new UserListIPBansEntry(ipBans.func_152707_c(new InetSocketAddress(this.address, 0)), Date.from(this.start), sourceName,
                 this.toDate(this.end), this.reason != null ? SpongeTexts.toLegacy(this.reason) : null);
     }
 

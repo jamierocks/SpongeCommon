@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.command;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.command.CommandMessageFormatting.error;
-import static org.spongepowered.api.util.SpongeApiTranslationHelper.t;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableList;
@@ -58,7 +55,6 @@ import org.spongepowered.api.text.serializer.TextSerializers;
 import org.spongepowered.api.util.TextMessageException;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.common.bridge.entity.player.InventoryPlayerBridge;
 import org.spongepowered.common.bridge.inventory.TrackedInventoryBridge;
 import org.spongepowered.common.event.ShouldFire;
 import org.spongepowered.common.event.tracking.phase.general.CommandPhaseContext;
@@ -328,7 +324,7 @@ public class SpongeCommandManager implements CommandManager {
                     context.notifier((User) source);
                 }
                 final TrackedInventoryBridge
-                    inventory = source instanceof EntityPlayer ? ((TrackedInventoryBridge) ((EntityPlayer) source).inventory) : null;
+                    inventory = source instanceof EntityPlayer ? ((TrackedInventoryBridge) ((EntityPlayer) source).field_71071_by) : null;
                 if (inventory != null) {
                     // Enable player inventory capture
                     context.inventory(inventory);

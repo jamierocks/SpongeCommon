@@ -24,10 +24,8 @@
  */
 package org.spongepowered.common.registry.type;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.item.Item;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -45,7 +43,7 @@ import java.util.Optional;
 
 public final class ItemTypeRegistryModule implements SpongeAdditionalCatalogRegistryModule<ItemType>, AlternateCatalogRegistryModule<ItemType> {
 
-    public final ItemStack NONE = (ItemStack) net.minecraft.item.ItemStack.EMPTY;
+    public final ItemStack NONE = (ItemStack) net.minecraft.item.ItemStack.field_190927_a;
     public final ItemStackSnapshot NONE_SNAPSHOT = NONE.createSnapshot();
 
     public static ItemTypeRegistryModule getInstance() {

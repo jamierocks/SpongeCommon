@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.multi.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,19 +60,19 @@ public class ExperienceHolderDataProcessor extends AbstractEntityDataProcessor<E
 
     @Override
     protected boolean set(EntityPlayer entity, Map<Key<?>, Object> keyValues) {
-        entity.experienceLevel = (Integer) keyValues.get(Keys.EXPERIENCE_LEVEL);
-        entity.experienceTotal = (Integer) keyValues.get(Keys.TOTAL_EXPERIENCE);
-        entity.experience = (float) (Integer) keyValues.get(Keys.EXPERIENCE_SINCE_LEVEL) / entity.xpBarCap();
+        entity.field_71068_ca = (Integer) keyValues.get(Keys.EXPERIENCE_LEVEL);
+        entity.field_71067_cb = (Integer) keyValues.get(Keys.TOTAL_EXPERIENCE);
+        entity.field_71106_cc = (float) (Integer) keyValues.get(Keys.EXPERIENCE_SINCE_LEVEL) / entity.func_71050_bK();
         ((EntityPlayerMPBridge) entity).bridge$refreshExp();
         return true;
     }
 
     @Override
     protected Map<Key<?>, ?> getValues(EntityPlayer entity) {
-        final int level = entity.experienceLevel;
-        final int totalExp = entity.experienceTotal;
+        final int level = entity.field_71068_ca;
+        final int totalExp = entity.field_71067_cb;
         final int expSinceLevel = ((EntityPlayerBridge) entity).bridge$getExperienceSinceLevel();
-        final int expBetweenLevels = entity.xpBarCap();
+        final int expBetweenLevels = entity.func_71050_bK();
         return ImmutableMap.<Key<?>, Object>of(Keys.EXPERIENCE_LEVEL, level,
                 Keys.TOTAL_EXPERIENCE, totalExp,
                 Keys.EXPERIENCE_SINCE_LEVEL, expSinceLevel,

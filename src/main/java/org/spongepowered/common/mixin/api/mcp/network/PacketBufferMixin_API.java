@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.network;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Charsets;
 import io.netty.buffer.ByteBuf;

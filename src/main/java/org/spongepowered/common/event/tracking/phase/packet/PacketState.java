@@ -105,7 +105,7 @@ public abstract class PacketState<P extends PacketContext<P>> implements IPhaseS
     public void associateNeighborStateNotifier(P unwindingContext, BlockPos sourcePos, Block block, BlockPos notifyPos, WorldServer minecraftWorld,
         PlayerTracker.Type notifier) {
         final Player player = unwindingContext.getSpongePlayer();
-        Chunk chunk = minecraftWorld.getChunk(notifyPos);
+        Chunk chunk = minecraftWorld.func_175726_f(notifyPos);
         ((ChunkBridge) chunk).bridge$setBlockNotifier(notifyPos, player.getUniqueId());
     }
 

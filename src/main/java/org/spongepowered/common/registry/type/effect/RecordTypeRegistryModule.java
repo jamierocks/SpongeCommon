@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.effect;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;

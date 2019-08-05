@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.util.gen;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.base.MoreObjects;

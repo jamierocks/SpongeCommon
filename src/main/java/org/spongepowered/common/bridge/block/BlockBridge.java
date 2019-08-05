@@ -25,16 +25,13 @@
 package org.spongepowered.common.bridge.block;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.event.CauseStackManager;
-import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.common.bridge.world.WorldServerBridge;
 
 import java.util.List;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.inventory;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -84,7 +83,7 @@ public class SpongeItemStackSnapshot implements ItemStackSnapshot {
     @SuppressWarnings({"EqualsBetweenInconvertibleTypes", "ConstantConditions"})
     public SpongeItemStackSnapshot(ItemStack itemStack) {
         checkNotNull(itemStack);
-        if (itemStack == net.minecraft.item.ItemStack.EMPTY) {
+        if (itemStack == net.minecraft.item.ItemStack.field_190927_a) {
             this.itemType = (ItemType) null; // Empty itemstack has an invalid item type that we have to have null.
             this.quantity = 0;
             this.damageValue = 0;
@@ -105,24 +104,24 @@ public class SpongeItemStackSnapshot implements ItemStackSnapshot {
             keyBuilder.addAll(manipulator.getKeys());
             valueBuilder.addAll(manipulator.getValues());
         }
-        this.damageValue = ((net.minecraft.item.ItemStack) itemStack).getItemDamage();
+        this.damageValue = ((net.minecraft.item.ItemStack) itemStack).func_77952_i();
         this.manipulators = builder.build();
         this.privateStack = itemStack.copy();
         this.keys = keyBuilder.build();
         this.values = valueBuilder.build();
-        @Nullable NBTTagCompound compound = ((net.minecraft.item.ItemStack) this.privateStack).getTagCompound();
+        @Nullable NBTTagCompound compound = ((net.minecraft.item.ItemStack) this.privateStack).func_77978_p();
         if (compound != null) {
-            compound = compound.copy();
+            compound = compound.func_74737_b();
         }
         if (compound != null) {
-            if (compound.hasKey(Constants.Sponge.SPONGE_DATA)) {
-                final NBTTagCompound spongeCompound = compound.getCompoundTag(Constants.Sponge.SPONGE_DATA);
-                if (spongeCompound.hasKey(Constants.Sponge.CUSTOM_MANIPULATOR_TAG_LIST)) {
-                    spongeCompound.removeTag(Constants.Sponge.CUSTOM_MANIPULATOR_TAG_LIST);
+            if (compound.func_74764_b(Constants.Sponge.SPONGE_DATA)) {
+                final NBTTagCompound spongeCompound = compound.func_74775_l(Constants.Sponge.SPONGE_DATA);
+                if (spongeCompound.func_74764_b(Constants.Sponge.CUSTOM_MANIPULATOR_TAG_LIST)) {
+                    spongeCompound.func_82580_o(Constants.Sponge.CUSTOM_MANIPULATOR_TAG_LIST);
                 }
             }
             NbtDataUtil.filterSpongeCustomData(compound);
-            if (!compound.isEmpty()) {
+            if (!compound.func_82582_d()) {
                 this.compound = compound;
             } else {
                 this.compound = null;
@@ -151,12 +150,12 @@ public class SpongeItemStackSnapshot implements ItemStackSnapshot {
         }
         this.keys = keyBuilder.build();
         this.values = valueBuilder.build();
-        this.compound = compound == null ? null : compound.copy();
+        this.compound = compound == null ? null : compound.func_74737_b();
     }
 
     @Override
     public ItemType getType() {
-        return this.itemType == null ? (ItemType) net.minecraft.item.ItemStack.EMPTY.getItem() : this.itemType;
+        return this.itemType == null ? (ItemType) net.minecraft.item.ItemStack.field_190927_a.func_77973_b() : this.itemType;
     }
 
     @Override
@@ -182,7 +181,7 @@ public class SpongeItemStackSnapshot implements ItemStackSnapshot {
     public ItemStack createStack() {
         net.minecraft.item.ItemStack nativeStack = ItemStackUtil.cloneDefensiveNative(ItemStackUtil.toNative(this.privateStack.copy()));
         if(this.compound != null) {
-            nativeStack.setTagCompound(this.compound.copy());
+            nativeStack.func_77982_d(this.compound.func_74737_b());
         }
         for (ImmutableDataManipulator<?, ?> manipulator : this.manipulators) {
             ((ItemStack) nativeStack).offer(manipulator.asMutable());
@@ -380,7 +379,7 @@ public class SpongeItemStackSnapshot implements ItemStackSnapshot {
 
     public Optional<NBTTagCompound> getCompound() {
         if (this.compound != null) {
-            return Optional.of(this.compound.copy());
+            return Optional.of(this.compound.func_74737_b());
         }
         return Optional.empty();
     }

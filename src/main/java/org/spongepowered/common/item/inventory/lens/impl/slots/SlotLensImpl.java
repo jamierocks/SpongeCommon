@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.inventory.lens.impl.slots;
 
-import static com.google.common.base.Preconditions.*;
 
 import net.minecraft.item.ItemStack;
 import org.spongepowered.api.item.inventory.Inventory;

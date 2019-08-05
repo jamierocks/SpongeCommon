@@ -34,6 +34,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.common.bridge.entity.GrieferBridge;
 
+import org.spongepowered.common.mixin.core.entity.monster.EntityGhast.AIFireballAttackMixin;
+
 @Mixin(EntityGhast.AIFireballAttack.class)
 public abstract class EntityGhast$AIFireballAttackMixin extends EntityAIBase {
 

@@ -24,22 +24,13 @@
  */
 package org.spongepowered.common.registry.type.text;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.ChatType;
-import org.spongepowered.api.registry.CatalogRegistryModule;
-import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.util.AdditionalRegistration;
 import org.spongepowered.api.registry.util.RegisterCatalog;
 import org.spongepowered.api.text.chat.ChatTypes;
 import org.spongepowered.common.registry.type.MinecraftEnumBasedAlternateCatalogTypeRegistryModule;
 
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Optional;
 
 @RegisterCatalog(ChatTypes.class)
 public final class ChatTypeRegistryModule extends MinecraftEnumBasedAlternateCatalogTypeRegistryModule<ChatType,org.spongepowered.api.text.chat.ChatType> {

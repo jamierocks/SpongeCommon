@@ -27,13 +27,11 @@ package org.spongepowered.common.mixin.core.tileentity;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.tileentity.TileEntitySkull;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.profile.GameProfileManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.bridge.tileentity.TileEntityBridge;
-import org.spongepowered.common.data.processor.common.SkullUtils;
 import org.spongepowered.common.bridge.tileentity.TileEntitySkullBridge;
 
 @Mixin(TileEntitySkull.class)

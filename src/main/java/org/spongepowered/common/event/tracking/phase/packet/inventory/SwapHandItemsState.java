@@ -34,7 +34,6 @@ import org.spongepowered.api.event.item.inventory.ChangeInventoryEvent;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.common.SpongeImpl;
-import org.spongepowered.common.bridge.entity.player.InventoryPlayerBridge;
 import org.spongepowered.common.bridge.inventory.TrackedInventoryBridge;
 import org.spongepowered.common.event.tracking.phase.packet.PacketPhaseUtil;
 
@@ -48,7 +47,7 @@ public final class SwapHandItemsState extends BasicInventoryPacketState {
 
     @Override
     public void populateContext(final EntityPlayerMP playerMP, final Packet<?> packet, final InventoryPacketContext context) {
-        ((TrackedInventoryBridge) playerMP.inventory).bridge$setCaptureInventory(true);
+        ((TrackedInventoryBridge) playerMP.field_71071_by).bridge$setCaptureInventory(true);
     }
 
     @Override
@@ -57,9 +56,9 @@ public final class SwapHandItemsState extends BasicInventoryPacketState {
         final Entity spongePlayer = (Entity) player;
         try (final CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
             frame.pushCause(spongePlayer);
-            final TrackedInventoryBridge mixinInventory = ((TrackedInventoryBridge) player.inventory);
+            final TrackedInventoryBridge mixinInventory = ((TrackedInventoryBridge) player.field_71071_by);
             final List<SlotTransaction> trans = mixinInventory.bridge$getCapturedSlotTransactions();
-            final ChangeInventoryEvent.SwapHand swapItemEvent = this.createInventoryEvent(((Inventory) player.inventory), trans);
+            final ChangeInventoryEvent.SwapHand swapItemEvent = this.createInventoryEvent(((Inventory) player.field_71071_by), trans);
             SpongeImpl.postEvent(swapItemEvent);
             PacketPhaseUtil.handleSlotRestore(player, null, swapItemEvent.getTransactions(), swapItemEvent.isCancelled());
             mixinInventory.bridge$setCaptureInventory(false);

@@ -28,7 +28,6 @@ import net.minecraft.entity.item.EntityMinecartContainer;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;

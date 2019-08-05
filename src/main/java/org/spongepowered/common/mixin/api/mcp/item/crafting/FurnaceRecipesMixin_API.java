@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.item.crafting;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.item.crafting.FurnaceRecipes;

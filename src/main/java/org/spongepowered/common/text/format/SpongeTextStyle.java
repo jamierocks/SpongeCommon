@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.text.format;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.CaseFormat;
 import net.minecraft.util.text.TextFormatting;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data;
 
-import static org.spongepowered.common.util.ReflectionUtil.createUnsafeInstance;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

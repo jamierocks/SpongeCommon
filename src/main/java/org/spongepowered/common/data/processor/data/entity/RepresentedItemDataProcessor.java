@@ -54,10 +54,10 @@ public class RepresentedItemDataProcessor extends
     @Override
     protected boolean set(Entity container, ItemStackSnapshot value) {
         if (container instanceof EntityItemFrame) {
-            ((EntityItemFrame) container).setDisplayedItem((ItemStack) value.createStack());
+            ((EntityItemFrame) container).func_82334_a((ItemStack) value.createStack());
             return true;
         } else if (container instanceof EntityItem) {
-            ((EntityItem) container).setItem((ItemStack) value.createStack());
+            ((EntityItem) container).func_92058_a((ItemStack) value.createStack());
             return true;
         }
         return false;
@@ -87,9 +87,9 @@ public class RepresentedItemDataProcessor extends
     public DataTransactionResult removeFrom(ValueContainer<?> container) {
         if (container instanceof EntityItemFrame) {
             EntityItemFrame frame = (EntityItemFrame) container;
-            if (!frame.getDisplayedItem().isEmpty()) {
+            if (!frame.func_82335_i().func_190926_b()) {
                 final ImmutableValue<ItemStackSnapshot> old = constructImmutableValue(getVal(frame).get());
-                frame.setDisplayedItem(ItemStack.EMPTY);
+                frame.func_82334_a(ItemStack.field_190927_a);
                 return DataTransactionResult.successRemove(old);
             }
             return DataTransactionResult.successNoData();

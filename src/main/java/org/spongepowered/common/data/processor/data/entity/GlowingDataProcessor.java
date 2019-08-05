@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.Entity;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -51,13 +50,13 @@ public class GlowingDataProcessor extends AbstractEntitySingleDataProcessor<Enti
 
     @Override
     protected boolean set(Entity dataHolder, Boolean value) {
-        dataHolder.setGlowing(checkNotNull(value, "value"));
+        dataHolder.func_184195_f(checkNotNull(value, "value"));
         return true;
     }
 
     @Override
     protected Optional<Boolean> getVal(Entity dataHolder) {
-        return OptBool.of(dataHolder.isGlowing());
+        return OptBool.of(dataHolder.func_184202_aL());
     }
 
     @Override

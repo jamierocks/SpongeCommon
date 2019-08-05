@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.event.tracking.phase.plugin;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.world.World;
 import org.spongepowered.asm.util.PrettyPrinter;

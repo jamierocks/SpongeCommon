@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.text;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.UnmodifiableIterator;
 import net.minecraft.util.text.ITextComponent;

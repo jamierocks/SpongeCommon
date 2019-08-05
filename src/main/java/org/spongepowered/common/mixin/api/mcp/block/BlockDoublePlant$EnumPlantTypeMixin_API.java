@@ -36,6 +36,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockDoublePlant.EnumPlantTypeMixin_API;
+
 @Mixin(BlockDoublePlant.EnumPlantType.class)
 @Implements(@Interface(iface = DoublePlantType.class, prefix = "plant$"))
 public abstract class BlockDoublePlant$EnumPlantTypeMixin_API implements DoublePlantType {

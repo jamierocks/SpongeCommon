@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.block;
 
-import static org.spongepowered.common.data.util.ComparatorUtil.intComparator;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableMoistureData;

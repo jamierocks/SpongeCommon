@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.immutable.common;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.key.Key;

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.world.biome;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;

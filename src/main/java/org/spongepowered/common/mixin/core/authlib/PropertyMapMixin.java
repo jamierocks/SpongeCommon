@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.authlib;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.Multimap;
 import com.mojang.authlib.properties.Property;

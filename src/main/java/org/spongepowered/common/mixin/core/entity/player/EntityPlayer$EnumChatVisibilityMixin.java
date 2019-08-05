@@ -32,6 +32,8 @@ import org.spongepowered.common.bridge.entity.player.EnumChatVisibilityBridge;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.spongepowered.common.mixin.core.entity.player.EntityPlayer.EnumChatVisibilityMixin;
+
 @Mixin(EntityPlayer.EnumChatVisibility.class)
 public abstract class EntityPlayer$EnumChatVisibilityMixin implements EnumChatVisibilityBridge {
 

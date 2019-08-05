@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.block;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.trait.BooleanTrait;

@@ -43,13 +43,15 @@ import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.common.SpongeImpl;
-import org.spongepowered.common.bridge.advancements.ICriterionTrigger$ListenerBridge;
+import org.spongepowered.common.bridge.advancements.ICriterionTrigger.ListenerBridge;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
+
+import net.minecraft.advancements.ICriterionTrigger.Listener;
 
 @SuppressWarnings("rawtypes")
 public class SpongeTrigger implements ICriterionTrigger<SpongeFilteredTrigger>, TriggerBridge {
@@ -73,7 +75,7 @@ public class SpongeTrigger implements ICriterionTrigger<SpongeFilteredTrigger>, 
     }
 
     @Override
-    public ResourceLocation getId() {
+    public ResourceLocation func_192163_a() {
         return this.id;
     }
 
@@ -82,37 +84,37 @@ public class SpongeTrigger implements ICriterionTrigger<SpongeFilteredTrigger>, 
     }
 
     @Override
-    public void addListener(final PlayerAdvancements playerAdvancementsIn, final Listener listener) {
+    public void func_192165_a(final PlayerAdvancements playerAdvancementsIn, final Listener listener) {
         this.listeners.put(playerAdvancementsIn, listener);
     }
 
     @Override
-    public void removeListener(final PlayerAdvancements playerAdvancementsIn, final Listener listener) {
+    public void func_192164_b(final PlayerAdvancements playerAdvancementsIn, final Listener listener) {
         this.listeners.remove(playerAdvancementsIn, listener);
     }
 
     @Override
-    public void removeAllListeners(final PlayerAdvancements playerAdvancementsIn) {
+    public void func_192167_a(final PlayerAdvancements playerAdvancementsIn) {
         this.listeners.removeAll(playerAdvancementsIn);
     }
 
     @Override
-    public SpongeFilteredTrigger deserializeInstance(final JsonObject json, final JsonDeserializationContext context) {
+    public SpongeFilteredTrigger func_192166_a(final JsonObject json, final JsonDeserializationContext context) {
         return new SpongeFilteredTrigger(this, this.constructor.apply(json));
     }
 
     @Override
     public void bridge$trigger(final Player player) {
-        final PlayerAdvancements playerAdvancements = ((EntityPlayerMP) player).getAdvancements();
+        final PlayerAdvancements playerAdvancements = ((EntityPlayerMP) player).func_192039_O();
         final Cause cause = Sponge.getCauseStackManager().getCurrentCause();
         final TypeToken<FilteredTriggerConfiguration> typeToken = TypeToken.of(this.triggerConfigurationClass);
         for (final Listener listener : new ArrayList<>(this.listeners.get(playerAdvancements))) {
             final ICriterionTrigger$ListenerBridge mixinListener = (ICriterionTrigger$ListenerBridge) listener;
             final Advancement advancement = (Advancement) mixinListener.bridge$getAdvancement();
             final AdvancementCriterion advancementCriterion = (AdvancementCriterion)
-                    ((net.minecraft.advancements.Advancement) advancement).getCriteria().get(mixinListener.bridge$getCriterionName());
+                    ((net.minecraft.advancements.Advancement) advancement).func_192073_f().get(mixinListener.bridge$getCriterionName());
             final CriterionEvent.Trigger event = SpongeEventFactory.createCriterionEventTrigger(cause, advancement, advancementCriterion,
-                    typeToken, player, (FilteredTrigger) listener.getCriterionInstance(), this.eventHandler == null);
+                    typeToken, player, (FilteredTrigger) listener.func_192158_a(), this.eventHandler == null);
             if (this.eventHandler != null) {
                 this.eventHandler.accept(event);
                 if (!event.getResult()) {
@@ -121,7 +123,7 @@ public class SpongeTrigger implements ICriterionTrigger<SpongeFilteredTrigger>, 
             }
             SpongeImpl.postEvent(event);
             if (event.getResult()) {
-                listener.grantCriterion(playerAdvancements);
+                listener.func_192159_a(playerAdvancements);
             }
         }
     }

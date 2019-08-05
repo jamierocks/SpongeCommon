@@ -27,7 +27,6 @@ package org.spongepowered.common.bridge.entity.item;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import org.spongepowered.common.bridge.explosives.ExplosiveBridge;
 
 import javax.annotation.Nullable;
 

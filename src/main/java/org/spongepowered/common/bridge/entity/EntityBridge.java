@@ -25,7 +25,6 @@
 package org.spongepowered.common.bridge.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.api.entity.Transform;
 import org.spongepowered.api.event.cause.entity.dismount.DismountType;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.registry.util.RegisterCatalog;

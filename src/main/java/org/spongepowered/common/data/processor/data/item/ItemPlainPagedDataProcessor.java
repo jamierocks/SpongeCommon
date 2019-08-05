@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.item;
 
-import static org.spongepowered.common.item.inventory.util.ItemStackUtil.getTagCompound;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.init.Items;
@@ -52,7 +51,7 @@ public class ItemPlainPagedDataProcessor extends AbstractItemSingleDataProcessor
         ImmutablePlainPagedData> {
 
     public ItemPlainPagedDataProcessor() {
-        super(input -> input.getItem() == Items.WRITABLE_BOOK, Keys.PLAIN_BOOK_PAGES);
+        super(input -> input.func_77973_b() == Items.field_151099_bA, Keys.PLAIN_BOOK_PAGES);
     }
 
     @SuppressWarnings("unchecked")
@@ -89,7 +88,7 @@ public class ItemPlainPagedDataProcessor extends AbstractItemSingleDataProcessor
 
     @Override
     protected Optional<List<String>> getVal(ItemStack itemStack) {
-        if (!itemStack.hasTagCompound() || !itemStack.getTagCompound().hasKey(Constants.Item.Book.ITEM_BOOK_PAGES)) {
+        if (!itemStack.func_77942_o() || !itemStack.func_77978_p().func_74764_b(Constants.Item.Book.ITEM_BOOK_PAGES)) {
             return Optional.empty();
         }
         return Optional.of(NbtDataUtil.getPlainPagesFromNBT(getTagCompound(itemStack)));

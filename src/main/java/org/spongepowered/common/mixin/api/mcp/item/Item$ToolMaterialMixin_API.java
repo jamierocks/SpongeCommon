@@ -32,6 +32,8 @@ import java.util.Locale;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.item.Item.ToolMaterialMixin_API;
+
 @Mixin(Item.ToolMaterial.class)
 public abstract class Item$ToolMaterialMixin_API implements ToolType {
 

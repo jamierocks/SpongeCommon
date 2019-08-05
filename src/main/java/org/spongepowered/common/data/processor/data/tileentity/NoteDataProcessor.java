@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.tileentity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.tileentity.TileEntityNote;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -53,14 +52,14 @@ public class NoteDataProcessor
 
     @Override
     protected boolean set(TileEntityNote entity, NotePitch value) {
-        entity.note = NoteUtils.getPitch(checkNotNull(value));
-        entity.markDirty();
+        entity.field_145879_a = NoteUtils.getPitch(checkNotNull(value));
+        entity.func_70296_d();
         return true;
     }
 
     @Override
     protected Optional<NotePitch> getVal(TileEntityNote entity) {
-        return Optional.of(NoteUtils.getPitch(entity.note));
+        return Optional.of(NoteUtils.getPitch(entity.field_145879_a));
     }
 
     @Override

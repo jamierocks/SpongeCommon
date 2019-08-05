@@ -27,7 +27,6 @@ package org.spongepowered.common.world.gen.populators;
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import org.spongepowered.api.data.type.DoublePlantType;
 import org.spongepowered.api.data.type.DoublePlantTypes;
 import org.spongepowered.api.data.type.PlantTypes;
 import org.spongepowered.api.data.type.ShrubTypes;
@@ -79,7 +78,7 @@ public class PlainsGrassPopulator implements Populator {
     public void populate(org.spongepowered.api.world.World world, Extent extent, Random random) {
         Vector3i min = extent.getBlockMin();
         BlockPos chunkPos = new BlockPos(min.getX(), min.getY(), min.getZ());
-        double d0 = this.noise.getValue((chunkPos.getX() + 8) / 200.0D, (chunkPos.getZ() + 8) / 200.0D);
+        double d0 = this.noise.func_151601_a((chunkPos.func_177958_n() + 8) / 200.0D, (chunkPos.func_177952_p() + 8) / 200.0D);
 
         if (d0 < -0.8D) {
             this.flowers.setFlowersPerChunk(15 * 64);
@@ -119,7 +118,7 @@ public class PlainsGrassPopulator implements Populator {
     public void populate(org.spongepowered.api.world.World world, Extent extent, Random random, ImmutableBiomeVolume virtualBiomes) {
         Vector3i min = extent.getBlockMin();
         BlockPos chunkPos = new BlockPos(min.getX(), min.getY(), min.getZ());
-        double d0 = this.noise.getValue((chunkPos.getX() + 8) / 200.0D, (chunkPos.getZ() + 8) / 200.0D);
+        double d0 = this.noise.func_151601_a((chunkPos.func_177958_n() + 8) / 200.0D, (chunkPos.func_177952_p() + 8) / 200.0D);
 
         if (d0 < -0.8D) {
             this.flowers.setFlowersPerChunk(15 * 64);

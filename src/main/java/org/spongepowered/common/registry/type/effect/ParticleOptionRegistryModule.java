@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.effect;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableList;

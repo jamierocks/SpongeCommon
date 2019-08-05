@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.data.processor.multi.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.data.DataContainer;

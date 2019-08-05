@@ -34,9 +34,6 @@ import org.spongepowered.common.text.SpongeTexts;
 
 import javax.annotation.Nullable;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 public final class ServerBossBarBuilder implements ServerBossBar.Builder {
 
@@ -135,11 +132,11 @@ public final class ServerBossBarBuilder implements ServerBossBar.Builder {
             (BossInfo.Color) (Object) this.color,
             (BossInfo.Overlay) (Object) this.overlay
         );
-        bar.setPercent(this.percent);
-        bar.setDarkenSky(this.darkenSky);
-        bar.setPlayEndBossMusic(this.playEndBossMusic);
-        bar.setCreateFog(this.createFog);
-        bar.setVisible(this.visible);
+        bar.func_186735_a(this.percent);
+        bar.func_186741_a(this.darkenSky);
+        bar.func_186742_b(this.playEndBossMusic);
+        bar.func_186743_c(this.createFog);
+        bar.func_186758_d(this.visible);
 
         return (ServerBossBar) bar;
     }

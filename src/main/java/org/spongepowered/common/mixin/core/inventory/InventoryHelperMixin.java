@@ -29,15 +29,12 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.common.SpongeImplHooks;
 import org.spongepowered.common.item.inventory.util.ContainerUtil;
 
-import java.util.Random;
 
 @Mixin(InventoryHelper.class)
 public class InventoryHelperMixin {
@@ -54,11 +51,11 @@ public class InventoryHelperMixin {
             }
             ContainerUtil.performBlockInventoryDrops((WorldServer) world, x, y, z, inventory);
         } else {
-            for (int i = 0; i < inventory.getSizeInventory(); ++i) {
-                final ItemStack itemstack = inventory.getStackInSlot(i);
+            for (int i = 0; i < inventory.func_70302_i_(); ++i) {
+                final ItemStack itemstack = inventory.func_70301_a(i);
 
-                if (!itemstack.isEmpty()) {
-                    InventoryHelper.spawnItemStack(world, x, y, z, itemstack);
+                if (!itemstack.func_190926_b()) {
+                    InventoryHelper.func_180173_a(world, x, y, z, itemstack);
                 }
             }
         }

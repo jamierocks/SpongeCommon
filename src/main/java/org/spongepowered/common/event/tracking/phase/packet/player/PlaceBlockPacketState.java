@@ -89,10 +89,10 @@ public final class PlaceBlockPacketState extends BasicPacketState {
     @Override
     public void populateContext(EntityPlayerMP playerMP, Packet<?> packet, BasicPacketContext context) {
         final CPacketPlayerTryUseItemOnBlock placeBlock = (CPacketPlayerTryUseItemOnBlock) packet;
-        final net.minecraft.item.ItemStack itemUsed = playerMP.getHeldItem(placeBlock.getHand());
+        final net.minecraft.item.ItemStack itemUsed = playerMP.func_184586_b(placeBlock.func_187022_c());
         final ItemStack itemstack = ItemStackUtil.cloneDefensive(itemUsed);
         context.itemUsed(itemstack);
-        final HandType handType = (HandType) (Object) placeBlock.getHand();
+        final HandType handType = (HandType) (Object) placeBlock.func_187022_c();
         context.handUsed(handType);
     }
 
@@ -106,8 +106,8 @@ public final class PlaceBlockPacketState extends BasicPacketState {
     public void appendNotifierToBlockEvent(BasicPacketContext context, PhaseContext<?> currentContext,
                                            WorldServerBridge mixinWorldServer, BlockPos pos, BlockEventDataBridge blockEvent) {
         final Player player = Sponge.getCauseStackManager().getCurrentCause().first(Player.class).get();
-        final BlockState state = ((World) mixinWorldServer).getBlock(pos.getX(), pos.getY(), pos.getZ());
-        final LocatableBlock locatable = new SpongeLocatableBlockBuilder().world((World) mixinWorldServer).position(pos.getX(), pos.getY(), pos.getZ()).state(state).build();
+        final BlockState state = ((World) mixinWorldServer).getBlock(pos.func_177958_n(), pos.func_177956_o(), pos.func_177952_p());
+        final LocatableBlock locatable = new SpongeLocatableBlockBuilder().world((World) mixinWorldServer).position(pos.func_177958_n(), pos.func_177956_o(), pos.func_177952_p()).state(state).build();
 
         blockEvent.bridge$setTickingLocatable(locatable);
         blockEvent.bridge$setSourceUser(player);
@@ -133,7 +133,7 @@ public final class PlaceBlockPacketState extends BasicPacketState {
         }
         context.getCapturedItemStackSupplier().acceptAndClearIfNotEmpty(drops -> {
             final List<Entity> entities =
-                drops.stream().map(drop -> drop.create(player.getServerWorld())).map(entity -> (Entity) entity)
+                drops.stream().map(drop -> drop.create(player.func_71121_q())).map(entity -> (Entity) entity)
                     .collect(Collectors.toList());
             if (!entities.isEmpty()) {
                 try (CauseStackManager.StackFrame frame = Sponge.getCauseStackManager().pushCauseFrame()) {
@@ -144,7 +144,7 @@ public final class PlaceBlockPacketState extends BasicPacketState {
 
         });
 
-        final TrackedInventoryBridge trackedInventory = (TrackedInventoryBridge) player.openContainer;
+        final TrackedInventoryBridge trackedInventory = (TrackedInventoryBridge) player.field_71070_bA;
         trackedInventory.bridge$setCaptureInventory(false);
         trackedInventory.bridge$getCapturedSlotTransactions().clear();
     }

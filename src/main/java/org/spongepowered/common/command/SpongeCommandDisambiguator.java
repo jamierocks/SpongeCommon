@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.command;
 
-import static org.spongepowered.common.util.SpongeCommonTranslationHelper.t;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableList;

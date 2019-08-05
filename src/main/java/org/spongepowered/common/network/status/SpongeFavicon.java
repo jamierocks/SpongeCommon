@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.network.status;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.MoreObjects;

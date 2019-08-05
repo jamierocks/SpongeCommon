@@ -30,6 +30,8 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import org.spongepowered.common.mixin.api.mcp.scoreboard.IScoreCriteria.EnumRenderTypeMixin_API;
+
 @Mixin(IScoreCriteria.EnumRenderType.class)
 public abstract class IScoreCriteria$EnumRenderTypeMixin_API implements ObjectiveDisplayMode {
 

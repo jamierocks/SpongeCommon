@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;

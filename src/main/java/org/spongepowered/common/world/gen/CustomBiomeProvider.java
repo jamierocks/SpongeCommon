@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.gen;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.init.Biomes;
@@ -84,12 +83,12 @@ public final class CustomBiomeProvider extends BiomeProvider {
      *        in BiomeCacheBlock
      */
     @Override
-    public Biome[] getBiomes(Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag) {
-        return this.getBiomes(listToReuse, x, z, width, length);
+    public Biome[] func_76931_a(Biome[] listToReuse, int x, int z, int width, int length, boolean cacheFlag) {
+        return this.func_76933_b(listToReuse, x, z, width, length);
     }
 
     @Override
-    public Biome[] getBiomesForGeneration(Biome[] biomeArrayZoomedOut, int xStart, int zStart, int xSize, int zSize) {
+    public Biome[] func_76937_a(Biome[] biomeArrayZoomedOut, int xStart, int zStart, int xSize, int zSize) {
         // "Biomes for generation" are a 4x zoomed out (on both the x and z
         // axis) version of the normal biomes
         // The easiest way to obtain these biomes is to obtain the normal
@@ -129,8 +128,8 @@ public final class CustomBiomeProvider extends BiomeProvider {
     }
 
     @Override
-    public boolean areBiomesViable(int xCenter, int zCenter, int range, @SuppressWarnings("rawtypes") List searchingForBiomes) {
-        IntCache.resetIntCache();
+    public boolean func_76940_a(int xCenter, int zCenter, int range, @SuppressWarnings("rawtypes") List searchingForBiomes) {
+        IntCache.func_76446_a();
         int xStartSegment = xCenter - range;
         int zStartSegment = zCenter - range;
         int xMaxSegment = xCenter + range;
@@ -154,8 +153,8 @@ public final class CustomBiomeProvider extends BiomeProvider {
     }
 
     @Override
-    public BlockPos findBiomePosition(int xCenter, int zCenter, int range, List<Biome> biomes, Random random) {
-        IntCache.resetIntCache();
+    public BlockPos func_180630_a(int xCenter, int zCenter, int range, List<Biome> biomes, Random random) {
+        IntCache.func_76446_a();
         int xStartSegment = xCenter - range;
         int zStartSegment = zCenter - range;
         int xMaxSegment = xCenter + range;
@@ -183,7 +182,7 @@ public final class CustomBiomeProvider extends BiomeProvider {
     }
 
     @Override
-    public Biome[] getBiomes(Biome[] biomeArray, int startX, int startZ, int sizeX, int sizeZ) {
+    public Biome[] func_76933_b(Biome[] biomeArray, int startX, int startZ, int sizeX, int sizeZ) {
         if (biomeArray == null || biomeArray.length < sizeX * sizeZ) {
             biomeArray = new Biome[sizeX * sizeZ];
         } else {
@@ -191,7 +190,7 @@ public final class CustomBiomeProvider extends BiomeProvider {
             // all positions to ocean first, every position not set will be
             // ocean, and not some random biome from the last time this array
             // was used
-            Arrays.fill(biomeArray, Biomes.OCEAN);
+            Arrays.fill(biomeArray, Biomes.field_76771_b);
         }
 
         ObjectArrayMutableBiomeBuffer biomeArea = new ObjectArrayMutableBiomeBuffer(new Vector3i(startX, 0, startZ), new Vector3i(sizeX, 1, sizeZ));

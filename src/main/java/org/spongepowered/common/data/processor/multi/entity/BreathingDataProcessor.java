@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.multi.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.EntityLivingBase;
@@ -56,19 +55,19 @@ public class BreathingDataProcessor extends AbstractEntityDataProcessor<EntityLi
 
     @Override
     protected boolean doesDataExist(EntityLivingBase entity) {
-        return entity.isInWater();
+        return entity.func_70090_H();
     }
 
     @Override
     protected boolean set(EntityLivingBase entity, Map<Key<?>, Object> keyValues) {
         final int air = (Integer) keyValues.get(Keys.REMAINING_AIR);
-        entity.setAir(air);
+        entity.func_70050_g(air);
         return true;
     }
 
     @Override
     protected Map<Key<?>, ?> getValues(EntityLivingBase entity) {
-        return ImmutableMap.<Key<?>, Object>of(Keys.MAX_AIR, ((LivingEntityBaseBridge) entity).bridge$getMaxAir(), Keys.REMAINING_AIR, entity.getAir());
+        return ImmutableMap.<Key<?>, Object>of(Keys.MAX_AIR, ((LivingEntityBaseBridge) entity).bridge$getMaxAir(), Keys.REMAINING_AIR, entity.func_70086_ai());
     }
 
     @Override

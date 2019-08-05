@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.profile.callback;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.ProfileLookupCallback;

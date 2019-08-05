@@ -38,7 +38,7 @@ import java.util.Optional;
 public class EntityAirConverter extends DataParameterConverter<Integer> {
 
     public EntityAirConverter() {
-        super(Entity.AIR);
+        super(Entity.field_184241_ay);
     }
 
     @Override

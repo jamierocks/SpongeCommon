@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.advancements;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.ICriterionInstance;
@@ -45,7 +44,7 @@ public interface ICriterionInstanceMixin_API extends FilteredTrigger {
 
     @Override
     default Trigger getType() {
-        final ICriterionTrigger triggerType = CriteriaTriggers.get(getId());
+        final ICriterionTrigger triggerType = CriteriaTriggers.func_192119_a(getId());
         checkNotNull(triggerType, "triggerType");
         return (Trigger) triggerType;
     }

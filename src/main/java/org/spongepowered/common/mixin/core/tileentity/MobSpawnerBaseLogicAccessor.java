@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.tileentity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.WeightedSpawnerEntity;
 import org.spongepowered.asm.mixin.Mixin;

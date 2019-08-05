@@ -27,8 +27,6 @@ package org.spongepowered.common.bridge.optimization;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.storage.MapData;
-import org.spongepowered.common.config.category.OptimizationCategory;
 
 /**
  * Only used for the {@link OptimizationCategory#useMapOptimization()} mixins targeting {@link MapData}.

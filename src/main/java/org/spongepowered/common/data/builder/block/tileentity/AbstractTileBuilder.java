@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.builder.block.tileentity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockJukebox;
@@ -49,7 +48,6 @@ import net.minecraft.tileentity.TileEntityNote;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockType;
@@ -116,12 +114,12 @@ public abstract class AbstractTileBuilder<T extends org.spongepowered.api.block.
 
         worldOptional.get().getLocation(x, y, z).setBlockType(type);
         BlockPos pos = new BlockPos(x, y, z);
-        TileEntity tileEntity = ((net.minecraft.world.World) worldOptional.get()).getTileEntity(pos);
+        TileEntity tileEntity = ((net.minecraft.world.World) worldOptional.get()).func_175625_s(pos);
         if (tileEntity == null) {
             return Optional.empty(); // TODO throw exception maybe?
         }
         // We really need to validate only after the implementing class deems it ready...
-        tileEntity.invalidate();
+        tileEntity.func_145843_s();
         return Optional.of((T) tileEntity);
     }
 

@@ -29,7 +29,6 @@ import org.spongepowered.api.service.permission.SubjectReference;
 import org.spongepowered.api.util.Tristate;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * Interface going with SubjectBridge-shared mixins (what am I even saying?).

@@ -39,7 +39,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.SpongeInternalListeners;
-import org.spongepowered.common.bridge.command.CommandSenderBridge;
 import org.spongepowered.common.bridge.command.CommandSourceBridge;
 import org.spongepowered.common.bridge.permissions.SubjectBridge;
 import org.spongepowered.common.entity.player.SpongeUser;

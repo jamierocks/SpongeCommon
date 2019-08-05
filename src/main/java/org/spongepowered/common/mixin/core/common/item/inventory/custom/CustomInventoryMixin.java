@@ -25,17 +25,11 @@
 package org.spongepowered.common.mixin.core.common.item.inventory.custom;
 
 import net.minecraft.inventory.InventoryBasic;
-import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
-import org.spongepowered.api.item.inventory.Carrier;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.InventoryArchetype;
 import org.spongepowered.api.item.inventory.InventoryProperty;
-import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.common.bridge.item.inventory.InventoryAdapterBridge;
 import org.spongepowered.common.item.inventory.adapter.InventoryAdapter;
 import org.spongepowered.common.item.inventory.custom.CustomInventory;
@@ -44,9 +38,7 @@ import org.spongepowered.common.item.inventory.lens.Lens;
 import org.spongepowered.common.item.inventory.lens.SlotProvider;
 import org.spongepowered.common.item.inventory.lens.impl.collections.SlotCollection;
 
-import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
@@ -59,7 +51,7 @@ public abstract class CustomInventoryMixin implements InventoryAdapter, Inventor
 
     @Override
     public SlotProvider bridge$generateSlotProvider() {
-        return new SlotCollection.Builder().add(this.inv.getSizeInventory()).build();
+        return new SlotCollection.Builder().add(this.inv.func_70302_i_()).build();
     }
 
     @Override

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.block;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.common.data.util.DataUtil.checkDataExists;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;

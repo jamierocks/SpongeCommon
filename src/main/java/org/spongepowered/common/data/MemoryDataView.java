@@ -24,10 +24,6 @@
  */
 package org.spongepowered.common.data;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -61,6 +57,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.data.DataView.SafetyMode;
 
 /**
  * Default implementation of a {@link DataView} being used in memory.

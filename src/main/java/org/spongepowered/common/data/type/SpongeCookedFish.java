@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.type;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.item.ItemFishFood;
 import org.spongepowered.api.data.type.CookedFish;

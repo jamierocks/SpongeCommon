@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.registry;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
@@ -141,7 +139,7 @@ public final class SpongeVillagerRegistry implements VillagerRegistry {
         for (Career career: CareerRegistryModule.getInstance().getAll()) {
             SpongeCareer spongeCareer = (SpongeCareer) career;
 
-            EntityVillager.ITradeList[][] careerLevels = EntityVillager.DEFAULT_TRADE_LIST_MAP[((SpongeProfession) spongeCareer.getProfession()).type][spongeCareer.type];
+            EntityVillager.ITradeList[][] careerLevels = EntityVillager.field_175561_bA[((SpongeProfession) spongeCareer.getProfession()).type][spongeCareer.type];
             for (int level = 0; level < careerLevels.length; level++) {
                 EntityVillager.ITradeList[] offers = careerLevels[level];
                 ImmutableList.Builder<TradeOfferListMutator> builder = ImmutableList.builder();

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.service.pagination;
 
-import static org.spongepowered.common.util.SpongeCommonTranslationHelper.t;
 
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.text.Text;

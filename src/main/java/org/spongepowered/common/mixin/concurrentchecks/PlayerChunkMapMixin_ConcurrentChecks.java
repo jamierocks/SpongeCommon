@@ -26,7 +26,6 @@ package org.spongepowered.common.mixin.concurrentchecks;
 
 import net.minecraft.server.management.PlayerChunkMap;
 import net.minecraft.server.management.PlayerChunkMapEntry;
-import org.spongepowered.api.Sponge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

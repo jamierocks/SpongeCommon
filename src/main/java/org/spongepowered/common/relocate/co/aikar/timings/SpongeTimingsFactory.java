@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.relocate.co.aikar.timings;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import co.aikar.timings.Timing;
 import co.aikar.timings.TimingsFactory;

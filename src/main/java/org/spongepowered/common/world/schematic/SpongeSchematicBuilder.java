@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.schematic;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -50,7 +49,6 @@ import org.spongepowered.api.world.schematic.Palette;
 import org.spongepowered.api.world.schematic.PaletteType;
 import org.spongepowered.api.world.schematic.PaletteTypes;
 import org.spongepowered.api.world.schematic.Schematic;
-import org.spongepowered.api.world.schematic.Schematic.Builder;
 import org.spongepowered.common.SpongeImplHooks;
 import org.spongepowered.common.util.gen.ArrayMutableBlockBuffer;
 import org.spongepowered.common.util.gen.ByteArrayMutableBiomeBuffer;
@@ -59,7 +57,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;

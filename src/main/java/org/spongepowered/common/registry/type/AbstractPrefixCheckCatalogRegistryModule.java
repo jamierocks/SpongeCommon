@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.CatalogType;
 import org.spongepowered.api.registry.CatalogRegistryModule;

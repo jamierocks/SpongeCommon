@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.immutable.entity;
 
-import static org.spongepowered.common.data.value.SpongeValueFactory.boundedBuilder;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;

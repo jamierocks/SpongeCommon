@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.network;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static io.netty.buffer.Unpooled.wrappedBuffer;
 
 import com.google.common.base.Charsets;
 import io.netty.buffer.ByteBuf;

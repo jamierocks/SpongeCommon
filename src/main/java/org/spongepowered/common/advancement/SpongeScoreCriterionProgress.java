@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.advancement;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.api.advancement.Advancement;
@@ -135,12 +134,12 @@ public class SpongeScoreCriterionProgress implements ScoreCriterionProgress, Imp
 
     @Override
     public Optional<Instant> add(final int score) {
-        return set(MathHelper.clamp(getScore() + score, 0, getGoal()));
+        return set(MathHelper.func_76125_a(getScore() + score, 0, getGoal()));
     }
 
     @Override
     public Optional<Instant> remove(final int score) {
-        return set(MathHelper.clamp(getScore() - score, 0, getGoal()));
+        return set(MathHelper.func_76125_a(getScore() - score, 0, getGoal()));
     }
 
     @Override

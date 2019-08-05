@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;

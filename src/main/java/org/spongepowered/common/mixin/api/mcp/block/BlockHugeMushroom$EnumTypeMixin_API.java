@@ -32,6 +32,8 @@ import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockHugeMushroom.EnumTypeMixin_API;
+
 @Mixin(BlockHugeMushroom.EnumType.class)
 @Implements(@Interface(iface = BigMushroomType.class, prefix = "mushroom$"))
 public abstract class BlockHugeMushroom$EnumTypeMixin_API {

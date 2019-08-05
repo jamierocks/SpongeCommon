@@ -31,6 +31,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.bridge.command.CommandSenderBridge;
 
+import org.spongepowered.common.mixin.core.command.TileEntityCommandBlock.1Mixin;
+
 @Mixin(targets = "net/minecraft/tileentity/TileEntityCommandBlock$1")
 public abstract class TileEntityCommandBlock$1Mixin implements CommandSenderBridge {
 

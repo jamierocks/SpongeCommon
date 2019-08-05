@@ -60,7 +60,7 @@ public abstract class BlockChestMixin extends BlockMixin {
     public Optional<BlockState> bridge$getStateWithData(final IBlockState blockState, final ImmutableDataManipulator<?, ?> manipulator) {
         if (manipulator instanceof ImmutableDirectionalData) {
             final Direction dir = DirectionChecker.checkDirectionToHorizontal(((ImmutableDirectionalData) manipulator).direction().get());
-            return Optional.of((BlockState) blockState.withProperty(BlockChest.FACING, DirectionResolver.getFor(dir)));
+            return Optional.of((BlockState) blockState.func_177226_a(BlockChest.field_176459_a, DirectionResolver.getFor(dir)));
         }
         return super.bridge$getStateWithData(blockState, manipulator);
     }
@@ -69,13 +69,13 @@ public abstract class BlockChestMixin extends BlockMixin {
     public <E> Optional<BlockState> bridge$getStateWithValue(final IBlockState blockState, final Key<? extends BaseValue<E>> key, final E value) {
         if (key.equals(Keys.DIRECTION)) {
             final Direction dir = DirectionChecker.checkDirectionToHorizontal((Direction) value);
-            return Optional.of((BlockState) blockState.withProperty(BlockChest.FACING, DirectionResolver.getFor(dir)));
+            return Optional.of((BlockState) blockState.func_177226_a(BlockChest.field_176459_a, DirectionResolver.getFor(dir)));
         }
         return super.bridge$getStateWithValue(blockState, key, value);
     }
 
     private ImmutableDirectionalData impl$getDirectionalData(final IBlockState blockState) {
         return ImmutableDataCachingUtil.getManipulator(ImmutableSpongeDirectionalData.class,
-                DirectionResolver.getFor(blockState.getValue(BlockChest.FACING)));
+                DirectionResolver.getFor(blockState.func_177229_b(BlockChest.field_176459_a)));
     }
 }

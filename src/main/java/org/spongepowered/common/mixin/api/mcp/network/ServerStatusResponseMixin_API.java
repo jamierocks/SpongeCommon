@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.network;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.network.ServerStatusResponse;
 import net.minecraft.util.text.ITextComponent;
@@ -35,12 +34,13 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.bridge.network.ServerStatusResponseBridge;
-import org.spongepowered.common.network.status.SpongeFavicon;
 import org.spongepowered.common.text.SpongeTexts;
 
 import java.util.Optional;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.event.server.ClientPingServerEvent.Response.Players;
 
 @Mixin(ServerStatusResponse.class)
 public abstract class ServerStatusResponseMixin_API implements ClientPingServerEvent.Response {

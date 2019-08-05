@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.service.pagination;
 
-import static org.spongepowered.common.util.SpongeCommonTranslationHelper.t;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.command.CommandException;

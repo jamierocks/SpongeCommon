@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.item.recipe.smelting;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
@@ -39,6 +36,9 @@ import org.spongepowered.common.util.SpongeCatalogBuilder;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe.Builder.EndStep;
+import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe.Builder.ResultStep;
 
 @NonnullByDefault
 public class SpongeSmeltingRecipeBuilder extends SpongeCatalogBuilder<SmeltingRecipe, SmeltingRecipe.Builder>

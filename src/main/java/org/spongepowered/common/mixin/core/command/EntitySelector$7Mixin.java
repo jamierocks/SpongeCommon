@@ -30,6 +30,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.common.entity.living.human.EntityHuman;
 
+import org.spongepowered.common.mixin.core.command.EntitySelector.7Mixin;
+
 @Mixin(targets = "net.minecraft.command.EntitySelector$7")
 public class EntitySelector$7Mixin {
 
@@ -39,9 +41,9 @@ public class EntitySelector$7Mixin {
             target = "Lnet/minecraft/entity/Entity;getCachedUniqueIdString()Ljava/lang/String;"))
     private String impl$getEntityIdString(final Entity entity) {
         if (entity instanceof EntityHuman) {
-            return entity.getCustomNameTag();
+            return entity.func_95999_t();
         }
-        return entity.getCachedUniqueIdString();
+        return entity.func_189512_bd();
     }
 
 }

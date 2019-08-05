@@ -36,6 +36,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockFlower.EnumFlowerTypeMixin_API;
+
 @Mixin(BlockFlower.EnumFlowerType.class)
 @Implements(@Interface(iface = PlantType.class, prefix = "plant$"))
 public abstract class BlockFlower$EnumFlowerTypeMixin_API implements PlantType {

@@ -24,11 +24,8 @@
  */
 package org.spongepowered.common.advancement;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.advancement.criteria.AdvancementCriterion;
-import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;
 import org.spongepowered.api.advancement.criteria.trigger.FilteredTrigger;
 
 import javax.annotation.Nullable;

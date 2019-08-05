@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.value.immutable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;

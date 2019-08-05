@@ -47,8 +47,10 @@ import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.advancement.SpongeFilteredTrigger;
 import org.spongepowered.common.advancement.SpongeTrigger;
 import org.spongepowered.common.bridge.advancements.CriterionBridge;
-import org.spongepowered.common.bridge.advancements.ICriterionTrigger$ListenerBridge;
+import org.spongepowered.common.bridge.advancements.ICriterionTrigger.ListenerBridge;
 import org.spongepowered.common.bridge.advancements.PlayerAdvancementsBridge;
+
+import org.spongepowered.common.mixin.core.advancements.ICriterionTrigger.ListenerMixin;
 
 @Mixin(ICriterionTrigger.Listener.class)
 public class ICriterionTrigger$ListenerMixin implements ICriterionTrigger$ListenerBridge {
@@ -63,7 +65,7 @@ public class ICriterionTrigger$ListenerMixin implements ICriterionTrigger$Listen
         final org.spongepowered.api.advancement.Advancement advancement =
                 (org.spongepowered.api.advancement.Advancement) this.advancement;
         AdvancementCriterion advancementCriterion = (AdvancementCriterion)
-                this.advancement.getCriteria().get(this.criterionName);
+                this.advancement.func_192073_f().get(this.criterionName);
         final CriterionBridge mixinCriterion = (CriterionBridge) advancementCriterion;
         if (mixinCriterion.bridge$getScoreCriterion() != null) {
             advancementCriterion = mixinCriterion.bridge$getScoreCriterion();

@@ -31,6 +31,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.common.event.tracking.phase.packet.PacketPhaseUtil;
 
+import org.spongepowered.common.mixin.core.util.PacketThreadUtil.1Mixin;
+
 @Mixin(targets = "net/minecraft/network/PacketThreadUtil$1")
 public class PacketThreadUtil$1Mixin {
 

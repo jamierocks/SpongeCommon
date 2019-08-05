@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.launch;
 
-import static org.spongepowered.common.SpongeImpl.ECOSYSTEM_ID;
 
 import net.minecraft.launchwrapper.Launch;
 import org.apache.logging.log4j.Level;

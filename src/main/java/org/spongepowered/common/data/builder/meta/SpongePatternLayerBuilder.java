@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.data.builder.meta;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataView;

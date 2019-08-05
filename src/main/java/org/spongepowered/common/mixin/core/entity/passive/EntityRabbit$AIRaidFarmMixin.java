@@ -35,6 +35,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.common.bridge.entity.GrieferBridge;
 
+import org.spongepowered.common.mixin.core.entity.passive.EntityRabbit.AIRaidFarmMixin;
+
 @Mixin(EntityRabbit.AIRaidFarm.class)
 public abstract class EntityRabbit$AIRaidFarmMixin extends EntityAIMoveToBlock {
 
@@ -58,7 +60,7 @@ public abstract class EntityRabbit$AIRaidFarmMixin extends EntityAIMoveToBlock {
         cancellable = true
     )
     private void onCanGrief(final CallbackInfoReturnable<Boolean> cir) {
-        if (this.runDelay <= 0) {
+        if (this.field_179496_a <= 0) {
             if (!((GrieferBridge) this.rabbit).bridge$CanGrief()) {
                 cir.setReturnValue(false);
             }

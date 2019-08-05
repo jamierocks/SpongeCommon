@@ -37,6 +37,8 @@ import org.spongepowered.common.bridge.entity.GrieferBridge;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.core.entity.monster.EntityEnderman.AITakeBlockMixin;
+
 @Mixin(EntityEnderman.AITakeBlock.class)
 public abstract class EntityEnderman$AITakeBlockMixin extends EntityAIBase {
 
@@ -60,7 +62,7 @@ public abstract class EntityEnderman$AITakeBlockMixin extends EntityAIBase {
     )
     @Nullable
     private IBlockState onCanGrief(final EntityEnderman entityEnderman) {
-        final IBlockState heldBlockState = entityEnderman.getHeldBlockState();
-        return ((GrieferBridge) this.enderman).bridge$CanGrief() ? heldBlockState : Blocks.AIR.getDefaultState();
+        final IBlockState heldBlockState = entityEnderman.func_175489_ck();
+        return ((GrieferBridge) this.enderman).bridge$CanGrief() ? heldBlockState : Blocks.field_150350_a.func_176223_P();
     }
 }

@@ -24,10 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.api.data.Queries.POSITION_X;
-import static org.spongepowered.api.data.Queries.POSITION_Y;
-import static org.spongepowered.api.data.Queries.POSITION_Z;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableMap;

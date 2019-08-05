@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.type.GoldenApple;

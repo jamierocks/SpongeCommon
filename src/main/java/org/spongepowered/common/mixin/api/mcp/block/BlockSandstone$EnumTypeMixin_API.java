@@ -36,6 +36,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockSandstone.EnumTypeMixin_API;
+
 @Mixin(BlockSandStone.EnumType.class)
 @Implements(@Interface(iface = SandstoneType.class, prefix = "sandstone$"))
 public abstract class BlockSandstone$EnumTypeMixin_API {

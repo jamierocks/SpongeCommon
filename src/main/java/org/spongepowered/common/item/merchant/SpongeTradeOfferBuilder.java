@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.item.merchant;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.village.MerchantRecipe;
 import org.spongepowered.api.data.DataView;

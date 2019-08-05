@@ -24,19 +24,6 @@
  */
 package org.spongepowered.common.launch.transformer.tracker;
 
-import static org.spongepowered.asm.lib.Opcodes.ACC_PRIVATE;
-import static org.spongepowered.asm.lib.Opcodes.ACC_STATIC;
-import static org.spongepowered.asm.lib.Opcodes.ALOAD;
-import static org.spongepowered.asm.lib.Opcodes.ASM5;
-import static org.spongepowered.asm.lib.Opcodes.CHECKCAST;
-import static org.spongepowered.asm.lib.Opcodes.F_SAME;
-import static org.spongepowered.asm.lib.Opcodes.IFEQ;
-import static org.spongepowered.asm.lib.Opcodes.ILOAD;
-import static org.spongepowered.asm.lib.Opcodes.INSTANCEOF;
-import static org.spongepowered.asm.lib.Opcodes.INVOKEINTERFACE;
-import static org.spongepowered.asm.lib.Opcodes.INVOKESTATIC;
-import static org.spongepowered.asm.lib.Opcodes.INVOKEVIRTUAL;
-import static org.spongepowered.asm.lib.Opcodes.IRETURN;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.spongepowered.asm.lib.ClassReader;

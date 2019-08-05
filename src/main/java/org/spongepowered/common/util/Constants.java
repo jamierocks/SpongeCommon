@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.util;
 
-import static org.spongepowered.api.data.DataQuery.of;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -36,7 +35,6 @@ import net.minecraft.world.GameRules;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.data.DataQuery;
-import org.spongepowered.api.data.type.*;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.EntityTypes;
@@ -117,9 +115,9 @@ public final class Constants {
          * Serialize this BlockPos into a short value
          */
         public static short blockPosToShort(final BlockPos pos) {
-            short serialized = (short) setNibble(0, pos.getX() & Constants.Chunk.XZ_MASK, 0, Constants.Chunk.NUM_XZ_BITS);
-            serialized = (short) setNibble(serialized, pos.getY() & Constants.Chunk.Y_SHORT_MASK, 1, Constants.Chunk.NUM_SHORT_Y_BITS);
-            serialized = (short) setNibble(serialized, pos.getZ() & Constants.Chunk.XZ_MASK, 3, Constants.Chunk.NUM_XZ_BITS);
+            short serialized = (short) setNibble(0, pos.func_177958_n() & Constants.Chunk.XZ_MASK, 0, Constants.Chunk.NUM_XZ_BITS);
+            serialized = (short) setNibble(serialized, pos.func_177956_o() & Constants.Chunk.Y_SHORT_MASK, 1, Constants.Chunk.NUM_SHORT_Y_BITS);
+            serialized = (short) setNibble(serialized, pos.func_177952_p() & Constants.Chunk.XZ_MASK, 3, Constants.Chunk.NUM_XZ_BITS);
             return serialized;
         }
 
@@ -127,9 +125,9 @@ public final class Constants {
          * Serialize this BlockPos into an int value
          */
         public static int blockPosToInt(final BlockPos pos) {
-            int serialized = setNibble(0, pos.getX() & Constants.Chunk.XZ_MASK, 0, Constants.Chunk.NUM_XZ_BITS);
-            serialized = setNibble(serialized, pos.getY() & Constants.Chunk.Y_INT_MASK, 1, Constants.Chunk.NUM_INT_Y_BITS);
-            serialized = setNibble(serialized, pos.getZ() & Constants.Chunk.XZ_MASK, 7, Constants.Chunk.NUM_XZ_BITS);
+            int serialized = setNibble(0, pos.func_177958_n() & Constants.Chunk.XZ_MASK, 0, Constants.Chunk.NUM_XZ_BITS);
+            serialized = setNibble(serialized, pos.func_177956_o() & Constants.Chunk.Y_INT_MASK, 1, Constants.Chunk.NUM_INT_Y_BITS);
+            serialized = setNibble(serialized, pos.func_177952_p() & Constants.Chunk.XZ_MASK, 7, Constants.Chunk.NUM_XZ_BITS);
             return serialized;
         }
 
@@ -659,12 +657,12 @@ public final class Constants {
 
         public static final class ArmorStand {
 
-            public static final Vector3d DEFAULT_HEAD_ROTATION = VecHelper.toVector3d(EntityArmorStand.DEFAULT_HEAD_ROTATION);
-            public static final Vector3d DEFAULT_CHEST_ROTATION = VecHelper.toVector3d(EntityArmorStand.DEFAULT_BODY_ROTATION);
-            public static final Vector3d DEFAULT_LEFT_ARM_ROTATION = VecHelper.toVector3d(EntityArmorStand.DEFAULT_LEFTARM_ROTATION);
-            public static final Vector3d DEFAULT_RIGHT_ARM_ROTATION = VecHelper.toVector3d(EntityArmorStand.DEFAULT_RIGHTARM_ROTATION);
-            public static final Vector3d DEFAULT_LEFT_LEG_ROTATION = VecHelper.toVector3d(EntityArmorStand.DEFAULT_LEFTLEG_ROTATION);
-            public static final Vector3d DEFAULT_RIGHT_LEG_ROTATION = VecHelper.toVector3d(EntityArmorStand.DEFAULT_RIGHTLEG_ROTATION);
+            public static final Vector3d DEFAULT_HEAD_ROTATION = VecHelper.toVector3d(EntityArmorStand.field_175435_a);
+            public static final Vector3d DEFAULT_CHEST_ROTATION = VecHelper.toVector3d(EntityArmorStand.field_175433_b);
+            public static final Vector3d DEFAULT_LEFT_ARM_ROTATION = VecHelper.toVector3d(EntityArmorStand.field_175434_c);
+            public static final Vector3d DEFAULT_RIGHT_ARM_ROTATION = VecHelper.toVector3d(EntityArmorStand.field_175431_d);
+            public static final Vector3d DEFAULT_LEFT_LEG_ROTATION = VecHelper.toVector3d(EntityArmorStand.field_175432_e);
+            public static final Vector3d DEFAULT_RIGHT_LEG_ROTATION = VecHelper.toVector3d(EntityArmorStand.field_175429_f);
         }
 
         public static final class Boat {

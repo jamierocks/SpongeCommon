@@ -25,7 +25,6 @@
 package org.spongepowered.common.event.tracking;
 
 import com.flowpowered.math.vector.Vector3i;
-import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ListMultimap;
 import net.minecraft.block.Block;
@@ -37,26 +36,20 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.management.PlayerChunkMapEntry;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnTypes;
-import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.world.BlockChangeFlag;
-import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.gen.Populator;
 import org.spongepowered.common.SpongeImplHooks;
 import org.spongepowered.common.block.SpongeBlockSnapshot;
 import org.spongepowered.common.bridge.block.BlockEventDataBridge;
@@ -64,27 +57,17 @@ import org.spongepowered.common.bridge.server.management.PlayerChunkMapEntryBrid
 import org.spongepowered.common.bridge.world.WorldServerBridge;
 import org.spongepowered.common.bridge.world.chunk.ChunkBridge;
 import org.spongepowered.common.entity.PlayerTracker;
-import org.spongepowered.common.event.SpongeCauseStackManager;
 import org.spongepowered.common.event.SpongeCommonEventFactory;
-import org.spongepowered.common.event.SpongeEventManager;
 import org.spongepowered.common.event.tracking.context.BlockTransaction;
-import org.spongepowered.common.event.tracking.phase.entity.EntityPhase;
 import org.spongepowered.common.event.tracking.phase.general.ExplosionContext;
-import org.spongepowered.common.event.tracking.phase.generation.GenerationPhase;
-import org.spongepowered.common.event.tracking.phase.packet.PacketPhase;
-import org.spongepowered.common.event.tracking.phase.plugin.PluginPhase.Listener;
 import org.spongepowered.common.event.tracking.phase.tick.BlockTickContext;
 import org.spongepowered.common.event.tracking.phase.tick.NeighborNotificationContext;
-import org.spongepowered.common.event.tracking.phase.tick.TickPhase;
-import org.spongepowered.common.mixin.core.world.chunk.ChunkMixin;
-import org.spongepowered.common.mixin.tracking.world.ChunkMixin_Tracker;
 import org.spongepowered.common.world.BlockChange;
 import org.spongepowered.common.world.SpongeBlockChangeFlag;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.function.BiConsumer;
 
 import javax.annotation.Nullable;
@@ -723,9 +706,9 @@ public interface IPhaseState<C extends PhaseContext<C>> {
      * @param phaseContext the block tick context being entered
      */
     default void appendNotifierPreBlockTick(WorldServerBridge mixinWorld, BlockPos pos, C context, BlockTickContext phaseContext) {
-        final Chunk chunk = ((WorldServer) mixinWorld).getChunk(pos);
+        final Chunk chunk = ((WorldServer) mixinWorld).func_175726_f(pos);
         final ChunkBridge mixinChunk = (ChunkBridge) chunk;
-        if (chunk != null && !chunk.isEmpty()) {
+        if (chunk != null && !chunk.func_76621_g()) {
             mixinChunk.bridge$getBlockOwner(pos).ifPresent(phaseContext::owner);
             mixinChunk.bridge$getBlockNotifier(pos).ifPresent(phaseContext::notifier);
         }
@@ -855,8 +838,8 @@ public interface IPhaseState<C extends PhaseContext<C>> {
         if (this.hasSpecificBlockProcess(context)) {
             context.getCapturedBlockSupplier().cancelTransaction(original);
             ((SpongeBlockSnapshot) original).getWorldServer().ifPresent(worldServer -> {
-                final Chunk chunk = worldServer.getChunk(((SpongeBlockSnapshot) original).getBlockPos());
-                final PlayerChunkMapEntry entry = worldServer.getPlayerChunkMap().getEntry(chunk.x, chunk.z);
+                final Chunk chunk = worldServer.func_175726_f(((SpongeBlockSnapshot) original).getBlockPos());
+                final PlayerChunkMapEntry entry = worldServer.func_184164_w().func_187301_b(chunk.field_76635_g, chunk.field_76647_h);
                 if (entry != null) {
                     ((PlayerChunkMapEntryBridge) entry).bridge$markBiomesForUpdate();
                 }
@@ -886,7 +869,7 @@ public interface IPhaseState<C extends PhaseContext<C>> {
     default BlockChange associateBlockChangeWithSnapshot(C phaseContext, IBlockState newState, Block newBlock,
         IBlockState currentState, SpongeBlockSnapshot snapshot,
         Block originalBlock) {
-        if (newBlock == Blocks.AIR) {
+        if (newBlock == Blocks.field_150350_a) {
             return BlockChange.BREAK;
         } else if (newBlock != originalBlock && !TrackingUtil.forceModify(originalBlock, newBlock)) {
             return BlockChange.PLACE;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.util.text.event;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.util.text.event.ClickEvent;
 import org.spongepowered.api.command.CommandSource;

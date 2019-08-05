@@ -36,6 +36,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockPistonExtension.EnumPistonTypeMixin_API;
+
 @Mixin(BlockPistonExtension.EnumPistonType.class)
 @Implements(@Interface(iface = PistonType.class, prefix = "piston$"))
 public abstract class BlockPistonExtension$EnumPistonTypeMixin_API implements PistonType {

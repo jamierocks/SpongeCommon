@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.service.sql;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Objects;
 import com.google.common.cache.CacheBuilder;

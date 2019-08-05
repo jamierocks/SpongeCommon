@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.item.recipe.crafting;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -49,6 +47,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe.Builder.AisleStep;
+import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe.Builder.EndStep;
+import org.spongepowered.api.item.recipe.crafting.ShapedCraftingRecipe.Builder.RowsStep;
 
 @NonnullByDefault
 public final class SpongeShapedCraftingRecipeBuilder extends SpongeCatalogBuilder<ShapedCraftingRecipe, ShapedCraftingRecipe.Builder> implements
@@ -168,10 +170,10 @@ public final class SpongeShapedCraftingRecipeBuilder extends SpongeCatalogBuilde
                 Collectors.toMap(e -> e.getKey().toString(), e -> IngredientUtil.toNative(e.getValue())));
 
         // Default space to Empty Ingredient
-        ingredientsMap.putIfAbsent(" ", net.minecraft.item.crafting.Ingredient.EMPTY);
+        ingredientsMap.putIfAbsent(" ", net.minecraft.item.crafting.Ingredient.field_193370_a);
 
         // Throws JsonException when pattern is not complete or defines unused Ingredients
-        final NonNullList<net.minecraft.item.crafting.Ingredient> ingredients = ShapedRecipes.deserializeIngredients(keys, ingredientsMap, width, height);
+        final NonNullList<net.minecraft.item.crafting.Ingredient> ingredients = ShapedRecipes.func_192402_a(keys, ingredientsMap, width, height);
 
         return ((ShapedCraftingRecipe) new SpongeShapedRecipe(plugin.getId() + ':' + id, this.groupName,
                 width, height, ingredients, ItemStackUtil.toNative(this.result)));

@@ -30,7 +30,6 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.tileentity.TileEntityLockable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.common.bridge.item.inventory.InventoryAdapterBridge;
-import org.spongepowered.common.item.inventory.adapter.InventoryAdapter;
 import org.spongepowered.common.item.inventory.adapter.ReusableLensInventoryAdapaterBridge;
 import org.spongepowered.common.item.inventory.lens.Lens;
 import org.spongepowered.common.bridge.inventory.LensProviderBridge;

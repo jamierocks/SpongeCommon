@@ -24,12 +24,7 @@
  */
 package org.spongepowered.common.data.util;
 
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.DataManipulatorBuilder;
-import org.spongepowered.common.data.DataProcessor;
 
-import java.util.function.Function;
 
 /**
  * Much like {@link Function} except where two arguments are required for the

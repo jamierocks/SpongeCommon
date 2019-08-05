@@ -34,8 +34,9 @@ import org.spongepowered.api.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.common.bridge.command.CommandSenderBridge;
 import org.spongepowered.common.command.WrapperCommandSource;
+
+import org.spongepowered.common.mixin.api.mcp.tileentity.TileEntitySign.1Mixin_API;
 
 @Mixin(targets = "net/minecraft/tileentity/TileEntitySign$1")
 public abstract class TileEntitySign$1Mixin_API implements SignSource {
@@ -47,7 +48,7 @@ public abstract class TileEntitySign$1Mixin_API implements SignSource {
     @SuppressWarnings({"ConstantConditions", "RedundantCast"}) // This is an ICommandSender anonymous class
     @Override
     public CommandSource getOriginalSource() {
-        return WrapperCommandSource.of(((ICommandSender) (Object) this).getCommandSenderEntity());
+        return WrapperCommandSource.of(((ICommandSender) (Object) this).func_174793_f());
     }
 
     @Override
@@ -57,7 +58,7 @@ public abstract class TileEntitySign$1Mixin_API implements SignSource {
 
     @Override
     public World getWorld() {
-        return (World) this.field_174795_a.getWorld();
+        return (World) this.field_174795_a.func_145831_w();
     }
 
     @Override

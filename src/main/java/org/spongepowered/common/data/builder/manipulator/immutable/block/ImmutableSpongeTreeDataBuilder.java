@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.builder.manipulator.immutable.block;
 
-import static org.spongepowered.common.data.util.DataUtil.checkDataExists;
 
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataView;

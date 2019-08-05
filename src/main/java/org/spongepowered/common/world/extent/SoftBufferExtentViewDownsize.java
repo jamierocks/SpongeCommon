@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.extent;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
@@ -68,6 +67,8 @@ import java.util.UUID;
 import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.world.extent.EntityUniverse.EntityHit;
 
 public class SoftBufferExtentViewDownsize implements DefaultedExtent {
 

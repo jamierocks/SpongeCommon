@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.text.action;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.common.util.SpongeCommonTranslationHelper.t;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

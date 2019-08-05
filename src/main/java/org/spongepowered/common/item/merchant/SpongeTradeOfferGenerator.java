@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.item.merchant;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import org.spongepowered.api.item.inventory.ItemStackGenerator;
 import org.spongepowered.api.item.merchant.TradeOffer;

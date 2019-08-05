@@ -25,7 +25,6 @@
 package org.spongepowered.common.data.processor.multi.entity;
 
 import com.google.common.collect.ImmutableMap;
-import net.minecraft.entity.item.EntityArmorStand;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -33,16 +32,12 @@ import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDisabledSlotsData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DisabledSlotsData;
-import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeDisabledSlotsData;
-import org.spongepowered.common.data.processor.common.AbstractEntityDataProcessor;
 import org.spongepowered.common.data.processor.common.AbstractMultiDataSingleTargetProcessor;
-import org.spongepowered.common.data.value.mutable.SpongeSetValue;
 import org.spongepowered.common.mixin.core.entity.item.EntityArmorStandAccessor;
 
-import java.util.*;
 
 public class DisabledSlotsDataProcessor extends
     AbstractMultiDataSingleTargetProcessor<EntityArmorStandAccessor, DisabledSlotsData, ImmutableDisabledSlotsData> {

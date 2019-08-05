@@ -37,6 +37,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockTallGrass.EnumTypeMixin_API;
+
 @Mixin(BlockTallGrass.EnumType.class)
 @Implements(@Interface(iface = ShrubType.class, prefix = "shrub$"))
 public abstract class BlockTallGrass$EnumTypeMixin_API implements ShrubType {

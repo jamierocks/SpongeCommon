@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.monster.AbstractSkeleton;
@@ -58,6 +57,6 @@ public abstract class ArmorEquippableMixin_API extends EntityLivingBaseMixin_API
     @Override
     public void setItemInHand(HandType handType, @Nullable ItemStack itemInHand) {
         checkNotNull(handType, "HandType cannot be null!");
-        this.setHeldItem((EnumHand) (Object) handType, ItemStackUtil.toNative(itemInHand).copy());
+        this.setHeldItem((EnumHand) (Object) handType, ItemStackUtil.toNative(itemInHand).func_77946_l());
     }
 }

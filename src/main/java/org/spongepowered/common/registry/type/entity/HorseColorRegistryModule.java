@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.Maps;
 import net.minecraft.entity.passive.EntityHorse;
@@ -62,7 +61,7 @@ public class HorseColorRegistryModule extends AbstractPrefixAlternateCatalogType
     }
 
     public static HorseColor getHorseColor(EntityHorse horse) {
-        return HORSE_COLOR_IDMAP.get(horse.getHorseVariant() & 255);
+        return HORSE_COLOR_IDMAP.get(horse.func_110202_bQ() & 255);
     }
 
     public static HorseColor getHorseColor(DataView container) {

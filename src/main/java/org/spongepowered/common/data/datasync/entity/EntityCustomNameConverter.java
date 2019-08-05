@@ -39,7 +39,7 @@ import java.util.Optional;
 public class EntityCustomNameConverter extends DataParameterConverter<String> {
 
     public EntityCustomNameConverter() {
-        super(Entity.CUSTOM_NAME);
+        super(Entity.field_184242_az);
     }
 
     @Override

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.effect.sound;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;

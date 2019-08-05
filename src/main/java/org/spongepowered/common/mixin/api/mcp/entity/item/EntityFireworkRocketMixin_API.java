@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity.item;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.Lists;
 import net.minecraft.entity.item.EntityFireworkRocket;

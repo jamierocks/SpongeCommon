@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Lists;
 import org.spongepowered.api.item.FireworkEffect;

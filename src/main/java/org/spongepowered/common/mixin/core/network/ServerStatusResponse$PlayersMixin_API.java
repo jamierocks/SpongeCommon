@@ -39,6 +39,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.core.network.ServerStatusResponse.PlayersMixin_API;
+
 @Mixin(ServerStatusResponse.Players.class)
 public abstract class ServerStatusResponse$PlayersMixin_API implements ClientPingServerEvent.Response.Players {
 

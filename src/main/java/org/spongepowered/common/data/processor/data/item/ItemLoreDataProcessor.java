@@ -88,11 +88,11 @@ public class ItemLoreDataProcessor extends AbstractItemSingleDataProcessor<List<
 
     @Override
     protected Optional<List<Text>> getVal(ItemStack itemStack) {
-        final NBTTagCompound subCompound = itemStack.getSubCompound(Constants.Item.ITEM_DISPLAY);
+        final NBTTagCompound subCompound = itemStack.func_179543_a(Constants.Item.ITEM_DISPLAY);
         if (subCompound == null) {
             return Optional.empty();
         }
-        if (!subCompound.hasKey(Constants.Item.ITEM_LORE, Constants.NBT.TAG_LIST)) {
+        if (!subCompound.func_150297_b(Constants.Item.ITEM_LORE, Constants.NBT.TAG_LIST)) {
             return Optional.empty();
         }
         return Optional.of(NbtDataUtil.getLoreFromNBT(subCompound));

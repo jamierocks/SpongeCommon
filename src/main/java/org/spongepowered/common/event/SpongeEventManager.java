@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.event;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import co.aikar.timings.Timing;
 import org.spongepowered.common.event.tracking.phase.plugin.EventListenerPhaseContext;

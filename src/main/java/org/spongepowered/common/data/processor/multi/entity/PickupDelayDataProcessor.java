@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.multi.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.entity.item.EntityItem;

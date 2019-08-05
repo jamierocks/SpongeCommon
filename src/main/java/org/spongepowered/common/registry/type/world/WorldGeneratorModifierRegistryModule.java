@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.registry.type.world;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableList;

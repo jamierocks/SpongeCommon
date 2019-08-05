@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.entity.ai;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIAttackRanged;

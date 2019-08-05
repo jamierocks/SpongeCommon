@@ -30,7 +30,6 @@ import org.spongepowered.api.service.permission.PermissionService;
 import org.spongepowered.api.service.permission.Subject;
 import org.spongepowered.api.service.permission.SubjectReference;
 import org.spongepowered.common.bridge.permissions.SubjectBridge;
-import org.spongepowered.common.mixin.core.service.permission.SubjectMixin;
 import org.spongepowered.common.service.permission.base.SpongeSubjectCollection;
 
 import java.lang.ref.WeakReference;

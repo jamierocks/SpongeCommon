@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;

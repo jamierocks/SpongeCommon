@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.immutable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static org.spongepowered.common.data.value.SpongeValueFactory.boundedBuilder;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;

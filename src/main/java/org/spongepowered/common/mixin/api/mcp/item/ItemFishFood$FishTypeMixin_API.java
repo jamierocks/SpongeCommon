@@ -38,6 +38,8 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.item.ItemFishFood.FishTypeMixin_API;
+
 @Mixin(ItemFishFood.FishType.class)
 public abstract class ItemFishFood$FishTypeMixin_API implements Fish {
 

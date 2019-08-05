@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.recipe.crafting;
 
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
@@ -119,7 +118,7 @@ public class SpongeCraftingRecipeRegistry implements CraftingRecipeRegistry, Spo
 
     @Override
     public void registerDefaults() {
-        RegistryHelper.setFinalStatic(Ingredient.class, "NONE", net.minecraft.item.crafting.Ingredient.EMPTY);
+        RegistryHelper.setFinalStatic(Ingredient.class, "NONE", net.minecraft.item.crafting.Ingredient.field_193370_a);
     }
 
     @Override

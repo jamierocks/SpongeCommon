@@ -30,16 +30,11 @@ import org.spongepowered.api.data.DataRegistration;
 import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.asm.util.PrettyPrinter;
-import org.spongepowered.common.data.SpongeDataManager;
-import org.spongepowered.common.data.SpongeManipulatorRegistry;
 import org.spongepowered.common.data.persistence.SerializedDataTransaction;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
-import java.util.stream.Collectors;
 
 @ConfigSerializable
 public class CustomDataRegistrationCategory extends ConfigCategory {

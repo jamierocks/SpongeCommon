@@ -37,6 +37,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockDirt.DirtTypeMixin_API;
+
 @Mixin(BlockDirt.DirtType.class)
 @Implements(@Interface(iface = DirtType.class, prefix = "dirt$"))
 public abstract class BlockDirt$DirtTypeMixin_API {

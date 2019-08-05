@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.effect.potion;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.potion.Potion;
 import org.spongepowered.api.Sponge;

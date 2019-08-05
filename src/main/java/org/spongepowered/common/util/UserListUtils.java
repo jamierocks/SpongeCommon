@@ -26,8 +26,6 @@ package org.spongepowered.common.util;
 
 import net.minecraft.server.management.UserList;
 import net.minecraft.server.management.UserListEntry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.common.mixin.core.server.management.UserLIstEntryAccessor;
 import org.spongepowered.common.mixin.core.server.management.UserListAccessor;
 
@@ -40,10 +38,10 @@ public class UserListUtils {
         ((UserListAccessor) list).accessor$getValues().put(((UserListAccessor) list).accessor$getObjectKey(((UserLIstEntryAccessor) entry).accessor$getValue()), entry);
 
         try {
-            list.writeChanges();
+            list.func_152678_f();
         }
         catch (IOException ioexception) {
-            UserList.LOGGER.warn("Could not save the list after adding a user.", ioexception);
+            UserList.field_152693_a.warn("Could not save the list after adding a user.", ioexception);
         }
     }
 
@@ -52,10 +50,10 @@ public class UserListUtils {
         ((UserListAccessor) list).accessor$getValues().remove(((UserListAccessor) list).accessor$getObjectKey(object));
 
         try {
-            list.writeChanges();
+            list.func_152678_f();
         }
         catch (IOException ioexception) {
-            UserList.LOGGER.warn("Could not save the list after removing a user.", ioexception);
+            UserList.field_152693_a.warn("Could not save the list after removing a user.", ioexception);
         }
     }
 }

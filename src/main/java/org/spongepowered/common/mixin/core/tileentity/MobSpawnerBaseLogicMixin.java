@@ -31,9 +31,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.WeightedSpawnerEntity;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.storage.AnvilChunkLoader;
 import org.apache.logging.log4j.Level;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.EntityType;
@@ -43,9 +41,7 @@ import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.EventContextKeys;
 import org.spongepowered.api.event.cause.entity.spawn.SpawnTypes;
 import org.spongepowered.api.event.entity.ConstructEntityEvent;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -58,7 +54,6 @@ import org.spongepowered.common.event.tracking.PhaseTracker;
 import org.spongepowered.common.registry.type.entity.EntityTypeRegistryModule;
 import org.spongepowered.common.util.Constants;
 
-import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -101,7 +96,7 @@ public abstract class MobSpawnerBaseLogicMixin implements MobSpawnerBaseLogicBri
     )
     private Entity impl$ThrowEventAndConstruct(
         final NBTTagCompound compound, final World world, final double x, final double y, final double z, final boolean doesNotForceSpawn) {
-        final String entityTypeString = compound.getString(Constants.Entity.ENTITY_TYPE_ID);
+        final String entityTypeString = compound.func_74779_i(Constants.Entity.ENTITY_TYPE_ID);
         final Class<? extends Entity> clazz = SpongeImplHooks.getEntityClass(new ResourceLocation(entityTypeString));
         if (clazz == null) {
             final PrettyPrinter printer = new PrettyPrinter(60).add("Unknown Entity for MobSpawners").centre().hr()
@@ -133,7 +128,7 @@ public abstract class MobSpawnerBaseLogicMixin implements MobSpawnerBaseLogicBri
         }
         final Entity entity;
         try {
-            entity = EntityList.createEntityFromNBT(compound, world);
+            entity = EntityList.func_75615_a(compound, world);
         } catch (Exception e) {
             return null;
         }
@@ -142,20 +137,20 @@ public abstract class MobSpawnerBaseLogicMixin implements MobSpawnerBaseLogicBri
             return null;
         }
 
-        entity.setLocationAndAngles(x, y, z, entity.rotationYaw, entity.rotationPitch);
+        entity.func_70012_b(x, y, z, entity.field_70177_z, entity.field_70125_A);
 
-        if (doesNotForceSpawn && !world.spawnEntity(entity)) {
+        if (doesNotForceSpawn && !world.func_72838_d(entity)) {
             return null;
         }
 
 
-        if (compound.hasKey(Constants.Entity.PASSENGERS, Constants.NBT.TAG_LIST)) {
-            final NBTTagList passengerList = compound.getTagList(Constants.Entity.PASSENGERS, Constants.NBT.TAG_COMPOUND);
+        if (compound.func_150297_b(Constants.Entity.PASSENGERS, Constants.NBT.TAG_LIST)) {
+            final NBTTagList passengerList = compound.func_150295_c(Constants.Entity.PASSENGERS, Constants.NBT.TAG_COMPOUND);
 
-            for (int i = 0; i < passengerList.tagCount(); i++) {
-                final Entity passenger = impl$ThrowEventAndConstruct(passengerList.getCompoundTagAt(i), world, x, y, z, doesNotForceSpawn);
+            for (int i = 0; i < passengerList.func_74745_c(); i++) {
+                final Entity passenger = impl$ThrowEventAndConstruct(passengerList.func_150305_b(i), world, x, y, z, doesNotForceSpawn);
                 if (passenger != null) {
-                    passenger.startRiding(entity, true);
+                    passenger.func_184205_a(entity, true);
                 }
             }
         }

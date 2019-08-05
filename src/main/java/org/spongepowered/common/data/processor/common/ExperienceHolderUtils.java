@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.common;
 
-import net.minecraft.entity.player.EntityPlayer;
 
 public class ExperienceHolderUtils {
 

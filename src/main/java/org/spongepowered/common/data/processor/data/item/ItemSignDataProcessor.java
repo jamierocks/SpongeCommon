@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -56,27 +55,27 @@ import java.util.Optional;
 public class ItemSignDataProcessor extends AbstractItemSingleDataProcessor<List<Text>, ListValue<Text>, SignData, ImmutableSignData> {
 
     public ItemSignDataProcessor() {
-        super(stack -> stack.getItem().equals(Items.SIGN), Keys.SIGN_LINES);
+        super(stack -> stack.func_77973_b().equals(Items.field_151155_ap), Keys.SIGN_LINES);
     }
 
     @Override
     protected Optional<List<Text>> getVal(ItemStack itemStack) {
-        if (!itemStack.hasTagCompound()) {
+        if (!itemStack.func_77942_o()) {
             return Optional.empty();
         }
-        final NBTTagCompound mainCompound = itemStack.getTagCompound();
-        if (!mainCompound.hasKey(Constants.Item.BLOCK_ENTITY_TAG, Constants.NBT.TAG_COMPOUND)
-                || !mainCompound.getCompoundTag(Constants.Item.BLOCK_ENTITY_TAG).hasKey(Constants.Item.BLOCK_ENTITY_ID)) {
+        final NBTTagCompound mainCompound = itemStack.func_77978_p();
+        if (!mainCompound.func_150297_b(Constants.Item.BLOCK_ENTITY_TAG, Constants.NBT.TAG_COMPOUND)
+                || !mainCompound.func_74775_l(Constants.Item.BLOCK_ENTITY_TAG).func_74764_b(Constants.Item.BLOCK_ENTITY_ID)) {
             return Optional.empty();
         }
-        final NBTTagCompound tileCompound = mainCompound.getCompoundTag(Constants.Item.BLOCK_ENTITY_TAG);
-        final String id = tileCompound.getString(Constants.Item.BLOCK_ENTITY_ID);
+        final NBTTagCompound tileCompound = mainCompound.func_74775_l(Constants.Item.BLOCK_ENTITY_TAG);
+        final String id = tileCompound.func_74779_i(Constants.Item.BLOCK_ENTITY_ID);
         if (!id.equalsIgnoreCase(Constants.TileEntity.SIGN)) {
             return Optional.empty();
         }
         final List<Text> texts = Lists.newArrayListWithCapacity(4);
         for (int i = 0; i < 4; i++) {
-            texts.add(SpongeTexts.fromLegacy(tileCompound.getString("Text" + (i + 1))));
+            texts.add(SpongeTexts.fromLegacy(tileCompound.func_74779_i("Text" + (i + 1))));
         }
         return Optional.of(texts);
     }
@@ -115,13 +114,13 @@ public class ItemSignDataProcessor extends AbstractItemSingleDataProcessor<List<
     protected boolean set(ItemStack itemStack, List<Text> lines) {
         final NBTTagCompound mainCompound = NbtDataUtil.getOrCreateCompound(itemStack);
         final NBTTagCompound tileCompound = NbtDataUtil.getOrCreateSubCompound(mainCompound, Constants.Item.BLOCK_ENTITY_TAG);
-        tileCompound.setString(Constants.Item.BLOCK_ENTITY_ID, Constants.TileEntity.SIGN);
+        tileCompound.func_74778_a(Constants.Item.BLOCK_ENTITY_ID, Constants.TileEntity.SIGN);
         for (int i = 0; i < 4; i++) {
             Text line = lines.size() > i ? lines.get(i) : Text.EMPTY;
             if (line == null) {
                 throw new IllegalArgumentException("A null line was given at index " + i);
             }
-            tileCompound.setString("Text" + (i + 1), TextSerializers.JSON.serialize(line));
+            tileCompound.func_74778_a("Text" + (i + 1), TextSerializers.JSON.serialize(line));
         }
         return true;
     }
@@ -137,7 +136,7 @@ public class ItemSignDataProcessor extends AbstractItemSingleDataProcessor<List<
             return DataTransactionResult.successNoData();
         }
         try {
-            NbtDataUtil.getItemCompound(itemStack).get().removeTag(Constants.Item.BLOCK_ENTITY_TAG);
+            NbtDataUtil.getItemCompound(itemStack).get().func_82580_o(Constants.Item.BLOCK_ENTITY_TAG);
             return DataTransactionResult.successRemove(constructImmutableValue(old.get()));
         } catch (Exception e) {
             return DataTransactionResult.builder().result(DataTransactionResult.Type.ERROR).build();

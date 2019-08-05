@@ -32,6 +32,8 @@ import java.util.Locale;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.world.BossInfo.ColorMixin_API;
+
 @Mixin(BossInfo.Color.class)
 public class BossInfo$ColorMixin_API implements BossBarColor {
 

@@ -33,6 +33,8 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.scoreboard.Team.CollisionRuleMixin_API;
+
 @Mixin(Team.CollisionRule.class)
 public class Team$CollisionRuleMixin_API implements CollisionRule {
 

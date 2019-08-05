@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.builder.manipulator.immutable.item;
 
-import static org.spongepowered.common.data.util.DataUtil.checkDataExists;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.item.ItemStack;
@@ -58,7 +57,7 @@ public class ImmutableItemEnchantmentDataBuilder extends AbstractDataBuilder<Imm
     @Override
     public Optional<ImmutableEnchantmentData> createFrom(DataHolder dataHolder) {
         if (dataHolder instanceof ItemStack) {
-            if (((ItemStack) dataHolder).isItemEnchanted()) {
+            if (((ItemStack) dataHolder).func_77948_v()) {
                 final List<Enchantment> enchantments = NbtDataUtil.getItemEnchantments((ItemStack) dataHolder);
                 return Optional.of(new ImmutableSpongeEnchantmentData(enchantments));
             }

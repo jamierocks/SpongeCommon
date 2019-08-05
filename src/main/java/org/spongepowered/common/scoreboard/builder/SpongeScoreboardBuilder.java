@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.scoreboard.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.scoreboard.ServerScoreboard;
 import org.spongepowered.api.scoreboard.Scoreboard;

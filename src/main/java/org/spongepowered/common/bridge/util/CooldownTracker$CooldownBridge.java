@@ -23,6 +23,8 @@
  * THE SOFTWARE.
  */
 package org.spongepowered.common.bridge.util;
+import org.spongepowered.common.bridge.util.CooldownTracker.CooldownBridge;
+
 
 public interface CooldownTracker$CooldownBridge {
 

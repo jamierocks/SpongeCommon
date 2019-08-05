@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.type.CoalType;
 import org.spongepowered.api.text.translation.Translation;

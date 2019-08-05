@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.inventory.lens.impl.minecraft;
 
-import static org.spongepowered.api.item.ItemTypes.BLAZE_POWDER;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.slot.OutputSlot;

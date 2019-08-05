@@ -37,6 +37,8 @@ import org.spongepowered.common.item.inventory.lens.impl.comp.OrderedInventoryLe
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.api.item.inventory.Slot.Type;
+
 @Mixin(Slot.class)
 public abstract class SlotMixin_API implements org.spongepowered.api.item.inventory.Slot {
 

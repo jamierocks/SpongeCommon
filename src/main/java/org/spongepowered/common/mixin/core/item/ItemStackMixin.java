@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.item;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -48,7 +47,6 @@ import org.spongepowered.common.bridge.data.CustomDataHolderBridge;
 import org.spongepowered.common.data.nbt.CustomDataNbtUtil;
 import org.spongepowered.common.data.persistence.NbtTranslator;
 import org.spongepowered.common.data.util.DataUtil;
-import org.spongepowered.common.data.util.NbtDataUtil;
 import org.spongepowered.common.data.value.mutable.SpongeValue;
 import org.spongepowered.common.util.Constants;
 
@@ -131,21 +129,21 @@ public abstract class ItemStackMixin implements CustomDataHolderBridge {       /
             final NBTTagList newList = new NBTTagList();
             final List<DataView> manipulatorViews = DataUtil.getSerializedManipulatorList(this.bridge$getCustomManipulators());
             for (DataView dataView : manipulatorViews) {
-                newList.appendTag(NbtTranslator.getInstance().translateData(dataView));
+                newList.func_74742_a(NbtTranslator.getInstance().translateData(dataView));
             }
             final NBTTagCompound spongeCompound = getOrCreateSubCompound(Constants.Sponge.SPONGE_DATA);
-            spongeCompound.setTag(Constants.Sponge.CUSTOM_MANIPULATOR_TAG_LIST, newList);
+            spongeCompound.func_74782_a(Constants.Sponge.CUSTOM_MANIPULATOR_TAG_LIST, newList);
         } else if (!this.failedData.isEmpty()) {
             final NBTTagList newList = new NBTTagList();
             for (DataView failedDatum : this.failedData) {
-                newList.appendTag(NbtTranslator.getInstance().translateData(failedDatum));
+                newList.func_74742_a(NbtTranslator.getInstance().translateData(failedDatum));
             }
             final NBTTagCompound spongeCompound = getOrCreateSubCompound(Constants.Sponge.SPONGE_DATA);
-            spongeCompound.setTag(Constants.Sponge.FAILED_CUSTOM_DATA, newList);
+            spongeCompound.func_74782_a(Constants.Sponge.FAILED_CUSTOM_DATA, newList);
         } else {
             if (hasTagCompound()) {
-                this.getTagCompound().removeTag(Constants.Sponge.SPONGE_DATA);
-                if (this.getTagCompound().isEmpty()) {
+                this.getTagCompound().func_82580_o(Constants.Sponge.SPONGE_DATA);
+                if (this.getTagCompound().func_82582_d()) {
                     this.setTagCompound(null);
                 }
             }
@@ -274,8 +272,8 @@ public abstract class ItemStackMixin implements CustomDataHolderBridge {       /
     // Read custom data from nbt
     @Inject(method = "<init>(Lnet/minecraft/nbt/NBTTagCompound;)V", at = @At("RETURN"))
     private void onRead(NBTTagCompound compound, CallbackInfo info) {
-        if (hasTagCompound() && getTagCompound().hasKey(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
-            CustomDataNbtUtil.readCustomData(getTagCompound().getCompoundTag(Constants.Sponge.SPONGE_DATA), ((org.spongepowered.api.item.inventory.ItemStack) this));
+        if (hasTagCompound() && getTagCompound().func_150297_b(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
+            CustomDataNbtUtil.readCustomData(getTagCompound().func_74775_l(Constants.Sponge.SPONGE_DATA), ((org.spongepowered.api.item.inventory.ItemStack) this));
         }
     }
 
@@ -284,8 +282,8 @@ public abstract class ItemStackMixin implements CustomDataHolderBridge {       /
         if (this.stackTagCompound != compound) {
             this.manipulators.clear();
         }
-        if (hasTagCompound() && getTagCompound().hasKey(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
-            CustomDataNbtUtil.readCustomData(getTagCompound().getCompoundTag(Constants.Sponge.SPONGE_DATA), ((org.spongepowered.api.item.inventory.ItemStack) this));
+        if (hasTagCompound() && getTagCompound().func_150297_b(Constants.Sponge.SPONGE_DATA, Constants.NBT.TAG_COMPOUND)) {
+            CustomDataNbtUtil.readCustomData(getTagCompound().func_74775_l(Constants.Sponge.SPONGE_DATA), ((org.spongepowered.api.item.inventory.ItemStack) this));
         }
     }
 

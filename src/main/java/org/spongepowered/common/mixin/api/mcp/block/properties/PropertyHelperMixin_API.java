@@ -29,7 +29,6 @@ import net.minecraft.block.properties.PropertyHelper;
 import org.spongepowered.api.block.trait.BlockTrait;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.common.registry.provider.BlockPropertyIdProvider;
-import org.spongepowered.common.registry.type.BlockTypeRegistryModule;
 
 import java.util.Optional;
 
@@ -58,7 +57,7 @@ public abstract class PropertyHelperMixin_API<T extends Comparable<T>> implement
     @SuppressWarnings("unchecked")
     @Override
     public Optional<T> parseValue(String value) {
-        return Optional.ofNullable(((IProperty<T>) this).parseValue(value).orNull());
+        return Optional.ofNullable(((IProperty<T>) this).func_185929_b(value).orNull());
     }
 
 }

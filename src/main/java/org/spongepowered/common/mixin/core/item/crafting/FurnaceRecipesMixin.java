@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.mixin.core.item.crafting;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -84,7 +82,7 @@ public abstract class FurnaceRecipesMixin implements SpongeAdditionalCatalogRegi
         } else {
             for (ItemStack nativeIngredient : this.nativeIngredientToCustomRecipe.keySet()) {
                 if (this.compareItemStacks(nativeIngredient, stack)) {
-                    cir.setReturnValue(ItemStack.EMPTY);
+                    cir.setReturnValue(ItemStack.field_190927_a);
                     return;
                 }
             }

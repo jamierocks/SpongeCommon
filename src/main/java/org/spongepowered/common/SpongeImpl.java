@@ -24,16 +24,10 @@
  */
 package org.spongepowered.common;
 
-import static com.google.common.base.Preconditions.checkState;
-import static org.spongepowered.api.Platform.Component.IMPLEMENTATION;
-import static org.spongepowered.common.config.SpongeConfig.Type.CUSTOM_DATA;
-import static org.spongepowered.common.config.SpongeConfig.Type.GLOBAL;
-import static org.spongepowered.common.config.SpongeConfig.Type.TRACKER;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.datafix.DataFixer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.GameState;

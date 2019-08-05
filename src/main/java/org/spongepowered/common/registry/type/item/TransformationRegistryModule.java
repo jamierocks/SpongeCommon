@@ -33,7 +33,6 @@ import org.spongepowered.api.item.inventory.query.QueryOperationTypes;
 import org.spongepowered.api.registry.RegistryModule;
 import org.spongepowered.api.registry.util.RegistrationDependency;
 import org.spongepowered.common.item.inventory.EmptyInventoryImpl;
-import org.spongepowered.common.item.inventory.adapter.InventoryAdapter;
 import org.spongepowered.common.item.inventory.query.ReverseTransformation;
 import org.spongepowered.common.item.inventory.query.SpongeQueryTransformation;
 import org.spongepowered.common.registry.RegistryHelper;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.service.ban;
 
-import static org.spongepowered.common.util.NetworkUtil.LOCAL_ADDRESS;
 
 import net.minecraft.server.management.UserListIPBans;
 import net.minecraft.server.management.UserListIPBansEntry;
@@ -57,7 +56,7 @@ public class SpongeIPBanList extends UserListIPBans {
     }
 
     @Override
-    protected boolean hasEntry(String entry) {
+    protected boolean func_152692_d(String entry) {
         if (entry.equals(LOCAL_ADDRESS)) { // Check for single player
             return false;
         }
@@ -71,7 +70,7 @@ public class SpongeIPBanList extends UserListIPBans {
 
     @Override
     @Nullable
-    public UserListIPBansEntry getEntry(String obj) {
+    public UserListIPBansEntry func_152683_b(String obj) {
         if (obj.equals(LOCAL_ADDRESS)) { // Check for single player
             return null;
         }
@@ -84,7 +83,7 @@ public class SpongeIPBanList extends UserListIPBans {
     }
 
     @Override
-    public void removeEntry(String entry) {
+    public void func_152684_c(String entry) {
         if (entry.equals(LOCAL_ADDRESS)) { // Check for single player
             return;
         }
@@ -97,21 +96,21 @@ public class SpongeIPBanList extends UserListIPBans {
     }
 
     @Override
-    public String[] getKeys() {
+    public String[] func_152685_a() {
         List<String> ips = new ArrayList<>();
         for (Ban.Ip ban : getService().getIpBans()) {
-            ips.add(this.addressToString(new InetSocketAddress(ban.getAddress(), 0)));
+            ips.add(this.func_152707_c(new InetSocketAddress(ban.getAddress(), 0)));
         }
         return ips.toArray(new String[ips.size()]);
     }
 
     @Override
-    public void addEntry(UserListIPBansEntry entry) {
+    public void func_152687_a(UserListIPBansEntry entry) {
         getService().addBan((Ban) entry);
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean func_152690_d() {
         return getService().getIpBans().isEmpty();
     }
 
@@ -121,7 +120,7 @@ public class SpongeIPBanList extends UserListIPBans {
      *     inspecting SocketAddress#toString()) to support IPv6 addresses
      */
     @Override
-    public String addressToString(SocketAddress address) {
+    public String func_152707_c(SocketAddress address) {
         return NetworkUtil.getHostString(address);
     }
 

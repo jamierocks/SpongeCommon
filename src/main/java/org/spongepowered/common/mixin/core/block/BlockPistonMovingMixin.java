@@ -65,11 +65,11 @@ public abstract class BlockPistonMovingMixin extends BlockMixin {
         if (manipulator instanceof ImmutablePistonData) {
             final BlockPistonExtension.EnumPistonType pistonType =
                     (BlockPistonExtension.EnumPistonType) (Object) ((ImmutablePistonData) manipulator).type().get();
-            return Optional.of((BlockState) blockState.withProperty(BlockPistonMoving.TYPE, pistonType));
+            return Optional.of((BlockState) blockState.func_177226_a(BlockPistonMoving.field_176425_b, pistonType));
         }
         if (manipulator instanceof ImmutableDirectionalData) {
             final Direction dir = ((ImmutableDirectionalData) manipulator).direction().get();
-            return Optional.of((BlockState) blockState.withProperty(BlockPistonMoving.FACING, DirectionResolver.getFor(dir)));
+            return Optional.of((BlockState) blockState.func_177226_a(BlockPistonMoving.field_176426_a, DirectionResolver.getFor(dir)));
         }
         return super.bridge$getStateWithData(blockState, manipulator);
     }
@@ -78,11 +78,11 @@ public abstract class BlockPistonMovingMixin extends BlockMixin {
     public <E> Optional<BlockState> bridge$getStateWithValue(final IBlockState blockState, final Key<? extends BaseValue<E>> key, final E value) {
         if (key.equals(Keys.PISTON_TYPE)) {
             final BlockPistonExtension.EnumPistonType pistonType = (BlockPistonExtension.EnumPistonType) value;
-            return Optional.of((BlockState) blockState.withProperty(BlockPistonMoving.TYPE, pistonType));
+            return Optional.of((BlockState) blockState.func_177226_a(BlockPistonMoving.field_176425_b, pistonType));
         }
         if (key.equals(Keys.DIRECTION)) {
             final Direction dir = (Direction) value;
-            return Optional.of((BlockState) blockState.withProperty(BlockPistonMoving.FACING, DirectionResolver.getFor(dir)));
+            return Optional.of((BlockState) blockState.func_177226_a(BlockPistonMoving.field_176426_a, DirectionResolver.getFor(dir)));
         }
         return super.bridge$getStateWithValue(blockState, key, value);
     }
@@ -90,11 +90,11 @@ public abstract class BlockPistonMovingMixin extends BlockMixin {
     @SuppressWarnings("ConstantConditions")
     private ImmutablePistonData impl$getPistonTypeFor(final IBlockState blockState) {
         return ImmutableDataCachingUtil.getManipulator(ImmutableSpongePistonData.class,
-                (PistonType) (Object) blockState.getValue(BlockPistonMoving.TYPE));
+                (PistonType) (Object) blockState.func_177229_b(BlockPistonMoving.field_176425_b));
     }
 
     private ImmutableDirectionalData impl$getDirectionalData(final IBlockState blockState) {
         return ImmutableDataCachingUtil.getManipulator(ImmutableSpongeDirectionalData.class,
-                DirectionResolver.getFor(blockState.getValue(BlockPistonMoving.FACING)));
+                DirectionResolver.getFor(blockState.func_177229_b(BlockPistonMoving.field_176426_a)));
     }
 }

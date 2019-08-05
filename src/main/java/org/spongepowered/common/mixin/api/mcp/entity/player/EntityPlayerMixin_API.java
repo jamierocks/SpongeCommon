@@ -31,7 +31,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.CooldownTracker;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;

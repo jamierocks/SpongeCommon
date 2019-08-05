@@ -24,9 +24,7 @@
  */
 package org.spongepowered.common.item.inventory.adapter.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
-import net.minecraft.item.ItemStack;
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.Slot;
 import org.spongepowered.api.plugin.PluginContainer;

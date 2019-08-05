@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.advancement;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.advancements.ICriterionInstance;
 import org.spongepowered.api.advancement.criteria.ScoreAdvancementCriterion;

@@ -42,6 +42,8 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.api.scheduler.SpongeExecutorService.SpongeFuture;
+
 class TaskExecutorService extends AbstractExecutorService implements SpongeExecutorService {
 
     private final Supplier<Task.Builder> taskBuilderProvider;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.multi.entity;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +36,6 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableFallingBlockData;
 import org.spongepowered.api.data.manipulator.mutable.entity.FallingBlockData;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeFallingBlockData;
-import org.spongepowered.common.data.processor.common.AbstractEntityDataProcessor;
 import org.spongepowered.common.data.processor.common.AbstractMultiDataSingleTargetProcessor;
 import org.spongepowered.common.mixin.core.entity.item.EntityFallingBlockAccessor;
 
@@ -62,7 +60,7 @@ public class FallingBlockDataProcessor extends
         entity.accessor$setFallHurtMax(((Double) keyValues.get(Keys.MAX_FALL_DAMAGE)).intValue());
         entity.accessor$setFallBlockState((IBlockState) keyValues.get(Keys.FALLING_BLOCK_STATE));
         entity.accessor$setDontSetAsBlock(!(Boolean) keyValues.get(Keys.CAN_PLACE_AS_BLOCK));
-        ((EntityFallingBlock) entity).shouldDropItem = (Boolean) keyValues.get(Keys.CAN_DROP_AS_ITEM);
+        ((EntityFallingBlock) entity).field_145813_c = (Boolean) keyValues.get(Keys.CAN_DROP_AS_ITEM);
         entity.accessor$setFallTime((Integer) keyValues.get(Keys.FALL_TIME));
         entity.accessor$setHurtEntities((Boolean) keyValues.get(Keys.FALLING_BLOCK_CAN_HURT_ENTITIES));
         return true;
@@ -75,7 +73,7 @@ public class FallingBlockDataProcessor extends
                 .put(Keys.MAX_FALL_DAMAGE, (double)entity.accessor$getFallHurtMax())
                 .put(Keys.FALLING_BLOCK_STATE, entity.accessor$getFallBlockState())
                 .put(Keys.CAN_PLACE_AS_BLOCK, !entity.accessor$getDontSetAsBlock())
-                .put(Keys.CAN_DROP_AS_ITEM, ((EntityFallingBlock) entity).shouldDropItem)
+                .put(Keys.CAN_DROP_AS_ITEM, ((EntityFallingBlock) entity).field_145813_c)
                 .put(Keys.FALL_TIME, entity.accessor$getFallTime())
                 .put(Keys.FALLING_BLOCK_CAN_HURT_ENTITIES, entity.accessor$getHurtEntities())
                 .build();

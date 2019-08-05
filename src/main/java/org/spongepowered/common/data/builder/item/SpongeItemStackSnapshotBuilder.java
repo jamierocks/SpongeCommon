@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.builder.item;
 
-import static org.spongepowered.common.data.util.DataUtil.getData;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.nbt.NBTTagCompound;

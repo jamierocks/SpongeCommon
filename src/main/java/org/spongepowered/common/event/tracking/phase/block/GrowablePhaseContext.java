@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.event.tracking.phase.block;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

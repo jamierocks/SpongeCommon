@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.immutable.common;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableMap;
 import org.spongepowered.api.data.key.Key;

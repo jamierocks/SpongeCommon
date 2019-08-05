@@ -56,7 +56,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Instant;
@@ -107,15 +106,15 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
             final File actualFile = spongeFile.exists() ? spongeFile : spongeOldFile;
             final NBTTagCompound compound;
             try (final FileInputStream stream = new FileInputStream(actualFile)) {
-                compound = CompressedStreamTools.readCompressed(stream);
+                compound = CompressedStreamTools.func_74796_a(stream);
             } catch (Exception ex) {
-                throw new RuntimeException("Attempt failed when reading Sponge level data for [" + info.getWorldName() + "] from file [" +
+                throw new RuntimeException("Attempt failed when reading Sponge level data for [" + info.func_76065_j() + "] from file [" +
                         actualFile.getName() + "]!", ex);
             }
             ((WorldInfoBridge) info).bridge$setSpongeRootLevelNBT(compound);
-            if (compound.hasKey(Constants.Sponge.SPONGE_DATA)) {
-                final NBTTagCompound spongeCompound = compound.getCompoundTag(Constants.Sponge.SPONGE_DATA);
-                DataUtil.spongeDataFixer.process(FixTypes.LEVEL, spongeCompound);
+            if (compound.func_74764_b(Constants.Sponge.SPONGE_DATA)) {
+                final NBTTagCompound spongeCompound = compound.func_74775_l(Constants.Sponge.SPONGE_DATA);
+                DataUtil.spongeDataFixer.func_188257_a(FixTypes.LEVEL, spongeCompound);
                 ((WorldInfoBridge) info).bridge$readSpongeNbt(spongeCompound);
             }
         }
@@ -125,15 +124,15 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
         try {
             // If the returned NBT is empty, then we should warn the user.
             NBTTagCompound spongeRootLevelNBT = ((WorldInfoBridge) info).bridge$getSpongeRootLevelNbt();
-            if (spongeRootLevelNBT.isEmpty()) {
+            if (spongeRootLevelNBT.func_82582_d()) {
                 Integer dimensionId = ((WorldInfoBridge) info).bridge$getDimensionId();
                 String dimensionIdString = dimensionId == null ? "unknown" : String.valueOf(dimensionId);
 
                 // We should warn the user about the NBT being empty, but not saving it.
-                new PrettyPrinter().add("Sponge Root Level NBT for world %s is empty!", info.getWorldName()).centre().hr()
+                new PrettyPrinter().add("Sponge Root Level NBT for world %s is empty!", info.func_76065_j()).centre().hr()
                         .add("When trying to save Sponge data for the world %s, an empty NBT compound was provided. The old Sponge data file was "
                                         + "left intact.",
-                                info.getWorldName())
+                                info.func_76065_j())
                         .add()
                         .add("The following information may be useful in debugging:")
                         .add()
@@ -152,7 +151,7 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
             final File oldDataFile = new File(this.worldDirectory, "level_sponge.dat_old");
             final File dataFile = new File(this.worldDirectory, "level_sponge.dat");
             try (final FileOutputStream stream = new FileOutputStream(newDataFile)) {
-                CompressedStreamTools.writeCompressed(spongeRootLevelNBT, stream);
+                CompressedStreamTools.func_74799_a(spongeRootLevelNBT, stream);
             }
 
             // Before we continue, is the file zero length?
@@ -160,9 +159,9 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
                 Integer dimensionId = ((WorldInfoBridge) info).bridge$getDimensionId();
                 String dimensionIdString = dimensionId == null ? "unknown" : String.valueOf(dimensionId);
                 // Then we just delete the file and tell the user that we didn't save properly.
-                new PrettyPrinter().add("Zero length level_sponge.dat file was created for %s!", info.getWorldName()).centre().hr()
+                new PrettyPrinter().add("Zero length level_sponge.dat file was created for %s!", info.func_76065_j()).centre().hr()
                         .add("When saving the data file for the world %s, a zero length file was written. Sponge has discarded this file.",
-                                info.getWorldName())
+                                info.func_76065_j())
                         .add()
                         .add("The following information may be useful in debugging:")
                         .add()
@@ -203,9 +202,9 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
                         SpongeImpl.getGame().getSavesDirectory()))) {
             final NBTTagCompound customWorldDataCompound = new NBTTagCompound();
             final NBTTagCompound customDimensionDataCompound = WorldManager.saveDimensionDataMap();
-            customWorldDataCompound.setTag("DimensionData", customDimensionDataCompound);
+            customWorldDataCompound.func_74782_a("DimensionData", customDimensionDataCompound);
             // Share data back to Sponge
-            compound.setTag("Forge", customWorldDataCompound);
+            compound.func_74782_a("Forge", customWorldDataCompound);
         }
     }
 
@@ -240,17 +239,17 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
             + "Lnet/minecraft/nbt/NBTTagCompound;"))
     private NBTTagCompound spongeReadPlayerData(final InputStream inputStream) throws IOException {
         Instant creation = this.file == null ? Instant.now() : Files.readAttributes(this.file, BasicFileAttributes.class).creationTime().toInstant();
-        final NBTTagCompound compound = CompressedStreamTools.readCompressed(inputStream);
+        final NBTTagCompound compound = CompressedStreamTools.func_74796_a(inputStream);
         Instant lastPlayed = Instant.now();
         // first try to migrate bukkit join data stuff
-        if (compound.hasKey(Constants.Bukkit.BUKKIT, Constants.NBT.TAG_COMPOUND)) {
-            final NBTTagCompound bukkitCompound = compound.getCompoundTag(Constants.Bukkit.BUKKIT);
-            creation = Instant.ofEpochMilli(bukkitCompound.getLong(Constants.Bukkit.BUKKIT_FIRST_PLAYED));
-            lastPlayed = Instant.ofEpochMilli(bukkitCompound.getLong(Constants.Bukkit.BUKKIT_LAST_PLAYED));
+        if (compound.func_150297_b(Constants.Bukkit.BUKKIT, Constants.NBT.TAG_COMPOUND)) {
+            final NBTTagCompound bukkitCompound = compound.func_74775_l(Constants.Bukkit.BUKKIT);
+            creation = Instant.ofEpochMilli(bukkitCompound.func_74763_f(Constants.Bukkit.BUKKIT_FIRST_PLAYED));
+            lastPlayed = Instant.ofEpochMilli(bukkitCompound.func_74763_f(Constants.Bukkit.BUKKIT_LAST_PLAYED));
         }
         UUID playerId = null;
-        if (compound.hasUniqueId(Constants.UUID)) {
-            playerId = compound.getUniqueId(Constants.UUID);
+        if (compound.func_186855_b(Constants.UUID)) {
+            playerId = compound.func_186857_a(Constants.UUID);
         }
         if (playerId != null) {
             final Optional<Instant> savedFirst = SpongePlayerDataHandler.getFirstJoined(playerId);
@@ -270,7 +269,7 @@ public abstract class SaveHandlerMixin implements SaveHandlerBridge {
     @Inject(method = "writePlayerData", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompressedStreamTools;writeCompressed"
                                                                             + "(Lnet/minecraft/nbt/NBTTagCompound;Ljava/io/OutputStream;)V", shift = At.Shift.AFTER))
     private void onSpongeWrite(final EntityPlayer player, final CallbackInfo callbackInfo) {
-        SpongePlayerDataHandler.savePlayer(player.getUniqueID());
+        SpongePlayerDataHandler.savePlayer(player.func_110124_au());
     }
 
     @Inject(

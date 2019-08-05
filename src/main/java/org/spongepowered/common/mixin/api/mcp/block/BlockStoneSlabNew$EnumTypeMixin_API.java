@@ -36,6 +36,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockStoneSlabNew.EnumTypeMixin_API;
+
 @Mixin(BlockStoneSlabNew.EnumType.class)
 @Implements(@Interface(iface = SlabType.class, prefix = "slab$"))
 public abstract class BlockStoneSlabNew$EnumTypeMixin_API {

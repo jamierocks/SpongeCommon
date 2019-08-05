@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.event.tracking.context;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.base.MoreObjects;
@@ -79,9 +78,9 @@ public class ItemDropData {
     public EntityItem create(WorldServer worldServer) {
         final EntityItem entityItem = new EntityItem(worldServer, this.position.getX(), this.position.getY(), this.position.getZ(), this.stack);
         if (this.motion != Vector3d.ZERO) {
-            entityItem.motionX = this.motion.getX();
-            entityItem.motionY = this.motion.getY();
-            entityItem.motionZ = this.motion.getZ();
+            entityItem.field_70159_w = this.motion.getX();
+            entityItem.field_70181_x = this.motion.getY();
+            entityItem.field_70179_y = this.motion.getZ();
         }
         return entityItem;
     }
@@ -203,9 +202,9 @@ public class ItemDropData {
         @Override
         public EntityItem create(WorldServer worldServer) {
             final EntityItem entityItem = super.create(worldServer);
-            entityItem.setPickupDelay(40);
+            entityItem.func_174867_a(40);
             if (this.trace) {
-                entityItem.setThrower(this.playerName);
+                entityItem.func_145799_b(this.playerName);
             }
             return entityItem;
         }
@@ -256,7 +255,7 @@ public class ItemDropData {
             Random random;
 
             Builder(EntityPlayer player) {
-                this.playerName = player.getName();
+                this.playerName = player.func_70005_c_();
                 this.random = ((org.spongepowered.api.entity.Entity) player).getRandom();
             }
 

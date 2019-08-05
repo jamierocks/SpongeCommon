@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import com.google.inject.Inject;
@@ -37,6 +35,9 @@ import org.spongepowered.api.plugin.PluginManager;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.spongepowered.api.Platform.Component;
+import org.spongepowered.api.Platform.Type;
 
 @Singleton
 public class SpongePlatform implements Platform {

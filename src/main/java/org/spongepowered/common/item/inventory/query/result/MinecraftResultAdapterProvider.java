@@ -34,6 +34,8 @@ import org.spongepowered.common.item.inventory.lens.Lens;
 import org.spongepowered.common.item.inventory.lens.MutableLensSet;
 import org.spongepowered.common.item.inventory.query.Query.ResultAdapterProvider;
 
+import org.spongepowered.common.item.inventory.query.result.QueryResult.QueryLens;
+
 public class MinecraftResultAdapterProvider implements ResultAdapterProvider {
     
     public class MinecraftQueryResultAdapter extends AbstractInventoryAdapter implements QueryResult {

@@ -24,22 +24,16 @@
  */
 package org.spongepowered.common.item.recipe.smelting;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
-import net.minecraft.item.ItemStack;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.recipe.smelting.SmeltingRecipe;
 import org.spongepowered.api.item.recipe.smelting.SmeltingResult;
-import org.spongepowered.api.text.translation.FixedTranslation;
 import org.spongepowered.api.text.translation.Translation;
 
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class SpongeSmeltingRecipe implements SmeltingRecipe {
 

@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.scoreboard.builder;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import org.spongepowered.api.scoreboard.CollisionRule;

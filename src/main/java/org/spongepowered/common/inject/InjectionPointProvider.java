@@ -44,6 +44,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.google.inject.spi.ProvisionListener.ProvisionInvocation;
+
 /**
  * Allows injecting the {@link SpongeInjectionPoint} in {@link Provider}s.
  */

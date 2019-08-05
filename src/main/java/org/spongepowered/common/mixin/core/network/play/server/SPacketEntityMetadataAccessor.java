@@ -26,7 +26,6 @@ package org.spongepowered.common.mixin.core.network.play.server;
 
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketEntityMetadata;
-import net.minecraft.network.play.server.SPacketEntityStatus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 

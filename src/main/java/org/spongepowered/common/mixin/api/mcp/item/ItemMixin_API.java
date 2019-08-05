@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.item;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

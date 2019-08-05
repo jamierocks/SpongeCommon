@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.block.BlockLever;
 import net.minecraft.util.EnumFacing;

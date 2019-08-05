@@ -53,7 +53,7 @@ public class EnderDragonPhaseTypeRegistryModule implements CatalogRegistryModule
 
     @Override
     public void registerDefaults() {
-        for (PhaseList<?> phaseType : PhaseList.phases) {
+        for (PhaseList<?> phaseType : PhaseList.field_188752_l) {
             this.phaseTypeMap.put(((EnderDragonPhaseType) phaseType).getId(), (EnderDragonPhaseType) phaseType);
         }
     }

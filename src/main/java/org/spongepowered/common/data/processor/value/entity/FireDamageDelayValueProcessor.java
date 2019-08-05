@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.value.entity;
 
-import static com.google.common.base.Preconditions.checkArgument;
 
 import net.minecraft.entity.Entity;
 import org.spongepowered.api.data.DataTransactionResult;

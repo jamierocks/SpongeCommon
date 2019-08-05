@@ -24,16 +24,8 @@
  */
 package org.spongepowered.common.bridge;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.common.config.category.ModuleCategory;
 import org.spongepowered.common.entity.PlayerTracker;
-import org.spongepowered.common.event.tracking.PhaseTracker;
-import org.spongepowered.common.mixin.tracking.bridge.OwnershipTrackedBridgeMixin;
-import org.spongepowered.common.mixin.tracking.entity.EntityMixin_TrackerAPI;
-import org.spongepowered.common.mixin.tracking.world.ChunkMixin_Tracker;
-import org.spongepowered.common.mixin.tracking.world.WorldMixin_TrackerAPI;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.advancements;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.Advancement;

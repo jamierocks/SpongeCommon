@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import com.flowpowered.math.vector.Vector3d;
 import net.minecraft.entity.Entity;

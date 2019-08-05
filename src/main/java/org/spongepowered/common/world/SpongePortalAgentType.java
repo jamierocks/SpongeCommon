@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 import org.spongepowered.api.world.PortalAgent;

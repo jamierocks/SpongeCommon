@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.world.gen.builders;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.feature.WorldGenBush;
@@ -98,7 +96,7 @@ public class MushroomBuilder implements Mushroom.Builder {
 
     @Override
     public Mushroom build() throws IllegalStateException {
-        Mushroom populator = (Mushroom) new WorldGenBush(Blocks.BROWN_MUSHROOM);
+        Mushroom populator = (Mushroom) new WorldGenBush(Blocks.field_150338_P);
         populator.getTypes().addAll(this.types);
         populator.setMushroomsPerChunk(this.count);
         populator.setSupplierOverride(this.override);

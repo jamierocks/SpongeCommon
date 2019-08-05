@@ -31,6 +31,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.bridge.util.math.BlockPosBridge;
 
+import org.spongepowered.common.mixin.core.util.math.BlockPos.MutableBlockPosMixin_Optional;
+
 @Mixin(BlockPos.MutableBlockPos.class)
 @Implements(@Interface(iface = BlockPosBridge.class, prefix = "inline$", unique = true))
 public abstract class BlockPos$MutableBlockPosMixin_Optional extends BlockPos implements BlockPosBridge {

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity.item;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.entity.item.EntityMinecartTNT;
 import org.spongepowered.api.entity.vehicle.minecart.TNTMinecart;

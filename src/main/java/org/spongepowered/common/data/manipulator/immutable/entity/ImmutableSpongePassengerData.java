@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.immutable.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;

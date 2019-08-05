@@ -28,7 +28,6 @@ import com.flowpowered.math.vector.Vector3d;
 import net.minecraft.inventory.ContainerEnchantment;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.api.item.inventory.Carrier;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.SingleBlockCarrier;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.world.Location;
@@ -50,7 +49,7 @@ public abstract class ContainerEnchantmentMixin_API implements SingleBlockCarrie
 
     @Override
     public Location<World> getLocation() {
-        return new Location<>(((World) this.world), new Vector3d(this.position.getX(), this.position.getY(), this.position.getZ()));
+        return new Location<>(((World) this.world), new Vector3d(this.position.func_177958_n(), this.position.func_177956_o(), this.position.func_177952_p()));
     }
 
     @Override

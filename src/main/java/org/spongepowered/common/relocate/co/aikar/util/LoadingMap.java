@@ -35,6 +35,8 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
+import java.util.Map.Entry;
+
 /**
  * Allows you to pass a Loader function that when a key is accessed that doesn't
  * exists, automatically loads the entry into the map by calling the loader

@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.item.inventory.adapter.impl.comp;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;

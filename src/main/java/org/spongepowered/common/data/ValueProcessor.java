@@ -26,15 +26,8 @@ package org.spongepowered.common.data;
 
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
-import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.manipulator.mutable.CommandData;
-import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;
-import org.spongepowered.api.data.manipulator.mutable.entity.HealthData;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.ValueContainer;
-import org.spongepowered.api.data.value.mutable.CollectionValue;
-import org.spongepowered.api.data.value.mutable.Value;
-import org.spongepowered.api.entity.Entity;
 
 import java.util.Optional;
 

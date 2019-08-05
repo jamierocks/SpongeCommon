@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.processor.data.entity;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.entity.EntityLivingBase;
 import org.spongepowered.api.data.DataTransactionResult;
@@ -49,13 +48,13 @@ public class FallDistanceDataProcessor
 
     @Override
     protected boolean set(EntityLivingBase entity, Float value) {
-        entity.fallDistance = checkNotNull(value);
+        entity.field_70143_R = checkNotNull(value);
         return true;
     }
 
     @Override
     protected Optional<Float> getVal(EntityLivingBase entity) {
-        return Optional.of(entity.fallDistance);
+        return Optional.of(entity.field_70143_R);
     }
 
     @Override

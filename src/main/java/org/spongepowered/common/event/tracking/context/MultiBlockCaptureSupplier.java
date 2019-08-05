@@ -30,7 +30,6 @@ import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEventData;
@@ -40,7 +39,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.data.Transaction;
-import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.BlockChangeFlags;
 import org.spongepowered.asm.util.PrettyPrinter;
@@ -53,7 +51,6 @@ import org.spongepowered.common.event.tracking.PhaseContext;
 import org.spongepowered.common.event.tracking.PhaseTracker;
 import org.spongepowered.common.event.tracking.TrackingUtil;
 import org.spongepowered.common.mixin.core.world.WorldServerAccessor;
-import org.spongepowered.common.mixin.core.world.chunk.ChunkMixin;
 import org.spongepowered.common.world.BlockChange;
 import org.spongepowered.common.world.SpongeBlockChangeFlag;
 
@@ -198,7 +195,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
             final SpongeBlockSnapshot originalSnapshot = list.get(0);
             final PhaseContext<?> peek = PhaseTracker.getInstance().getCurrentContext();
             final IBlockState currentState = (IBlockState) originalSnapshot.getState();
-            originalSnapshot.blockChange = ((IPhaseState) peek.state).associateBlockChangeWithSnapshot(peek, newState, newState.getBlock(), currentState, originalSnapshot, currentState.getBlock());
+            originalSnapshot.blockChange = ((IPhaseState) peek.state).associateBlockChangeWithSnapshot(peek, newState, newState.func_177230_c(), currentState, originalSnapshot, currentState.func_177230_c());
         }
     }
 
@@ -403,7 +400,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
     public void captureNeighborNotification(
             final WorldServerBridge mixinWorldServer, final IBlockState notifyState, final BlockPos notifyPos, final Block sourceBlock, final BlockPos sourcePos) {
         final int transactionIndex = ++this.transactionIndex;
-        final IBlockState actualSourceState = ((WorldServer) mixinWorldServer).getBlockState(sourcePos);
+        final IBlockState actualSourceState = ((WorldServer) mixinWorldServer).func_180495_p(sourcePos);
         final BlockTransaction.NeighborNotification notification = new BlockTransaction.NeighborNotification(transactionIndex, this.snapshotIndex, mixinWorldServer,
             notifyState, notifyPos, sourceBlock, sourcePos, actualSourceState);
         notification.enqueueChanges(mixinWorldServer.bridge$getProxyAccess(), this);
@@ -435,7 +432,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
     public void logTileChange(
             final WorldServerBridge mixinWorldServer, final BlockPos pos, @Nullable final TileEntity oldTile, @Nullable final TileEntity newTile) {
         final WorldServer world = (WorldServer) mixinWorldServer;
-        final IBlockState current = world.getBlockState(pos);
+        final IBlockState current = world.func_180495_p(pos);
 
         if (this.tail instanceof BlockTransaction.ChangeBlock) {
             final BlockTransaction.ChangeBlock changeBlock = (BlockTransaction.ChangeBlock) this.tail;
@@ -449,7 +446,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
                     mixinWorldServer.bridge$getProxyAccess().queueRemoval(oldTile);
                 } else {
                     // Make sure the new tile entity has the correct position
-                    changeBlock.queueTileSet.setPos(pos);
+                    changeBlock.queueTileSet.func_174878_a(pos);
                     mixinWorldServer.bridge$getProxyAccess().queueReplacement(changeBlock.queueTileSet, changeBlock.queuedRemoval);
                     mixinWorldServer.bridge$getProxyAccess().unmarkRemoval(pos, oldTile);
                 }
@@ -579,12 +576,12 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
         }
         final WorldServer worldServer = maybeWorld.get();
         final BlockPos blockPos = snapshot.getBlockPos();
-        final IBlockState newState = worldServer.getBlockState(blockPos);
+        final IBlockState newState = worldServer.func_180495_p(blockPos);
         // Because enhanced tracking requires handling very specific proxying of block states
         // so, the requests for the actual states sometimes may cause issues with mods and their
         // extended state handling logic if what the world sees is different from what our tracker
         // saw, so, we have to just provide the new state (extended states are calculated anyways).
-        final IBlockState newActualState = this.head != null ? newState : newState.getActualState(worldServer, blockPos);
+        final IBlockState newActualState = this.head != null ? newState : newState.func_185899_b(worldServer, blockPos);
         final BlockSnapshot newSnapshot =
             ((WorldServerBridge) worldServer).bridge$createSnapshot(newState, newActualState, blockPos, BlockChangeFlags.NONE);
         // Up until this point, we can create a default Transaction
@@ -619,7 +616,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
             if (this.scheduledEvents == null) {
                 this.scheduledEvents = LinkedListMultimap.create();
             }
-            this.scheduledEvents.put(pos.toImmutable(), blockEventData);
+            this.scheduledEvents.put(pos.func_185334_h(), blockEventData);
             return true;
         }
         return false;

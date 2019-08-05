@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.mixin.api.mcp.entity.monster;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.entity.monster.EntityCreeper;
 import org.spongepowered.api.data.key.Keys;

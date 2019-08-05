@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.util;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.Predicate;
 import com.google.common.reflect.TypeToken;

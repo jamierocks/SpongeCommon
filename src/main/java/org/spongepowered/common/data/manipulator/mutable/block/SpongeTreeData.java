@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.block;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableTreeData;

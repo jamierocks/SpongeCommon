@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.util;
 
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
 
 @FunctionalInterface
 public interface PairStream<K,V> {

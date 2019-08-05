@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.text;
 
-import static org.spongepowered.common.text.SpongeTexts.COLOR_CHAR;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;

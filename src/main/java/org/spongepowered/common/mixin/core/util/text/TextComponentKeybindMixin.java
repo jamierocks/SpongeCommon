@@ -27,7 +27,6 @@ package org.spongepowered.common.mixin.core.util.text;
 import net.minecraft.util.text.TextComponentKeybind;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.common.mixin.core.util.text.TextComponentBaseMixin;
 
 @Mixin(TextComponentKeybind.class)
 public abstract class TextComponentKeybindMixin extends TextComponentBaseMixin {

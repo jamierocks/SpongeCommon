@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.asset;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.inject.Singleton;
 import org.spongepowered.api.Sponge;

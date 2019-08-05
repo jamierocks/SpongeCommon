@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.service.pagination;
 
-import static org.spongepowered.api.command.args.GenericArguments.firstParsing;
-import static org.spongepowered.api.command.args.GenericArguments.integer;
-import static org.spongepowered.common.util.SpongeCommonTranslationHelper.t;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

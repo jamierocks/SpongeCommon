@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.type.effect;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
@@ -33,11 +32,9 @@ import net.minecraft.util.SoundEvent;
 import org.spongepowered.api.effect.sound.SoundType;
 import org.spongepowered.api.effect.sound.SoundTypes;
 import org.spongepowered.api.registry.AdditionalCatalogRegistryModule;
-import org.spongepowered.api.registry.AlternateCatalogRegistryModule;
 import org.spongepowered.api.registry.util.RegisterCatalog;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -55,9 +52,9 @@ public final class SoundRegistryModule implements AdditionalCatalogRegistryModul
 
     @Override
     public void registerDefaults() {
-        for (ResourceLocation key: SoundEvent.REGISTRY.getKeys()) {
-            this.soundMappings.put(key.toString(), (SoundType) SoundEvent.REGISTRY.getObject(key));
-            this.soundMappings.put(key.toString().replace('.', '_'), (SoundType) SoundEvent.REGISTRY.getObject(key));
+        for (ResourceLocation key: SoundEvent.field_187505_a.func_148742_b()) {
+            this.soundMappings.put(key.toString(), (SoundType) SoundEvent.field_187505_a.func_82594_a(key));
+            this.soundMappings.put(key.toString().replace('.', '_'), (SoundType) SoundEvent.field_187505_a.func_82594_a(key));
         }
     }
 

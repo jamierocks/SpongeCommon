@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.util;
 
-import static org.spongepowered.api.data.DataTransactionResult.successNoData;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockStateContainer;
@@ -57,10 +56,10 @@ public final class ItemsHelper {
                 if (data instanceof BlockItemData) {
                     BlockItemData blockData = (BlockItemData) data;
                     return Optional
-                            .of(Block.getBlockFromItem((Item) type).damageDropped((BlockStateContainer.StateImplementation) blockData.state()));
+                            .of(Block.func_149634_a((Item) type).func_180651_a((BlockStateContainer.StateImplementation) blockData.state()));
                 }
             }
-        } else if (((Item) type).getHasSubtypes()) {
+        } else if (((Item) type).func_77614_k()) {
             // TODO we need a better way to represent identifiable damage values
 
         } else {

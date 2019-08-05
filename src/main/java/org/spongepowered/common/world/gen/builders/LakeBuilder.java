@@ -24,8 +24,6 @@
  */
 package org.spongepowered.common.world.gen.builders;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.gen.feature.WorldGenLakes;

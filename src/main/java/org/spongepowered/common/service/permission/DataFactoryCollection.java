@@ -42,7 +42,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class DataFactoryCollection extends SpongeSubjectCollection {
     private final SpongePermissionService service;

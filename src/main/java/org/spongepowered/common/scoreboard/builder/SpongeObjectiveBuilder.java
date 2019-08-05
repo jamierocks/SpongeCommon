@@ -24,9 +24,6 @@
  */
 package org.spongepowered.common.scoreboard.builder;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 import net.minecraft.scoreboard.IScoreCriteria;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
@@ -107,7 +104,7 @@ public class SpongeObjectiveBuilder implements Objective.Builder {
         if (this.objectiveDisplayMode != null) {
             objective.setDisplayMode(this.objectiveDisplayMode);
         } else if (this.criterion instanceof IScoreCriteria) {
-            objective.setDisplayMode((ObjectiveDisplayMode) (Object) ((IScoreCriteria) this.criterion).getRenderType());
+            objective.setDisplayMode((ObjectiveDisplayMode) (Object) ((IScoreCriteria) this.criterion).func_178790_c());
         }
 
         return objective;

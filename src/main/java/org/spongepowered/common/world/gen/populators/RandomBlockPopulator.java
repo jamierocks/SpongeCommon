@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.gen.populators;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.block.state.IBlockState;
@@ -89,7 +88,7 @@ public class RandomBlockPopulator implements RandomBlock {
                 }
                 // Liquids force a block update tick so they may flow during world gen
                 try {
-                    ((WorldServer) world).immediateBlockTick(VecHelper.toBlockPos(pos), (IBlockState) this.state, random);
+                    ((WorldServer) world).func_189507_a(VecHelper.toBlockPos(pos), (IBlockState) this.state, random);
                 } catch(IllegalArgumentException e) {
                     // ignore
                 }

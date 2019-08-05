@@ -32,6 +32,8 @@ import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockLog.EnumAxisMixin_API;
+
 @Mixin(BlockLog.EnumAxis.class)
 @Implements(@Interface(iface = LogAxis.class, prefix = "log$"))
 public abstract class BlockLog$EnumAxisMixin_API implements LogAxis {

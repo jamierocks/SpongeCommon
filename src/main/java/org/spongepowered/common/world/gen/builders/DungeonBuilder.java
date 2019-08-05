@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.world.gen.builders;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import net.minecraft.world.gen.feature.WorldGenDungeons;
 import org.spongepowered.api.data.manipulator.mutable.MobSpawnerData;

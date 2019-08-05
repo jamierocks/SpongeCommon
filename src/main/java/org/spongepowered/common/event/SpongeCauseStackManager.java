@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.event;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
@@ -57,6 +56,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.BiConsumer;
 
 import javax.annotation.Nullable;
+
+import org.spongepowered.api.event.CauseStackManager.StackFrame;
 
 @Singleton
 public final class SpongeCauseStackManager implements CauseStackManager {

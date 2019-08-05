@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.registry.provider;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.ImmutableBiMap;
 import net.minecraft.util.EnumFacing;

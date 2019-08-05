@@ -31,6 +31,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.util.Constants;
 
+import org.spongepowered.common.mixin.api.mcp.entity.item.EntityPainting.EnumArtMixin_API;
+
 @Mixin(EntityPainting.EnumArt.class)
 public abstract class EntityPainting$EnumArtMixin_API implements Art {
 

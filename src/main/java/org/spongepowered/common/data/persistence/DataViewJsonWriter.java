@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.data.persistence;
 
-import static com.google.common.base.Preconditions.checkState;
 
 import com.google.gson.stream.JsonWriter;
 import org.spongepowered.api.data.DataContainer;

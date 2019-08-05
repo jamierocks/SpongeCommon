@@ -25,15 +25,11 @@
 package org.spongepowered.common.config;
 
 import org.spongepowered.api.GameState;
-import org.spongepowered.api.Sponge;
-import org.spongepowered.api.scheduler.Task;
 import org.spongepowered.common.SpongeImpl;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Nullable;
 
 /**
  * To avoid file saving issues with Windows and to allow some async file saving,

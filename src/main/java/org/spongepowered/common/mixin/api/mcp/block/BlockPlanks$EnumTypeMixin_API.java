@@ -37,6 +37,8 @@ import org.spongepowered.common.text.translation.SpongeTranslation;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.block.BlockPlanks.EnumTypeMixin_API;
+
 @Mixin(BlockPlanks.EnumType.class)
 @Implements(@Interface(iface = TreeType.class, prefix = "tree$"))
 public abstract class BlockPlanks$EnumTypeMixin_API implements TreeType {

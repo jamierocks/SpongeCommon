@@ -24,7 +24,6 @@
  */
 package org.spongepowered.common.service.whitelist;
 
-import net.minecraft.server.management.UserListEntry;
 import net.minecraft.server.management.UserListWhitelist;
 import net.minecraft.server.management.UserListWhitelistEntry;
 import org.spongepowered.api.Sponge;
@@ -52,12 +51,12 @@ public class SpongeUserListWhitelist extends UserListWhitelist {
     }
 
     @Override
-    protected boolean hasEntry(final com.mojang.authlib.GameProfile entry) {
+    protected boolean func_152692_d(final com.mojang.authlib.GameProfile entry) {
         return getService().isWhitelisted((GameProfile) entry);
     }
 
     @Override
-    public String[] getKeys() {
+    public String[] func_152685_a() {
         final List<String> names = new ArrayList<>();
         for (final GameProfile profile : getService().getWhitelistedProfiles()) {
             profile.getName().ifPresent(names::add);
@@ -67,23 +66,23 @@ public class SpongeUserListWhitelist extends UserListWhitelist {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void addEntry(final UserListWhitelistEntry entry) {
+    public void func_152687_a(final UserListWhitelistEntry entry) {
         getService().addProfile(((UserLIstEntryAccessor<GameProfile>) entry).accessor$getValue());
     }
 
     @Override
-    public void removeEntry(final com.mojang.authlib.GameProfile entry) {
+    public void func_152684_c(final com.mojang.authlib.GameProfile entry) {
         getService().removeProfile((GameProfile) entry);
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean func_152690_d() {
         return getService().getWhitelistedProfiles().isEmpty();
     }
 
     @Override
     @Nullable
-    public com.mojang.authlib.GameProfile getByName(final String profileName) {
+    public com.mojang.authlib.GameProfile func_152706_a(final String profileName) {
         for (final GameProfile profile : Sponge.getServiceManager().provideUnchecked(WhitelistService.class).getWhitelistedProfiles()) {
             if (profile.getName().isPresent() && profile.getName().get().equals(profileName)) {
                 return (com.mojang.authlib.GameProfile) profile;

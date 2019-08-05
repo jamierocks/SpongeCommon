@@ -37,6 +37,8 @@ import java.util.Locale;
 
 import javax.annotation.Nullable;
 
+import org.spongepowered.common.mixin.api.mcp.tileentity.TileEntityStructure.ModeMixin_API;
+
 @Mixin(TileEntityStructure.Mode.class)
 @Implements(@Interface(iface = StructureMode.class, prefix = "structure$"))
 public abstract class TileEntityStructure$ModeMixin_API implements StructureMode {
