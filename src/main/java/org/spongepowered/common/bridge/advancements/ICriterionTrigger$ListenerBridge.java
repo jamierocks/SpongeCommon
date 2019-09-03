@@ -26,9 +26,10 @@ package org.spongepowered.common.bridge.advancements;
 
 import net.minecraft.advancements.Advancement;
 
-public interface ListenerBridge {
+public interface ICriterionTrigger$ListenerBridge {
 
     Advancement bridge$getAdvancement();
 
     String bridge$getCriterionName();
+
 }
