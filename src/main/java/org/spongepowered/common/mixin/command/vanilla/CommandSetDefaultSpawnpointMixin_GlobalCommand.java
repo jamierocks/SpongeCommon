@@ -26,8 +26,8 @@ package org.spongepowered.common.mixin.command.vanilla;
 
 import net.minecraft.command.server.CommandSetDefaultSpawnpoint;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ServerWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -40,7 +40,7 @@ public abstract class CommandSetDefaultSpawnpointMixin_GlobalCommand {
         at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/World;setSpawnPoint(Lnet/minecraft/util/math/BlockPos;)V"))
     private void globalCommand$setSpawnPointForAllWorlds(final World world, final BlockPos pos) {
-        for (final WorldServer worldServer : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld worldServer : SpongeImpl.getServer().worlds) {
             worldServer.func_175652_B(pos);
         }
     }

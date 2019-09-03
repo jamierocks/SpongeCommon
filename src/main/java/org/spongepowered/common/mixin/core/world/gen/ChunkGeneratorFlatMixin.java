@@ -24,12 +24,11 @@
  */
 package org.spongepowered.common.mixin.core.world.gen;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.gen.ChunkGeneratorFlat;
+import net.minecraft.block.Blocks;
+import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.FlatGeneratorInfo;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.feature.Structure;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.util.weighted.VariableAmount;
@@ -49,11 +48,11 @@ import org.spongepowered.common.world.gen.populators.FilteredPopulator;
 
 import java.util.Map;
 
-@Mixin(ChunkGeneratorFlat.class)
+@Mixin(FlatChunkGenerator.class)
 public class ChunkGeneratorFlatMixin implements  PopulatorProviderBridge {
 
-    @Shadow @Final private IBlockState[] cachedBlockIDs;
-    @Shadow @Final private Map<String, MapGenStructure> structureGenerators;
+    @Shadow @Final private net.minecraft.block.BlockState[] cachedBlockIDs;
+    @Shadow @Final private Map<String, Structure> structureGenerators;
     @Shadow @Final private boolean hasDecoration;
     @Shadow @Final private boolean hasDungeons;
     @Shadow @Final private FlatGeneratorInfo flatWorldGenInfo;
@@ -63,7 +62,7 @@ public class ChunkGeneratorFlatMixin implements  PopulatorProviderBridge {
         for (final Object o : this.structureGenerators.values()) {
             if (o instanceof MapGenBase) {
                 generator.getGenerationPopulators().add((GenerationPopulator) o);
-                if (o instanceof MapGenStructure) {
+                if (o instanceof Structure) {
                     generator.getPopulators().add((Populator) o);
                 }
             }

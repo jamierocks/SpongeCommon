@@ -31,7 +31,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.PlayerAdvancements;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.advancement.Advancement;
@@ -44,6 +44,7 @@ import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.bridge.advancements.ICriterionTrigger$ListenerBridge;
+import org.spongepowered.common.bridge.advancements.ICriterionTrigger.ListenerBridge;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -102,11 +103,11 @@ public class SpongeTrigger implements ICriterionTrigger<SpongeFilteredTrigger>, 
 
     @Override
     public void bridge$trigger(final Player player) {
-        final PlayerAdvancements playerAdvancements = ((EntityPlayerMP) player).func_192039_O();
+        final PlayerAdvancements playerAdvancements = ((ServerPlayerEntity) player).func_192039_O();
         final Cause cause = Sponge.getCauseStackManager().getCurrentCause();
         final TypeToken<FilteredTriggerConfiguration> typeToken = TypeToken.of(this.triggerConfigurationClass);
         for (final Listener listener : new ArrayList<>(this.listeners.get(playerAdvancements))) {
-            final ICriterionTrigger$ListenerBridge mixinListener = (ICriterionTrigger$ListenerBridge) listener;
+            final ListenerBridge mixinListener = (ListenerBridge) listener;
             final Advancement advancement = (Advancement) mixinListener.bridge$getAdvancement();
             final AdvancementCriterion advancementCriterion = (AdvancementCriterion)
                     ((net.minecraft.advancements.Advancement) advancement).func_192073_f().get(mixinListener.bridge$getCriterionName());

@@ -25,9 +25,9 @@
 package org.spongepowered.common.mixin.core.stats;
 
 import net.minecraft.item.Item;
-import net.minecraft.stats.StatBase;
+import net.minecraft.stats.Stat;
 import net.minecraft.stats.StatCrafting;
-import net.minecraft.stats.StatList;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.text.ITextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,7 +35,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.common.statistic.SpongeBlockStatistic;
 import org.spongepowered.common.statistic.SpongeEntityStatistic;
 
-@Mixin(StatList.class)
+@Mixin(Stats.class)
 public class StatListMixin {
 
     @Redirect(method = "initMiningStats", at = @At(value = "NEW", args = "class=net/minecraft/stats/StatCrafting"))
@@ -44,13 +44,13 @@ public class StatListMixin {
     }
 
     @Redirect(method = "getStatKillEntity", at = @At(value = "NEW", args = "class=net/minecraft/stats/StatBase"))
-    private static StatBase createKillEntityStat(final String statId, final ITextComponent statName) {
+    private static Stat createKillEntityStat(final String statId, final ITextComponent statName) {
         final String entityId = statId.substring(statId.lastIndexOf(".") + 1);
         return new SpongeEntityStatistic(statId, statName, entityId);
     }
 
     @Redirect(method = "getStatEntityKilledBy", at = @At(value = "NEW", args = "class=net/minecraft/stats/StatBase"))
-    private static StatBase createKilledByEntityStat(final String statId, final ITextComponent statName) {
+    private static Stat createKilledByEntityStat(final String statId, final ITextComponent statName) {
         final String entityId = statId.substring(statId.lastIndexOf(".") + 1);
         return new SpongeEntityStatistic(statId, statName, entityId);
     }

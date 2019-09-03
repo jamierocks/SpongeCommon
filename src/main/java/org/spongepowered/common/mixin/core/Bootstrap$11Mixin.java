@@ -35,7 +35,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @NonnullByDefault
-@Mixin(targets = "net/minecraft/init/Bootstrap$11")
+@org.spongepowered.common.mixin.core.Mixin(targets = "net/minecraft/init/Bootstrap$11")
 public class Mixin {
 
     @Redirect(method = "dispenseStack(Lnet/minecraft/dispenser/IBlockSource;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;",

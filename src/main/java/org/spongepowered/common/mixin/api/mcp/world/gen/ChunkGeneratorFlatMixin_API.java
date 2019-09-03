@@ -25,10 +25,9 @@
 package org.spongepowered.common.mixin.api.mcp.world.gen;
 
 import com.flowpowered.math.vector.Vector3i;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.world.gen.ChunkGeneratorFlat;
+import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.FlatGeneratorInfo;
-import net.minecraft.world.gen.structure.MapGenStructure;
+import net.minecraft.world.gen.feature.Structure;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
@@ -40,11 +39,11 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Map;
 
-@Mixin(ChunkGeneratorFlat.class)
+@Mixin(FlatChunkGenerator.class)
 public class ChunkGeneratorFlatMixin_API implements GenerationPopulator {
 
-    @Shadow @Final private IBlockState[] cachedBlockIDs;
-    @Shadow @Final private Map<String, MapGenStructure> structureGenerators;
+    @Shadow @Final private net.minecraft.block.BlockState[] cachedBlockIDs;
+    @Shadow @Final private Map<String, Structure> structureGenerators;
     @Shadow @Final private boolean hasDecoration;
     @Shadow @Final private boolean hasDungeons;
     @Shadow @Final private FlatGeneratorInfo flatWorldGenInfo;
@@ -56,7 +55,7 @@ public class ChunkGeneratorFlatMixin_API implements GenerationPopulator {
         final Vector3i min = buffer.getBlockMin();
         for (int y = 0; y < this.cachedBlockIDs.length; ++y) {
             final int y0 = min.getY() + y;
-            final IBlockState iblockstate = this.cachedBlockIDs[y];
+            final net.minecraft.block.BlockState iblockstate = this.cachedBlockIDs[y];
             if (iblockstate != null) {
                 for (x = 0; x < 16; ++x) {
                     final int x0 = min.getX() + x;

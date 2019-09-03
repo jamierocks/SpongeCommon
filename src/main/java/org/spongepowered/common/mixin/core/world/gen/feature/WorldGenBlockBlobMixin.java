@@ -26,18 +26,18 @@ package org.spongepowered.common.mixin.core.world.gen.feature;
 
 import com.google.common.base.MoreObjects;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBlockBlob;
+import net.minecraft.world.gen.feature.BlockBlobFeature;
 import org.spongepowered.api.world.gen.populator.BlockBlob;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.Random;
 
-@Mixin(WorldGenBlockBlob.class)
+@Mixin(BlockBlobFeature.class)
 public abstract class WorldGenBlockBlobMixin extends WorldGeneratorMixin {
 
     /**
@@ -86,7 +86,7 @@ public abstract class WorldGenBlockBlobMixin extends WorldGeneratorMixin {
                 for (final BlockPos blockpos1 : BlockPos.func_177980_a(position.func_177982_a(-j, -k, -l), position.func_177982_a(j, k, l))) {
                     if (blockpos1.func_177951_i(position) <= f * f) {
 //                        worldIn.setBlockState(blockpos1, this.field_150545_a.getDefaultState(), 4);
-                        worldIn.func_180501_a(blockpos1, (IBlockState) ((BlockBlob) this).getBlock(), 4);
+                        worldIn.func_180501_a(blockpos1, (BlockState) ((BlockBlob) this).getBlock(), 4);
                     }
                 }
 

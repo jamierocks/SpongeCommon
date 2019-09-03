@@ -25,12 +25,12 @@
 package org.spongepowered.common.mixin.core.server.network;
 
 import net.minecraft.network.NetworkManager;
+import net.minecraft.network.login.ServerLoginNetHandler;
 import net.minecraft.network.login.server.SPacketDisconnect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
-import net.minecraft.server.network.NetHandlerLoginServer;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.event.SpongeEventFactory;
 import org.spongepowered.api.event.cause.Cause;
@@ -55,7 +55,7 @@ import org.spongepowered.common.text.SpongeTexts;
 import java.net.SocketAddress;
 import java.util.Optional;
 
-@Mixin(NetHandlerLoginServer.class)
+@Mixin(ServerLoginNetHandler.class)
 public abstract class NetHandlerLoginServerMixin implements NetHandlerLoginServerBridge {
 
     @Shadow @Final private static Logger LOGGER;
@@ -88,7 +88,7 @@ public abstract class NetHandlerLoginServerMixin implements NetHandlerLoginServe
         if (disconnectMessage.isPresent()) {
             reason = SpongeTexts.toComponent(disconnectMessage.get());
         } else {
-            reason = new TextComponentTranslation("disconnect.disconnected");
+            reason = new TranslationTextComponent("disconnect.disconnected");
         }
         this.impl$closeConnection(reason);
     }

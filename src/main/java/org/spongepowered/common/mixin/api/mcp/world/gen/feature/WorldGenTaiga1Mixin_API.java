@@ -25,11 +25,11 @@
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga1;
+import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.PointyTaigaTreeFeature;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,8 +38,8 @@ import org.spongepowered.common.bridge.world.gen.feature.WorldGeneratorBridge;
 import java.util.Random;
 
 //tall_taiga
-@Mixin(WorldGenTaiga1.class)
-public abstract class WorldGenTaiga1Mixin_API extends WorldGenAbstractTree implements PopulatorObject {
+@Mixin(PointyTaigaTreeFeature.class)
+public abstract class WorldGenTaiga1Mixin_API extends AbstractTreeFeature implements PopulatorObject {
 
     public WorldGenTaiga1Mixin_API(final boolean notify) {
         super(notify);
@@ -92,7 +92,7 @@ public abstract class WorldGenTaiga1Mixin_API extends WorldGenAbstractTree imple
             }
             final BlockPos down = new BlockPos(x, y - 1, z);
             final Block block = worldIn.func_180495_p(down).func_177230_c();
-            if (((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, EnumFacing.UP, Blocks.field_150345_g) && y < 256 - i - 1) {
+            if (((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, Direction.UP, Blocks.field_150345_g) && y < 256 - i - 1) {
                 return true;
             }
         }

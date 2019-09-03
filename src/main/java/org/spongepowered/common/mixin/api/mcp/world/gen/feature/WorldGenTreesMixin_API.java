@@ -25,11 +25,11 @@
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.TreeFeature;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.asm.mixin.Final;
@@ -41,8 +41,8 @@ import org.spongepowered.common.bridge.world.gen.feature.WorldGeneratorBridge;
 
 import java.util.Random;
 
-@Mixin(WorldGenTrees.class)
-public abstract class WorldGenTreesMixin_API extends WorldGenAbstractTree implements PopulatorObject {
+@Mixin(TreeFeature.class)
+public abstract class WorldGenTreesMixin_API extends AbstractTreeFeature implements PopulatorObject {
 
     @Shadow @Final @Mutable private int minTreeHeight;
 
@@ -101,7 +101,7 @@ public abstract class WorldGenTreesMixin_API extends WorldGenAbstractTree implem
         }
         final BlockPos down = new BlockPos(x, y - 1, z);
         final Block block = worldIn.func_180495_p(down).func_177230_c();
-        if (!((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, EnumFacing.UP, Blocks.field_150345_g) || y >= 256 - i - 1) {
+        if (!((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, Direction.UP, Blocks.field_150345_g) || y >= 256 - i - 1) {
             return false;
         }
         return true;

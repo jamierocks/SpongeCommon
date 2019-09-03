@@ -24,16 +24,16 @@
  */
 package org.spongepowered.common.mixin.core.entity;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.FireballEntity;
+import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.entity.projectile.WitherSkullEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.common.bridge.data.DataCompoundHolder;
 import org.spongepowered.common.bridge.entity.GrieferBridge;
 import org.spongepowered.common.util.Constants;
 
-@Mixin({ EntityLivingBase.class, EntityLargeFireball.class, EntityWitherSkull.class, EntitySmallFireball.class })
+@Mixin({ LivingEntity.class, FireballEntity.class, WitherSkullEntity.class, SmallFireballEntity.class })
 public abstract class GrieferBridgeMixin implements GrieferBridge {
 
     private boolean griefer$canGrief = true;

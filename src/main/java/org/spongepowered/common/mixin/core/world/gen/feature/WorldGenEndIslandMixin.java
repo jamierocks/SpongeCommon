@@ -24,18 +24,18 @@
  */
 package org.spongepowered.common.mixin.core.world.gen.feature;
 
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenEndIsland;
+import net.minecraft.world.gen.feature.EndIslandFeature;
 import org.spongepowered.api.world.gen.populator.EndIsland;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.Random;
 
-@Mixin(WorldGenEndIsland.class)
+@Mixin(EndIslandFeature.class)
 public abstract class WorldGenEndIslandMixin extends WorldGeneratorMixin {
 
     /**
@@ -56,7 +56,7 @@ public abstract class WorldGenEndIslandMixin extends WorldGeneratorMixin {
                         // this.setBlockAndNotifyAdequately(worldIn,
                         // position.add(k, j, l),
                         // Blocks.end_stone.getDefaultState());
-                        this.setBlockAndNotifyAdequately(worldIn, position.func_177982_a(x, y, z), (IBlockState) ((EndIsland) this).getIslandBlock());
+                        this.setBlockAndNotifyAdequately(worldIn, position.func_177982_a(x, y, z), (BlockState) ((EndIsland) this).getIslandBlock());
                     }
                 }
             }

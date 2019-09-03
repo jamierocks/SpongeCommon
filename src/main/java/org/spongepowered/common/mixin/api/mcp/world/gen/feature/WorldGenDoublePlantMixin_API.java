@@ -25,11 +25,11 @@
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
 import com.flowpowered.math.vector.Vector3i;
-import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenDoublePlant;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.DoublePlantFeature;
+import net.minecraft.world.gen.feature.Feature;
 import org.spongepowered.api.data.type.DoublePlantType;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
@@ -48,10 +48,10 @@ import java.util.function.Function;
 
 import javax.annotation.Nullable;
 
-@Mixin(WorldGenDoublePlant.class)
-public abstract class WorldGenDoublePlantMixin_API extends WorldGenerator implements DoublePlant {
+@Mixin(DoublePlantFeature.class)
+public abstract class WorldGenDoublePlantMixin_API extends Feature implements DoublePlant {
 
-    @Shadow private BlockDoublePlant.EnumPlantType plantType;
+    @Shadow private DoublePlantBlock.EnumPlantType plantType;
 
     private final WeightedTable<DoublePlantType> api$types = new WeightedTable<>();
     private VariableAmount api$count = VariableAmount.fixed(1);

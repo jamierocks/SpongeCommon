@@ -26,11 +26,11 @@ package org.spongepowered.common.mixin.api.mcp.item.crafting;
 
 import static org.spongepowered.common.item.inventory.util.InventoryUtil.toNativeInventory;
 
-import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.item.crafting.ShapelessRecipe;
 import net.minecraft.util.NonNullList;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.item.inventory.crafting.CraftingGridInventory;
@@ -49,10 +49,10 @@ import javax.annotation.Nonnull;
 @Mixin(IRecipe.class)
 public interface IRecipeMixin_API extends CraftingRecipe {
 
-    @Shadow boolean matches(InventoryCrafting inv, net.minecraft.world.World worldIn);
-    @Shadow net.minecraft.item.ItemStack getCraftingResult(InventoryCrafting inv);
+    @Shadow boolean matches(CraftingInventory inv, net.minecraft.world.World worldIn);
+    @Shadow net.minecraft.item.ItemStack getCraftingResult(CraftingInventory inv);
     @Shadow net.minecraft.item.ItemStack getRecipeOutput();
-    @Shadow NonNullList<net.minecraft.item.ItemStack> getRemainingItems(InventoryCrafting inv);
+    @Shadow NonNullList<net.minecraft.item.ItemStack> getRemainingItems(CraftingInventory inv);
 
     @Override
     @Nonnull
@@ -92,12 +92,12 @@ public interface IRecipeMixin_API extends CraftingRecipe {
     @Override
     default Optional<String> getGroup() {
         String group = "";
-        if (this instanceof ShapedRecipes) {
+        if (this instanceof ShapedRecipe) {
 
-            group = ((ShapedRecipes) this).field_194137_e;
+            group = ((ShapedRecipe) this).field_194137_e;
         }
-        if (this instanceof ShapelessRecipes) {
-            group = ((ShapelessRecipes) this).field_194138_c;
+        if (this instanceof ShapelessRecipe) {
+            group = ((ShapelessRecipe) this).field_194138_c;
         }
         if (group.isEmpty()) {
             return Optional.empty();

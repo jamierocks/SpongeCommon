@@ -25,8 +25,8 @@
 package org.spongepowered.common.mixin.command.vanilla;
 
 import net.minecraft.command.CommandWorldBorder;
+import net.minecraft.world.ServerWorld;
 import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.border.WorldBorder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,14 +38,14 @@ public abstract class CommandWorldBorderMixin_GlobalCommand {
 
     @Redirect(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/border/WorldBorder;setTransition(DDJ)V"))
     private void globalCommand$setAllTransitions(final WorldBorder border, final double oldSize, final double newSize, final long time) {
-        for (final WorldServer world : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld world : SpongeImpl.getServer().worlds) {
             world.func_175723_af().func_177750_a(time);
         }
     }
 
     @Redirect(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/border/WorldBorder;setCenter(DD)V"))
     private void globalCommand$setAllCenters(final WorldBorder border, final double x, final double z) {
-        for (final WorldServer world : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld world : SpongeImpl.getServer().worlds) {
             if (world.field_73011_w instanceof WorldProviderHell) {
                 // Unlike Vanilla, Sponge uses separate world borders per world.
                 // Because of that, Vanilla stores the world border center as overworld coordinates.
@@ -60,28 +60,28 @@ public abstract class CommandWorldBorderMixin_GlobalCommand {
 
     @Redirect(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/border/WorldBorder;setDamageBuffer(D)V"))
     private void globalCommand$setAllDamageBuffers(final WorldBorder border, final double buffer) {
-        for (final WorldServer world : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld world : SpongeImpl.getServer().worlds) {
             world.func_175723_af().func_177724_b(buffer);
         }
     }
 
     @Redirect(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/border/WorldBorder;setDamageAmount(D)V"))
     private void globalCommand$setAllDamageAmount(final WorldBorder border, final double amount) {
-        for (final WorldServer world : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld world : SpongeImpl.getServer().worlds) {
             world.func_175723_af().func_177744_c(amount);
         }
     }
 
     @Redirect(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/border/WorldBorder;setWarningTime(I)V"))
     private void globalCommand$setAllWarningTime(final WorldBorder border, final int time) {
-        for (final WorldServer world : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld world : SpongeImpl.getServer().worlds) {
             world.func_175723_af().func_177723_b(time);
         }
     }
 
     @Redirect(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/border/WorldBorder;setWarningDistance(I)V"))
     private void globalCommand$setAllWarningDistance(final WorldBorder border, final int distance) {
-        for (final WorldServer world : SpongeImpl.getServer().worlds) {
+        for (final ServerWorld world : SpongeImpl.getServer().worlds) {
             world.func_175723_af().func_177747_c(distance);
         }
     }

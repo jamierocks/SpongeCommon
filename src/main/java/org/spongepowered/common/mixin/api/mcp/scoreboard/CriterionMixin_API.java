@@ -25,7 +25,6 @@
 package org.spongepowered.common.mixin.api.mcp.scoreboard;
 
 import com.google.common.base.CaseFormat;
-import net.minecraft.scoreboard.IScoreCriteria;
 import net.minecraft.scoreboard.ScoreCriteria;
 import net.minecraft.scoreboard.ScoreCriteriaColored;
 import org.spongepowered.api.scoreboard.critieria.Criterion;
@@ -38,7 +37,7 @@ import javax.annotation.Nullable;
 
 @Mixin(value = {ScoreCriteriaColored.class, ScoreCriteria.class})
 @Implements(@Interface(iface = Criterion.class, prefix = "criterion$"))
-public abstract class CriterionMixin_API implements IScoreCriteria { // Trick to allow avoid shadowing, since multiple targets are used
+public abstract class CriterionMixin_API implements ScoreCriteria { // Trick to allow avoid shadowing, since multiple targets are used
 
     @Nullable private String spongeId;
 

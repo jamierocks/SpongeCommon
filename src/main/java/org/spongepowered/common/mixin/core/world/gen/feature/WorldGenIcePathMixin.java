@@ -26,10 +26,10 @@ package org.spongepowered.common.mixin.core.world.gen.feature;
 
 import com.google.common.base.MoreObjects;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenIcePath;
+import net.minecraft.world.gen.feature.IcePathFeature;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.world.gen.populator.IcePath;
 import org.spongepowered.asm.mixin.Final;
@@ -42,7 +42,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(WorldGenIcePath.class)
+@Mixin(IcePathFeature.class)
 public abstract class WorldGenIcePathMixin extends WorldGeneratorMixin {
 
     @Shadow @Final private Block block;

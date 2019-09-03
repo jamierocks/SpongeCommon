@@ -25,12 +25,12 @@
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTaiga2;
+import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.TallTaigaTreeFeature;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,8 +39,8 @@ import org.spongepowered.common.bridge.world.gen.feature.WorldGeneratorBridge;
 import java.util.Random;
 
 //tall_taiga
-@Mixin(WorldGenTaiga2.class)
-public abstract class WorldGenTaiga2Mixin_API extends WorldGenAbstractTree implements PopulatorObject {
+@Mixin(TallTaigaTreeFeature.class)
+public abstract class WorldGenTaiga2Mixin_API extends AbstractTreeFeature implements PopulatorObject {
 
     public WorldGenTaiga2Mixin_API(final boolean notify) {
         super(notify);
@@ -76,7 +76,7 @@ public abstract class WorldGenTaiga2Mixin_API extends WorldGenAbstractTree imple
                     for (int k1 = z - i3; k1 <= z + i3 && flag; ++k1) {
                         if (i1 >= 0 && i1 < 256) {
                             final BlockPos pos = new BlockPos(j1, i1, k1);
-                            final IBlockState state = worldIn.func_180495_p(pos);
+                            final BlockState state = worldIn.func_180495_p(pos);
                             if (!((WorldGeneratorBridge) this).bridge$isAir(state, worldIn, pos) && !((WorldGeneratorBridge) this).bridge$isLeaves(state, worldIn, pos)) {
                                 flag = false;
                             }
@@ -92,7 +92,7 @@ public abstract class WorldGenTaiga2Mixin_API extends WorldGenAbstractTree imple
             }
             final BlockPos down = new BlockPos(x, y - 1, z);
             final Block block = worldIn.func_180495_p(down).func_177230_c();
-            if (((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, EnumFacing.UP, Blocks.field_150345_g) && y < 256 - i - 1) {
+            if (((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, Direction.UP, Blocks.field_150345_g) && y < 256 - i - 1) {
                 return true;
             }
         }

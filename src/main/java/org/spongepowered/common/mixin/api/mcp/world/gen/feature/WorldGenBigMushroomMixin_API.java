@@ -26,12 +26,12 @@ package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
 import com.flowpowered.math.vector.Vector3i;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.WorldGenBigMushroom;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import org.spongepowered.api.util.weighted.VariableAmount;
 import org.spongepowered.api.util.weighted.WeightedTable;
 import org.spongepowered.api.world.Location;
@@ -55,7 +55,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 @Mixin(WorldGenBigMushroom.class)
-public abstract class WorldGenBigMushroomMixin_API extends WorldGenerator implements BigMushroom, PopulatorObject {
+public abstract class WorldGenBigMushroomMixin_API extends Feature implements BigMushroom, PopulatorObject {
 
     @Shadow @Final private Block mushroomType;
 
@@ -154,7 +154,7 @@ public abstract class WorldGenBigMushroomMixin_API extends WorldGenerator implem
                     for (i1 = z - b0; i1 <= z + b0 && flag; ++i1) {
                         if (k >= 0 && k < 256) {
                             final BlockPos pos = new BlockPos(l, k, i1);
-                            final IBlockState state = worldIn.func_180495_p(pos);
+                            final BlockState state = worldIn.func_180495_p(pos);
                             if (!((WorldGeneratorBridge) this).bridge$isAir(state, worldIn, pos) && !((WorldGeneratorBridge) this).bridge$isLeaves(state, worldIn, pos)) {
                                 flag = false;
                             }

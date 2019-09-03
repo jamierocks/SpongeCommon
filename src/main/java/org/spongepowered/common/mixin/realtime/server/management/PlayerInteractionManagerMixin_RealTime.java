@@ -24,7 +24,7 @@
  */
 package org.spongepowered.common.mixin.realtime.server.management;
 
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.management.PlayerInteractionManager;
 import net.minecraft.world.World;
 import org.spongepowered.asm.lib.Opcodes;
@@ -43,7 +43,7 @@ public abstract class PlayerInteractionManagerMixin_RealTime {
     @Shadow public World world;
     @Shadow private int curblockDamage;
 
-    @Shadow public EntityPlayerMP player;
+    @Shadow public ServerPlayerEntity player;
 
     @Redirect(
         method = "updateBlockRemoving",

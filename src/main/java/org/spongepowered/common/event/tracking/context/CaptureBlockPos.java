@@ -26,7 +26,7 @@ package org.spongepowered.common.event.tracking.context;
 
 import com.google.common.base.MoreObjects;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldServer;
+import net.minecraft.world.ServerWorld;
 import org.spongepowered.api.world.World;
 import org.spongepowered.common.bridge.world.WorldServerBridge;
 
@@ -60,7 +60,7 @@ public final class CaptureBlockPos implements AutoCloseable {
         }
     }
 
-    public void setWorld(@Nullable WorldServer world) {
+    public void setWorld(@Nullable ServerWorld world) {
         if (world == null) {
             this.mixinWorldReference = null;
         } else {

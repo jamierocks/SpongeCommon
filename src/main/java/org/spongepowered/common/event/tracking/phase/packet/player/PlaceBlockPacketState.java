@@ -24,10 +24,10 @@
  */
 package org.spongepowered.common.event.tracking.phase.packet.player;
 
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
-import net.minecraft.util.EnumHand;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.IPacket;
+import net.minecraft.network.play.client.CPlayerTryUseItemOnBlockPacket;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
@@ -87,8 +87,8 @@ public final class PlaceBlockPacketState extends BasicPacketState {
     }
 
     @Override
-    public void populateContext(final EntityPlayerMP playerMP, final Packet<?> packet, final BasicPacketContext context) {
-        final CPacketPlayerTryUseItemOnBlock placeBlock = (CPacketPlayerTryUseItemOnBlock) packet;
+    public void populateContext(final ServerPlayerEntity playerMP, final IPacket<?> packet, final BasicPacketContext context) {
+        final CPlayerTryUseItemOnBlockPacket placeBlock = (CPlayerTryUseItemOnBlockPacket) packet;
         final net.minecraft.item.ItemStack itemUsed = playerMP.func_184586_b(placeBlock.func_187022_c());
         final ItemStack itemstack = ItemStackUtil.cloneDefensive(itemUsed);
         context.itemUsed(itemstack);
@@ -116,7 +116,7 @@ public final class PlaceBlockPacketState extends BasicPacketState {
     @SuppressWarnings("ConstantConditions")
     @Override
     public void unwind(final BasicPacketContext context) {
-        final EntityPlayerMP player = context.getPacketPlayer();
+        final ServerPlayerEntity player = context.getPacketPlayer();
         final ItemStack itemStack = context.getItemUsed();
         final SpongeItemStackSnapshot snapshot = context.getItemUsedSnapshot();
         context.getCapturedEntitySupplier()
@@ -128,7 +128,7 @@ public final class PlaceBlockPacketState extends BasicPacketState {
             });
         // We can rely on TrackingUtil.processBlockCaptures because it checks for empty contexts.
         if (!TrackingUtil.processBlockCaptures(context) && !snapshot.isNone()) {
-            final EnumHand hand = (EnumHand) (Object) context.getHandUsed();
+            final Hand hand = (Hand) (Object) context.getHandUsed();
             PacketPhaseUtil.handlePlayerSlotRestore(player, ItemStackUtil.toNative(itemStack), hand);
         }
         context.getCapturedItemStackSupplier().acceptAndClearIfNotEmpty(drops -> {

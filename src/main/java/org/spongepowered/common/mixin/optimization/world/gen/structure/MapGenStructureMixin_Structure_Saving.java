@@ -25,15 +25,15 @@
 package org.spongepowered.common.mixin.optimization.world.gen.structure;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.structure.MapGenStructure;
-import net.minecraft.world.gen.structure.MapGenStructureData;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraft.world.gen.structure.StructureStart;
+import net.minecraft.world.gen.feature.Structure;
+import net.minecraft.world.gen.feature.StructureIO;
+import net.minecraft.world.gen.feature.StructureSavedData;
+import net.minecraft.world.gen.feature.StructureStart;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -49,10 +49,10 @@ import java.util.Locale;
 
 import javax.annotation.Nullable;
 
-@Mixin(MapGenStructure.class)
+@Mixin(Structure.class)
 public abstract class MapGenStructureMixin_Structure_Saving extends MapGenBase {
 
-    @Shadow @Nullable private MapGenStructureData structureData;
+    @Shadow @Nullable private StructureSavedData structureData;
     @Shadow protected Long2ObjectMap<StructureStart> structureMap;
     @Shadow public abstract String getStructureName();
 
@@ -110,22 +110,22 @@ public abstract class MapGenStructureMixin_Structure_Saving extends MapGenBase {
             // Sponge start - check if structure is allowed to save
             if (this.structureSaving$canSaveStructures) {
                 // use hook since Forge supports per-world map storage
-                this.structureData = (MapGenStructureData)SpongeImplHooks.getWorldMapStorage(worldIn).func_75742_a(MapGenStructureData.class, this.getStructureName());
+                this.structureData = (StructureSavedData)SpongeImplHooks.getWorldMapStorage(worldIn).func_75742_a(StructureSavedData.class, this.getStructureName());
             }
             else
             {
-                this.structureData = new MapGenStructureData(this.getStructureName());
+                this.structureData = new StructureSavedData(this.getStructureName());
             }
             // Sponge end
 
             if (this.structureData == null)
             {
-                this.structureData = new MapGenStructureData(this.getStructureName());
+                this.structureData = new StructureSavedData(this.getStructureName());
                 worldIn.func_72823_a(this.getStructureName(), this.structureData);
             }
             else
             {
-                final NBTTagCompound nbttagcompound = this.structureData.func_143041_a();
+                final CompoundNBT nbttagcompound = this.structureData.func_143041_a();
 
                 for (final String s : nbttagcompound.func_150296_c())
                 {
@@ -133,13 +133,13 @@ public abstract class MapGenStructureMixin_Structure_Saving extends MapGenBase {
 
                     if (nbtbase.func_74732_a() == 10)
                     {
-                        final NBTTagCompound nbttagcompound1 = (NBTTagCompound)nbtbase;
+                        final CompoundNBT nbttagcompound1 = (CompoundNBT)nbtbase;
 
                         if (nbttagcompound1.func_74764_b("ChunkX") && nbttagcompound1.func_74764_b("ChunkZ"))
                         {
                             final int i = nbttagcompound1.func_74762_e("ChunkX");
                             final int j = nbttagcompound1.func_74762_e("ChunkZ");
-                            final StructureStart structurestart = MapGenStructureIO.func_143035_a(nbttagcompound1, worldIn);
+                            final StructureStart structurestart = StructureIO.func_143035_a(nbttagcompound1, worldIn);
 
                             if (structurestart != null)
                             {

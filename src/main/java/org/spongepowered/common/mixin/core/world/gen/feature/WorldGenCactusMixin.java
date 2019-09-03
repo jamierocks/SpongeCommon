@@ -25,17 +25,17 @@
 package org.spongepowered.common.mixin.core.world.gen.feature;
 
 import com.google.common.base.MoreObjects;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenCactus;
+import net.minecraft.world.gen.feature.CactusFeature;
 import org.spongepowered.api.world.gen.populator.Cactus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.Random;
 
-@Mixin(WorldGenCactus.class)
+@Mixin(CactusFeature.class)
 public abstract class WorldGenCactusMixin extends WorldGeneratorMixin {
 
     /**

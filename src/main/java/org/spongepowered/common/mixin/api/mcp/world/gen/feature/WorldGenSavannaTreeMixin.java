@@ -25,11 +25,11 @@
 package org.spongepowered.common.mixin.api.mcp.world.gen.feature;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenSavannaTree;
+import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.SavannaTreeFeature;
 import org.spongepowered.api.world.World;
 import org.spongepowered.api.world.gen.PopulatorObject;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,8 +37,8 @@ import org.spongepowered.common.bridge.world.gen.feature.WorldGeneratorBridge;
 
 import java.util.Random;
 
-@Mixin(WorldGenSavannaTree.class)
-public abstract class WorldGenSavannaTreeMixin extends WorldGenAbstractTree implements PopulatorObject {
+@Mixin(SavannaTreeFeature.class)
+public abstract class WorldGenSavannaTreeMixin extends AbstractTreeFeature implements PopulatorObject {
 
     public WorldGenSavannaTreeMixin(final boolean notify) {
         super(notify);
@@ -93,7 +93,7 @@ public abstract class WorldGenSavannaTreeMixin extends WorldGenAbstractTree impl
             }
             final BlockPos down = new BlockPos(x, y - 1, z);
             final Block block = worldIn.func_180495_p(down).func_177230_c();
-            if (((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, EnumFacing.UP, Blocks.field_150345_g) && y < 256 - i - 1) {
+            if (((WorldGeneratorBridge) this).bridge$canSustainPlant(block, worldIn, down, Direction.UP, Blocks.field_150345_g) && y < 256 - i - 1) {
                 return true;
             }
         }
@@ -109,7 +109,7 @@ public abstract class WorldGenSavannaTreeMixin extends WorldGenAbstractTree impl
         }
     }
     private boolean impl$isReplaceable(final net.minecraft.world.World world, final BlockPos pos) {
-        final net.minecraft.block.state.IBlockState state = world.func_180495_p(pos);
+        final net.minecraft.block.BlockState state = world.func_180495_p(pos);
         return ((WorldGeneratorBridge) this).bridge$isAir(state, world, pos)
                || ((WorldGeneratorBridge) this).bridge$isLeaves(state, world, pos)
                || ((WorldGeneratorBridge) this).birdge$isWood(state, world, pos)
