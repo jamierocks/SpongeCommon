@@ -24,7 +24,7 @@
  */
 package org.spongepowered.common.bridge.util;
 
-public interface CooldownBridge {
+public interface CooldownTracker$CooldownBridge {
 
     int bridge$getExpireTicks();
 }

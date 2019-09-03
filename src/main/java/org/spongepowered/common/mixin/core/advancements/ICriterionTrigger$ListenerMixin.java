@@ -48,11 +48,10 @@ import org.spongepowered.common.advancement.SpongeFilteredTrigger;
 import org.spongepowered.common.advancement.SpongeTrigger;
 import org.spongepowered.common.bridge.advancements.CriterionBridge;
 import org.spongepowered.common.bridge.advancements.ICriterionTrigger$ListenerBridge;
-import org.spongepowered.common.bridge.advancements.ICriterionTrigger.ListenerBridge;
 import org.spongepowered.common.bridge.advancements.PlayerAdvancementsBridge;
 
 @Mixin(ICriterionTrigger.Listener.class)
-public class ICriterionTrigger$ListenerMixin implements ListenerBridge {
+public class ICriterionTrigger$ListenerMixin implements ICriterionTrigger$ListenerBridge {
 
     @Shadow @Final private ICriterionInstance criterionInstance;
     @Shadow @Final private Advancement advancement;
