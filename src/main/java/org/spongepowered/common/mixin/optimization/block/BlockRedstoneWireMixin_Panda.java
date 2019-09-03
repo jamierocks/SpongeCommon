@@ -156,7 +156,7 @@ public abstract class BlockRedstoneWireMixin_Panda extends Block {
 
         // Execute updates
         for (final BlockPos posi : blocksNeedingUpdate) {
-            worldIn.func_175685_c(posi, (RedstoneWireBlock) (Object) this, false);
+            worldIn.notifyNeighborsOfStateChange(posi, (RedstoneWireBlock) (Object) this, false);
         }
     }
 
@@ -387,7 +387,7 @@ public abstract class BlockRedstoneWireMixin_Panda extends Block {
                    && side.getAxis().isHorizontal();
         }
         if (state.getBlock() instanceof RedstoneTorchBlock) {
-            return !isWire && state.get(RedstoneTorchBlock.field_176596_a) == side;
+            return !isWire && state.get(RedstoneTorchBlock.FACING) == side;
         }
         return true;
     }
@@ -445,7 +445,7 @@ public abstract class BlockRedstoneWireMixin_Panda extends Block {
      * @param power Power it should get set to
      */
     private void setWireState(final World worldIn, final BlockPos pos, BlockState state, final int power) {
-        state = state.func_177226_a(RedstoneWireBlock.POWER, power);
+        state = state.withProperty(RedstoneWireBlock.POWER, power);
         worldIn.setBlockState(pos, state, 2);
         this.panda$updatedRedstoneWire.add(pos);
     }
@@ -460,11 +460,11 @@ public abstract class BlockRedstoneWireMixin_Panda extends Block {
      */
     @Override
     @Overwrite
-    public void func_176213_c(final World worldIn, final BlockPos pos, final BlockState state) {
+    public void onBlockAdded(final World worldIn, final BlockPos pos, final BlockState state) {
         if (!worldIn.isRemote) {
             this.updateSurroundingRedstone(worldIn, pos);
             for (final Vec3i vec : surroundingBlocksOffset) {
-                worldIn.func_175685_c(pos.add(vec), this, false);
+                worldIn.notifyNeighborsOfStateChange(pos.add(vec), this, false);
             }
         }
     }
@@ -478,12 +478,12 @@ public abstract class BlockRedstoneWireMixin_Panda extends Block {
      */
     @Override
     @Overwrite
-    public void func_180663_b(final World worldIn, final BlockPos pos, final BlockState state) {
-        super.func_180663_b(worldIn, pos, state);
+    public void breakBlock(final World worldIn, final BlockPos pos, final BlockState state) {
+        super.breakBlock(worldIn, pos, state);
         if (!worldIn.isRemote) {
             this.updateSurroundingRedstone(worldIn, pos);
             for (final Vec3i vec : surroundingBlocksOffset) {
-                worldIn.func_175685_c(pos.add(vec), this, false);
+                worldIn.notifyNeighborsOfStateChange(pos.add(vec), this, false);
             }
         }
     }
@@ -519,7 +519,7 @@ public abstract class BlockRedstoneWireMixin_Panda extends Block {
         if (block == Blocks.REDSTONE_WIRE) {
             return true;
         }
-        if (Blocks.field_150413_aR.func_185547_C(blockState)) {
+        if (Blocks.UNPOWERED_REPEATER.isSameDiode(blockState)) {
             final Direction enumfacing = blockState.get(RepeaterBlock.HORIZONTAL_FACING);
             return enumfacing == side || enumfacing.getOpposite() == side;
         }

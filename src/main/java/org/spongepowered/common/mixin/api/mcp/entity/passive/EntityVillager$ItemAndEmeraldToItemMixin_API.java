@@ -57,18 +57,18 @@ public class ItemAndEmeraldToItemMixin_API implements TradeOfferGenerator {
         int buyingCount = 1;
 
         if (this.buyingPriceInfo != null) {
-            buyingCount = this.buyingPriceInfo.func_179412_a(random);
+            buyingCount = this.buyingPriceInfo.getPrice(random);
         }
 
         int sellingCount = 1;
 
         if (this.sellingPriceInfo != null) {
-            sellingCount = this.sellingPriceInfo.func_179412_a(random);
+            sellingCount = this.sellingPriceInfo.getPrice(random);
         }
 
-        final ItemStack itemStackBuying = new ItemStack(this.buyingItemStack.getItem(), buyingCount, this.buyingItemStack.func_77960_j());
+        final ItemStack itemStackBuying = new ItemStack(this.buyingItemStack.getItem(), buyingCount, this.buyingItemStack.getMetadata());
         final ItemStack emeraldStack = new ItemStack(Items.EMERALD);
-        final ItemStack itemStackSelling = new ItemStack(this.sellingItemstack.getItem(), sellingCount, this.sellingItemstack.func_77960_j());
+        final ItemStack itemStackSelling = new ItemStack(this.sellingItemstack.getItem(), sellingCount, this.sellingItemstack.getMetadata());
         return (TradeOffer) new MerchantRecipe(itemStackBuying, emeraldStack, itemStackSelling);
     }
 

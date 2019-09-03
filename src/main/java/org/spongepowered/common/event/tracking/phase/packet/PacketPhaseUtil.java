@@ -232,7 +232,7 @@ public final class PacketPhaseUtil {
     public static DataParameter<?> findModifiedEntityInteractDataParameter(final ItemStack stack, final Entity entity) {
         final Item item = stack.getItem();
 
-        if (item == Items.field_151100_aR) {
+        if (item == Items.DYE) {
             // ItemDye.itemInteractionForEntity
             if (entity instanceof SheepEntity) {
                 return EntitySheepAccessor.accessor$getDyeColorParameter();

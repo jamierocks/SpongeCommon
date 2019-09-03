@@ -55,7 +55,7 @@ public class ListItemForEmeraldsMixin_API implements TradeOfferGenerator {
         int amount = 1;
 
         if (this.priceInfo != null) {
-            amount = this.priceInfo.func_179412_a(random);
+            amount = this.priceInfo.getPrice(random);
         }
 
         ItemStack itemstack;
@@ -63,10 +63,10 @@ public class ListItemForEmeraldsMixin_API implements TradeOfferGenerator {
 
         if (amount < 0) {
             itemstack = new ItemStack(Items.EMERALD, 1, 0);
-            itemstack1 = new ItemStack(this.itemToBuy.getItem(), -amount, this.itemToBuy.func_77960_j());
+            itemstack1 = new ItemStack(this.itemToBuy.getItem(), -amount, this.itemToBuy.getMetadata());
         } else {
             itemstack = new ItemStack(Items.EMERALD, amount, 0);
-            itemstack1 = new ItemStack(this.itemToBuy.getItem(), 1, this.itemToBuy.func_77960_j());
+            itemstack1 = new ItemStack(this.itemToBuy.getItem(), 1, this.itemToBuy.getMetadata());
         }
 
         return (TradeOffer) new MerchantRecipe(itemstack, itemstack1);

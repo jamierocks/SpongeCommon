@@ -186,7 +186,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
 
         WorldManager.loadAllWorlds(seed, type, generatorOptions);
 
-        this.getPlayerList().func_72364_a(this.worlds);
+        this.getPlayerList().setPlayerManager(this.worlds);
         this.setDifficultyForAllWorlds(this.getDifficulty());
     }
 
@@ -332,7 +332,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
 
                 final RayTraceResult result = SpongeImplHooks.rayTraceEyes(player, SpongeImplHooks.getBlockReachDistance(player) + 1);
                 // Hit non-air block
-                if (result != null && result.func_178782_a() != null) {
+                if (result != null && result.getBlockPos() != null) {
                     return;
                 }
 

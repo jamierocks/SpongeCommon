@@ -225,7 +225,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
     private void impl$checkSpongeKeepAlive(final CKeepAlivePacket packetIn, final CallbackInfo ci) {
         final Runnable callback = this.impl$customKeepAliveCallbacks.get(packetIn.getKey());
         if (callback != null) {
-            PacketThreadUtil.func_180031_a(packetIn, (IServerPlayNetHandler) this, this.player.getServerWorld());
+            PacketThreadUtil.checkThreadAndEnqueue(packetIn, (IServerPlayNetHandler) this, this.player.getServerWorld());
             this.impl$customKeepAliveCallbacks.remove(packetIn.getKey());
             callback.run();
             ci.cancel();
@@ -272,7 +272,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
         }
         Sponge.getCauseStackManager().popCause();
         tileentitysign.markDirty();
-        worldserver.func_184164_w().func_180244_a(blockpos);
+        worldserver.getPlayerChunkMap().markBlockForUpdate(blockpos);
     }
 
     /**
@@ -286,7 +286,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
      */
     @Overwrite
     public void processCreativeInventoryAction(final CCreativeInventoryActionPacket packetIn) {
-        PacketThreadUtil.func_180031_a(packetIn, (ServerPlayNetHandler) (Object) this, this.player.getServerWorld());
+        PacketThreadUtil.checkThreadAndEnqueue(packetIn, (ServerPlayNetHandler) (Object) this, this.player.getServerWorld());
 
         if (this.player.interactionManager.isCreative()) {
             final PacketContext<?> context = (PacketContext<?>) PhaseTracker.getInstance().getCurrentContext();
@@ -313,7 +313,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
             }
 
             final boolean clickedInsideNotOutput = packetIn.getSlotId() >= 1 && packetIn.getSlotId() <= 45;
-            final boolean itemValidCheck = itemstack.isEmpty() || itemstack.func_77960_j() >= 0 && itemstack.getCount() <= itemstack.getMaxStackSize() && !itemstack.isEmpty();
+            final boolean itemValidCheck = itemstack.isEmpty() || itemstack.getMetadata() >= 0 && itemstack.getCount() <= itemstack.getMaxStackSize() && !itemstack.isEmpty();
 
             // Sponge start - handle CreativeInventoryEvent
             if (itemValidCheck) {
@@ -608,7 +608,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
 
     @Redirect(method = "processTryUseItemOnBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/management/PlayerInteractionManager;processRightClickBlock(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/util/EnumHand;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/EnumFacing;FFF)Lnet/minecraft/util/EnumActionResult;"))
     private ActionResultType impl$checkState(final PlayerInteractionManager interactionManager, final PlayerEntity player, final net.minecraft.world.World worldIn, @Nullable final ItemStack stack, final Hand hand, final BlockPos pos, final Direction facing, final float hitX, final float hitY, final float hitZ) {
-        final ActionResultType actionResult = interactionManager.func_187251_a(this.player, worldIn, stack, hand, pos, facing, hitX, hitY, hitZ);
+        final ActionResultType actionResult = interactionManager.processRightClickBlock(this.player, worldIn, stack, hand, pos, facing, hitX, hitY, hitZ);
         if (PhaseTracker.getInstance().getCurrentContext().isEmpty()) {
             return actionResult;
         }
@@ -754,7 +754,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
                 // when INTERACT_AT does not return a successful result.
                 return;
             } else { // queue packet for main thread
-                PacketThreadUtil.func_180031_a(packetIn, (ServerPlayNetHandler) (Object) this, this.player.getServerWorld());
+                PacketThreadUtil.checkThreadAndEnqueue(packetIn, (ServerPlayNetHandler) (Object) this, this.player.getServerWorld());
                 return;
             }
         }
@@ -852,7 +852,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
 
                     if (entity instanceof ItemEntity || entity instanceof ExperienceOrbEntity || entity instanceof AbstractArrowEntity || entity == this.player) {
                         this.disconnect(new TranslationTextComponent("multiplayer.disconnect.invalid_entity_attacked"));
-                        this.server.logWarning("Player " + this.player.func_70005_c_() + " tried to attack an invalid entity");
+                        this.server.logWarning("Player " + this.player.getName() + " tried to attack an invalid entity");
                         return;
                     }
 
@@ -878,7 +878,7 @@ public abstract class NetHandlerPlayServerMixin implements NetHandlerPlayServerB
     private void onProcessResourcePackStatus(final CResourcePackStatusPacket packet, final CallbackInfo ci) {
         // Propagate the packet to the main thread so the cause tracker picks
         // it up. See PacketThreadUtil$1Mixin.
-        PacketThreadUtil.func_180031_a(packet, (IServerPlayNetHandler) this, this.player.getServerWorld());
+        PacketThreadUtil.checkThreadAndEnqueue(packet, (IServerPlayNetHandler) this, this.player.getServerWorld());
     }
 
     @Override

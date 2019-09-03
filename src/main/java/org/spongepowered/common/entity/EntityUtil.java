@@ -254,7 +254,7 @@ public final class EntityUtil {
         final Entity toReturn;
 
         if (recreate) {
-            toReturn = EntityList.func_191304_a(entity.getClass(), toWorld);
+            toReturn = EntityList.newEntity(entity.getClass(), toWorld);
             sEntity = (org.spongepowered.api.entity.Entity) toReturn;
             if (toReturn == null) {
                 return entity;
@@ -266,9 +266,9 @@ public final class EntityUtil {
         }
 
         if (!event.getKeepsVelocity()) {
-            toReturn.field_70159_w = 0;
-            toReturn.field_70181_x = 0;
-            toReturn.field_70179_y = 0;
+            toReturn.motionX = 0;
+            toReturn.motionY = 0;
+            toReturn.motionZ = 0;
         }
 
         if (loadChunks) {
@@ -286,10 +286,10 @@ public final class EntityUtil {
                 toReturn.forceSpawn = true;
                 toWorld.addEntity0(toReturn);
                 toReturn.forceSpawn = flag;
-                toWorld.func_72866_a(toReturn, false);
+                toWorld.updateEntityWithOptionalForce(toReturn, false);
             } else {
                 toWorld.addEntity0(toReturn);
-                toWorld.func_72866_a(toReturn, false);
+                toWorld.updateEntityWithOptionalForce(toReturn, false);
             }
         }
 
@@ -458,7 +458,7 @@ public final class EntityUtil {
 
         playerList.updatePermissionLevel(player);
 
-        fromWorld.func_72973_f(player);
+        fromWorld.removeEntityDangerously(player);
         player.removed = false;
 
         final Vector3d position = toTransform.getPosition();
@@ -466,12 +466,12 @@ public final class EntityUtil {
 
         try (final PhaseContext<?> ignored = EntityPhase.State.CHANGING_DIMENSION.createPhaseContext().setTargetWorld(toWorld).buildAndSwitch()) {
             toWorld.addEntity0(player);
-            toWorld.func_72866_a(player, false);
+            toWorld.updateEntityWithOptionalForce(player, false);
         }
 
         // preparePlayer
-        fromWorld.func_184164_w().func_72695_c(player);
-        toWorld.func_184164_w().func_72683_a(player);
+        fromWorld.getPlayerChunkMap().removePlayer(player);
+        toWorld.getPlayerChunkMap().addPlayer(player);
 
         final Vector3i toChunkPosition = toTransform.getLocation().getChunkPosition();
         toWorld.getChunkProvider().func_186025_d(toChunkPosition.getX(), toChunkPosition.getZ());
@@ -480,8 +480,8 @@ public final class EntityUtil {
             CriteriaTriggers.CHANGED_DIMENSION.trigger(player, fromWorld.dimension.getType(), toWorld.dimension.getType());
 
             if (fromWorld.dimension.getType() == DimensionType.NETHER && toWorld.dimension.getType() == DimensionType.OVERWORLD
-                && player.func_193106_Q() != null) {
-                CriteriaTriggers.NETHER_TRAVEL.trigger(player, player.func_193106_Q());
+                && player.getEnteredNetherPosition() != null) {
+                CriteriaTriggers.NETHER_TRAVEL.trigger(player, player.getEnteredNetherPosition());
             }
         }
         //
@@ -510,9 +510,9 @@ public final class EntityUtil {
             (byte) 22 : 23));
 
         if (!event.getKeepsVelocity()) {
-            player.field_70159_w = 0;
-            player.field_70181_x = 0;
-            player.field_70179_y = 0;
+            player.motionX = 0;
+            player.motionY = 0;
+            player.motionZ = 0;
         }
 
         SpongeImplHooks.handlePostChangeDimensionEvent(player, fromWorld, toWorld);
@@ -779,7 +779,7 @@ public final class EntityUtil {
         final List<Entity> entities = source.world.getEntitiesInAABBexcluding(source, traceBox.grow(1.0F, 1.0F, 1.0F), EntityUtil.TRACEABLE);
         for (final Entity entity : entities) {
             final AxisAlignedBB entityBB = entity.getBoundingBox().grow(entity.getCollisionBorderSize());
-            final RayTraceResult entityRay1 = entityBB.func_72327_a(traceStart, traceEnd);
+            final RayTraceResult entityRay1 = entityBB.calculateIntercept(traceStart, traceEnd);
 
             if (entityBB.contains(traceStart)) {
                 if (trace.distance >= 0.0D) {

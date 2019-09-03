@@ -264,7 +264,7 @@ public abstract class WorldMixin_API implements World {
     @Override
     public BlockType getBlockType(int x, int y, int z) {
         // avoid intermediate object creation from using BlockState
-        return (BlockType) getChunk(x >> 4, z >> 4).func_177435_g(new BlockPos(x, y, z)).getBlock();
+        return (BlockType) getChunk(x >> 4, z >> 4).getBlockState(new BlockPos(x, y, z)).getBlock();
     }
 
     @Override
@@ -369,7 +369,7 @@ public abstract class WorldMixin_API implements World {
 
         if (naturally && entity instanceof MobEntity) {
             // Adding the default equipment
-            ((MobEntity)entity).func_180482_a(world.getDifficultyForLocation(new BlockPos(x, y, z)), null);
+            ((MobEntity)entity).onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x, y, z)), null);
         }
 
         if (entity instanceof PaintingEntity) {
@@ -653,7 +653,7 @@ public abstract class WorldMixin_API implements World {
     public Optional<AABB> getBlockSelectionBox(int x, int y, int z) {
         final BlockPos pos = new BlockPos(x, y, z);
         final net.minecraft.block.BlockState state = getBlockState(pos);
-        final AxisAlignedBB box = state.func_185900_c((IBlockAccess) this, pos);
+        final AxisAlignedBB box = state.getBoundingBox((IBlockAccess) this, pos);
         try {
             return Optional.of(VecHelper.toSpongeAABB(box).offset(x, y, z));
         } catch (IllegalArgumentException exception) {
@@ -892,7 +892,7 @@ public abstract class WorldMixin_API implements World {
         checkNotNull(state, "state");
         SChangeBlockPacket packet = new SChangeBlockPacket();
         packet.pos = new BlockPos(x, y, z);
-        packet.field_148883_d = (net.minecraft.block.BlockState) state;
+        packet.blockState = (net.minecraft.block.BlockState) state;
 
         for (PlayerEntity player : this.playerEntities) {
             if (player instanceof ServerPlayerEntity) {
