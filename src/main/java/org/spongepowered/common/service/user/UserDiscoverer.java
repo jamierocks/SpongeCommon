@@ -252,7 +252,7 @@ class UserDiscoverer {
         // Although the player itself could be returned here (as Player extends
         // User), a plugin is more likely to cache the User object and we don't
         // want the player entity to be cached.
-        final EntityPlayerMPBridge player = (EntityPlayerMPBridge) playerList.func_177451_a(uniqueId);
+        final EntityPlayerMPBridge player = (EntityPlayerMPBridge) playerList.getPlayerByUUID(uniqueId);
         if (player != null) {
             // If we're getting the online player, we want their current user,
             // rather than something that is recreated and may be out of sync

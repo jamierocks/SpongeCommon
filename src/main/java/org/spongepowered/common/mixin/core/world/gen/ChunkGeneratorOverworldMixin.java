@@ -146,12 +146,12 @@ public abstract class ChunkGeneratorOverworldMixin implements PopulatorProviderB
         if (this.settings.field_177781_A) {
             final Lake lake = Lake.builder()
                     .chance(1d / this.settings.field_177782_B)
-                    .liquidType((BlockState) Blocks.field_150355_j.func_176223_P())
+                    .liquidType((BlockState) Blocks.WATER.getDefaultState())
                     .height(VariableAmount.baseWithRandomAddition(0, 256))
                     .build();
             final FilteredPopulator filtered = new FilteredPopulator(lake, (c) -> {
-                final Biome biomegenbase = this.world.func_180494_b(VecHelper.toBlockPos(c.getBlockMin()).func_177982_a(16, 0, 16));
-                return biomegenbase != Biomes.field_76769_d && biomegenbase != Biomes.field_76786_s;
+                final Biome biomegenbase = this.world.getBiome(VecHelper.toBlockPos(c.getBlockMin()).add(16, 0, 16));
+                return biomegenbase != Biomes.DESERT && biomegenbase != Biomes.DESERT_HILLS;
             });
             filtered.setRequiredFlags(WorldGenConstants.VILLAGE_FLAG);
             generator.getPopulators().add(filtered);
@@ -160,7 +160,7 @@ public abstract class ChunkGeneratorOverworldMixin implements PopulatorProviderB
         if (this.settings.field_177783_C) {
             final Lake lake = Lake.builder()
                     .chance(1d / this.settings.field_177777_D)
-                    .liquidType((BlockState) Blocks.field_150355_j.func_176223_P())
+                    .liquidType((BlockState) Blocks.WATER.getDefaultState())
                     .height(VariableAmount.baseWithVariance(0,
                             VariableAmount.baseWithRandomAddition(8, VariableAmount.baseWithOptionalAddition(55, 193, 0.1))))
                     .build();
@@ -283,7 +283,7 @@ public abstract class ChunkGeneratorOverworldMixin implements PopulatorProviderB
             // Only problem with this being set like this is the possibility of setting different biomes
             // than the biomes for the neighboring blocks. Of course, that point is invalidated by the fact that
             // the biome retrieved from the generated biome array is null.
-            biome = array[index] = Biomes.field_76772_c; // At the very least, avoid future nullability issues, strange world generation modifications that are occuring if this is reached.
+            biome = array[index] = Biomes.PLAINS; // At the very least, avoid future nullability issues, strange world generation modifications that are occuring if this is reached.
         }
         return biome;
     }

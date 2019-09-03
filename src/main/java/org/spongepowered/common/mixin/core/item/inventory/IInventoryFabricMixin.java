@@ -51,37 +51,37 @@ public interface IInventoryFabricMixin extends Fabric, IInventory, InventoryBrid
 
     @Override
     default ItemStack fabric$getStack(int index) {
-        return this.func_70301_a(index);
+        return this.getStackInSlot(index);
     }
 
     @Override
     default void fabric$setStack(int index, ItemStack stack) {
-        this.func_70299_a(index, stack);
+        this.setInventorySlotContents(index, stack);
     }
 
     @Override
     default int fabric$getMaxStackSize() {
-        return this.func_70297_j_();
+        return this.getInventoryStackLimit();
     }
 
     @Override
     default Translation fabric$getDisplayName() {
-        return new FixedTranslation(this.func_145748_c_().func_150260_c());
+        return new FixedTranslation(this.getDisplayName().func_150260_c());
     }
 
     @Override
     default int fabric$getSize() {
-        return this.func_70302_i_();
+        return this.getSizeInventory();
     }
 
     @Override
     default void fabric$clear() {
-        this.func_174888_l();
+        this.clear();
     }
 
     @Override
     default void fabric$markDirty() {
-        this.func_70296_d();
+        this.markDirty();
     }
 
 }

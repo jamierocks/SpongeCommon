@@ -43,7 +43,7 @@ public abstract class CommandGameRuleMixin_GlobalCommand {
             target = "Lnet/minecraft/world/GameRules;setOrCreateGameRule(Ljava/lang/String;Ljava/lang/String;)V"))
     private void globalCommand$setAllWorldGamerules(final GameRules gameRules, final String key, final String value) {
         for (final ServerWorld world : SpongeImpl.getServer().worlds) {
-            world.func_82736_K().func_82764_b(key, value);
+            world.getGameRules().func_82764_b(key, value);
         }
     }
 

@@ -326,7 +326,7 @@ public class SpongeCommandManager implements CommandManager {
                     context.notifier((User) source);
                 }
                 final TrackedInventoryBridge
-                    inventory = source instanceof PlayerEntity ? ((TrackedInventoryBridge) ((PlayerEntity) source).field_71071_by) : null;
+                    inventory = source instanceof PlayerEntity ? ((TrackedInventoryBridge) ((PlayerEntity) source).inventory) : null;
                 if (inventory != null) {
                     // Enable player inventory capture
                     context.inventory(inventory);

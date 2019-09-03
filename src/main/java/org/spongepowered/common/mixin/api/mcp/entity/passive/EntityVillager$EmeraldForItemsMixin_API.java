@@ -60,7 +60,7 @@ public class EmeraldForItemsMixin_API implements TradeOfferGenerator {
         }
 
         final ItemStack buyingItem = new ItemStack(this.buyingItem, buyingCount, 0);
-        return (TradeOffer) new MerchantRecipe(buyingItem, Items.field_151166_bC);
+        return (TradeOffer) new MerchantRecipe(buyingItem, Items.EMERALD);
     }
 
     @Override
