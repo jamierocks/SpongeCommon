@@ -44,7 +44,6 @@ import org.spongepowered.api.event.advancement.CriterionEvent;
 import org.spongepowered.api.event.cause.Cause;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.bridge.advancements.ICriterionTrigger$ListenerBridge;
-import org.spongepowered.common.bridge.advancements.ICriterionTrigger.ListenerBridge;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -107,7 +106,7 @@ public class SpongeTrigger implements ICriterionTrigger<SpongeFilteredTrigger>, 
         final Cause cause = Sponge.getCauseStackManager().getCurrentCause();
         final TypeToken<FilteredTriggerConfiguration> typeToken = TypeToken.of(this.triggerConfigurationClass);
         for (final Listener listener : new ArrayList<>(this.listeners.get(playerAdvancements))) {
-            final ListenerBridge mixinListener = (ListenerBridge) listener;
+            final ICriterionTrigger$ListenerBridge mixinListener = (ICriterionTrigger$ListenerBridge) listener;
             final Advancement advancement = (Advancement) mixinListener.bridge$getAdvancement();
             final AdvancementCriterion advancementCriterion = (AdvancementCriterion)
                     ((net.minecraft.advancements.Advancement) advancement).func_192073_f().get(mixinListener.bridge$getCriterionName());
