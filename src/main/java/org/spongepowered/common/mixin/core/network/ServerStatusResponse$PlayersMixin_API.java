@@ -40,7 +40,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 @Mixin(ServerStatusResponse.Players.class)
-public abstract class ServerStatusResponse$PlayersMixin_API implements ClientPingServerEvent.Response.Players {
+public abstract class PlayersMixin_API implements ClientPingServerEvent.Response.Players {
 
     @Shadow @Final @Mutable private int onlinePlayerCount;
     @Shadow @Final @Mutable private int maxPlayers;

@@ -47,7 +47,7 @@ public abstract class GrieferBridgeMixin implements GrieferBridge {
     public void bridge$SetCanGrief(final boolean grief) {
         this.griefer$canGrief = grief;
         if (!grief && this instanceof DataCompoundHolder && ((DataCompoundHolder) this).data$hasSpongeCompound()) {
-            ((DataCompoundHolder) this).data$getSpongeCompound().removeTag(Constants.Sponge.Entity.CAN_GRIEF);
+            ((DataCompoundHolder) this).data$getSpongeCompound().func_82580_o(Constants.Sponge.Entity.CAN_GRIEF);
         }
     }
 

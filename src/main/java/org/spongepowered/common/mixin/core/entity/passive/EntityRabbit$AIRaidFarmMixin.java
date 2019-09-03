@@ -40,7 +40,7 @@ public abstract class EntityRabbit$AIRaidFarmMixin extends EntityAIMoveToBlock {
 
     @Shadow @Final private EntityRabbit rabbit;
 
-    public EntityRabbit$AIRaidFarmMixin(final EntityCreature entityCreature, final double a, final int b) {
+    public AIRaidFarmMixin(final EntityCreature entityCreature, final double a, final int b) {
         super(entityCreature, a, b);
     }
 
@@ -58,7 +58,7 @@ public abstract class EntityRabbit$AIRaidFarmMixin extends EntityAIMoveToBlock {
         cancellable = true
     )
     private void onCanGrief(final CallbackInfoReturnable<Boolean> cir) {
-        if (this.runDelay <= 0) {
+        if (this.field_179496_a <= 0) {
             if (!((GrieferBridge) this.rabbit).bridge$CanGrief()) {
                 cir.setReturnValue(false);
             }

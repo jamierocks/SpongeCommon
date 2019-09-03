@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Random;
 
 @Mixin(EntityVillager.ITradeList.class)
-public interface EntityVillager$ITradeListMixin_API extends TradeOfferListMutator, EntityVillager.ITradeList {
+public interface ITradeListMixin_API extends TradeOfferListMutator, EntityVillager.ITradeList {
 
     @Override
     default void accept(final Merchant owner, final List<TradeOffer> tradeOffers, final Random random) {
@@ -46,7 +46,7 @@ public interface EntityVillager$ITradeListMixin_API extends TradeOfferListMutato
         for (final TradeOffer offer : tradeOffers) {
             tempList.add(TradeOfferUtil.toNative(offer));
         }
-        addMerchantRecipe((IMerchant) owner, tempList, random);
+        func_190888_a((IMerchant) owner, tempList, random);
         tradeOffers.clear();
         for (final MerchantRecipe recipe : tempList) {
             tradeOffers.add(TradeOfferUtil.fromNative(recipe));

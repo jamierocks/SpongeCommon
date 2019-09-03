@@ -139,9 +139,9 @@ class UserDiscoverer {
 
         // check mojang cache
         final PlayerProfileCache cache = SpongeImpl.getServer().getPlayerProfileCache();
-        final HashSet<String> names = Sets.newHashSet(cache.getUsernames());
+        final HashSet<String> names = Sets.newHashSet(cache.func_152654_a());
         if (names.contains(username.toLowerCase(Locale.ROOT))) {
-            final GameProfile profile = cache.getGameProfileForUsername(username);
+            final GameProfile profile = cache.func_152655_a(username);
             if (profile != null) {
                 return findByProfile((org.spongepowered.api.profile.GameProfile) profile);
             }
@@ -171,8 +171,8 @@ class UserDiscoverer {
         userCache.asMap().values().stream().map(User::getProfile).forEach(p -> profiles.put(p.getUniqueId(), p));
 
         // Add all known profiles from the data files
-        final SaveHandler saveHandler = (SaveHandler) WorldManager.getWorldByDimensionId(0).get().getSaveHandler();
-        final String[] uuids = saveHandler.getAvailablePlayerDat();
+        final SaveHandler saveHandler = (SaveHandler) WorldManager.getWorldByDimensionId(0).get().func_72860_G();
+        final String[] uuids = saveHandler.func_75754_f();
         final PlayerProfileCache profileCache = SpongeImpl.getServer().getPlayerProfileCache();
         for (final String playerUuid : uuids) {
 
@@ -193,7 +193,7 @@ class UserDiscoverer {
 
             // it exists, so we make sure to remove the uuid from the map (it may have been added manually in the meantime)
             nonExistentUsers.remove(uuid);
-            final GameProfile profile = profileCache.getProfileByUUID(uuid);
+            final GameProfile profile = profileCache.func_152652_a(uuid);
             if (profile != null) {
                 profiles.put(profile.getId(), (org.spongepowered.api.profile.GameProfile) profile);
             }
@@ -222,12 +222,12 @@ class UserDiscoverer {
                 .map(entry -> ((UserLIstEntryAccessor<GameProfile>) entry).accessor$getValue())
                 .forEach(x -> {
                     // Get the known name, if it doesn't exist, then we don't add it - we assume no user backing
-                    GameProfile profile = profileCache.getProfileByUUID(x.getId());
+                    GameProfile profile = profileCache.func_152652_a(x.getId());
                     if (profile == null) {
                         // the name could be valid in this case (e.g. old ban that has dropped off the cache),
                         // so we add it to the Mojang cache
                         profile = x;
-                        profileCache.addEntry(profile);
+                        profileCache.func_152649_a(profile);
                     }
 
                     profiles.put(profile.getId(), (org.spongepowered.api.profile.GameProfile) profile);
@@ -253,7 +253,7 @@ class UserDiscoverer {
         // Although the player itself could be returned here (as Player extends
         // User), a plugin is more likely to cache the User object and we don't
         // want the player entity to be cached.
-        final EntityPlayerMPBridge player = (EntityPlayerMPBridge) playerList.getPlayerByUUID(uniqueId);
+        final EntityPlayerMPBridge player = (EntityPlayerMPBridge) playerList.func_177451_a(uniqueId);
         if (player != null) {
             // If we're getting the online player, we want their current user,
             // rather than something that is recreated and may be out of sync
@@ -310,7 +310,7 @@ class UserDiscoverer {
     private static User getFromWhitelist(final UUID uniqueId) {
         GameProfile profile = null;
         final UserListWhitelist whiteList = SpongeImpl.getServer().getPlayerList().getWhitelistedPlayers();
-        final UserListWhitelistEntry whiteListData = whiteList.getEntry(new GameProfile(uniqueId, ""));
+        final UserListWhitelistEntry whiteListData = whiteList.func_152683_b(new GameProfile(uniqueId, ""));
         if (whiteListData != null) {
             profile = ((UserLIstEntryAccessor<GameProfile>) whiteListData).accessor$getValue();
         }
@@ -324,7 +324,7 @@ class UserDiscoverer {
     private static User getFromBanlist(final UUID uniqueId) {
         GameProfile profile = null;
         final UserListBans banList = SpongeImpl.getServer().getPlayerList().getBannedPlayers();
-        final UserListEntryBan<GameProfile> banData = banList.getEntry(new GameProfile(uniqueId, ""));
+        final UserListEntryBan<GameProfile> banData = banList.func_152683_b(new GameProfile(uniqueId, ""));
         if (banData != null) {
             profile = ((UserLIstEntryAccessor<GameProfile>) banData).accessor$getValue();
         }
@@ -344,7 +344,7 @@ class UserDiscoverer {
         }
 
         // Note: Uses the overworld's player data
-        final SaveHandlerAccessor saveHandler = (SaveHandlerAccessor) worldServer.get().getSaveHandler();
+        final SaveHandlerAccessor saveHandler = (SaveHandlerAccessor) worldServer.get().func_72860_G();
         final File file = new File(saveHandler.accessor$getPlayersDirectory(), uniqueId.toString() + ".dat");
         if (file.exists()) {
             return file;
@@ -367,13 +367,13 @@ class UserDiscoverer {
 
     private static boolean deleteWhitelistEntry(final UUID uniqueId) {
         final UserListWhitelist whiteList = SpongeImpl.getServer().getPlayerList().getWhitelistedPlayers();
-        whiteList.removeEntry(new GameProfile(uniqueId, ""));
+        whiteList.func_152684_c(new GameProfile(uniqueId, ""));
         return true;
     }
 
     private static boolean deleteBanlistEntry(final UUID uniqueId) {
         final UserListBans banList = SpongeImpl.getServer().getPlayerList().getBannedPlayers();
-        banList.removeEntry(new GameProfile(uniqueId, ""));
+        banList.func_152684_c(new GameProfile(uniqueId, ""));
         return true;
     }
 

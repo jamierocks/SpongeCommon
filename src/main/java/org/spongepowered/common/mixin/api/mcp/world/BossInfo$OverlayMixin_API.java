@@ -33,7 +33,7 @@ import java.util.Locale;
 import javax.annotation.Nullable;
 
 @Mixin(BossInfo.Overlay.class)
-public class BossInfo$OverlayMixin_API implements BossBarOverlay {
+public class OverlayMixin_API implements BossBarOverlay {
 
     @Nullable private String api$name;
     @Nullable private String api$id;
