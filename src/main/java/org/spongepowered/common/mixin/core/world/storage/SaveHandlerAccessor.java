@@ -24,13 +24,13 @@
  */
 package org.spongepowered.common.mixin.core.world.storage;
 
-import net.minecraft.world.storage.SaveHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.io.File;
+import net.minecraft.world.storage.SaveHandler_INVALID_1131;
 
-@Mixin(SaveHandler.class)
+@Mixin(SaveHandler_INVALID_1131.class)
 public interface SaveHandlerAccessor {
 
     /** The directory in which to save player data. */

@@ -33,7 +33,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 import com.google.inject.Singleton;
-import net.minecraft.entity.player.EntityPlayer;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.CommandCallable;
@@ -82,6 +81,7 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * A simple implementation of {@link CommandManager}.
@@ -326,7 +326,7 @@ public class SpongeCommandManager implements CommandManager {
                     context.notifier((User) source);
                 }
                 final TrackedInventoryBridge
-                    inventory = source instanceof EntityPlayer ? ((TrackedInventoryBridge) ((EntityPlayer) source).field_71071_by) : null;
+                    inventory = source instanceof PlayerEntity ? ((TrackedInventoryBridge) ((PlayerEntity) source).field_71071_by) : null;
                 if (inventory != null) {
                     // Enable player inventory capture
                     context.inventory(inventory);
