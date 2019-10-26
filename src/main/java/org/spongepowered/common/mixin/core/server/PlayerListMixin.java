@@ -52,7 +52,6 @@ import net.minecraft.server.management.UserListIPBans;
 import net.minecraft.server.management.UserListWhitelist;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.border.WorldBorder;
@@ -218,7 +217,7 @@ public abstract class PlayerListMixin implements PlayerListBridge {
             // Cannot respawn in requested world, use the fallback dimension for
             // that world. (Usually overworld unless a mod says otherwise).
             if (!toDimension.allowsPlayerRespawns()) {
-                toDimensionId = SpongeImplHooks.getRespawnDimension((WorldProvider) toDimension, playerIn);
+                toDimensionId = SpongeImplHooks.getRespawnDimension((net.minecraft.world.dimension.Dimension) toDimension, playerIn);
                 worldServer = worldServer.func_73046_m().func_71218_a(toDimensionId);
             }
 
