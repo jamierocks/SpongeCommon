@@ -45,7 +45,7 @@ import net.minecraft.world.gen.feature.EndCrystalTowerFeature;
 import net.minecraft.world.gen.feature.EndIslandFeature;
 import net.minecraft.world.gen.feature.FireFeature;
 import net.minecraft.world.gen.feature.FossilsFeature;
-import net.minecraft.world.gen.feature.GlowStoneFeature;
+import net.minecraft.world.gen.feature.GlowstoneFeature;
 import net.minecraft.world.gen.feature.HellLavaFeature;
 import net.minecraft.world.gen.feature.HugeTreesFeature;
 import net.minecraft.world.gen.feature.IcePathFeature;
@@ -181,7 +181,7 @@ public final class PopulatorTypeRegistryModule implements AdditionalCatalogRegis
         this.populatorClassToTypeMappings.put(FireFeature.class, this.populatorTypeMappings.get("minecraft:generic_block"));
         this.populatorClassToTypeMappings.put(AbstractFlowersFeature.class, this.populatorTypeMappings.get("minecraft:flower"));
         this.populatorClassToTypeMappings.put(FossilsFeature.class, this.populatorTypeMappings.get("minecraft:fossil"));
-        this.populatorClassToTypeMappings.put(GlowStoneFeature.class, this.populatorTypeMappings.get("minecraft:glowstone"));
+        this.populatorClassToTypeMappings.put(GlowstoneFeature.class, this.populatorTypeMappings.get("minecraft:glowstone"));
         this.populatorClassToTypeMappings.put(WorldGenGlowStone2.class, this.populatorTypeMappings.get("minecraft:glowstone"));
         this.populatorClassToTypeMappings.put(HellLavaFeature.class, this.populatorTypeMappings.get("minecraft:generic_block"));
         this.populatorClassToTypeMappings.put(HugeTreesFeature.class, this.populatorTypeMappings.get("minecraft:forest"));
