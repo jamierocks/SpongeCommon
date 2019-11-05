@@ -736,7 +736,7 @@ public final class WorldManager {
             // Step 3 - Get our world information from disk
             final SaveHandler saveHandler;
             if (dimensionId == 0) {
-                saveHandler = server.getActiveAnvilConverter().func_75804_a(server.getFolderName(), true);
+                saveHandler = server.getActiveAnvilConverter().getSaveLoader(server.getFolderName(), true);
             } else {
                 saveHandler = new AnvilSaveHandler(WorldManager.getCurrentSavesDirectory().get().toFile(), worldFolderName, true, ((MinecraftServerAccessor) SpongeImpl.getServer()).accessor$getDataFixer());
             }
@@ -823,7 +823,7 @@ public final class WorldManager {
     private static WorldInfo createWorldInfoFromSettings(final Path currentSaveRoot, final org.spongepowered.api.world.DimensionType dimensionType, final int
       dimensionId, final String worldFolderName, final WorldSettings worldSettings, final String generatorOptions) {
 
-        worldSettings.func_82750_a(generatorOptions);
+        worldSettings.setGeneratorOptions(generatorOptions);
 
         ((WorldSettingsBridge) (Object) worldSettings).bridge$setDimensionType(dimensionType);
         ((WorldSettingsBridge)(Object) worldSettings).bridge$setGenerateSpawnOnLoad(((DimensionTypeBridge) dimensionType).bridge$shouldGenerateSpawnOnLoad());
@@ -1000,7 +1000,7 @@ public final class WorldManager {
                     continue;
                 }
 
-                spongeDataCompound = DataUtil.spongeDataFixer.func_188257_a(FixTypes.LEVEL, spongeDataCompound);
+                spongeDataCompound = DataUtil.spongeDataFixer.process(FixTypes.LEVEL, spongeDataCompound);
 
                 final int dimensionId = spongeDataCompound.getInt(Constants.Sponge.World.DIMENSION_ID);
                 // We do not handle Vanilla dimensions, skip them
@@ -1291,7 +1291,7 @@ public final class WorldManager {
         if (optWorldServer.isPresent()) {
             return Optional.of(optWorldServer.get().func_72860_G().func_75765_b().toPath());
         } else if (SpongeImpl.getGame().getState().ordinal() >= GameState.SERVER_ABOUT_TO_START.ordinal()) {
-            final SaveHandler_INVALID_1131 saveHandler = (SaveHandler_INVALID_1131) SpongeImpl.getServer().getActiveAnvilConverter().func_75804_a(SpongeImpl.getServer().getFolderName(), false);
+            final SaveHandler_INVALID_1131 saveHandler = (SaveHandler_INVALID_1131) SpongeImpl.getServer().getActiveAnvilConverter().getSaveLoader(SpongeImpl.getServer().getFolderName(), false);
             return Optional.of(saveHandler.func_75765_b().toPath());
         }
 

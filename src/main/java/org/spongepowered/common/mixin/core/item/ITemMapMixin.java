@@ -42,7 +42,7 @@ public class ITemMapMixin extends AbstractMapItem {
     @Redirect(method = "setupNewMap", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getUniqueDataId(Ljava/lang/String;)I"))
     private static int onCreateMap(World worldIn, String key) {
         if (worldIn.isRemote) {
-            return worldIn.func_72841_b(key);
+            return worldIn.getUniqueDataId(key);
         }
         return WorldManager.getWorldByDimensionId(0).get().func_72841_b(key);
     }
@@ -51,7 +51,7 @@ public class ITemMapMixin extends AbstractMapItem {
         + "setData(Ljava/lang/String;Lnet/minecraft/world/storage/WorldSavedData;)V"))
     private static void onSetupNewMapSetOverworldMapData(World worldIn, String dataId, WorldSavedData data) {
         if (worldIn.isRemote) {
-            worldIn.func_72823_a(dataId, data);
+            worldIn.setData(dataId, data);
         } else {
             WorldManager.getWorldByDimensionId(0).get().func_72823_a(dataId, data);
         }
@@ -62,7 +62,7 @@ public class ITemMapMixin extends AbstractMapItem {
         + "loadData(Ljava/lang/Class;Ljava/lang/String;)Lnet/minecraft/world/storage/WorldSavedData;"))
     private WorldSavedData loadOverworldMapData(World worldIn, Class<? extends WorldSavedData> clazz, String dataId) {
         if (worldIn.isRemote) {
-            return worldIn.func_72943_a(clazz, dataId);
+            return worldIn.loadData(clazz, dataId);
         }
         return WorldManager.getWorldByDimensionId(0).get().func_72943_a(clazz, dataId);
     }
@@ -83,7 +83,7 @@ public class ITemMapMixin extends AbstractMapItem {
     @Redirect(method = "scaleMap", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getUniqueDataId(Ljava/lang/String;)I"))
     private static int onScaleMapGetOverworldUniqueDataId(World worldIn, String key) {
         if (worldIn.isRemote) {
-            return worldIn.func_72841_b(key);
+            return worldIn.getUniqueDataId(key);
         }
         return WorldManager.getWorldByDimensionId(0).get().func_72841_b(key);
     }
@@ -92,7 +92,7 @@ public class ITemMapMixin extends AbstractMapItem {
         + "setData(Ljava/lang/String;Lnet/minecraft/world/storage/WorldSavedData;)V"))
     private static void onScaleMapSetOverworldMapData(World worldIn, String dataId, WorldSavedData data) {
         if (worldIn.isRemote) {
-            worldIn.func_72823_a(dataId, data);
+            worldIn.setData(dataId, data);
         } else {
             WorldManager.getWorldByDimensionId(0).get().func_72823_a(dataId, data);
         }
@@ -101,7 +101,7 @@ public class ITemMapMixin extends AbstractMapItem {
     @Redirect(method = "enableMapTracking", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getUniqueDataId(Ljava/lang/String;)I"))
     private static int onEnableMapTrackingGetOverworldUniqueDataId(World worldIn, String key) {
         if (worldIn.isRemote) {
-            return worldIn.func_72841_b(key);
+            return worldIn.getUniqueDataId(key);
         }
         return WorldManager.getWorldByDimensionId(0).get().func_72841_b(key);
     }
@@ -110,7 +110,7 @@ public class ITemMapMixin extends AbstractMapItem {
         + "setData(Ljava/lang/String;Lnet/minecraft/world/storage/WorldSavedData;)V"))
     private static void onEnableMapTrackingSetOverworldMapData(World worldIn, String dataId, WorldSavedData data) {
         if (worldIn.isRemote) {
-            worldIn.func_72823_a(dataId, data);
+            worldIn.setData(dataId, data);
         } else {
             WorldManager.getWorldByDimensionId(0).get().func_72823_a(dataId, data);
         }

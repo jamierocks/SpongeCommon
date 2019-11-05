@@ -138,7 +138,7 @@ class UserDiscoverer {
 
         // check mojang cache
         final PlayerProfileCache cache = SpongeImpl.getServer().getPlayerProfileCache();
-        final HashSet<String> names = Sets.newHashSet(cache.func_152654_a());
+        final HashSet<String> names = Sets.newHashSet(cache.getUsernames());
         if (names.contains(username.toLowerCase(Locale.ROOT))) {
             final GameProfile profile = cache.getGameProfileForUsername(username);
             if (profile != null) {

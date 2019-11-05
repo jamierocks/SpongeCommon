@@ -204,7 +204,7 @@ public class SpongeBlockSnapshot implements BlockSnapshot {
                     // Because, some mods will "unintentionally" only obey some of the rules but not all.
                     // In cases like this, we need to directly just say "fuck it" and deserialize from the compound directly.
                     try {
-                        te = TileEntity.func_190200_a(world, this.compound);
+                        te = TileEntity.create(world, this.compound);
                         if (te != null) {
                             world.func_175726_f(pos).func_150813_a(te);
                         }

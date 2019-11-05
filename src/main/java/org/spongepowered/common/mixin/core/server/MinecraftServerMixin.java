@@ -184,7 +184,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
 
         WorldManager.loadAllWorlds(seed, type, generatorOptions);
 
-        this.getPlayerList().func_72364_a(this.worlds);
+        this.getPlayerList().setPlayerManager(this.worlds);
         this.setDifficultyForAllWorlds(this.getDifficulty());
     }
 
@@ -221,10 +221,10 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
             LOGGER.info("Preparing start region for world {} ({}/{})", worldServer.func_72912_H().func_76065_j(),
                 ((DimensionType) (Object) worldServer.field_73011_w.func_186058_p()).getId(), ((WorldServerBridge) worldServer).bridge$getDimensionId());
             final BlockPos blockpos = worldServer.func_175694_M();
-            long j = MinecraftServer.func_130071_aq();
+            long j = MinecraftServer.getCurrentTimeMillis();
             for (int k = -192; k <= 192 && this.isServerRunning(); k += 16) {
                 for (int l = -192; l <= 192 && this.isServerRunning(); l += 16) {
-                    final long i1 = MinecraftServer.func_130071_aq();
+                    final long i1 = MinecraftServer.getCurrentTimeMillis();
 
                     if (i1 - j > 1000L) {
                         this.outputPercentRemaining("Preparing spawn area", i * 100 / 625);
@@ -330,7 +330,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
 
                 final RayTraceResult result = SpongeImplHooks.rayTraceEyes(player, SpongeImplHooks.getBlockReachDistance(player) + 1);
                 // Hit non-air block
-                if (result != null && result.func_178782_a() != null) {
+                if (result != null && result.getBlockPos() != null) {
                     return;
                 }
 

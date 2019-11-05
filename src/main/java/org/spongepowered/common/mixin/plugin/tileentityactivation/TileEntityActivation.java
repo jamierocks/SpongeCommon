@@ -133,7 +133,7 @@ public class TileEntityActivation {
         for (final PlayerChunkMapEntry playerChunkMapEntry : ((PlayerChunkMapAccessor) playerChunkMap).accessor$getEntries()) {
             for (final PlayerEntity player : ((PlayerchunkMapEntryAccessor) playerChunkMapEntry).accessor$getPlayers()) {
                 final Chunk chunk = ((PlayerchunkMapEntryAccessor) playerChunkMapEntry).accessor$getChunk();
-                if (chunk == null || chunk.field_189550_d || ((ChunkBridge) chunk).bridge$isPersistedChunk()) {
+                if (chunk == null || chunk.unloadQueued || ((ChunkBridge) chunk).bridge$isPersistedChunk()) {
                     continue;
                 }
 

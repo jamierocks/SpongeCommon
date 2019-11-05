@@ -112,7 +112,7 @@ class ChunkSaveHelper {
                             writer.name("z").value(tile.getPos().getZ());
                             writer.name("isInvalid").value(tile.isRemoved());
                             // writer.name("canUpdate").value(tile.canUpdate());
-                            writer.name("block").value("" + tile.func_145838_q());
+                            writer.name("block").value("" + tile.getBlockType());
                             writer.endObject();
                         }
                         final ChunkPos chunkCoords = new ChunkPos(tile.getPos().getX() >> 4, tile.getPos().getZ() >> 4);

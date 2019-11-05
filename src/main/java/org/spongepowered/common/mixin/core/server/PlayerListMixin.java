@@ -225,7 +225,7 @@ public abstract class PlayerListMixin implements PlayerListBridge {
             final BlockPos bedPos = SpongeImplHooks.getBedLocation(playerIn, toDimensionId);
             if (bedPos != null) { // Player has a bed
                 final boolean forceBedSpawn = SpongeImplHooks.isSpawnForced(playerIn, toDimensionId);
-                final BlockPos bedSpawnLoc = PlayerEntity.func_180467_a(worldServer, bedPos, forceBedSpawn);
+                final BlockPos bedSpawnLoc = PlayerEntity.getBedSpawnLocation(worldServer, bedPos, forceBedSpawn);
                 if (bedSpawnLoc != null) { // The bed exists and is not obstructed
                     tempIsBedSpawn = true;
                     targetSpawnVec = new Vector3d(bedSpawnLoc.getX() + 0.5D, bedSpawnLoc.getY() + 0.1D, bedSpawnLoc.getZ() + 0.5D);
@@ -262,11 +262,11 @@ public abstract class PlayerListMixin implements PlayerListBridge {
         playerIn.setPosition(tempPos.getX(), tempPos.getY(), tempPos.getZ());
 
         // ### PHASE 2 ### Remove player from current dimension
-        playerIn.getServerWorld().func_73039_n().func_72787_a(playerIn);
-        playerIn.getServerWorld().func_73039_n().func_72790_b(playerIn);
-        playerIn.getServerWorld().func_184164_w().func_72695_c(playerIn);
+        playerIn.getServerWorld().getEntityTracker().removePlayerFromTrackers(playerIn);
+        playerIn.getServerWorld().getEntityTracker().untrack(playerIn);
+        playerIn.getServerWorld().getPlayerChunkMap().removePlayer(playerIn);
         this.playerEntityList.remove(playerIn);
-        this.server.getWorld(playerIn.dimension).func_72973_f(playerIn);
+        this.server.getWorld(playerIn.dimension).removeEntityDangerously(playerIn);
         final BlockPos bedPos = SpongeImplHooks.getBedLocation(playerIn, targetDimension);
 
         // ### PHASE 3 ### Reset player (if applicable)
@@ -285,7 +285,7 @@ public abstract class PlayerListMixin implements PlayerListBridge {
         // set player dimension for RespawnPlayerEvent
         newPlayer.dimension = targetDimension;
         newPlayer.setEntityId(playerIn.getEntityId());
-        newPlayer.func_174817_o(playerIn);
+        newPlayer.setCommandStats(playerIn);
         newPlayer.setPrimaryHand(playerIn.getPrimaryHand());
 
         // Sponge - Vanilla does this before recreating the player entity. However, we need to determine the bed location

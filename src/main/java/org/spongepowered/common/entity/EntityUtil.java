@@ -254,7 +254,7 @@ public final class EntityUtil {
         final Entity toReturn;
 
         if (recreate) {
-            toReturn = EntityList.func_191304_a(entity.getClass(), toWorld);
+            toReturn = EntityList.newEntity(entity.getClass(), toWorld);
             sEntity = (org.spongepowered.api.entity.Entity) toReturn;
             if (toReturn == null) {
                 return entity;
@@ -266,9 +266,9 @@ public final class EntityUtil {
         }
 
         if (!event.getKeepsVelocity()) {
-            toReturn.field_70159_w = 0;
-            toReturn.field_70181_x = 0;
-            toReturn.field_70179_y = 0;
+            toReturn.motionX = 0;
+            toReturn.motionY = 0;
+            toReturn.motionZ = 0;
         }
 
         if (loadChunks) {
@@ -480,8 +480,8 @@ public final class EntityUtil {
             CriteriaTriggers.CHANGED_DIMENSION.trigger(player, fromWorld.field_73011_w.func_186058_p(), toWorld.field_73011_w.func_186058_p());
 
             if (fromWorld.field_73011_w.func_186058_p() == DimensionType.NETHER && toWorld.field_73011_w.func_186058_p() == DimensionType.OVERWORLD
-                && player.func_193106_Q() != null) {
-                CriteriaTriggers.NETHER_TRAVEL.trigger(player, player.func_193106_Q());
+                && player.getEnteredNetherPosition() != null) {
+                CriteriaTriggers.NETHER_TRAVEL.trigger(player, player.getEnteredNetherPosition());
             }
         }
         //
@@ -510,9 +510,9 @@ public final class EntityUtil {
             (byte) 22 : 23));
 
         if (!event.getKeepsVelocity()) {
-            player.field_70159_w = 0;
-            player.field_70181_x = 0;
-            player.field_70179_y = 0;
+            player.motionX = 0;
+            player.motionY = 0;
+            player.motionZ = 0;
         }
 
         SpongeImplHooks.handlePostChangeDimensionEvent(player, fromWorld, toWorld);
@@ -779,7 +779,7 @@ public final class EntityUtil {
         final List<Entity> entities = source.world.getEntitiesInAABBexcluding(source, traceBox.grow(1.0F, 1.0F, 1.0F), EntityUtil.TRACEABLE);
         for (final Entity entity : entities) {
             final AxisAlignedBB entityBB = entity.getBoundingBox().grow(entity.getCollisionBorderSize());
-            final RayTraceResult entityRay1 = entityBB.func_72327_a(traceStart, traceEnd);
+            final RayTraceResult entityRay1 = entityBB.calculateIntercept(traceStart, traceEnd);
 
             if (entityBB.contains(traceStart)) {
                 if (trace.distance >= 0.0D) {
@@ -822,7 +822,7 @@ public final class EntityUtil {
         final Vec3d traceStart = EntityUtil.getPositionEyes(source, partialTicks);
         final Vec3d lookDir = source.getLook(partialTicks).scale(traceDistance);
         final Vec3d traceEnd = traceStart.add(lookDir);
-        return source.world.func_147447_a(traceStart, traceEnd, false, false, true);
+        return source.world.rayTraceBlocks(traceStart, traceEnd, false, false, true);
     }
 
     private static Vec3d getPositionEyes(final Entity entity, final float partialTicks)
