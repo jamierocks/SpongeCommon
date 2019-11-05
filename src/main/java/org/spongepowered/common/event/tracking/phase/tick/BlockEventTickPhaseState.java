@@ -147,7 +147,7 @@ class BlockEventTickPhaseState extends TickPhaseState<BlockEventTickContext> {
             final LocatableBlock source = (LocatableBlock) context.getSource();
             // Basically, if the source was a tile entity, and during the block event, it changed?
             // and if any of the transaction cancelled, the whole thing should be cancelled.
-            if (SpongeImplHooks.hasBlockTileEntity(((net.minecraft.block.BlockState) source.getBlockState()).func_177230_c(), (net.minecraft.block.BlockState) source.getBlockState())) {
+            if (SpongeImplHooks.hasBlockTileEntity(((net.minecraft.block.BlockState) source.getBlockState()).getBlock(), (net.minecraft.block.BlockState) source.getBlockState())) {
                 context.setWasNotCancelled(noCancelledTransactions);
                 return !noCancelledTransactions;
             }

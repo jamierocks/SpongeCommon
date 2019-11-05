@@ -40,7 +40,7 @@ public abstract class CommandSetDefaultSpawnpointMixin_GlobalCommand {
         at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/World;setSpawnPoint(Lnet/minecraft/util/math/BlockPos;)V"))
     private void globalCommand$setSpawnPointForAllWorlds(final World world, final BlockPos pos) {
-        for (final ServerWorld worldServer : SpongeImpl.getServer().field_71305_c) {
+        for (final ServerWorld worldServer : SpongeImpl.getServer().worlds) {
             worldServer.func_175652_B(pos);
         }
     }

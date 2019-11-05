@@ -725,7 +725,7 @@ public interface IPhaseState<C extends PhaseContext<C>> {
     default void appendNotifierPreBlockTick(final WorldServerBridge mixinWorld, final BlockPos pos, final C context, final BlockTickContext phaseContext) {
         final Chunk chunk = ((ServerWorld) mixinWorld).func_175726_f(pos);
         final ChunkBridge mixinChunk = (ChunkBridge) chunk;
-        if (chunk != null && !chunk.func_76621_g()) {
+        if (chunk != null && !chunk.isEmpty()) {
             mixinChunk.bridge$getBlockOwner(pos).ifPresent(phaseContext::owner);
             mixinChunk.bridge$getBlockNotifier(pos).ifPresent(phaseContext::notifier);
         }
@@ -873,7 +873,7 @@ public interface IPhaseState<C extends PhaseContext<C>> {
     default BlockChange associateBlockChangeWithSnapshot(final C phaseContext, final BlockState newState, final Block newBlock,
         final BlockState currentState, final SpongeBlockSnapshot snapshot,
         final Block originalBlock) {
-        if (newBlock == Blocks.field_150350_a) {
+        if (newBlock == Blocks.AIR) {
             return BlockChange.BREAK;
         } else if (newBlock != originalBlock && !TrackingUtil.forceModify(originalBlock, newBlock)) {
             return BlockChange.PLACE;

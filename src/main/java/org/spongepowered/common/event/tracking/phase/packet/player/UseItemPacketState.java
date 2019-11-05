@@ -84,10 +84,10 @@ public final class UseItemPacketState extends BasicPacketState {
     @Override
     public void populateContext(ServerPlayerEntity playerMP, IPacket<?> packet, BasicPacketContext context) {
         final CPlayerTryUseItemPacket placeBlock = (CPlayerTryUseItemPacket) packet;
-        final net.minecraft.item.ItemStack usedItem = playerMP.func_184586_b(placeBlock.func_187028_a());
+        final net.minecraft.item.ItemStack usedItem = playerMP.getHeldItem(placeBlock.getHand());
         final ItemStack itemstack = ItemStackUtil.cloneDefensive(usedItem);
         context.itemUsed(itemstack);
-        final HandType handType = (HandType) (Object) placeBlock.func_187028_a();
+        final HandType handType = (HandType) (Object) placeBlock.getHand();
         context.handUsed(handType);
     }
 

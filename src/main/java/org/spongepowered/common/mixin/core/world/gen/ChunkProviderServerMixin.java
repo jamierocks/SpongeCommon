@@ -203,8 +203,8 @@ public abstract class ChunkProviderServerMixin implements ChunkProviderServerBri
         @Coerce final Object provider, final int someVar, final int someOther) {
 
         final PhaseContext<?> currentContext = PhaseTracker.getInstance().getCurrentContext();
-        report.func_85057_a("Current PhaseState", 1)
-            .func_189529_a(currentContext.state.toString(), () -> {
+        report.makeCategoryDepth("Current PhaseState", 1)
+            .addDetail(currentContext.state.toString(), () -> {
 
                 final PrettyPrinter printer = new PrettyPrinter(50);
                 PhaseTracker.CONTEXT_PRINTER.accept(printer, currentContext);
@@ -301,7 +301,7 @@ public abstract class ChunkProviderServerMixin implements ChunkProviderServerBri
     // This allows the chunk to unload if currently queued.
     @Override
     public Chunk bridge$getLoadedChunkWithoutMarkingActive(final int x, final int z){
-        final long i = ChunkPos.func_77272_a(x, z);
+        final long i = ChunkPos.asLong(x, z);
         return this.loadedChunks.get(i);
     }
 
@@ -339,7 +339,7 @@ public abstract class ChunkProviderServerMixin implements ChunkProviderServerBri
             this.saveChunkData(chunk);
         }
 
-        this.loadedChunks.remove(ChunkPos.func_77272_a(chunk.field_76635_g, chunk.field_76647_h));
+        this.loadedChunks.remove(ChunkPos.asLong(chunk.field_76635_g, chunk.field_76647_h));
         ((ChunkBridge) chunk).bridge$setScheduledForUnload(-1);
     }
 }

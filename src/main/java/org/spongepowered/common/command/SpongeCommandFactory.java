@@ -540,7 +540,7 @@ public class SpongeCommandFactory {
                         "Failed to find a block! Please execute the command when looking at a block!"));
                     return CommandResult.empty();
                 }
-                final ServerWorld worldServer = (ServerWorld) entityPlayerMP.field_70170_p;
+                final ServerWorld worldServer = (ServerWorld) entityPlayerMP.world;
                 final Chunk chunk = worldServer.func_175726_f(rayTraceResult.func_178782_a());
                 final ChunkBridge mixinChunk = (ChunkBridge) chunk;
                 final net.minecraft.block.BlockState blockState = worldServer.func_180495_p(rayTraceResult.func_178782_a());
@@ -845,7 +845,7 @@ public class SpongeCommandFactory {
                 } else {
                     Sponge.getServer().getWorlds().forEach(world -> printWorldTickTime(src, world));
                 }
-                final double serverMeanTickTime = mean(SpongeImpl.getServer().field_71311_j) * 1.0e-6d;
+                final double serverMeanTickTime = mean(SpongeImpl.getServer().tickTimeArray) * 1.0e-6d;
                 src.sendMessage(Text.of("Overall TPS: ", TextColors.LIGHT_PURPLE,
                     THREE_DECIMAL_DIGITS_FORMATTER.format(Math.min(1000.0 / (serverMeanTickTime), 20)),
                     TextColors.RESET, ", Mean: ", TextColors.RED, THREE_DECIMAL_DIGITS_FORMATTER.

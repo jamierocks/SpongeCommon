@@ -104,16 +104,16 @@ public class TeleporterMixin_API implements PortalAgent {
     public Optional<Location<World>> findPortal(Location<World> searchLocation) {
         double closest = -1.0D;
         boolean addToCache = true;
-        BlockPos portalPosition = BlockPos.field_177992_a;
+        BlockPos portalPosition = BlockPos.ZERO;
         // Sponge - use the chunk coords instead of block coords
         Vector3i chunkPosition = searchLocation.getChunkPosition();
-        long targetPosition = ChunkPos.func_77272_a(chunkPosition.getX(), chunkPosition.getZ());
+        long targetPosition = ChunkPos.asLong(chunkPosition.getX(), chunkPosition.getZ());
 
         if (this.destinationCoordinateCache.containsKey(targetPosition)) {
             Teleporter.PortalPosition teleporter$portalposition = this.destinationCoordinateCache.get(targetPosition);
             closest = 0.0D;
             portalPosition = teleporter$portalposition;
-            teleporter$portalposition.field_85087_d = this.world.func_82737_E();
+            teleporter$portalposition.lastUpdateTime = this.world.func_82737_E();
             addToCache = false;
         } else {
             BlockPos blockSearchPosition = VecHelper.toBlockPos(searchLocation);
@@ -123,16 +123,16 @@ public class TeleporterMixin_API implements PortalAgent {
 
                 for (int j1 = -this.api$searchRadius; j1 <= this.api$searchRadius; ++j1) {
                     for (BlockPos blockpos1 =
-                         blockSearchPosition.func_177982_a(i1, this.world.func_72940_L() - 1 - blockSearchPosition.func_177956_o(), j1); blockpos1
-                                    .func_177956_o() >= 0; blockpos1 = blockpos2) {
-                        blockpos2 = blockpos1.func_177977_b();
+                         blockSearchPosition.add(i1, this.world.func_72940_L() - 1 - blockSearchPosition.getY(), j1); blockpos1
+                                    .getY() >= 0; blockpos1 = blockpos2) {
+                        blockpos2 = blockpos1.down();
 
-                        if (this.world.func_180495_p(blockpos1).func_177230_c() == Blocks.field_150427_aO) {
-                            while (this.world.func_180495_p(blockpos2 = blockpos1.func_177977_b()).func_177230_c() == Blocks.field_150427_aO) {
+                        if (this.world.func_180495_p(blockpos1).func_177230_c() == Blocks.NETHER_PORTAL) {
+                            while (this.world.func_180495_p(blockpos2 = blockpos1.down()).func_177230_c() == Blocks.NETHER_PORTAL) {
                                 blockpos1 = blockpos2;
                             }
 
-                            double distance = blockpos1.func_177951_i(blockSearchPosition);
+                            double distance = blockpos1.distanceSq(blockSearchPosition);
 
                             if (closest < 0.0D || distance < closest) {
                                 closest = distance;
@@ -176,8 +176,8 @@ public class TeleporterMixin_API implements PortalAgent {
                 label142:
 
                 for (int j3 = this.world.func_72940_L() - 1; j3 >= 0; --j3) {
-                    if (this.world.func_175623_d(blockpos$mutableblockpos.func_181079_c(j2, j3, l2))) {
-                        while (j3 > 0 && this.world.func_175623_d(blockpos$mutableblockpos.func_181079_c(j2, j3 - 1, l2))) {
+                    if (this.world.func_175623_d(blockpos$mutableblockpos.setPos(j2, j3, l2))) {
+                        while (j3 > 0 && this.world.func_175623_d(blockpos$mutableblockpos.setPos(j2, j3 - 1, l2))) {
                             --j3;
                         }
 
@@ -196,7 +196,7 @@ public class TeleporterMixin_API implements PortalAgent {
                                         int i5 = j2 + (k4 - 1) * l3 + j4 * i4;
                                         int j5 = j3 + l4;
                                         int k5 = l2 + (k4 - 1) * i4 - j4 * l3;
-                                        blockpos$mutableblockpos.func_181079_c(i5, j5, k5);
+                                        blockpos$mutableblockpos.setPos(i5, j5, k5);
 
                                         if (l4 < 0 && !this.world.func_180495_p(blockpos$mutableblockpos).func_185904_a()
                                                 .func_76220_a() || l4 >= 0 && !this.world.func_175623_d(blockpos$mutableblockpos)) {
@@ -231,8 +231,8 @@ public class TeleporterMixin_API implements PortalAgent {
                     label562:
 
                     for (int i7 = this.world.func_72940_L() - 1; i7 >= 0; --i7) {
-                        if (this.world.func_175623_d(blockpos$mutableblockpos.func_181079_c(l5, i7, j6))) {
-                            while (i7 > 0 && this.world.func_175623_d(blockpos$mutableblockpos.func_181079_c(l5, i7 - 1, j6))) {
+                        if (this.world.func_175623_d(blockpos$mutableblockpos.setPos(l5, i7, j6))) {
+                            while (i7 > 0 && this.world.func_175623_d(blockpos$mutableblockpos.setPos(l5, i7 - 1, j6))) {
                                 --i7;
                             }
 
@@ -245,7 +245,7 @@ public class TeleporterMixin_API implements PortalAgent {
                                         int j12 = l5 + (j10 - 1) * j8;
                                         int i13 = i7 + j11;
                                         int j13 = j6 + (j10 - 1) * j9;
-                                        blockpos$mutableblockpos.func_181079_c(j12, i13, j13);
+                                        blockpos$mutableblockpos.setPos(j12, i13, j13);
 
                                         if (j11 < 0 && !this.world.func_180495_p(blockpos$mutableblockpos).func_185904_a()
                                                 .func_76220_a() || j11 >= 0 && !this.world.func_175623_d(blockpos$mutableblockpos)) {
@@ -283,7 +283,7 @@ public class TeleporterMixin_API implements PortalAgent {
         }
 
         if (closest < 0.0D) {
-            yAdjustedTarget = MathHelper.func_76125_a(yAdjustedTarget, 70, this.world.func_72940_L() - 10);
+            yAdjustedTarget = MathHelper.clamp(yAdjustedTarget, 70, this.world.func_72940_L() - 10);
             yFinalTarget = yAdjustedTarget;
 
             for (int j7 = -1; j7 <= 1; ++j7) {
@@ -294,13 +294,13 @@ public class TeleporterMixin_API implements PortalAgent {
                         int k11 = zFinalTarget + (l7 - 1) * targetDirOffset - j7 * targetDirection;
                         boolean flag = k8 < 0;
                         this.world.func_175656_a(new BlockPos(k9, k10, k11),
-                                flag ? Blocks.field_150343_Z.func_176223_P() : Blocks.field_150350_a.func_176223_P());
+                                flag ? Blocks.OBSIDIAN.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
         }
 
-        BlockState iblockstate = Blocks.field_150427_aO.func_176223_P().func_177226_a(NetherPortalBlock.field_176550_a, targetDirection != 0 ? Direction.Axis.X : Direction.Axis.Z);
+        BlockState iblockstate = Blocks.NETHER_PORTAL.getDefaultState().func_177226_a(NetherPortalBlock.AXIS, targetDirection != 0 ? Direction.Axis.X : Direction.Axis.Z);
 
         for (int i8 = 0; i8 < 4; ++i8) {
             for (int l8 = 0; l8 < 4; ++l8) {
@@ -309,7 +309,7 @@ public class TeleporterMixin_API implements PortalAgent {
                     int l11 = yFinalTarget + l9;
                     int k12 = zFinalTarget + (l8 - 1) * targetDirOffset;
                     boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-                    this.world.func_180501_a(new BlockPos(l10, l11, k12), flag1 ? Blocks.field_150343_Z.func_176223_P() : iblockstate, 2);
+                    this.world.func_180501_a(new BlockPos(l10, l11, k12), flag1 ? Blocks.OBSIDIAN.getDefaultState() : iblockstate, 2);
                 }
             }
 

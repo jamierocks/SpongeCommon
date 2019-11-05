@@ -198,7 +198,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
             final SpongeBlockSnapshot originalSnapshot = list.get(0);
             final PhaseContext<?> peek = PhaseTracker.getInstance().getCurrentContext();
             final BlockState currentState = (BlockState) originalSnapshot.getState();
-            originalSnapshot.blockChange = ((IPhaseState) peek.state).associateBlockChangeWithSnapshot(peek, newState, newState.func_177230_c(), currentState, originalSnapshot, currentState.func_177230_c());
+            originalSnapshot.blockChange = ((IPhaseState) peek.state).associateBlockChangeWithSnapshot(peek, newState, newState.getBlock(), currentState, originalSnapshot, currentState.getBlock());
         }
     }
 
@@ -449,7 +449,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
                     mixinWorldServer.bridge$getProxyAccess().queueRemoval(oldTile);
                 } else {
                     // Make sure the new tile entity has the correct position
-                    changeBlock.queueTileSet.func_174878_a(pos);
+                    changeBlock.queueTileSet.setPos(pos);
                     mixinWorldServer.bridge$getProxyAccess().queueReplacement(changeBlock.queueTileSet, changeBlock.queuedRemoval);
                     mixinWorldServer.bridge$getProxyAccess().unmarkRemoval(pos, oldTile);
                 }
@@ -619,7 +619,7 @@ public final class MultiBlockCaptureSupplier implements ICaptureSupplier {
             if (this.scheduledEvents == null) {
                 this.scheduledEvents = LinkedListMultimap.create();
             }
-            this.scheduledEvents.put(pos.func_185334_h(), blockEventData);
+            this.scheduledEvents.put(pos.toImmutable(), blockEventData);
             return true;
         }
         return false;

@@ -79,15 +79,15 @@ class ChunkSaveHelper {
                     final Set<BlockPos> collidingCoords = new HashSet<>();
                     for (int i = 0; i < world.field_72996_f.size(); i++) {
                         final Entity entity = world.field_72996_f.get(i);
-                        final ChunkPos chunkCoords = new ChunkPos((int) entity.field_70165_t >> 4, (int) entity.field_70161_v >> 4);
+                        final ChunkPos chunkCoords = new ChunkPos((int) entity.posX >> 4, (int) entity.posZ >> 4);
                         chunkEntityCounts.put(chunkCoords, chunkEntityCounts.getInt(chunkCoords) + 1);
                         classEntityCounts.put(entity.getClass(), classEntityCounts.getInt(entity.getClass()) + 1);
-                        if ((entity.func_70046_E() != null) && logAll) {
+                        if ((entity.getCollisionBoundingBox() != null) && logAll) {
                             final BlockPos coords =
-                                    new BlockPos(GenericMath.floor(entity.field_70165_t), GenericMath.floor(entity.field_70163_u), GenericMath.floor(entity.field_70161_v));
+                                    new BlockPos(GenericMath.floor(entity.posX), GenericMath.floor(entity.posY), GenericMath.floor(entity.posZ));
                             if (!collidingCoords.contains(coords)) {
                                 collidingCoords.add(coords);
-                                final int size = entity.field_70170_p.func_72839_b(entity, entity.func_70046_E().func_72314_b(1, 1, 1))
+                                final int size = entity.world.getEntitiesWithinAABBExcludingEntity(entity, entity.getCollisionBoundingBox().grow(1, 1, 1))
                                         .size();
                                 if (size < 5) {
                                     continue;
@@ -107,15 +107,15 @@ class ChunkSaveHelper {
                         if (logAll) {
                             writer.beginObject();
                             writer.name("type").value(tile.getClass().toString());
-                            writer.name("x").value(tile.func_174877_v().func_177958_n());
-                            writer.name("y").value(tile.func_174877_v().func_177956_o());
-                            writer.name("z").value(tile.func_174877_v().func_177952_p());
-                            writer.name("isInvalid").value(tile.func_145837_r());
+                            writer.name("x").value(tile.getPos().getX());
+                            writer.name("y").value(tile.getPos().getY());
+                            writer.name("z").value(tile.getPos().getZ());
+                            writer.name("isInvalid").value(tile.isRemoved());
                             // writer.name("canUpdate").value(tile.canUpdate());
                             writer.name("block").value("" + tile.func_145838_q());
                             writer.endObject();
                         }
-                        final ChunkPos chunkCoords = new ChunkPos(tile.func_174877_v().func_177958_n() >> 4, tile.func_174877_v().func_177952_p() >> 4);
+                        final ChunkPos chunkCoords = new ChunkPos(tile.getPos().getX() >> 4, tile.getPos().getZ() >> 4);
                         chunkTileCounts.put(chunkCoords, chunkTileCounts.getInt(chunkCoords) + 1);
                         classTileCounts.put(tile.getClass(), classTileCounts.getInt(tile.getClass()) + 1);
                     }

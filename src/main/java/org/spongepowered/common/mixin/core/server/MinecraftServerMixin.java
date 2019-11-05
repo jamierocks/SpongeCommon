@@ -232,7 +232,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
                     }
 
                     ++i;
-                    worldServer.func_72863_F().func_186025_d(blockpos.func_177958_n() + k >> 4, blockpos.func_177952_p() + l >> 4);
+                    worldServer.func_72863_F().func_186025_d(blockpos.getX() + k >> 4, blockpos.getZ() + l >> 4);
                 }
             }
             this.clearCurrentTask();
@@ -303,7 +303,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
     private static Location<World> getTarget(final ICommandSender sender, @Nullable final BlockPos pos) {
         @Nullable Location<World> targetPos = null;
         if (pos != null) {
-            targetPos = new Location<>((World) sender.func_130014_f_(), VecHelper.toVector3i(pos));
+            targetPos = new Location<>((World) sender.getEntityWorld(), VecHelper.toVector3i(pos));
         }
         return targetPos;
     }
@@ -334,13 +334,13 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
                     return;
                 }
 
-                if (!player.func_184614_ca().func_190926_b() && SpongeCommonEventFactory.callInteractItemEventPrimary(player, player.func_184614_ca(), Hand.MAIN_HAND, null, blockSnapshot).isCancelled()) {
+                if (!player.getHeldItemMainhand().isEmpty() && SpongeCommonEventFactory.callInteractItemEventPrimary(player, player.getHeldItemMainhand(), Hand.MAIN_HAND, null, blockSnapshot).isCancelled()) {
                     SpongeCommonEventFactory.lastAnimationPacketTick = 0;
                     SpongeCommonEventFactory.lastAnimationPlayer = null;
                     return;
                 }
 
-                SpongeCommonEventFactory.callInteractBlockEventPrimary(player, player.func_184614_ca(), Hand.MAIN_HAND, null);
+                SpongeCommonEventFactory.callInteractBlockEventPrimary(player, player.getHeldItemMainhand(), Hand.MAIN_HAND, null);
             }
             SpongeCommonEventFactory.lastAnimationPlayer = null;
         }
@@ -362,7 +362,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
         //noinspection ConstantConditions
         if (((WorldBridge) world).bridge$isFake() || world.func_72912_H() == null) {
             // Return overworld provider
-            return ((net.minecraft.world.World) Sponge.getServer().getWorlds().iterator().next()).field_73011_w;
+            return ((net.minecraft.world.World) Sponge.getServer().getWorlds().iterator().next()).dimension;
         }
         this.dimensionId = ((WorldServerBridge) world).bridge$getDimensionId();
         return world.field_73011_w;
@@ -385,7 +385,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
 
         final int autoPlayerSaveInterval = SpongeImpl.getGlobalConfigAdapter().getConfig().getWorld().getAutoPlayerSaveInterval();
         if (autoPlayerSaveInterval > 0 && (this.tickCounter % autoPlayerSaveInterval == 0)) {
-            this.getPlayerList().func_72389_g();
+            this.getPlayerList().saveAllPlayerData();
         }
 
         this.saveAllWorlds(true);
@@ -453,7 +453,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
     private void onStopServer(final CallbackInfo ci) {
         // If the server is already stopping, don't allow stopServer to be called off the main thread
         // (from the shutdown handler thread in MinecraftServer)
-        if ((Sponge.isServerAvailable() && !((MinecraftServer) Sponge.getServer()).func_71278_l() && !Sponge.getServer().isMainThread())) {
+        if ((Sponge.isServerAvailable() && !((MinecraftServer) Sponge.getServer()).isServerRunning() && !Sponge.getServer().isMainThread())) {
             ci.cancel();
         }
     }
@@ -506,7 +506,7 @@ public abstract class MinecraftServerMixin implements SubjectBridge, CommandSour
 
     @Inject(method = "addServerInfoToCrashReport", at = @At("RETURN"), cancellable = true)
     private void onCrashReport(final CrashReport report, final CallbackInfoReturnable<CrashReport> cir) {
-        report.func_85058_a("Sponge PhaseTracker").func_189529_a("Phase Stack", CauseTrackerCrashHandler.INSTANCE);
+        report.makeCategory("Sponge PhaseTracker").addDetail("Phase Stack", CauseTrackerCrashHandler.INSTANCE);
         cir.setReturnValue(report);
     }
 
