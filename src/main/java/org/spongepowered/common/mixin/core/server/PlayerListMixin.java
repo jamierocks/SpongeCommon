@@ -74,7 +74,7 @@ import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.api.world.Dimension;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.gamerule.DefaultGameRules;
+import org.spongepowered.api.world.gamerule.GameRules;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -375,7 +375,7 @@ public abstract class PlayerListMixin implements PlayerListBridge {
 
         // Update reducedDebugInfo game rule
         newPlayer.connection.sendPacket(new SEntityStatusPacket(newPlayer,
-                worldServer.func_82736_K().func_82766_b(DefaultGameRules.REDUCED_DEBUG_INFO) ? (byte) 22 : 23));
+                worldServer.func_82736_K().func_82766_b(GameRules.REDUCED_DEBUG_INFO) ? (byte) 22 : 23));
 
         for (final EffectInstance potioneffect : newPlayer.getActivePotionEffects()) {
             newPlayer.connection.sendPacket(new SPlayEntityEffectPacket(newPlayer.getEntityId(), potioneffect));

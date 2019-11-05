@@ -30,9 +30,9 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.world.extent.ImmutableBlockVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.extent.StorageType;
 import org.spongepowered.api.world.extent.UnmodifiableBlockVolume;
 import org.spongepowered.api.world.extent.worker.BlockVolumeWorker;
+import org.spongepowered.api.world.volume.StorageType;
 import org.spongepowered.common.world.extent.worker.SpongeBlockVolumeWorker;
 
 public class UnmodifiableBlockVolumeWrapper implements UnmodifiableBlockVolume {

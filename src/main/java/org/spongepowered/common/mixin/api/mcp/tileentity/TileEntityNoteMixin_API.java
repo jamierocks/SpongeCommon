@@ -26,8 +26,8 @@ package org.spongepowered.common.mixin.api.mcp.tileentity;
 
 import net.minecraft.tileentity.TileEntityNote;
 import org.spongepowered.api.block.tileentity.Note;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

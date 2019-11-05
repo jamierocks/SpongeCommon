@@ -32,17 +32,17 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
@@ -387,10 +387,10 @@ public class SoftBufferExtentViewDownsize implements DefaultedExtent {
     }
 
     @Override
-    public Collection<TileEntity> getTileEntities() {
-        final Collection<TileEntity> tileEntities = this.extent.getTileEntities();
-        for (Iterator<TileEntity> iterator = tileEntities.iterator(); iterator.hasNext(); ) {
-            final TileEntity tileEntity = iterator.next();
+    public Collection<BlockEntity> getTileEntities() {
+        final Collection<BlockEntity> tileEntities = this.extent.getTileEntities();
+        for (Iterator<BlockEntity> iterator = tileEntities.iterator(); iterator.hasNext(); ) {
+            final BlockEntity tileEntity = iterator.next();
             final Location<World> block = tileEntity.getLocation();
             if (!VecHelper.inBounds(block.getX(), block.getY(), block.getZ(), this.blockMin, this.blockMax)) {
                 iterator.remove();
@@ -400,7 +400,7 @@ public class SoftBufferExtentViewDownsize implements DefaultedExtent {
     }
 
     @Override
-    public Collection<TileEntity> getTileEntities(Predicate<TileEntity> filter) {
+    public Collection<BlockEntity> getTileEntities(Predicate<BlockEntity> filter) {
         // Order matters! Bounds filter before the argument filter so it doesn't see out of bounds entities
         return this.extent.getTileEntities(Functional.predicateAnd(input -> {
             final Location<World> block = input.getLocation();
@@ -409,7 +409,7 @@ public class SoftBufferExtentViewDownsize implements DefaultedExtent {
     }
 
     @Override
-    public Optional<TileEntity> getTileEntity(int x, int y, int z) {
+    public Optional<BlockEntity> getTileEntity(int x, int y, int z) {
         checkBlockRange(x, y, z);
         return this.extent.getTileEntity(x, y, z);
     }

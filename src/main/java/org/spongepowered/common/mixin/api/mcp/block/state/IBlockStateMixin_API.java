@@ -29,15 +29,15 @@ import com.google.common.collect.ImmutableMap;
 import net.minecraft.block.properties.IProperty;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.trait.BlockTrait;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
+import org.spongepowered.api.state.StateProperty;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
@@ -77,7 +77,7 @@ public interface IBlockStateMixin_API extends net.minecraft.block.BlockState, Bl
 
     @SuppressWarnings({"unchecked"})
     @Override
-    default <T extends Comparable<T>> Optional<T> getTraitValue(final BlockTrait<T> blockTrait) {
+    default <T extends Comparable<T>> Optional<T> getTraitValue(final StateProperty<T> blockTrait) {
         for (final Map.Entry<IProperty<?>, Comparable<?>> entry : getProperties().entrySet()) {
             //noinspection EqualsBetweenInconvertibleTypes
             if (entry.getKey() == blockTrait) {
@@ -89,10 +89,10 @@ public interface IBlockStateMixin_API extends net.minecraft.block.BlockState, Bl
 
     @SuppressWarnings("rawtypes")
     @Override
-    default Optional<BlockTrait<?>> getTrait(final String blockTrait) {
+    default Optional<StateProperty<?>> getTrait(final String blockTrait) {
         for (final IProperty property : getProperties().keySet()) {
             if (property.getName().equalsIgnoreCase(blockTrait)) {
-                return Optional.of((BlockTrait<?>) property);
+                return Optional.of((StateProperty<?>) property);
             }
         }
         return Optional.empty();
@@ -100,7 +100,7 @@ public interface IBlockStateMixin_API extends net.minecraft.block.BlockState, Bl
 
     @SuppressWarnings({"rawtypes", "unchecked", "RedundantCast"})
     @Override
-    default Optional<BlockState> withTrait(final BlockTrait<?> trait, final Object value) {
+    default Optional<BlockState> withTrait(final StateProperty<?> trait, final Object value) {
         if (value instanceof String) {
             Comparable foundValue = null;
             for (final Comparable comparable : trait.getPossibleValues()) {
@@ -122,7 +122,7 @@ public interface IBlockStateMixin_API extends net.minecraft.block.BlockState, Bl
     }
 
     @Override
-    default Collection<BlockTrait<?>> getTraits() {
+    default Collection<StateProperty<?>> getTraits() {
         return getTraitMap().keySet();
     }
 
@@ -133,7 +133,7 @@ public interface IBlockStateMixin_API extends net.minecraft.block.BlockState, Bl
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
-    default Map<BlockTrait<?>, ?> getTraitMap() {
+    default Map<StateProperty<?>, ?> getTraitMap() {
         return (ImmutableMap) getProperties();
     }
 

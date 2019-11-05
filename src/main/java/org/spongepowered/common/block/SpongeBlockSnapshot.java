@@ -41,16 +41,16 @@ import org.apache.logging.log4j.Level;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
+import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
-import org.spongepowered.api.block.tileentity.TileEntityType;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
@@ -567,12 +567,12 @@ public class SpongeBlockSnapshot implements BlockSnapshot {
         }
         final String tileId = this.compound.getString(Constants.Item.BLOCK_ENTITY_ID);
         final Class<? extends TileEntity> tileClass = (Class<? extends TileEntity>) TileEntityTypeRegistryModule.getInstance().getById(tileId)
-            .map(TileEntityType::getTileEntityType)
+            .map(BlockEntityType::getTileEntityType)
             .orElse(null);
         if (tileClass == null) {
             return Optional.empty();
         }
-        final TileEntityType tileType = TileEntityTypeRegistryModule.getInstance().getForClass(tileClass);
+        final BlockEntityType tileType = TileEntityTypeRegistryModule.getInstance().getForClass(tileClass);
 
         final TileEntityArchetype archetype = TileEntityArchetype.builder()
                 .tile(tileType)

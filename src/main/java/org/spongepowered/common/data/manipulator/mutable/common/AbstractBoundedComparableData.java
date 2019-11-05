@@ -27,10 +27,10 @@ package org.spongepowered.common.data.manipulator.mutable.common;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.data.value.BoundedValue;
 import org.spongepowered.api.data.value.mutable.MutableBoundedValue;

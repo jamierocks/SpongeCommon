@@ -29,8 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
-
+import org.spongepowered.api.data.value.MergeFunction;
 import java.util.Optional;
 
 public abstract class AbstractMultiDataProcessor<T extends DataManipulator<T, I>, I extends ImmutableDataManipulator<I, T>> extends AbstractSpongeDataProcessor<T, I> {

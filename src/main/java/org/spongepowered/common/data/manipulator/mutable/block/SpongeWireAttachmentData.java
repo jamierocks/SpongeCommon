@@ -26,10 +26,10 @@ package org.spongepowered.common.data.manipulator.mutable.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.block.ImmutableWireAttachmentData;
 import org.spongepowered.api.data.manipulator.mutable.block.WireAttachmentData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.type.WireAttachmentType;
 import org.spongepowered.api.data.type.WireAttachmentTypes;
 import org.spongepowered.api.data.value.mutable.MapValue;

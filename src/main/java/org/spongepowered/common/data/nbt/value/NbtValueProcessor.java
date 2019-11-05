@@ -25,7 +25,7 @@
 package org.spongepowered.common.data.nbt.value;
 
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.common.data.nbt.NbtDataType;
 

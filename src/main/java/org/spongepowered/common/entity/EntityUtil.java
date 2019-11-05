@@ -76,10 +76,10 @@ import org.spongepowered.api.event.entity.MoveEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStackSnapshot;
 import org.spongepowered.api.world.Location;
-import org.spongepowered.api.world.PortalAgent;
 import org.spongepowered.api.world.World;
-import org.spongepowered.api.world.gamerule.DefaultGameRules;
+import org.spongepowered.api.world.gamerule.GameRules;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.teleport.PortalAgent;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.SpongeImplHooks;
 import org.spongepowered.common.bridge.OwnershipTrackedBridge;
@@ -506,7 +506,7 @@ public final class EntityUtil {
         }
 
         player.connection.sendPacket(new SServerDifficultyPacket(toWorld.func_175659_aa(), toWorld.func_72912_H().func_176123_z()));
-        player.connection.sendPacket(new SEntityStatusPacket(player, toWorld.func_82736_K().func_82766_b(DefaultGameRules.REDUCED_DEBUG_INFO) ?
+        player.connection.sendPacket(new SEntityStatusPacket(player, toWorld.func_82736_K().func_82766_b(GameRules.REDUCED_DEBUG_INFO) ?
             (byte) 22 : 23));
 
         if (!event.getKeepsVelocity()) {

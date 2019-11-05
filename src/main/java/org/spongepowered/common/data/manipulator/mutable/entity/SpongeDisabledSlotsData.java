@@ -24,10 +24,10 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.entity;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableDisabledSlotsData;
 import org.spongepowered.api.data.manipulator.mutable.entity.DisabledSlotsData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.mutable.SetValue;
 import org.spongepowered.api.item.inventory.equipment.EquipmentType;
 import org.spongepowered.common.data.ImmutableDataCachingUtil;

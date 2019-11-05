@@ -27,7 +27,7 @@ package org.spongepowered.common.mixin.api.mcp.entity.passive;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.entity.ParrotData;
-import org.spongepowered.api.data.type.ParrotVariant;
+import org.spongepowered.api.data.type.ParrotType;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.living.animal.Parrot;
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,7 +52,7 @@ public abstract class EntityParrotMixin_API extends EntityTameableMixin_API impl
     }
 
     @Override
-    public Value<ParrotVariant> variant() {
+    public Value<ParrotType> variant() {
         return new SpongeValue<>(Keys.PARROT_VARIANT, Constants.Entity.Parrot.DEFAULT_VARIANT, ParrotVariantRegistryModule.PARROT_VARIANT_IDMAP.get(this.getVariant()));
     }
 

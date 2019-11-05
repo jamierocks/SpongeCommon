@@ -25,11 +25,11 @@
 package org.spongepowered.common.data.processor.data.entity;
 
 import com.google.common.collect.ImmutableList;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableFireworkEffectData;
 import org.spongepowered.api.data.manipulator.mutable.FireworkEffectData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.ValueContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.ListValue;

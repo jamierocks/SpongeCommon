@@ -41,12 +41,12 @@ import com.flowpowered.math.vector.Vector4f;
 import com.flowpowered.math.vector.Vector4i;
 import com.flowpowered.math.vector.Vector4l;
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataQuery;
 import org.spongepowered.api.data.persistence.DataTranslator;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.common.registry.type.data.DataTranslatorRegistryModule;
 import org.spongepowered.common.util.Constants;
 

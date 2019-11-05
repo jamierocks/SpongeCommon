@@ -48,7 +48,7 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
@@ -414,24 +414,24 @@ public abstract class ChunkMixin_API implements Chunk {
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Override
-    public Collection<org.spongepowered.api.block.tileentity.TileEntity> getTileEntities() {
+    public Collection<org.spongepowered.api.block.entity.BlockEntity> getTileEntities() {
         return Sets.newHashSet((Collection) this.tileEntities.values());
     }
 
     @Override
-    public Collection<org.spongepowered.api.block.tileentity.TileEntity> getTileEntities(final java.util.function.Predicate<org.spongepowered.api.block.tileentity.TileEntity> filter) {
-        final Set<org.spongepowered.api.block.tileentity.TileEntity> tiles = Sets.newHashSet();
+    public Collection<org.spongepowered.api.block.entity.BlockEntity> getTileEntities(final java.util.function.Predicate<org.spongepowered.api.block.entity.BlockEntity> filter) {
+        final Set<org.spongepowered.api.block.entity.BlockEntity> tiles = Sets.newHashSet();
         for (final Map.Entry<BlockPos, TileEntity> entry : this.tileEntities.entrySet()) {
-            if (filter.test((org.spongepowered.api.block.tileentity.TileEntity) entry.getValue())) {
-                tiles.add((org.spongepowered.api.block.tileentity.TileEntity) entry.getValue());
+            if (filter.test((org.spongepowered.api.block.entity.BlockEntity) entry.getValue())) {
+                tiles.add((org.spongepowered.api.block.entity.BlockEntity) entry.getValue());
             }
         }
         return tiles;
     }
 
     @Override
-    public Optional<org.spongepowered.api.block.tileentity.TileEntity> getTileEntity(final int x, final int y, final int z) {
-        return Optional.ofNullable((org.spongepowered.api.block.tileentity.TileEntity) this.getTileEntity(
+    public Optional<org.spongepowered.api.block.entity.BlockEntity> getTileEntity(final int x, final int y, final int z) {
+        return Optional.ofNullable((org.spongepowered.api.block.entity.BlockEntity) this.getTileEntity(
                 new BlockPos((this.x << 4) + (x & 15), y, (this.z << 4) + (z & 15)), net.minecraft.world.chunk.Chunk.CreateEntityType.CHECK));
     }
 

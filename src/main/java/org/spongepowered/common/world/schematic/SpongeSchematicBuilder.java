@@ -30,12 +30,12 @@ import com.flowpowered.math.vector.Vector3d;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataQuery;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataQuery;
+import org.spongepowered.api.data.persistence.DataView;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
 import org.spongepowered.api.entity.living.player.Player;
@@ -269,8 +269,8 @@ public class SpongeSchematicBuilder implements Schematic.Builder {
                     final MutableBlockVolumeWorker<? extends Extent> blockWorker = this.view.getBlockWorker();
                     blockWorker.iterate((v, x, y, z) -> {
                         volume.setBlock(x, y, z, v.getBlock(x, y, z));
-                        Optional<TileEntity> tile = v.getTileEntity(x, y, z);
-                        tile.map(TileEntity::createArchetype)
+                        Optional<BlockEntity> tile = v.getTileEntity(x, y, z);
+                        tile.map(BlockEntity::createArchetype)
                             .ifPresent(archetype -> tiles.put(new Vector3i(x, y, z), archetype));
                     });
                     this.backingVolume = volume;

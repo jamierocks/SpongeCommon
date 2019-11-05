@@ -24,18 +24,18 @@
  */
 package org.spongepowered.common.extra.fluid;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
-import org.spongepowered.api.extra.fluid.FluidStack;
-import org.spongepowered.api.extra.fluid.FluidStackSnapshot;
-import org.spongepowered.api.extra.fluid.FluidType;
-import org.spongepowered.api.extra.fluid.FluidTypes;
+import org.spongepowered.api.fluid.FluidStack;
+import org.spongepowered.api.fluid.FluidStackSnapshot;
+import org.spongepowered.api.fluid.FluidType;
+import org.spongepowered.api.fluid.FluidTypes;
 import org.spongepowered.common.util.Constants;
 
 import java.util.Collection;

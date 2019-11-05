@@ -31,8 +31,8 @@ import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.common.SpongeImpl;
 

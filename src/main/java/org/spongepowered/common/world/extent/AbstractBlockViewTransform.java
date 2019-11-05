@@ -30,7 +30,7 @@ import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.util.DiscreteTransform3;
 import org.spongepowered.api.world.extent.BlockVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.extent.StorageType;
+import org.spongepowered.api.world.volume.StorageType;
 import org.spongepowered.common.util.gen.ArrayMutableBlockBuffer;
 import org.spongepowered.common.world.schematic.GlobalPalette;
 

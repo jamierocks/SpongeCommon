@@ -25,11 +25,11 @@
 package org.spongepowered.common.data.manipulator.immutable.entity;
 
 import com.flowpowered.math.vector.Vector3d;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableAccelerationData;
 import org.spongepowered.api.data.manipulator.mutable.entity.AccelerationData;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.common.data.manipulator.immutable.common.AbstractImmutableSingleData;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeAccelerationData;

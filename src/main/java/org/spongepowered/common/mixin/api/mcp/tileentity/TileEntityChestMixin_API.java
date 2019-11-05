@@ -24,7 +24,7 @@
  */
 package org.spongepowered.common.mixin.api.mcp.tileentity;
 
-import org.spongepowered.api.block.tileentity.carrier.Chest;
+import org.spongepowered.api.block.entity.carrier.chest.Chest;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.ConnectedDirectionData;
 import org.spongepowered.api.item.inventory.Inventory;

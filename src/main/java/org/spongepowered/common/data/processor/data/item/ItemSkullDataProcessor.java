@@ -25,11 +25,11 @@
 package org.spongepowered.common.data.processor.data.item;
 
 import net.minecraft.item.ItemStack;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableSkullData;
 import org.spongepowered.api.data.manipulator.mutable.SkullData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.type.SkullType;
 import org.spongepowered.api.data.type.SkullTypes;
 import org.spongepowered.api.data.value.ValueContainer;

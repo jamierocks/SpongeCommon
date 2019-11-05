@@ -25,9 +25,9 @@
 package org.spongepowered.common.data.nbt.data;
 
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.common.data.nbt.NbtDataType;
 
 import java.util.Optional;

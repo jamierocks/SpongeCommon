@@ -38,15 +38,15 @@ import net.minecraft.util.IStringSerializable;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.Property;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.util.Cycleable;
 import org.spongepowered.api.world.Location;
@@ -117,7 +117,7 @@ public abstract class StateImplementationMixin_API extends BlockStateBase implem
             .position(location.getBlockPosition())
             .worldId(location.getExtent().getUniqueId());
         if (this.block.hasTileEntity() && location.getBlockType().equals(this.block)) {
-            final TileEntity tileEntity = location.getTileEntity()
+            final BlockEntity tileEntity = location.getTileEntity()
                 .orElseThrow(() -> new IllegalStateException("Unable to retrieve a TileEntity for location: " + location));
             for (final DataManipulator<?, ?> manipulator : ((CustomDataHolderBridge) tileEntity).bridge$getCustomManipulators()) {
                 builder.add(manipulator);

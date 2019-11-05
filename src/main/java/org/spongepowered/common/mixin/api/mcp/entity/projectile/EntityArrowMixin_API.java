@@ -28,7 +28,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.entity.projectile.arrow.Arrow;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.mixin.api.mcp.entity.EntityMixin_API;

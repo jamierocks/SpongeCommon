@@ -27,11 +27,11 @@ package org.spongepowered.common.data.manipulator.mutable.tileentity;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.collect.Lists;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableBannerData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.BannerData;
 import org.spongepowered.api.data.meta.PatternLayer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.type.DyeColor;
 import org.spongepowered.api.data.type.DyeColors;
 import org.spongepowered.api.data.value.mutable.PatternListValue;

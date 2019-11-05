@@ -29,7 +29,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ChunkLoader;
 import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.world.storage.ChunkDataStream;
 import org.spongepowered.api.world.storage.WorldProperties;
 import org.spongepowered.api.world.storage.WorldStorage;

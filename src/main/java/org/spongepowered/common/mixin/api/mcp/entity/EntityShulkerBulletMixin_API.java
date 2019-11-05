@@ -29,7 +29,7 @@ import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.mutable.block.DirectionalData;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.ShulkerBullet;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

@@ -25,7 +25,7 @@
 package org.spongepowered.common.world.schematic;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataView;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;

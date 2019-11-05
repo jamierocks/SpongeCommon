@@ -29,7 +29,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.TNTEntity;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.explosive.PrimedTNT;
+import org.spongepowered.api.entity.explosive.fused.PrimedTNT;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;

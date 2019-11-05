@@ -27,7 +27,7 @@ package org.spongepowered.common.world.extent;
 import com.flowpowered.math.vector.Vector3i;
 import com.google.common.collect.Maps;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityArchetype;
@@ -43,11 +43,11 @@ import org.spongepowered.api.world.extent.ImmutableBiomeVolume;
 import org.spongepowered.api.world.extent.ImmutableBlockVolume;
 import org.spongepowered.api.world.extent.MutableBiomeVolume;
 import org.spongepowered.api.world.extent.MutableBlockVolume;
-import org.spongepowered.api.world.extent.StorageType;
 import org.spongepowered.api.world.extent.UnmodifiableBiomeVolume;
 import org.spongepowered.api.world.extent.UnmodifiableBlockVolume;
 import org.spongepowered.api.world.extent.worker.MutableBiomeVolumeWorker;
 import org.spongepowered.api.world.extent.worker.MutableBlockVolumeWorker;
+import org.spongepowered.api.world.volume.StorageType;
 import org.spongepowered.common.block.SpongeTileEntityArchetype;
 import org.spongepowered.common.entity.SpongeEntityArchetype;
 import org.spongepowered.common.util.Constants;
@@ -178,7 +178,7 @@ public interface DefaultedExtent extends Extent {
         volume.getBlockWorker().iterate((extent, x, y, z) -> {
             final BlockState state = extent.getBlock(x, y, z);
             backing.setBlock(x - ox, y - oy, z - oz, state);
-            final Optional<TileEntity> tile = extent.getTileEntity(x, y, z);
+            final Optional<BlockEntity> tile = extent.getTileEntity(x, y, z);
             if (tile.isPresent()) {
                 final TileEntityArchetype archetype = tile.get().createArchetype();
                 if (archetype instanceof SpongeTileEntityArchetype) {

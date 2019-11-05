@@ -25,10 +25,10 @@
 package org.spongepowered.common.data.manipulator.mutable.tileentity;
 
 import com.flowpowered.math.vector.Vector3i;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.tileentity.ImmutableStructureData;
 import org.spongepowered.api.data.manipulator.mutable.tileentity.StructureData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.type.StructureMode;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.common.data.manipulator.immutable.tileentity.ImmutableSpongeStructureData;

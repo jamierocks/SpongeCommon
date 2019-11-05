@@ -24,10 +24,10 @@
  */
 package org.spongepowered.common.data.manipulator.immutable;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedPlayerData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.common.data.manipulator.immutable.common.AbstractImmutableSingleData;

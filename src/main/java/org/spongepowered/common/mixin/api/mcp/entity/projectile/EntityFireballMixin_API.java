@@ -29,7 +29,7 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.projectile.explosive.fireball.Fireball;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.common.data.manipulator.mutable.entity.SpongeAccelerationData;

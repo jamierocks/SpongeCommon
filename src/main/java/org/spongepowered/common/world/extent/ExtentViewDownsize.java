@@ -33,17 +33,17 @@ import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntitySnapshot;
@@ -386,11 +386,11 @@ public class ExtentViewDownsize implements DefaultedExtent {
     }
 
     @Override
-    public Collection<TileEntity> getTileEntities() {
-        final Collection<TileEntity> tileEntities = this.extent.getTileEntities();
+    public Collection<BlockEntity> getTileEntities() {
+        final Collection<BlockEntity> tileEntities = this.extent.getTileEntities();
         final Vector3i max = this.blockMax.add(Vector3i.ONE);
-        for (Iterator<TileEntity> iterator = tileEntities.iterator(); iterator.hasNext(); ) {
-            final TileEntity tileEntity = iterator.next();
+        for (Iterator<BlockEntity> iterator = tileEntities.iterator(); iterator.hasNext(); ) {
+            final BlockEntity tileEntity = iterator.next();
             if (!VecHelper.inBounds(tileEntity.getLocation().getPosition(), this.blockMin, max)) {
                 iterator.remove();
             }
@@ -399,7 +399,7 @@ public class ExtentViewDownsize implements DefaultedExtent {
     }
 
     @Override
-    public Collection<TileEntity> getTileEntities(Predicate<TileEntity> filter) {
+    public Collection<BlockEntity> getTileEntities(Predicate<BlockEntity> filter) {
         // Order matters! Bounds filter before the argument filter so it doesn't see out of bounds entities
         final Vector3i max = this.blockMax.add(Vector3i.ONE);
         return this.extent.getTileEntities(Functional.predicateAnd(input ->
@@ -407,7 +407,7 @@ public class ExtentViewDownsize implements DefaultedExtent {
     }
 
     @Override
-    public Optional<TileEntity> getTileEntity(int x, int y, int z) {
+    public Optional<BlockEntity> getTileEntity(int x, int y, int z) {
         checkBlockRange(x, y, z);
         return this.extent.getTileEntity(x, y, z);
     }

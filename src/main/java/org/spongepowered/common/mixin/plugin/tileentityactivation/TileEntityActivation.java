@@ -34,7 +34,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.server.ServerWorld;
-import org.spongepowered.api.block.tileentity.TileEntityType;
+import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.bridge.tileentity.TileEntityBridge;
 import org.spongepowered.common.bridge.world.WorldInfoBridge;
@@ -66,7 +66,7 @@ public class TileEntityActivation {
         }
 
         final TileEntityActivationCategory tileEntityActCat = ((WorldInfoBridge) tileEntity.getWorld().getWorldInfo()).bridge$getConfigAdapter().getConfig().getTileEntityActivationRange();
-        final TileEntityType type = ((org.spongepowered.api.block.tileentity.TileEntity) tileEntity).getType();
+        final BlockEntityType type = ((org.spongepowered.api.block.entity.BlockEntity) tileEntity).getType();
 
         final ActivationCapability spongeTileEntity = (ActivationCapability) tileEntity;
         final SpongeTileEntityType spongeType = (SpongeTileEntityType) type;

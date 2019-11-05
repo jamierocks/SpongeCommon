@@ -25,11 +25,11 @@
 package org.spongepowered.common.data.manipulator.mutable;
 
 import com.google.common.collect.Multimap;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.ImmutableRepresentedPlayerData;
 import org.spongepowered.api.data.manipulator.mutable.RepresentedPlayerData;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.profile.GameProfile;
 import org.spongepowered.api.profile.property.ProfileProperty;

@@ -29,14 +29,14 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
+import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.block.tileentity.TileEntityArchetype;
-import org.spongepowered.api.block.tileentity.TileEntityType;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.util.annotation.NonnullByDefault;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.Location;
@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 
 @NonnullByDefault
 @Mixin(net.minecraft.tileentity.TileEntity.class)
-public abstract class TileEntityMixin_API implements TileEntity {
+public abstract class TileEntityMixin_API implements BlockEntity {
 
     @Shadow protected boolean tileEntityInvalid;
     @Shadow protected net.minecraft.world.World world;
@@ -70,7 +70,7 @@ public abstract class TileEntityMixin_API implements TileEntity {
     @Shadow public abstract CompoundNBT writeToNBT(CompoundNBT compound);
     @Shadow public abstract void shadow$markDirty();
 
-    private final TileEntityType api$TileEntityType = SpongeImplHooks.getTileEntityType(((net.minecraft.tileentity.TileEntity) (Object) this).getClass());
+    private final BlockEntityType api$TileEntityType = SpongeImplHooks.getTileEntityType(((net.minecraft.tileentity.TileEntity) (Object) this).getClass());
     @Nullable private LocatableBlock api$LocatableBlock;
 
     @Override
@@ -129,7 +129,7 @@ public abstract class TileEntityMixin_API implements TileEntity {
     }
 
     @Override
-    public final TileEntityType getType() {
+    public final BlockEntityType getType() {
         return this.api$TileEntityType;
     }
 

@@ -26,10 +26,10 @@ package org.spongepowered.common.data.manipulator.immutable.item;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableDurabilityData;
 import org.spongepowered.api.data.manipulator.mutable.item.DurabilityData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.immutable.ImmutableBoundedValue;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.common.data.manipulator.immutable.common.AbstractImmutableData;

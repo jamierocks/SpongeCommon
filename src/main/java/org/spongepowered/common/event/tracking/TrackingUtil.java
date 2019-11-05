@@ -49,7 +49,7 @@ import org.apache.logging.log4j.Level;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.tileentity.TileEntity;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.entity.Entity;
@@ -204,7 +204,7 @@ public final class TrackingUtil {
 
     @SuppressWarnings({"unused", "try"})
     public static void tickTileEntity(final WorldServerBridge mixinWorldServer, final ITickable tile) {
-        checkArgument(tile instanceof TileEntity, "ITickable %s is not a TileEntity!", tile);
+        checkArgument(tile instanceof BlockEntity, "ITickable %s is not a TileEntity!", tile);
         checkNotNull(tile, "Cannot capture on a null ticking tile entity!");
         final net.minecraft.tileentity.TileEntity tileEntity = (net.minecraft.tileentity.TileEntity) tile;
         final TileEntityBridge mixinTileEntity = (TileEntityBridge) tile;
@@ -868,7 +868,7 @@ public final class TrackingUtil {
 
     public static void addTileEntityToBuilder(@Nullable final net.minecraft.tileentity.TileEntity existing, final SpongeBlockSnapshotBuilder builder) {
         // We MUST only check to see if a TE exists to avoid creating a new one.
-        final TileEntity tile = (TileEntity) existing;
+        final BlockEntity tile = (BlockEntity) existing;
         for (final DataManipulator<?, ?> manipulator : ((CustomDataHolderBridge) tile).bridge$getCustomManipulators()) {
             builder.add(manipulator);
         }

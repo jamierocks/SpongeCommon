@@ -31,10 +31,10 @@ import static org.spongepowered.api.data.Queries.POSITION_Z;
 
 import com.flowpowered.math.vector.Vector3d;
 import com.google.common.collect.ImmutableMap;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.entity.ImmutableBodyPartRotationalData;
 import org.spongepowered.api.data.manipulator.mutable.entity.BodyPartRotationalData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.type.BodyPart;
 import org.spongepowered.api.data.type.BodyParts;
 import org.spongepowered.api.data.value.immutable.ImmutableMapValue;

@@ -32,7 +32,7 @@ import net.minecraft.world.chunk.storage.ChunkLoader;
 import net.minecraft.world.chunk.storage.RegionFile;
 import net.minecraft.world.chunk.storage.RegionFileCache;
 import net.minecraft.world.server.ServerWorld;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.util.Functional;
 import org.spongepowered.common.SpongeImpl;
 import org.spongepowered.common.bridge.world.chunk.storage.AnvilChunkLoaderBridge;

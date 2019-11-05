@@ -31,7 +31,7 @@ import org.spongepowered.api.util.PositionOutOfBoundsException;
 import org.spongepowered.api.world.biome.BiomeType;
 import org.spongepowered.api.world.extent.BiomeVolume;
 import org.spongepowered.api.world.extent.MutableBiomeVolume;
-import org.spongepowered.api.world.extent.StorageType;
+import org.spongepowered.api.world.volume.StorageType;
 import org.spongepowered.common.util.VecHelper;
 import org.spongepowered.common.util.gen.ByteArrayMutableBiomeBuffer;
 import org.spongepowered.common.world.schematic.GlobalPalette;

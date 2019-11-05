@@ -46,7 +46,7 @@ import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import org.apache.logging.log4j.Level;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntityType;
+import org.spongepowered.api.block.entity.BlockEntityType;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.User;
@@ -473,7 +473,7 @@ public class SpongeHooks {
                 ((BlockBridge) blockType).bridge$initializeTrackerState();
             }
         }
-        for (final TileEntityType tileEntityType : TileEntityTypeRegistryModule.getInstance().getAll()) {
+        for (final BlockEntityType tileEntityType : TileEntityTypeRegistryModule.getInstance().getAll()) {
             ((SpongeTileEntityType) tileEntityType).initializeTrackerState();
         }
         for (final EntityType entityType : EntityTypeRegistryModule.getInstance().getAll()) {

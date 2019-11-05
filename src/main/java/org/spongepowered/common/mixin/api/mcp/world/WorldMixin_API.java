@@ -68,19 +68,19 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.block.tileentity.TileEntity;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.Property;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataContainer;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
-import org.spongepowered.api.data.property.PropertyStore;
+import org.spongepowered.api.data.property.provider.PropertyProvider;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.api.data.value.immutable.ImmutableValue;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.api.entity.Entity;
@@ -88,7 +88,7 @@ import org.spongepowered.api.entity.EntitySnapshot;
 import org.spongepowered.api.entity.EntityType;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.projectile.EnderPearl;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.service.context.Context;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.chat.ChatType;
@@ -463,12 +463,12 @@ public abstract class WorldMixin_API implements World {
         return this.worldContext;
     }
     @Override
-    public Optional<TileEntity> getTileEntity(int x, int y, int z) {
+    public Optional<BlockEntity> getTileEntity(int x, int y, int z) {
         net.minecraft.tileentity.TileEntity tileEntity = getTileEntity(new BlockPos(x, y, z));
         if (tileEntity == null) {
             return Optional.empty();
         }
-        return Optional.of((TileEntity) tileEntity);
+        return Optional.of((BlockEntity) tileEntity);
     }
 
     @Override
@@ -554,14 +554,14 @@ public abstract class WorldMixin_API implements World {
 
     @SuppressWarnings("unchecked")
     @Override
-    public Collection<TileEntity> getTileEntities() {
-        return Lists.newArrayList((List<TileEntity>) (Object) this.loadedTileEntityList);
+    public Collection<BlockEntity> getTileEntities() {
+        return Lists.newArrayList((List<BlockEntity>) (Object) this.loadedTileEntityList);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public Collection<TileEntity> getTileEntities(Predicate<TileEntity> filter) {
-        return ((List<TileEntity>) (Object) this.loadedTileEntityList).stream()
+    public Collection<BlockEntity> getTileEntities(Predicate<BlockEntity> filter) {
+        return ((List<BlockEntity>) (Object) this.loadedTileEntityList).stream()
                 .filter(filter)
                 .collect(Collectors.toList());
     }
@@ -595,7 +595,7 @@ public abstract class WorldMixin_API implements World {
         }
         World world = this;
         BlockState state = world.getBlock(x, y, z);
-        Optional<TileEntity> te = world.getTileEntity(x, y, z);
+        Optional<BlockEntity> te = world.getTileEntity(x, y, z);
         SpongeBlockSnapshotBuilder builder = SpongeBlockSnapshotBuilder.pooled()
                 .blockState(state)
                 .worldId(world.getUniqueId())
@@ -609,7 +609,7 @@ public abstract class WorldMixin_API implements World {
             builder.notifier(notifier.get());
         }
         if (te.isPresent()) {
-            final TileEntity tileEntity = te.get();
+            final BlockEntity tileEntity = te.get();
             for (DataManipulator<?, ?> manipulator : ((CustomDataHolderBridge) tileEntity).bridge$getCustomManipulators()) {
                 builder.add(manipulator);
             }
@@ -921,13 +921,13 @@ public abstract class WorldMixin_API implements World {
 
     @Override
     public <T extends Property<?, ?>> Optional<T> getProperty(int x, int y, int z, Class<T> propertyClass) {
-        final Optional<PropertyStore<T>> optional = Sponge.getPropertyRegistry().getStore(propertyClass);
+        final Optional<PropertyProvider<T>> optional = Sponge.getPropertyRegistry().getStore(propertyClass);
         return optional.flatMap(tPropertyStore -> tPropertyStore.getFor(new Location<>(this, x, y, z)));
     }
 
     @Override
     public <T extends Property<?, ?>> Optional<T> getProperty(int x, int y, int z, Direction direction, Class<T> propertyClass) {
-        final Optional<PropertyStore<T>> optional = Sponge.getPropertyRegistry().getStore(propertyClass);
+        final Optional<PropertyProvider<T>> optional = Sponge.getPropertyRegistry().getStore(propertyClass);
         return optional.flatMap(tPropertyStore -> tPropertyStore.getFor(new Location<>(this, x, y, z), direction));
     }
 
@@ -938,11 +938,11 @@ public abstract class WorldMixin_API implements World {
 
     @Override
     public Collection<Direction> getFacesWithProperty(int x, int y, int z, Class<? extends Property<?, ?>> propertyClass) {
-        final Optional<? extends PropertyStore<? extends Property<?, ?>>> optional = Sponge.getPropertyRegistry().getStore(propertyClass);
+        final Optional<? extends PropertyProvider<? extends Property<?, ?>>> optional = Sponge.getPropertyRegistry().getStore(propertyClass);
         if (!optional.isPresent()) {
             return Collections.emptyList();
         }
-        final PropertyStore<? extends Property<?, ?>> store = optional.get();
+        final PropertyProvider<? extends Property<?, ?>> store = optional.get();
         final Location<World> loc = new Location<>(this, x, y, z);
         ImmutableList.Builder<Direction> faces = ImmutableList.builder();
         for (net.minecraft.util.Direction facing : net.minecraft.util.Direction.values()) {
@@ -960,7 +960,7 @@ public abstract class WorldMixin_API implements World {
         if (optional.isPresent()) {
             return optional;
         }
-        final Optional<TileEntity> tileEntityOptional = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntityOptional = getTileEntity(x, y, z);
         return tileEntityOptional.flatMap(tileEntity -> tileEntity.get(key));
     }
 
@@ -982,7 +982,7 @@ public abstract class WorldMixin_API implements World {
         if (optional.isPresent()) {
             return optional;
         }
-        final Optional<TileEntity> tileEntity = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntity = getTileEntity(x, y, z);
         return tileEntity.flatMap(tileEntity1 -> tileEntity1.getOrCreate(manipulatorClass));
     }
 
@@ -992,7 +992,7 @@ public abstract class WorldMixin_API implements World {
         if (blockState.supports(key)) {
             return blockState.getValue(key);
         }
-        final Optional<TileEntity> tileEntity = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntity = getTileEntity(x, y, z);
         if (tileEntity.isPresent() && tileEntity.get().supports(key)) {
             return tileEntity.get().getValue(key);
         }
@@ -1003,7 +1003,7 @@ public abstract class WorldMixin_API implements World {
     public boolean supports(int x, int y, int z, Key<?> key) {
         final BlockState blockState = getBlock(x, y, z);
         final boolean blockSupports = blockState.supports(key);
-        final Optional<TileEntity> tileEntity = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntity = getTileEntity(x, y, z);
         final boolean tileEntitySupports = tileEntity.isPresent() && tileEntity.get().supports(key);
         return blockSupports || tileEntitySupports;
     }
@@ -1020,7 +1020,7 @@ public abstract class WorldMixin_API implements World {
             }
         }
         if (!blockSupports) {
-            final Optional<TileEntity> tileEntity = getTileEntity(x, y, z);
+            final Optional<BlockEntity> tileEntity = getTileEntity(x, y, z);
             final boolean tileEntitySupports;
             tileEntitySupports = tileEntity.isPresent() && tileEntity.get().supports(manipulatorClass);
             return tileEntitySupports;
@@ -1033,7 +1033,7 @@ public abstract class WorldMixin_API implements World {
         final ImmutableSet.Builder<Key<?>> builder = ImmutableSet.builder();
         final BlockState blockState = getBlock(x, y, z).withExtendedProperties(new Location<>(this, x, y, z));
         builder.addAll(blockState.getKeys());
-        final Optional<TileEntity> tileEntity = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntity = getTileEntity(x, y, z);
         tileEntity.ifPresent(tileEntity1 -> builder.addAll(tileEntity1.getKeys()));
         return builder.build();
     }
@@ -1043,7 +1043,7 @@ public abstract class WorldMixin_API implements World {
         final ImmutableSet.Builder<ImmutableValue<?>> builder = ImmutableSet.builder();
         final BlockState blockState = getBlock(x, y, z).withExtendedProperties(new Location<>(this, x, y, z));
         builder.addAll(blockState.getValues());
-        final Optional<TileEntity> tileEntity = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntity = getTileEntity(x, y, z);
         tileEntity.ifPresent(tileEntity1 -> builder.addAll(tileEntity1.getValues()));
         return builder.build();
     }
@@ -1085,7 +1085,7 @@ public abstract class WorldMixin_API implements World {
 
     @Override
     public DataTransactionResult remove(int x, int y, int z, Class<? extends DataManipulator<?, ?>> manipulatorClass) {
-        final Optional<TileEntity> tileEntityOptional = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntityOptional = getTileEntity(x, y, z);
         return tileEntityOptional
             .map(tileEntity -> tileEntity.remove(manipulatorClass))
             .orElseGet(DataTransactionResult::failNoData);
@@ -1093,7 +1093,7 @@ public abstract class WorldMixin_API implements World {
 
     @Override
     public DataTransactionResult remove(int x, int y, int z, Key<?> key) {
-        final Optional<TileEntity> tileEntityOptional = getTileEntity(x, y, z);
+        final Optional<BlockEntity> tileEntityOptional = getTileEntity(x, y, z);
         return tileEntityOptional
             .map(tileEntity -> tileEntity.remove(key))
             .orElseGet(DataTransactionResult::failNoData);
@@ -1133,7 +1133,7 @@ public abstract class WorldMixin_API implements World {
         for (ImmutableDataManipulator<?, ?> immutableDataManipulator : manipulators) {
             list.add(immutableDataManipulator.asMutable());
         }
-        final Optional<TileEntity> optional = getTileEntity(x, y, z);
+        final Optional<BlockEntity> optional = getTileEntity(x, y, z);
         optional
             .ifPresent(tileEntity -> list.addAll(tileEntity.getContainers()));
         return list;

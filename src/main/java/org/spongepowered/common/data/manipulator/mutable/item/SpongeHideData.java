@@ -24,10 +24,10 @@
  */
 package org.spongepowered.common.data.manipulator.mutable.item;
 
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.data.manipulator.immutable.item.ImmutableHideData;
 import org.spongepowered.api.data.manipulator.mutable.item.HideData;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.value.mutable.Value;
 import org.spongepowered.common.data.ImmutableDataCachingUtil;
 import org.spongepowered.common.data.manipulator.immutable.item.ImmutableSpongeHideData;

@@ -34,7 +34,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.explosion.Explosion;
 import org.spongepowered.api.world.weather.Weather;

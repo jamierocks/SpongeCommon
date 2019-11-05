@@ -26,11 +26,11 @@ package org.spongepowered.common.bridge.data;
 
 import com.google.common.collect.ImmutableList;
 import org.spongepowered.api.data.DataTransactionResult;
-import org.spongepowered.api.data.DataView;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
-import org.spongepowered.api.data.merge.MergeFunction;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.value.BaseValue;
+import org.spongepowered.api.data.value.MergeFunction;
 import org.spongepowered.common.data.util.DataUtil;
 import org.spongepowered.common.util.Constants;
 

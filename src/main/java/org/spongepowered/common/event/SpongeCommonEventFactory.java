@@ -63,8 +63,8 @@ import org.apache.logging.log4j.Level;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
+import org.spongepowered.api.block.entity.BlockEntity;
 import org.spongepowered.api.block.tileentity.Jukebox;
-import org.spongepowered.api.block.tileentity.TileEntity;
 import org.spongepowered.api.data.Transaction;
 import org.spongepowered.api.data.type.HandType;
 import org.spongepowered.api.data.type.HandTypes;
@@ -83,7 +83,6 @@ import org.spongepowered.api.entity.living.Human;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.User;
-import org.spongepowered.api.entity.projectile.source.ProjectileSource;
 import org.spongepowered.api.event.CauseStackManager;
 import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.SpongeEventFactory;
@@ -110,9 +109,9 @@ import org.spongepowered.api.event.item.inventory.ClickInventoryEvent;
 import org.spongepowered.api.event.item.inventory.CraftItemEvent;
 import org.spongepowered.api.event.item.inventory.DropItemEvent;
 import org.spongepowered.api.event.item.inventory.EnchantItemEvent;
-import org.spongepowered.api.event.item.inventory.InteractInventoryEvent;
 import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import org.spongepowered.api.event.item.inventory.UpdateAnvilEvent;
+import org.spongepowered.api.event.item.inventory.container.InteractContainerEvent;
 import org.spongepowered.api.event.message.MessageEvent;
 import org.spongepowered.api.event.sound.PlaySoundEvent;
 import org.spongepowered.api.item.enchantment.Enchantment;
@@ -124,6 +123,7 @@ import org.spongepowered.api.item.inventory.crafting.CraftingInventory;
 import org.spongepowered.api.item.inventory.transaction.SlotTransaction;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.item.recipe.crafting.CraftingRecipe;
+import org.spongepowered.api.projectile.source.ProjectileSource;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.channel.MessageChannel;
 import org.spongepowered.api.util.Direction;
@@ -506,7 +506,7 @@ public class SpongeCommonEventFactory {
                 final Object source = currentContext.getSource();
                 if (source instanceof LocatableBlock) {
                     frame.pushCause(source);
-                } else if (source instanceof TileEntity) {
+                } else if (source instanceof BlockEntity) {
                     frame.pushCause(source);
                 } else if (source instanceof Entity) {
                     frame.pushCause(source);
@@ -1146,7 +1146,7 @@ public class SpongeCommonEventFactory {
                 player.inventory.getItemStack().isEmpty() ? ItemStackSnapshot.NONE
                         : ((org.spongepowered.api.item.inventory.ItemStack) player.inventory.getItemStack()).createSnapshot();
         final Transaction<ItemStackSnapshot> cursorTransaction = new Transaction<>(ItemStackSnapshot.NONE, newCursor);
-        final InteractInventoryEvent.Open event =
+        final InteractContainerEvent.Open event =
                 SpongeEventFactory.createInteractInventoryEventOpen(Sponge.getCauseStackManager().getCurrentCause(), cursorTransaction,
                         (org.spongepowered.api.item.inventory.Container) player.openContainer);
         SpongeImpl.postEvent(event);
@@ -1163,10 +1163,10 @@ public class SpongeCommonEventFactory {
         return true;
     }
 
-    public static InteractInventoryEvent.Close callInteractInventoryCloseEvent(final Container container, final ServerPlayerEntity player,
+    public static InteractContainerEvent.Close callInteractInventoryCloseEvent(final Container container, final ServerPlayerEntity player,
             final ItemStackSnapshot lastCursor, final ItemStackSnapshot newCursor, final boolean clientSource) {
         final Transaction<ItemStackSnapshot> cursorTransaction = new Transaction<>(lastCursor, newCursor);
-        final InteractInventoryEvent.Close event =
+        final InteractContainerEvent.Close event =
                 SpongeEventFactory.createInteractInventoryEventClose(Sponge.getCauseStackManager().getCurrentCause(), cursorTransaction, ContainerUtil.fromNative(container));
         SpongeImpl.postEvent(event);
         if (event.isCancelled()) {

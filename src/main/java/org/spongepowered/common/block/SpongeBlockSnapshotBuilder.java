@@ -36,13 +36,13 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.data.DataView;
-import org.spongepowered.api.data.Queries;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.manipulator.DataManipulator;
 import org.spongepowered.api.data.manipulator.ImmutableDataManipulator;
 import org.spongepowered.api.data.persistence.AbstractDataBuilder;
+import org.spongepowered.api.data.persistence.DataView;
 import org.spongepowered.api.data.persistence.InvalidDataException;
+import org.spongepowered.api.data.persistence.Queries;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.BlockChangeFlags;
@@ -150,7 +150,7 @@ public class SpongeBlockSnapshotBuilder extends AbstractDataBuilder<BlockSnapsho
         if (this.blockState.getType() instanceof ITileEntityProvider) {
             if (location.hasTileEntity()) {
                 this.compound = new CompoundNBT();
-                final org.spongepowered.api.block.tileentity.TileEntity te = location.getTileEntity().get();
+                final org.spongepowered.api.block.entity.BlockEntity te = location.getTileEntity().get();
                 ((TileEntity) te).write(this.compound);
                 this.manipulators = ((CustomDataHolderBridge) te).bridge$getCustomManipulators().stream()
                         .map(DataManipulator::asImmutable)

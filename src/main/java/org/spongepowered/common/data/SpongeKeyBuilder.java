@@ -29,8 +29,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 
 import com.google.common.reflect.TypeToken;
-import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.key.Key;
+import org.spongepowered.api.data.persistence.DataQuery;
 import org.spongepowered.api.data.value.BaseValue;
 import org.spongepowered.api.plugin.PluginContainer;
 import org.spongepowered.api.text.translation.Translation;

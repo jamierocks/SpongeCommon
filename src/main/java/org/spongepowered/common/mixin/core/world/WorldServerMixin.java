@@ -86,8 +86,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.block.BlockSnapshot;
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.ScheduledBlockUpdate;
-import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.manipulator.DataManipulator;
+import org.spongepowered.api.data.persistence.DataContainer;
 import org.spongepowered.api.data.persistence.DataFormats;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.EntityTypes;
@@ -108,14 +108,14 @@ import org.spongepowered.api.event.world.ExplosionEvent;
 import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.BlockChangeFlag;
 import org.spongepowered.api.world.BlockChangeFlags;
-import org.spongepowered.api.world.GeneratorType;
-import org.spongepowered.api.world.GeneratorTypes;
 import org.spongepowered.api.world.LocatableBlock;
-import org.spongepowered.api.world.PortalAgentType;
-import org.spongepowered.api.world.PortalAgentTypes;
 import org.spongepowered.api.world.gen.BiomeGenerator;
+import org.spongepowered.api.world.gen.GeneratorType;
+import org.spongepowered.api.world.gen.GeneratorTypes;
 import org.spongepowered.api.world.gen.WorldGeneratorModifier;
 import org.spongepowered.api.world.storage.WorldProperties;
+import org.spongepowered.api.world.teleport.PortalAgentType;
+import org.spongepowered.api.world.teleport.PortalAgentTypes;
 import org.spongepowered.api.world.weather.Weather;
 import org.spongepowered.api.world.weather.Weathers;
 import org.spongepowered.asm.mixin.Final;
@@ -890,7 +890,7 @@ public abstract class WorldServerMixin extends WorldMixin implements WorldServer
         if (((BlockBridge) blockIn).bridge$shouldFireBlockEvents()) {
             blockEvent.bridge$setSourceUser(currentContext.getActiveUser());
             if (SpongeImplHooks.hasBlockTileEntity(blockIn, getBlockState(pos))) {
-                blockEvent.bridge$setTileEntity((org.spongepowered.api.block.tileentity.TileEntity) getTileEntity(pos));
+                blockEvent.bridge$setTileEntity((org.spongepowered.api.block.entity.BlockEntity) getTileEntity(pos));
             }
             if (blockEvent.bridge$getTileEntity() == null) {
                 final LocatableBlock locatable = new SpongeLocatableBlockBuilder()
